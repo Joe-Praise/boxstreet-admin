@@ -6,7 +6,7 @@ function SideNav() {
   return (
     <div className="sideNav">
       <ul>
-        <Link className="sideNavLinks" to="">
+        <Link className="sideNavLinks" to="/">
           <li>Movies</li>
         </Link>
 
