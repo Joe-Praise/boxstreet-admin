@@ -245,7 +245,7 @@ rotate: 180deg;
 .box1-col1{
     display: flex;
     gap: 20px;
-    margin-top: 20px;
+    margin-top: 15px;
 }
 
 .box1-col1 .col1p{
@@ -336,7 +336,7 @@ rotate: 180deg;
 }
 
 .box-line .line{
-    margin-top: 20px;
+    margin-top: 10px;
     width: 590px;
     height: 100px;
     border: solid 7px #00d0ff;
@@ -345,7 +345,7 @@ rotate: 180deg;
 }
 
 .booking-container-col1-inputs{
-margin: 50px 0;
+margin: 40px 0;
 display: flex;
 gap: 100px;
 }
@@ -525,6 +525,9 @@ color: #ffffff;
     color: #eee;
     border: none;
     padding: 10px 30px;
+    margin-right: 200px;
+    margin-top: 40px;
+    margin-bottom: 10px;
     font-size: 18px;
     outline: none;
     cursor: pointer;
@@ -535,4 +538,9 @@ color: #ffffff;
 
   .counterBookingFlex{
     margin-top: -69px;
+  }
+
+  .seat-footer{
+    display: flex;
+    justify-content: space-between;
   }

@@ -1,6 +1,6 @@
 import React from "react";
 import '../stylesCounter/counterBooking.css'
-import img from "../uploads/expendables.webp";
+import img from "../../uploads/expendables.webp";
 import CounterNav from "../Navigation/CounterNav";
 import {Link} from "react-router-dom"
 

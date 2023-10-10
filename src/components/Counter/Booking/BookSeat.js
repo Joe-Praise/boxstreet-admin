@@ -3,8 +3,8 @@ import { IoStar, IoTimerOutline, IoLocationOutline, IoCalendarOutline, IoArrowFo
 import { MdLockClock } from "react-icons/md";
 import { useState, useEffect } from 'react';
 // import '../stylesCounter/counterBooking.css'
-import img1 from "../uploads/booking-movie6.jpg";
-import img from "../uploads/expendables.webp";
+// import img1 from "../uploads/booking-movie6.jpg";
+import img from "../../uploads/expendables.webp";
 import '../stylesCounter/bookSeat.css'
 import CounterNav from "../Navigation/CounterNav";
 import {Link} from "react-router-dom";
@@ -126,15 +126,17 @@ function BookSeat() {
                                     <span className="booking-container-col-text">Available</span>
                                 </div>
                             </div>
-                            <div className="booking-total">
+                           <div className="seat-footer">
+                           <div className="booking-total">
                                 <h3 className="booking-totalh">Total :</h3>
                                 <p className="booking-totalp">N600</p>
                             </div>
-                            <div className="booking-container-col-bottom">
-                                <div className="booking-container-col-bottom-row1">
+                            <div >
+                                <div>
                                 <Link to="/seat"> <button class="seat-btn">Pay Now!</button></Link>
                                 </div>
                             </div>
+                           </div>
                         </div>
                         {/* <div className="booking-container-col2">
                             <div className="box-container-top-items">
