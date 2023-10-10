@@ -2,6 +2,7 @@ import React from "react";
 import "../stylesCounter/counterBooking.css";
 import img from "../../uploads/expendables.webp";
 import CounterNav from "../Navigation/CounterNav";
+import { Link } from "react-router-dom";
 
 function CounterBooking() {
   return (
@@ -40,6 +41,11 @@ function CounterBooking() {
               <span></span>
               <input type="text" name="description" class="inputs" required />
             </div>
+            {/* <div class="form-group"> */}
+            <Link to="/seat">
+              {" "}
+              <button class="form-btn">Book Seat</button>
+            </Link>
             <div class="counterform-group">
               <button class="counterform-btn">Book Seat</button>
             </div>
