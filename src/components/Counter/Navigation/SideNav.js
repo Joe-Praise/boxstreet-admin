@@ -14,7 +14,7 @@ function SideNav() {
           <li>Payments</li>
         </Link>
 
-        <Link className="sideNavLinks" to="">
+        <Link to="/seat" className="sideNavLinks">
           <li>Seat Bookings</li>
         </Link>
 

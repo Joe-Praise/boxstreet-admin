@@ -1,7 +1,7 @@
 import React from "react";
-import CounterNav from "../../Counter/Navigation/CounterNav";
 import "./styles/style.css";
 import img from "../../uploads/promo3.jpg";
+import TheaterNav from "../../Theater/Navigation/TheaterNav";
 const MovieScheduleListing = () => {
   const obj = [
     {
@@ -64,7 +64,7 @@ const MovieScheduleListing = () => {
   const deleteHandler = () => {};
   return (
     <div>
-      <CounterNav />
+      <TheaterNav />
       <div className="movielistingContainer">
         <h3>Movie Schedule Listing</h3>
         <table>

@@ -1,8 +1,8 @@
-import CounterNav from "../../Counter/Navigation/CounterNav";
-import "../styles/createmovieschedule.css";
+import "./styles/createmovieschedule.css";
 import { useEffect, useState } from "react";
 import { FcAddImage } from "react-icons/fc";
 import DisplayMovieScheduleInfo from "./DisplayMovieScheduleInfo";
+import TheaterNav from "../../Theater/Navigation/TheaterNav";
 function MovieScheduleBooking() {
   const [value, onChange] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -87,7 +87,7 @@ function MovieScheduleBooking() {
 
   return (
     <div className="movieschedule-Booking ">
-      <CounterNav />
+      <TheaterNav />
       <div className="mainContent">
         <div>
           <form className="movieScheduleForm">
