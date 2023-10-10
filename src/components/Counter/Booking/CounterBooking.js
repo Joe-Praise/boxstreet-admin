@@ -1,6 +1,6 @@
 import React from "react";
-import '../stylesCounter/counterBooking.css'
-import img from "../uploads/expendables.webp";
+import "../stylesCounter/counterBooking.css";
+import img from "../../uploads/expendables.webp";
 import CounterNav from "../Navigation/CounterNav";
 
 function CounterBooking() {
@@ -53,9 +53,15 @@ function CounterBooking() {
               <h3>The Movie Title</h3>
               <span>The Movie Genre</span>
               <p class="movieDescription">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nulla rem adipisci totam iusto dolores. Fuga odit, tempora debitis modi dolores dolorem beatae repudiandae? Blanditiis mollitia, ducimus eum obcaecati quae culpa. Porro, qui et accusamus esse officia labore animi ex iusto!
-            <a href="#" class="read-more">Read More</a>
-        </p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nulla
+                rem adipisci totam iusto dolores. Fuga odit, tempora debitis
+                modi dolores dolorem beatae repudiandae? Blanditiis mollitia,
+                ducimus eum obcaecati quae culpa. Porro, qui et accusamus esse
+                officia labore animi ex iusto!
+                <a href="#" class="read-more">
+                  Read More
+                </a>
+              </p>
             </div>
           </div>
         </div>
