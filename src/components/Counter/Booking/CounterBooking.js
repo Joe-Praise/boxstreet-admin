@@ -12,37 +12,39 @@ function CounterBooking() {
       </div>
       <div className="counterBookingFlex">
         <div className="counterBookingForm">
-          <form className="form">
+          <form className="counterform">
             <h2>Customer's Information</h2>
-            <div className="formnameflex">
-              <div class="form-group">
+            <div className="counterformnameflex">
+              <div class="counterform-group">
                 <label for="">First name:</label>
                 <span></span>
                 <input type="text" name="name" class="inputs" required />
               </div>
-              <div class="form-group">
+              <div class="counterform-group">
                 <label for="">Last name:</label>
                 <span></span>
                 <input type="text" name="category" class="inputs" required />
               </div>
             </div>
-            <div class="form-group">
+            <div class="counterform-group">
               <label for="">Email:</label>
               <span></span>
               <input type="email" name="price" class="inputs" required />
             </div>
-            <div class="form-group">
+            <div class="counterform-group">
               <label for="">Phone Number:</label>
               <span></span>
               <input type="text" name="quantity" class="inputs" required />
             </div>
-            <div class="form-group">
+            <div class="counterform-group">
               <label for="">Lorem ipsum dolor</label>
               <span></span>
               <input type="text" name="description" class="inputs" required />
             </div>
-            <div class="form-group">
+            {/* <div class="form-group"> */}
              <Link to="/seat"> <button class="form-btn">Book Seat</button></Link>
+            <div class="counterform-group">
+              <button class="counterform-btn">Book Seat</button>
             </div>
           </form>
         </div>

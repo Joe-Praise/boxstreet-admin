@@ -1,10 +1,9 @@
-import React from "react";
-import "../stylesCounter/nav.css";
-import logo from "../../uploads/FHC LOGO.png";
-import { Link } from "react-router-dom";
-import SideNav from "./SideNav";
+import React from 'react'
+import TheaterSideNav from './TheaterSideNav'
+import logo from '../../uploads/FHC LOGO.png'
+import { Link } from 'react-router-dom'
 
-function CounterNav() {
+function TheaterNav() {
   return (
     <header>
       <div className="navHead">
@@ -17,7 +16,7 @@ function CounterNav() {
           <div>
             <ul className="navlinks">
               <Link to="/" className="textdecor">
-                <li className="bsColour">MOVIE LISTINGS</li>
+                <li className="bsColour">THEATER LISTINGS</li>
               </Link>
             </ul>
           </div>
@@ -29,9 +28,9 @@ function CounterNav() {
           </div>
         </nav>
       </div>
-      <SideNav />
+      <TheaterSideNav />
     </header>
-  );
+  )
 }
 
-export default CounterNav;
+export default TheaterNav
