@@ -1,8 +1,8 @@
 import React from "react";
-import '../stylesCounter/counterBooking.css'
+import "../stylesCounter/counterBooking.css";
 import img from "../../uploads/expendables.webp";
 import CounterNav from "../Navigation/CounterNav";
-import {Link} from "react-router-dom"
+import { Link } from "react-router-dom";
 
 function CounterBooking() {
   return (
@@ -42,10 +42,13 @@ function CounterBooking() {
               <input type="text" name="description" class="inputs" required />
             </div>
             {/* <div class="form-group"> */}
-             <Link to="/seat" class="counterform-btn"> <button type="button" >Book Seat</button></Link>
-            {/* <div class="counterform-group">
+            <Link to="/seat">
+              {" "}
+              <button class="form-btn">Book Seat</button>
+            </Link>
+            <div class="counterform-group">
               <button class="counterform-btn">Book Seat</button>
-            </div> */}
+            </div> 
           </form>
         </div>
         <div className="counterbookingRight">
@@ -56,9 +59,15 @@ function CounterBooking() {
               <h3>The Movie Title</h3>
               <span>The Movie Genre</span>
               <p class="movieDescription">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nulla rem adipisci totam iusto dolores. Fuga odit, tempora debitis modi dolores dolorem beatae repudiandae? Blanditiis mollitia, ducimus eum obcaecati quae culpa. Porro, qui et accusamus esse officia labore animi ex iusto!
-            <a href="#" class="read-more">Read More</a>
-        </p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nulla
+                rem adipisci totam iusto dolores. Fuga odit, tempora debitis
+                modi dolores dolorem beatae repudiandae? Blanditiis mollitia,
+                ducimus eum obcaecati quae culpa. Porro, qui et accusamus esse
+                officia labore animi ex iusto!
+                <a href="#" class="read-more">
+                  Read More
+                </a>
+              </p>
             </div>
           </div>
         </div>
