@@ -18,8 +18,8 @@ function SideNav() {
           <li>Seat Bookings</li>
         </Link>
 
-        <Link className="sideNavLinks" to="">
-          <li>Counter Settings</li>
+        <Link className="sideNavLinks" to="/counter/profile">
+          <li>Counter Profile</li>
         </Link>
         
         <Link className="sideNavLinks" to="">
