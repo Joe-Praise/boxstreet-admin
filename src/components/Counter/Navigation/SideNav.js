@@ -7,19 +7,19 @@ function SideNav() {
     <div className="sideNav">
       <ul>
         <Link className="sideNavLinks" to="/">
-          <li>Movies</li>
+          <li>MOVIE SCHDULES</li>
         </Link>
 
         <Link className="sideNavLinks" to="">
-          <li>Payments</li>
+          <li>VIEW BOOKINGS</li>
         </Link>
 
-        <Link to="/seat" className="sideNavLinks">
-          <li>Seat Bookings</li>
-        </Link>
+        {/* <Link to="/seat" className="sideNavLinks">
+          <li>SEAT BOOKINGS</li>
+        </Link> */}
 
         <Link className="sideNavLinks" to="">
-          <li>Counter Settings</li>
+          <li> SETTINGS</li>
         </Link>
         
         <Link className="sideNavLinks" to="">

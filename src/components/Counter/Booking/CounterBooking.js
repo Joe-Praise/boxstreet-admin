@@ -42,10 +42,10 @@ function CounterBooking() {
               <input type="text" name="description" class="inputs" required />
             </div>
             {/* <div class="form-group"> */}
-             <Link to="/seat"> <button class="form-btn">Book Seat</button></Link>
-            <div class="counterform-group">
+             <Link to="/seat" class="counterform-btn"> <button type="button" >Book Seat</button></Link>
+            {/* <div class="counterform-group">
               <button class="counterform-btn">Book Seat</button>
-            </div>
+            </div> */}
           </form>
         </div>
         <div className="counterbookingRight">
