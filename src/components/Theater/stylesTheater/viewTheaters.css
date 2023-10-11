@@ -17,8 +17,9 @@
 }
 
 .vt-select {
-  width: 200px;
-  margin: 30px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
 }
 .vt-select option {
   outline: none;
@@ -32,6 +33,24 @@
   width: 200px;
   height: 40px;
   border-radius: 5px;
+}
+
+.addtheaterbtn{
+    background-color: #6a7c94;
+    border-radius: 4px;
+    padding: 10px;
+    border: none;
+    color: #fff;
+    text-align: center;
+    cursor: pointer;
+}
+
+.vt-table-view{
+    background-color: #6a9480;
+    border-radius: 4px;
+    color: #fff;
+    text-align: center;
+    cursor: pointer;
 }
 
 .vt-table-edit {
@@ -89,6 +108,7 @@ td {
 }
 .vt-table {
   width: 100%;
+  margin-top: 30px;
   border-collapse: collapse;
 }
 .vt-table .vt-table-header {
@@ -104,6 +124,7 @@ td {
 .vt-table tbody td {
   padding: 13px;
   font-size: 16px;
+  text-align: center;
   align-items: center;
   border-top: 10px solid #dfdddd;
   border-bottom: 10px solid #dfdddd;
