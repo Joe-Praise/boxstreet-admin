@@ -7,13 +7,13 @@ function TheaterSideNav() {
     <div className="theaterSideNav">
       <div className="sideNav">
         <ul>
-        <Link className="sideNavLinks" to="/theater-admin">
+          <Link className="sideNavLinks" to="/theater-admin">
             <li>HOME</li>
           </Link>
           <Link className="sideNavLinks" to="/view-theaters">
             <li>VIEW THEATERS</li>
           </Link>
-          
+
           <Link className="sideNavLinks" to="/new-theater">
             <li>ADD THEATER</li>
           </Link>
@@ -29,8 +29,7 @@ function TheaterSideNav() {
             <li>VIEW SCHEDULES</li>
           </Link>
 
-
-          <Link className="sideNavLinks" to="">
+          <Link className="sideNavLinks" to="/theater-admin/movieschedule">
             <li>CREATE SCHEDULE</li>
           </Link>
 
