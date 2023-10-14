@@ -46,9 +46,9 @@ function CounterBooking() {
               {" "}
               <button class="form-btn">Book Seat</button>
             </Link>
-            <div class="counterform-group">
+            <Link class="counterform-group">
               <button class="counterform-btn">Book Seat</button>
-            </div> 
+            </Link> 
           </form>
         </div>
         <div className="counterbookingRight">
