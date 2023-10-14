@@ -2,24 +2,24 @@
     width: 18%;
 }
 
-.sideNav{
+.theatersideNav{
     width: 18%;
     height: 100vh;
     position: fixed;
     top: 80px;
-    background-color: #000;
+    background-color: #3e567c;
     padding: 50px 20px;
 }
 
-.sideNav ul {
+.theatersideNav ul {
     list-style: none;
 }
 
-.sideNavLinks{
+.theatersideNavLinks{
     text-decoration: none;
 }
 
-.sideNavLinks li{
+.theatersideNavLinks li{
     font-size: 1rem;
     margin: 20px 10px;
     padding: 10px 15px;

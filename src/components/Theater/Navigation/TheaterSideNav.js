@@ -5,35 +5,44 @@ import { Link } from "react-router-dom";
 function TheaterSideNav() {
   return (
     <div className="theaterSideNav">
-      <div className="sideNav">
+      <div className="theatersideNav">
         <ul>
-          <Link className="sideNavLinks" to="/theater-admin">
+        <Link className="theatersideNavLinks" to="/theater-admin">
             <li>HOME</li>
           </Link>
-          <Link className="sideNavLinks" to="/view-theaters">
+          <Link className="theatersideNavLinks" to="/view-theaters">
             <li>VIEW THEATERS</li>
           </Link>
-
-          <Link className="sideNavLinks" to="/new-theater">
+          
+          <Link className="theatersideNavLinks" to="/new-theater">
             <li>ADD THEATER</li>
           </Link>
 
-          <Link className="sideNavLinks" to="/seat-layout">
+          <Link className="theatersideNavLinks" to="/view-movies">
+            <li>VIEW MOVIES</li>
+          </Link>
+
+          <Link className="theatersideNavLinks" to="/add-movie">
+            <li>ADD MOVIE</li>
+          </Link>
+
+          <Link className="theatersideNavLinks" to="/seat-layout">
             <li>SEAT LAYOUT</li>
           </Link>
 
           <Link
-            className="sideNavLinks"
+            className="theatersideNavLinks"
             to="/theater-admin/movieschedulelisting"
           >
             <li>VIEW SCHEDULES</li>
           </Link>
 
-          <Link className="sideNavLinks" to="/theater-admin/movieschedule">
+
+          <Link className="theatersideNavLinks" to="">
             <li>CREATE SCHEDULE</li>
           </Link>
 
-          <Link className="sideNavLinks" to="/add-counter">
+          <Link className="theatersideNavLinks" to="/add-counter">
             <li>REGISTER COUNTER</li>
           </Link>
         </ul>

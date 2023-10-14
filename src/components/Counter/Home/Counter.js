@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import "../stylesCounter/counter.css";
 import { Link } from "react-router-dom";
 import CounterNav from "../Navigation/CounterNav";
+import axios from "axios";
 
-const movieListing = [
+const shows =[
   {
     id: 1,
     title: "Spider-Man: Far From Home",
@@ -124,9 +125,39 @@ const movieListing = [
     description:
       "When the Joker wreaks havoc on Gotham City, Batman must confront his own demons while trying to stop the chaos.",
   },
-];
+]
+
+let MODE = "PROD" 
+let LOCAL = "http://localhost:5000";
+let ONLINE = "https://boxstreet.onrender.com";
+
+let BASE_URL = MODE === "PROD" ? ONLINE : LOCAL;
+
+
+
 
 function Counter() {
+
+  const [movieListing,setMovieListing] =  useState(shows);
+
+  useEffect(()=>{
+    let url = `${BASE_URL}/api/v1/movieschedule?branch_id=652aa4576de9462d0253351c`
+    axios.get(url)
+    .then(res=>{
+        let movies = res.data?.data;
+      let data = movies?.map(e =>({
+        id: e._id,
+        title: e?.movie_id?.name,
+        genre: e?.movie_id?.genre,
+        showingtime: e.show_time.join(','),
+        imageUrl:e?.movie_id?.image,
+        description:e?.movie_id?.description
+      }))
+      console.log(data)
+      setMovieListing([...data])
+    })
+  },[])
+
   const [selectedMovieTime, setSelectedMovieTime] =
     useState("Select Movie Time");
   const [selectedGenre, setSelectedGenre] = useState("Genre");
@@ -166,7 +197,7 @@ function Counter() {
         </div>
         <div className="counterMovies">
           {movieListing.map((movie) => (
-            <Link className="movieBox" to={`booking/${movie.id}`} key={movie.id}>
+            <Link className="movieBox" to={`/counter/booking/${movie.id}`} key={movie.id}>
               <img src={movie.imageUrl} alt={movie.title} />
               <div className="movieInfo">
                 <p>{movie.showingtime}</p>

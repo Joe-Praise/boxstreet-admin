@@ -23,7 +23,9 @@ function CounterNav() {
           </div>
           <div>
             <ul className="navlinks">
-              <li className="from-left-and-back">BOOKING HISTORY</li>
+              <Link to='/counter/history'>
+                <li className="from-left-and-back">BOOKING HISTORY</li>
+              </Link>
               <li className="from-left-and-back">SIGN IN</li>
             </ul>
           </div>

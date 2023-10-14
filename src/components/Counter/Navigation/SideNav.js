@@ -6,24 +6,16 @@ function SideNav() {
   return (
     <div className="sideNav">
       <ul>
-        <Link className="sideNavLinks" to="/">
-          <li>MOVIE SCHDULES</li>
+        <Link className="sideNavLinks" to="/counter">
+          <li>Home</li>
         </Link>
 
-        <Link className="sideNavLinks" to="">
-          <li>VIEW BOOKINGS</li>
+        <Link to="/counter/history" className="sideNavLinks">
+          <li>Booking History</li>
         </Link>
-
-        {/* <Link to="/seat" className="sideNavLinks">
-          <li>SEAT BOOKINGS</li>
-        </Link> */}
 
         <Link className="sideNavLinks" to="">
           <li> SETTINGS</li>
-        </Link>
-        
-        <Link className="sideNavLinks" to="">
-          <li>FAQs</li>
         </Link>
       </ul>
     </div>

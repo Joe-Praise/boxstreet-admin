@@ -22,7 +22,9 @@ function TheaterNav() {
           </div>
           <div>
             <ul className="navlinks">
-              <li className="from-left-and-back">BOOKING HISTORY</li>
+                <Link to='/theater/profile' className='textnone'>
+                    <li className="from-left-and-back">BOOKING HISTORY</li>
+                </Link>
               <li className="from-left-and-back">SIGN IN</li>
             </ul>
           </div>
