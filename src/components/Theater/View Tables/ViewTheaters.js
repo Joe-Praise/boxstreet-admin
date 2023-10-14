@@ -9,6 +9,9 @@ function ViewTheaters() {
   const handleEditButtonClick = () => {
     navigate("/newTheater");
   };
+  const handleViewButtonClick = () => {
+    navigate("/seat-layout");
+  }; 
 
   return (
     <div>
@@ -28,19 +31,23 @@ function ViewTheaters() {
               <option value="Wuse">Wuse</option>
               <option value="Garki">Garki</option>
             </select>
+
+            <button className="addtheaterbtn">
+                Add New Theater
+            </button>
           </div>
           <div className="vt-table-container">
             <table className="vt-table">
               <thead>
                 <tr className="vt-table-header">
                   <th>S/N</th>
-                  <th>Cinemas</th>
-                  <th>Branch</th>
-                  <th>Seating Capacity</th>
+                  <th>Theater Name</th>
                   <th>Rows</th>
                   <th>Columns</th>
+                  <th>Seating Capacity</th>
                   <th>Col-Matrix1</th>
                   <th>Col-Matrix2</th>
+                  <th>View</th>
                   <th>Edit</th>
                   <th>Delete</th>
                 </tr>
@@ -48,13 +55,13 @@ function ViewTheaters() {
               <tbody>
                 <tr>
                   <td>{+1}</td>
-                  <td>UdeNna Uwaluekw Ibe</td>
-                  <td>Regular</td>
-                  <td>Jabi</td>
-                  <td>Boxstreet</td>
-                  <td>Ocean's 11</td>
+                  <td>CTO000</td>
+                  <td>8</td>
+                  <td>6</td>
+                  <td>48</td>
                   <td>1234567</td>
                   <td>1234567</td>
+                  <td className="vt-table-view" onClick={handleViewButtonClick}>View</td>
                   <td className="vt-table-edit" onClick={handleEditButtonClick}>
                     {" "}
                     Edit</td>
@@ -63,88 +70,88 @@ function ViewTheaters() {
                 
                 <tr>
                   <td>{+2}</td>
-                  <td>Ude Nna</td>
-                  <td>Regular</td>
-                  <td>Jabi</td>
-                  <td>Boxstreet</td>
-                  <td>Ocean's 11</td>
+                  <td>CTO001</td>
+                  <td>9</td>
+                  <td>6</td>
+                  <td>54</td>
                   <td>1234567</td>
                   <td>1234567</td>
+                  <td className="vt-table-view" onClick={handleViewButtonClick}>View</td>
                   <td className="vt-table-edit"  onClick={handleEditButtonClick}>Edit</td>
                   <td className="vt-table-delete">Delete</td>
                 </tr>
                 <tr>
-                  <td>{+1}</td>
-                  <td>UdeNna Uwaluekw Ibe</td>
-                  <td>Regular</td>
-                  <td>Jabi</td>
-                  <td>Boxstreet</td>
-                  <td>Ocean's 11</td>
+                  <td>{+3}</td>
+                  <td>CTO002</td>
+                  <td>6</td>
+                  <td>3</td>
+                  <td>18</td>
                   <td>1234567</td>
                   <td>1234567</td>
+                  <td className="vt-table-view" onClick={handleViewButtonClick}>View</td>
                   <td className="vt-table-edit" onClick={handleEditButtonClick}>Edit</td>
                   <td className="vt-table-delete">Delete</td>
                 </tr>
 
                 <tr>
-                  <td>{+2}</td>
-                  <td>Ude Nna</td>
-                  <td>Regular</td>
-                  <td>Jabi</td>
-                  <td>Boxstreet</td>
-                  <td>Ocean's 11</td>
+                  <td>{+4}</td>
+                  <td>CTO003</td>
+                  <td>15</td>
+                  <td>8</td>
+                  <td>120</td>
                   <td>1234567</td>
                   <td>1234567</td>
+                  <td className="vt-table-view" onClick={handleViewButtonClick}>View</td>
                   <td className="vt-table-edit" onClick={handleEditButtonClick}>Edit</td>
                   <td className="vt-table-delete">Delete</td>
                 </tr>
                 <tr>
-                  <td>{+1}</td>
-                  <td>UdeNna Uwaluekw Ibe</td>
-                  <td>Regular</td>
-                  <td>Jabi</td>
-                  <td>Boxstreet</td>
-                  <td>Ocean's 11</td>
+                  <td>{+5}</td>
+                  <td>CTO004</td>
+                  <td>14</td>
+                  <td>6</td>
+                  <td>84</td>
                   <td>1234567</td>
                   <td>1234567</td>
-                  <td className="vt-table-edit" onClick={handleEditButtonClick}>Edit</td>
-                  <td className="vt-table-delete">Delete</td>
-                </tr>
-
-                <tr>
-                  <td>{+2}</td>
-                  <td>Ude Nna</td>
-                  <td>Regular</td>
-                  <td>Jabi</td>
-                  <td>Boxstreet</td>
-                  <td>Ocean's 11</td>
-                  <td>1234567</td>
-                  <td>1234567</td>
-                  <td className="vt-table-edit" onClick={handleEditButtonClick}>Edit</td>
-                  <td className="vt-table-delete">Delete</td>
-                </tr>
-                <tr>
-                  <td>{+1}</td>
-                  <td>UdeNna Uwaluekw Ibe</td>
-                  <td>Regular</td>
-                  <td>Jabi</td>
-                  <td>Boxstreet</td>
-                  <td>Ocean's 11</td>
-                  <td>1234567</td>
-                  <td>1234567</td>
+                  <td className="vt-table-view" onClick={handleViewButtonClick}>View</td>
                   <td className="vt-table-edit" onClick={handleEditButtonClick}>Edit</td>
                   <td className="vt-table-delete">Delete</td>
                 </tr>
 
                 <tr>
-                  <td>{+2}</td>
-                  <td>Ude Nna</td>
-                  <td>Regular</td>
-                  <td>Jabi</td>
-                  <td>Boxstreet</td>
-                  <td>Ocean's 11</td>
+                  <td>{+6}</td>
+                  <td>CTO005</td>
+                  <td>10</td>
+                  <td>6</td>
+                  <td>60</td>
                   <td>1234567</td>
                   <td>1234567</td>
+                  <td className="vt-table-view" onClick={handleViewButtonClick}>View</td>
+                  <td className="vt-table-edit" onClick={handleEditButtonClick}>Edit</td>
+                  <td className="vt-table-delete">Delete</td>
+                </tr>
+                <tr>
+                  <td>{+7}</td>
+                  <td>CTO006</td>
+                  <td>18</td>
+                  <td>8</td>
+                  <td>144</td>
+                  <td>1234567</td>
+                  <td>1234567</td>
+                  <td className="vt-table-view" onClick={handleViewButtonClick}>View</td>
+                  <td className="vt-table-edit" onClick={handleEditButtonClick}>Edit</td>
+                  <td className="vt-table-delete">Delete</td>
+                </tr>
+
+                <tr>
+                  <td>{+8}</td>
+                  <td>CTO007</td>
+                  <td>6</td>
+                  <td>6</td>
+                  <td>36</td>
+                  <td>1234567</td>
+                  <td>1234567</td>
+                  <td className="vt-table-view" onClick={handleViewButtonClick}>View</td>
                   <td className="vt-table-edit" onClick={handleEditButtonClick}>Edit</td>
                   <td className="vt-table-delete">Delete</td>
                 </tr>

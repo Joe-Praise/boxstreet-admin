@@ -7,49 +7,35 @@ function TheaterSideNav() {
     <div className="theaterSideNav">
       <div className="sideNav">
         <ul>
-          <Link className="sideNavLinks" to="/viewTheaters">
-            <li>THEATERS</li>
+        <Link className="sideNavLinks" to="/theater-admin">
+            <li>HOME</li>
+          </Link>
+          <Link className="sideNavLinks" to="/view-theaters">
+            <li>VIEW THEATERS</li>
+          </Link>
+          
+          <Link className="sideNavLinks" to="/new-theater">
+            <li>ADD THEATER</li>
           </Link>
 
-          <Link className="sideNavLinks" to="/seatLayout">
+          <Link className="sideNavLinks" to="/seat-layout">
             <li>SEAT LAYOUT</li>
-          </Link>
-          <Link className="sideNavLinks" to="/">
-            <li>THEATERS</li>
-          </Link>
-
-          <Link className="sideNavLinks" to="">
-            <li>SEATING</li>
           </Link>
 
           <Link
             className="sideNavLinks"
-            to="/theaterAdmin/movieschedulelisting"
+            to="/theater-admin/movieschedulelisting"
           >
-            <li>MOVIE SCHEDULES</li>
+            <li>VIEW SCHEDULES</li>
           </Link>
 
-          <Link className="sideNavLinks" to="/newTheater">
-            <li>ADD THEATER SEAT</li>
-          </Link>
 
           <Link className="sideNavLinks" to="">
-            <li>CREATE A NEW MOVIE SCHEDULE</li>
+            <li>CREATE SCHEDULE</li>
           </Link>
 
-          <Link className="sideNavLinks" to="/addCounter">
-            <li>REGISTER A NEW COUNTER</li>
-          </Link>
-          <Link className="sideNavLinks" to="">
-            <li>ADD THEATER SEAT</li>
-          </Link>
-
-          <Link className="sideNavLinks" to="/theaterAdmin/movieschedule">
-            <li>CREATE A NEW MOVIE SCHEDULE</li>
-          </Link>
-
-          <Link className="sideNavLinks" to="">
-            <li>REGISTER A NEW COUNTER</li>
+          <Link className="sideNavLinks" to="/add-counter">
+            <li>REGISTER COUNTER</li>
           </Link>
         </ul>
       </div>
