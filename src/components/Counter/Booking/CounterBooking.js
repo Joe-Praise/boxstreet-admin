@@ -36,19 +36,25 @@ function CounterBooking() {
               <span></span>
               <input type="text" name="quantity" class="inputs" required />
             </div>
-            <div class="counterform-group">
-              <label for="">Lorem ipsum dolor</label>
-              <span></span>
-              <input type="text" name="description" class="inputs" required />
+            <div className="counterformnameflex">
+              <div class="counterform-group">
+                <label for="">Theater:</label>
+                <span></span>
+                <input type="text" name="name" class="inputs" required />
+              </div>
+              <div class="counterform-group">
+                <label for="">Showtime:</label>
+                <span></span>
+                <input type="text" name="category" class="inputs" required />
+                
+                the inputs above should be converted to select
+              </div>
             </div>
-            {/* <div class="form-group"> */}
-            <Link to="/seat">
-              {" "}
-              <button class="form-btn">Book Seat</button>
+            <Link to="/counter/seat">
+              <div class="counterform-group">
+                <button class="counterform-btn">Book Seat</button>
+              </div>
             </Link>
-            <div class="counterform-group">
-              <button class="counterform-btn">Book Seat</button>
-            </div>
           </form>
         </div>
         <div className="counterbookingRight">

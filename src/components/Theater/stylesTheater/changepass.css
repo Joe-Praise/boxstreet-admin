@@ -1,0 +1,76 @@
+.cPassForm{
+  width: 80%;
+  overflow-y: hidden;
+  margin: 120px auto;
+}
+
+.cPassBookingFlex {
+  display: flex;
+  justify-content: space-between;
+  margin-left: 250px;
+}
+
+.cPassBookingForm {
+  width: 100%;
+  margin-top: 150px;
+}
+
+.cPassBookingForm h2 {
+  color: #333;
+}
+
+.cPassform {
+  background: transparent;
+  background-size: cover;
+  width: 80%;
+  height: auto;
+  margin: 10px auto;
+  padding: 25px 50px;
+}
+
+.cPassform section{
+    font-size: 10px;
+    color: #999;
+    margin-top: -15px;
+}
+
+.cPassform-group {
+  width: 100%;
+  margin: 20px 0px;
+}
+
+.cPassform-group label {
+  color: #333;
+  font-size: 16px;
+}
+
+.cPassform-group input {
+  width: 50%;
+  display: block;
+  margin-top: 5px;
+  padding: 8px 10px;
+  font-size: 16px;
+  outline: none;
+  color: #333;
+  background-color: transparent;
+  border: 0.5px solid #333;
+  border-radius: 5px;
+}
+
+.cPassform-group span {
+  font-size: 12px;
+  margin-left: 10px;
+  color: red;
+}
+
+.cPassform-group button {
+  background: #6a7c94;
+  color: #fff;
+  border: none;
+  padding: 10px 30px;
+  font-size: 18px;
+  outline: none;
+  cursor: pointer;
+  display: block;
+  border-radius: 10px;
+}

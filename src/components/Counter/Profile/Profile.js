@@ -2,6 +2,7 @@ import React from 'react'
 import '../stylesCounter/profile.css'
 import CounterNav from '../Navigation/CounterNav'
 import dp from '../../uploads/dpdp.jpg'
+import { Link } from 'react-router-dom'
 
 function Profile() {
   return (
@@ -19,7 +20,9 @@ function Profile() {
             </div>
             <div className='cUserandPass'>
                 <h4>Username:</h4> <span>Counter001SL</span>
-                <button>Change Password</button>
+                <Link to='/counter/change-password'>
+                    <button>Change Password</button>
+                </Link>
             </div>
         </div>
     </div>

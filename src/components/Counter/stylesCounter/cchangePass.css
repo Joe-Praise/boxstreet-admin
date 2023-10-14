@@ -1,0 +1,88 @@
+
+
+.ccPassForm {
+  width: 80%;
+  overflow-y: hidden;
+  margin: 120px auto;
+}
+
+.bhBack{
+    color: #fff;
+    display: flex;
+    gap: 5px;
+    margin-top: -50px;
+    margin-bottom: 35px;
+  }
+
+.ccPassBookingFlex {
+  display: flex;
+  justify-content: space-between;
+  margin-left: 250px;
+}
+
+.ccPassBookingForm {
+  width: 100%;
+  margin-top: 150px;
+}
+
+.ccPassBookingForm h2 {
+  color: #333;
+}
+
+.ccPassform {
+  background: transparent;
+  background-size: cover;
+  width: 80%;
+  height: auto;
+  margin: 10px auto;
+  padding: 25px 50px;
+}
+
+.ccPassform section {
+  font-size: 10px;
+  color: #999;
+  margin-top: -15px;
+}
+
+.ccPassform-group {
+  width: 100%;
+  margin: 20px 0px;
+  text-decoration: none;
+}
+
+.ccPassform-group label {
+  color: #333;
+  font-size: 16px;
+}
+
+.ccPassform-group input {
+  width: 50%;
+  display: block;
+  margin-top: 5px;
+  padding: 8px 10px;
+  font-size: 16px;
+  outline: none;
+  color: #333;
+  background-color: transparent;
+  border: 0.5px solid #333;
+  border-radius: 5px;
+}
+
+.ccPassform-group span {
+  font-size: 12px;
+  margin-left: 10px;
+  color: red;
+}
+
+.ccPassform-group button {
+  background: #6a7c94;
+  color: #fff;
+  border: none;
+  text-decoration: none;
+  padding: 10px 30px;
+  font-size: 18px;
+  outline: none;
+  cursor: pointer;
+  display: block;
+  border-radius: 10px;
+}
