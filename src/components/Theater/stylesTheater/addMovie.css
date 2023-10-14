@@ -1,0 +1,93 @@
+.addmovieForm {
+  width: 80%;
+  overflow-y: hidden;
+  margin: 100px auto;
+}
+
+.addmovieBookingFlex {
+  display: flex;
+  justify-content: space-between;
+  margin-left: 250px;
+}
+
+.addmovieBookingForm {
+  width: 100%;
+  margin-top: 150px;
+}
+
+.addmovieBookingForm h2 {
+  color: #333;
+}
+
+.addmovieform {
+  background: transparent;
+  background-size: cover;
+  width: 80%;
+  height: auto;
+  margin: 10px auto;
+  padding: 25px 50px;
+}
+
+.addmovieformnameflex {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.addmovieform-group {
+  width: 100%;
+  margin: 20px 0px;
+}
+
+.addmovieform-group label {
+  color: #333;
+  font-size: 16px;
+}
+
+.addmovieform-group input {
+  width: 100%;
+  display: block;
+  margin-top: 5px;
+  padding: 8px 10px;
+  font-size: 16px;
+  outline: none;
+  color: #333;
+  background-color: transparent;
+  border: 0.5px solid #333;
+  border-radius: 5px;
+}
+
+.addmovieform-group span {
+  font-size: 12px;
+  margin-left: 10px;
+  color: red;
+}
+
+.addmovieform-group button {
+  background: #6a7c94;
+  color: #000;
+  border: none;
+  padding: 10px 30px;
+  font-size: 18px;
+  outline: none;
+  cursor: pointer;
+  display: block;
+  border-radius: 10px;
+}
+
+.addmovieform-group button a {
+  text-decoration: none;
+  color: #eee;
+}
+
+.addmovieform-group select {
+  width: 100%;
+  display: block;
+  margin-top: 5px;
+  padding: 8px 10px;
+  font-size: 16px;
+  outline: none;
+  background-color: #fff;
+  border: .5px solid #000;
+  border-radius: 5px;
+}
