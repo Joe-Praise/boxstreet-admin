@@ -1,0 +1,254 @@
+.theater-book-seat {
+  width: 100%;
+  height: 100vh;
+}
+
+.theater-booking-container {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    margin-top: 5rem;
+}
+
+.theater-booking-container-seat {
+  margin-left: 50px;
+  color: #6a7c94;
+}
+
+.theater-booking-seat-side {
+  display: flex;
+  gap: 10px;
+  margin-top: 50px;
+}
+
+.theater-booking-seat-side p {
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.theater-booking-seat-vvip {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: #ffff00;
+}
+.theater-booking-seat-vip {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: #00d0ff;
+}
+/* 
+.theater-booking-container-top{
+    display: block;
+} */
+
+.theater-booking-seat-regular {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: rgb(247, 193, 230);
+}
+
+.theater-booking-choose-seat-text {
+  color: #6a7c94;
+  font-size: 25px;
+}
+
+.theater-booking-container-col1{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.theater-box-line .theater-line {
+  margin-top: 10px;
+  width: 450px;
+  height: 80px;
+  border: solid 7px #00d0ff;
+  border-color: #00d0ff transparent transparent;
+  border-radius: 60%;
+}
+.theater-main-boxx {
+  display: flex;
+  gap: 40px;
+  margin-top: -10px;
+}
+.theater-box1 {
+  rotate: 180deg;
+  margin-top: 10px;
+}
+
+.theater-box1-col1 {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.theater-box1-col1 .theater-col1p {
+  width: 40px;
+  height: 40px;
+  border: 1px solid #c5e3f3;
+  background: #c5e3f3;
+  border-radius: 14px;
+}
+
+.theater-box1 .theater-col1p span.active {
+  width: 20px;
+  height: 20px;
+  display: block;
+  background-color: #24305e;
+  border-radius: 10px;
+  position: relative;
+  left: 8px;
+  top: 9px;
+}
+
+.theater-box1 .theater-col1p i {
+  width: 20px;
+  height: 20px;
+  display: block;
+  background-color: #24305e;
+  border-radius: 10px;
+  position: relative;
+  left: 8px;
+  top: 9px;
+}
+
+.theater-box2 .theater-col1p span.theater-active {
+  width: 20px;
+  height: 20px;
+  display: block;
+  background-color: #24305e;
+  border-radius: 10px;
+  position: relative;
+  left: 9px;
+  top: 9px;
+}
+
+.theater-box2 .theater-col1p i.theater-vvip {
+  width: 9px;
+  height: 9px;
+  display: block;
+  background-color: yellow;
+  border-radius: 10px;
+  position: relative;
+  left: 32px;
+  top: 0px;
+}
+
+.theater-box2 .theater-col1p i.theater-regular {
+  display: block;
+  background-color: #fff;
+  border-radius: 10px;
+  position: relative;
+  left: 32px;
+  top: 0px;
+}
+
+
+.theater-booking-container-col1-inputs {
+    text-align: center;
+}
+
+.theater-booking-container-col1-inputs input{
+    width: 20px;
+    height: 20px;
+    border-radius: 50px;
+}
+
+.theater-booking-container-col-text {
+  color: #7848f4;
+  font-weight: 200px;
+  font-size: 18px;
+  padding-left: 10px;
+}
+.theater-booking-total {
+    width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.theater-booking-total h3{
+    text-align: center;
+  color: #333;
+  font-size: 1rem;
+}
+
+.theater-booking-total p{
+  font-size: 25px;
+  font-weight: 700;
+}
+
+.theater-bookingRight {
+    width: 400px;
+    height: 100vh;
+    padding-top: 5rem;
+    color: #333;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.theater-bookingRight img {
+    width: 100%;
+    max-height: 250px;
+    object-fit: cover;
+    margin-bottom: 20px;
+    border-radius: 0px 0px 5px 5px;
+}
+
+.theater-MovieInfo {
+  width: 100%;
+  text-align: left;
+  padding: 0 10px;
+}
+
+.movie-info-right h3{
+    font-size: 1.75rem;
+}
+
+.theater-MovieInfo span {
+  font-size: 0.9rem;
+  color: #777;
+  margin-bottom: 10px;
+}
+
+.theater-movieDescription {
+  font-size: 0.9rem;
+  color: #555;
+  line-height: 1.8;
+  max-height: 200px;
+  overflow: hidden;
+}
+
+.theater-read-more {
+  display: none;
+}
+
+.theater-movieDescription.expand .theater-read-more {
+  display: inline;
+}
+
+.tpay-btn{
+    display: flex;
+    justify-content: center;
+    margin: 15px 0;
+}
+
+.theater-seat-btn {
+  background: #27a5ee;
+  color: #eee;
+  border: none;
+  padding: 10px 30px;
+  font-size: 18px;
+  outline: none;
+  cursor: pointer;
+  border-radius: 10px;
+}
+
+.theater-seat-footer {
+    margin-top: 20px;
+}

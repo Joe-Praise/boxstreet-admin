@@ -9,20 +9,20 @@ function TheaterNav() {
       <div className="navHead">
         <nav className="navigation">
           <div>
-            <Link to="/">
+            <Link to="/theater-admin">
               <img className="logo" src={logo} alt="web logo" />
             </Link>
           </div>
           <div>
             <ul className="navlinks">
-              <Link to="/" className="textdecor">
+              <Link to="/theater-admin" className="textdecor">
                 <li className="bsColour">THEATER LISTINGS</li>
               </Link>
             </ul>
           </div>
           <div>
             <ul className="navlinks">
-                <Link to='/theater/profile' className='textnone'>
+                <Link to='/theater-admin/profile' className='textnone'>
                     <li className="from-left-and-back">BOOKING HISTORY</li>
                 </Link>
               <li className="from-left-and-back">SIGN IN</li>

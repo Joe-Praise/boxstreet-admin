@@ -135,18 +135,23 @@ function Counter() {
     <div>
       <CounterNav />
       <div className="counter">
+        <div className="counterHome-search">
+          <input placeholder="search" />
+          <span className="ch-search-btn">Search</span>
+        </div>
         <div className="selectBtns">
-          <select className="select"
-            name="movie time"
-            onChange={(e) => setSelectedMovieTime(e.target.value)}
-          >
-            <option value="Select Movie Time">Movie Time</option>
-            <option value="11:30am - 1pm">11:30am - 1:00pm</option>
-            <option value="1:15pm - 2:45pm">1:15pm - 2:45pm</option>
-            <option value="3:30pm - 4:45pm">3:30pm - 4:45pm</option>
-            <option value="5:00pm - 6:50pm">5:00pm - 6:50pm</option>
+          <select className="counterselect" name="movie time" onChange={(e) => setSelectedMovieTime(e.target.value)}>
+            <option value="Select Movie Time">Date</option>
+            <option value="11:30am - 1pm">Today</option>
+            <option value="1:15pm - 2:45pm">15th Oct</option>
+            <option value="3:30pm - 4:45pm">16th Oct</option>
+            <option value="5:00pm - 6:50pm">17th Oct</option>
           </select>
-          <select className="select" name="genre" onChange={(e) => setSelectedGenre(e.target.value)} >
+          <select
+            className="counterselect"
+            name="genre"
+            onChange={(e) => setSelectedGenre(e.target.value)}
+          >
             <option value="Genre">Genre</option>
             <option value="Action">Action</option>
             <option value="Adventure">Adventure</option>
@@ -166,7 +171,11 @@ function Counter() {
         </div>
         <div className="counterMovies">
           {movieListing.map((movie) => (
-            <Link className="movieBox" to={`/counter/booking/${movie.id}`} key={movie.id}>
+            <Link
+              className="movieBox"
+              to={`/counter/booking/${movie.id}`}
+              key={movie.id}
+            >
               <img src={movie.imageUrl} alt={movie.title} />
               <div className="movieInfo">
                 <p>{movie.showingtime}</p>

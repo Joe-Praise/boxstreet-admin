@@ -6,10 +6,10 @@ function ViewMovies() {
     const navigate = useNavigate();
 
     const handleEditButtonClick = () => {
-      navigate("/add-movie");
+      navigate("/theater-admin/add-movie");
     };
     const handleViewButtonClick = () => {
-      navigate("");
+      navigate("/theater-admin/seat-layout");
     }; 
 
   return (
