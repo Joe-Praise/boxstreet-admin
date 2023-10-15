@@ -1,22 +1,24 @@
 import React from "react";
 import '../stylesCounter/bookingHistory.css'
-import { Navigate } from "react-router";
+import { useNavigate } from "react-router";
 import CounterNav from "../Navigation/CounterNav";
 
 function BookingHistory() {
+  const navigate = useNavigate();
 
-      const handleViewButtonClick = () => {
-        Navigate("/seat-layout");
-      }; 
+  const handleViewButtonClick = () => {
+    navigate("/counter/receipt");
+  };
+
   return (
     <div>
       <CounterNav />
       <div className="chPage">
         <div className="ch-page">
-          <div className="ch-page-top">
-            <div className="ch-input">
+          <div className="bh-page-top">
+            <div className="bh-input">
               <input placeholder="search" />
-              <span className="ch-input-btn">Search</span>
+              <span className="bh-input-btn">Search</span>
             </div>
           </div>
           <div className="ch-select">

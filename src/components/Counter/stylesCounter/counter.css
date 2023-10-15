@@ -7,21 +7,53 @@
   padding: 0 40px;
 }
 
+.counterHome-search {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 40px;
+}
+.counterHome-search input {
+  width: 800px;
+  height: 50px;
+  border: .5px solid #999;
+  outline: none;
+  border-radius: 6px;
+  padding: 10px;
+}
+.ch-search-btn {
+  width: 100px;
+  height: 50px;
+  border-radius: 5px;
+  background: #f5f4f5d3;
+  color: #111;
+  text-align: center;
+  padding-top: 15px;
+  transition: all ease-in-out 0.3s;
+}
+
+.ch-search-btn:hover {
+  background-color: #585757;
+}
+
 .selectBtns {
   display: flex;
   gap: 1.25rem;
   align-items: center;
 }
 
-.select {
+.counterselect {
   outline: 0;
   font-size: 0.8rem;
   color: #333;
   font-weight: bold;
+  outline: none;
   background: transparent;
-  border: 1px solid #333;
+  border: .5px solid #999;
   padding: 8px 15px;
   border-radius: 5px;
+  text-transform: capitalize;
 }
 
 .counterMovies {

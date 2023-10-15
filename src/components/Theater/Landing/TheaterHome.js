@@ -166,7 +166,7 @@ function TheaterHome() {
         </div>
         <div className="counterMovies">
           {movieListing.map((movie) => (
-            <Link className="movieBox" to={`theater/${movie.id}`} key={movie.id}>
+            <Link className="movieBox" to={`/theater-admin/booking/${movie.id}`} key={movie.id}>
               <img src={movie.imageUrl} alt={movie.title} />
               <div className="movieInfo">
                 <p>{movie.showingtime}</p>

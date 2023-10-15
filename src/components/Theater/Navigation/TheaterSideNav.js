@@ -10,30 +10,23 @@ function TheaterSideNav() {
         <Link className="theatersideNavLinks" to="/theater-admin">
             <li>HOME</li>
           </Link>
-          <Link className="theatersideNavLinks" to="/view-theaters">
+          <Link className="theatersideNavLinks" to="/theater-admin/view-theaters">
             <li>VIEW THEATERS</li>
           </Link>
           
-          <Link className="theatersideNavLinks" to="/new-theater">
+          <Link className="theatersideNavLinks" to="/theater-admin/new-theater">
             <li>ADD THEATER</li>
           </Link>
 
-          <Link className="theatersideNavLinks" to="/view-movies">
+          <Link className="theatersideNavLinks" to="/theater-admin/view-movies">
             <li>VIEW MOVIES</li>
           </Link>
 
-          <Link className="theatersideNavLinks" to="/add-movie">
+          <Link className="theatersideNavLinks" to="/theater-admin/add-movie">
             <li>ADD MOVIE</li>
           </Link>
 
-          <Link className="theatersideNavLinks" to="/seat-layout">
-            <li>SEAT LAYOUT</li>
-          </Link>
-
-          <Link
-            className="theatersideNavLinks"
-            to="/theater-admin/movieschedulelisting"
-          >
+          <Link className="theatersideNavLinks" to="/theater-admin/movieschedulelisting">
             <li>VIEW SCHEDULES</li>
           </Link>
 
@@ -42,7 +35,7 @@ function TheaterSideNav() {
             <li>CREATE SCHEDULE</li>
           </Link>
 
-          <Link className="theatersideNavLinks" to="/add-counter">
+          <Link className="theatersideNavLinks" to="/theater-admin/add-counter">
             <li>REGISTER COUNTER</li>
           </Link>
         </ul>
