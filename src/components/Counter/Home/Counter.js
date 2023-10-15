@@ -139,23 +139,50 @@ let BASE_URL = MODE === "PROD" ? ONLINE : LOCAL;
 function Counter() {
 
   const [movieListing,setMovieListing] =  useState(shows);
+  const [genres,setGenre] = useState([])
+
+  const filterTime = (e) =>{
+    let index = 0;
+    for(let i=0;i<e.length;i++){
+      let d = new Date(e[i]).getTime();
+      let today = Date.now();
+      if(d > today){
+        index = i;
+        break;
+      }
+    }
+    return e[index]
+  }
 
   useEffect(()=>{
-    let url = `${BASE_URL}/api/v1/movieschedule?branch_id=652aa4576de9462d0253351c`
-    axios.get(url)
+    let movie_schedule_url = `${BASE_URL}/api/v1/movieschedule?branch_id=652aa4576de9462d0253351c`
+    let genre_url = `${BASE_URL}/api/v1/genres`
+
+    axios.get(movie_schedule_url)
     .then(res=>{
-        let movies = res.data?.data;
+      let movies = res.data?.data;
       let data = movies?.map(e =>({
         id: e._id,
         title: e?.movie_id?.name,
         genre: e?.movie_id?.genre,
-        showingtime: e.show_time.join(','),
+        showingtime: filterTime(e.show_time),
         imageUrl:e?.movie_id?.image,
         description:e?.movie_id?.description
       }))
-      console.log(data)
+
       setMovieListing([...data])
     })
+
+    axios.get(genre_url)
+    .then(res=>{
+      let data = res.data;
+      let info = data?.map(e =>({
+        id: e._id,
+        name: e?.name,
+      }))
+      setGenre([...info])
+    })
+
   },[])
 
   const [selectedMovieTime, setSelectedMovieTime] =
@@ -183,21 +210,8 @@ function Counter() {
             name="genre"
             onChange={(e) => setSelectedGenre(e.target.value)}
           >
-            <option value="Genre">Genre</option>
-            <option value="Action">Action</option>
-            <option value="Adventure">Adventure</option>
-            <option value="Sci-Fi">Sci-Fi</option>
-            <option value="Animation">Animation</option>
-            <option value="Family">Family</option>
-            <option value="Drama">Drama</option>
-            <option value="Fantasy">Fantasy</option>
-            <option value="Comedy">Comedy</option>
-            <option value="Thriller">Thriller</option>
-            <option value="Mystery">Mystery</option>
-            <option value="Horror">Horror</option>
-            <option value="Romance">Romance</option>
-            <option value="Documentary">Documentary</option>
-            <option value="Music">Music</option>
+            {genres.map(e =>  <option key={e.id} value={e.id}>{e.name}</option>)}
+            
           </select>
         </div>
         <div className="counterMovies">

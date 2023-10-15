@@ -53,6 +53,7 @@
   border: .5px solid #999;
   padding: 8px 15px;
   border-radius: 5px;
+  text-transform: capitalize;
 }
 
 .counterMovies {

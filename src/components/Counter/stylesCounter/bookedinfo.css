@@ -45,3 +45,26 @@
     color: #fff;
     border-radius: 5px;
 }
+
+p.col1p.booked span {
+    background: red;
+    width: 25px;
+    height: 25px;
+    display: block;
+    position: relative;
+    left: 6px;
+    top: 6px;
+    border-radius: 8px;
+}
+
+.VIP{
+    border:1px solid #00d0ff !important;
+}
+
+.VVIP{
+    border:1px solid #ffff00 !important;
+}
+
+.REGULAR{
+    border:1px solid rgb(247, 193, 230) !important;
+}
