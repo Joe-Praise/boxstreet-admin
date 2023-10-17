@@ -32,7 +32,7 @@ function App() {
           <Route path="/counter/change-password" element={<CounterPW />} />
           <Route path="/counter/seat-layout" element={<ViewSeatingLayer />} />
           <Route path="/counter/history" element={<BookingHistory />} />
-          <Route path="/counter/receipt" element={<BookedInfo />} />
+          <Route path="/counter/receipt/:id" element={<BookedInfo />} />
 
           <Route path="/theater-admin" element={<TheaterHome />} />
           <Route path="/theater-admin/booking/:id" element={<TheaterBooking />} />
