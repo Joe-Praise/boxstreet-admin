@@ -9,33 +9,36 @@ function AddCounter() {
   const navigate = useNavigate();
   
   const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
-    phoneNumber: '',
+    branch_id: '',
+    fullname: '',
+    role: '',
     email: '',
-    residentialAddress: '',
-    username: '',
+    phone: '',
+    cinema_id: '',
     password: '',
   });
 
+  const [cinemaData, setCinemaData] = useState([]);
+  const [branchData, setBranchData] = useState([]);
   const [formErrors, setFormErrors] = useState({});
   const [isSignUpSuccess, setIsSignUpSuccess] = useState(false);
   const [formErrorMessage, setFormErrorMessage] = useState("");
+
 
   const validateForm = () => {
     const errors = {};
 
     // Basic validation checks, add more as needed
-    if (!formData.firstName.trim()) {
-      errors.firstName = 'First Name is required';
+    if (!formData.branch_id.trim()) {
+      errors.branch_id = 'Please select a branch';
     }
 
-    if (!formData.lastName.trim()) {
-      errors.lastName = 'Last Name is required';
+    if (!formData.fullname.trim()) {
+      errors.fullname = 'Full Names are required';
     }
 
-    if (!formData.residentialAddress.trim()) {
-      errors.residentialAddress = 'Phone Number is required';
+    if (!formData.role.trim()) {
+      errors.role = 'Role type is required';
     }
 
     if (!formData.email.trim()) {
@@ -46,12 +49,12 @@ function AddCounter() {
       errors.email = "Invalid email address";
     }
 
-    if (!formData.residentialAddress.trim()) {
-      errors.residentialAddress = 'Residential Address is required';
+    if (!formData.phone.trim()) {
+      errors.phone = 'Phone Number is required';
     }
 
-    if (!formData.username.trim()) {
-      errors.username = 'Username is required';
+    if (!formData.cinema_id) {
+      errors.cinema_id = "Please select a cinema";
     }
 
     if (!formData.password.trim()) {
@@ -73,7 +76,7 @@ function AddCounter() {
       if (isFormValid) {
         console.log(formData);
         const response = await axios.post(
-          config.AUTH_REQUEST_URL + "/signup",
+          config.MANAGEMENT_BASE_URL + "/register",
           formData
         );
         console.log(response);
@@ -100,6 +103,17 @@ function AddCounter() {
     });
   };
 
+  useEffect(() => {
+    axios.get(config.CINEMA_BASE_URL).then((result) => {
+      setCinemaData(result.data);
+    });
+
+    axios.get(config.BRANCH_BASE_URL).then((result) => {
+      setBranchData(result.data);
+    });
+
+  }, []);
+
 
 
   return (
@@ -110,31 +124,31 @@ function AddCounter() {
         <h2>Register a Counter</h2>
         <div className="addcounterformnameflex">
           <div class="addtheaaterform-group">
-            <label for="">First Name:</label>
+            <label for="">Full Name:</label>
             <span></span>
             <input
                 type="text"
-                name="firstName"
+                name="fullname"
                 className="inputs"
-                value={formData.firstName}
+                value={formData.fullname}
                 onChange={handleChange}
               />
-              {formErrors.firstName && (
-                <div className="error-message">{formErrors.firstName}</div>
+              {formErrors.fullname && (
+                <div className="error-message">{formErrors.fullname}</div>
               )}
               </div>
           <div class="addcounterform-group">
-            <label for="">Last Name:</label>
+            <label for="">Role:</label>
             <span></span>
             <input
                 type="text"
-                name="lastName"
+                name="role"
                 className="inputs"
-                value={formData.lastName}
+                value={formData.role}
                 onChange={handleChange}
               />
-              {formErrors.lastName && (
-                <div className="error-message">{formErrors.lastName}</div>
+              {formErrors.role && (
+                <div className="error-message">{formErrors.role}</div>
               )}
               </div>
         </div>
@@ -143,13 +157,13 @@ function AddCounter() {
             <label for="">Phone Number:</label>
             <span></span>
             <input type="text"  
-              name="phoneNumber"
+              name="phone"
                 className="inputs"
-                value={formData.phoneNumber}
+                value={formData.phone}
                 onChange={handleChange}
               />
-              {formErrors.phoneNumber && (
-                <div className="error-message">{formErrors.phoneNumber}</div>
+              {formErrors.phone && (
+                <div className="error-message">{formErrors.phone}</div>
               )}
               </div>
           <div class="addcounterform-group">
@@ -167,37 +181,52 @@ function AddCounter() {
               </div>
         </div>
         
-          <div class="addcounterform-group">
-            <label for="">Residential Address:</label>
-            <span></span>
-            <input type="text"  
-             name="residentialAddress"
-                className="inputs"
-                value={formData.residentialAddress}
-                onChange={handleChange}
-              />
-              {formErrors.residentialAddress && (
-                <div className="error-message">{formErrors.residentialAddress}</div>
-              )}
-              </div>
         <div className="addcounterformnameflex">
           <div class="addtheaaterform-group">
-            <label for="">Username:</label>
+            <label for="">Branch:</label>
             <span></span>
-            <input   type="text"  
-              name="username"
-                className="inputs"
-                value={formData.username}
-                onChange={handleChange}
-              />
-              {formErrors.username && (
-                <div className="error-message">{formErrors.username}</div>
-              )}
+           <select
+        name="branch_id"
+        value={formData.branch_id}
+        onChange={handleChange}
+      >
+        <option value="">Select Branch</option>
+        {branchData?.map((branch) => (
+          <option key={branch._id} value={branch._id}>
+            {branch.location_id.name}
+          </option>
+        ))}
+      </select>
+      {formErrors.branch_id && (
+        <p className="error-message">{formErrors.branch_id}</p>
+      )}
               </div>
           <div class="addcounterform-group">
+            <label for="">Cinema:</label>
+            <span></span>
+            <select
+        name="cinema_id"
+        value={formData.cinema_id}
+        onChange={handleChange}
+      >
+        <option value="">Select Cinema</option>
+        {cinemaData?.map((cinema) => (
+          <option key={cinema._id} value={cinema._id}>
+            {cinema.name}
+          </option>
+        ))}
+      </select>
+      {formErrors.cinema_id && (
+        <p className="error-message">{formErrors.cinema_id}</p>
+      )}
+              </div>
+        </div>
+
+        <div class="addcounterform-group">
             <label for="">Password:</label>
             <span></span>
-            <input type="password"   name="password"
+            <input type="password"  
+             name="password"
                 className="inputs"
                 value={formData.password}
                 onChange={handleChange}
@@ -206,7 +235,6 @@ function AddCounter() {
                 <div className="error-message">{formErrors.password}</div>
               )}
               </div>
-        </div>
         <div class="addcounterform-group">
           <button class="counterform-btn">Register Counter</button>
         </div>
