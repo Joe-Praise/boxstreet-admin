@@ -134,12 +134,11 @@ let ONLINE = "https://boxstreet.onrender.com";
 let BASE_URL = MODE === "PROD" ? ONLINE : LOCAL;
 
 
-
-
 function Counter() {
 
   const [movieListing,setMovieListing] =  useState(shows);
   const [genres,setGenre] = useState([])
+  const branch_id = localStorage.getItem('branch_id');
 
   const filterTime = (e) =>{
     let index = 0;
@@ -155,7 +154,8 @@ function Counter() {
   }
 
   useEffect(()=>{
-    let movie_schedule_url = `${BASE_URL}/api/v1/movieschedule?branch_id=652aa4576de9462d0253351c`
+    
+    let movie_schedule_url = `${BASE_URL}/api/v1/movieschedule?branch_id=${branch_id}`
     let genre_url = `${BASE_URL}/api/v1/genres`
 
     axios.get(movie_schedule_url)
@@ -183,11 +183,11 @@ function Counter() {
       setGenre([...info])
     })
 
-  },[])
+  },[branch_id])
 
-  const [selectedMovieTime, setSelectedMovieTime] =
+  const [, setSelectedMovieTime] =
     useState("Select Movie Time");
-  const [selectedGenre, setSelectedGenre] = useState("Genre");
+  const [, setSelectedGenre] = useState("Genre");
 
   return (
     <div>
