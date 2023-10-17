@@ -1,17 +1,55 @@
-import React from 'react'
-import { useNavigate } from 'react-router';
-import TheaterNav from '../Navigation/TheaterNav';
+import React, { useEffect, useState } from "react";
+import TheaterNav from "../Navigation/TheaterNav";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+
+let MODE = "PROD";
+let LOCAL = "http://lolcalhost:5000";
+let ONLINE = "https://boxstreet.onrender.com";
+let BASE_URL = MODE === "PROD" ? ONLINE : LOCAL;
 
 function ViewMovies() {
-    const navigate = useNavigate();
+  const navigate = useNavigate();
 
-    const handleEditButtonClick = () => {
-      navigate("/theater-admin/add-movie");
-    };
-    const handleViewButtonClick = () => {
-      navigate("/theater-admin/seat-layout");
-    }; 
+  const handleEditButtonClick = () => {
+    navigate("/theater-admin/add-movie");
+  };
+  const handleViewButtonClick = () => {
+    navigate("/theater-admin/seat-layout");
+  };
 
+  const [movieTable, setMovieTable] = useState([]);
+  const [serialNumber, setSerialNumber] = useState(1)
+
+  console.log(movieTable)
+  
+  useEffect(() => {
+    let movie_table_url = `${BASE_URL}/api/v1/movies`;
+    
+    axios
+    .get(movie_table_url)
+    .then((res) => {
+      let movies = res.data?.data;
+      let data = movies?.map((movie) => {
+        return {
+          id: movie._id,
+          name: movie.name,
+          language: movie.language,
+          casts: movie.cast,
+          duration: movie.duration,
+          pg_rating: movie.pg_rating,
+            genre: movie.genre,
+            production_studio: movie.production_studio,
+          };
+        });
+        setMovieTable([...data])
+      })
+      .catch((error) => {
+        console.error("Error fetching theater data:", error);
+      });
+    }, []);
+    // let serialNo = serialNumber++
+    
   return (
     <div>
       <TheaterNav />
@@ -31,9 +69,7 @@ function ViewMovies() {
               <option value="Garki">Garki</option>
             </select>
 
-            <button className="addtheaterbtn">
-                Add New Theater
-            </button>
+            <button className="addtheaterbtn">Add New Theater</button>
           </div>
           <div className="vt-table-container">
             <table className="vt-table">
@@ -52,115 +88,32 @@ function ViewMovies() {
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>{+1}</td>
-                  <td>The Endgame</td>
-                  <td>Spanish, Latin</td>
-                  <td>6</td>
-                  <td>48</td>
-                  <td>1234567</td>
-                  <td>7</td>
-                  <td className="vt-table-view" onClick={handleViewButtonClick}>View</td>
-                  <td className="vt-table-edit" onClick={handleEditButtonClick}>
-                    {" "}
-                    Edit</td>
-                  <td className="vt-table-delete">Delete</td>
-                </tr>
-                
-                <tr>
-                  <td>{+2}</td>
-                  <td>The Endgame</td>
-                  <td>Spanish, Latin</td>
-                  <td>6</td>
-                  <td>54</td>
-                  <td>1234567</td>
-                  <td>12</td>
-                  <td className="vt-table-view" onClick={handleViewButtonClick}>View</td>
-                  <td className="vt-table-edit"  onClick={handleEditButtonClick}>Edit</td>
-                  <td className="vt-table-delete">Delete</td>
-                </tr>
-                <tr>
-                  <td>{+3}</td>
-                  <td>The Endgame</td>
-                  <td>Spanish, Latin</td>
-                  <td>3</td>
-                  <td>18</td>
-                  <td>1234567</td>
-                  <td>12</td>
-                  <td className="vt-table-view" onClick={handleViewButtonClick}>View</td>
-                  <td className="vt-table-edit" onClick={handleEditButtonClick}>Edit</td>
-                  <td className="vt-table-delete">Delete</td>
-                </tr>
-
-                <tr>
-                  <td>{+4}</td>
-                  <td>The Endgame</td>
-                  <td>15</td>
-                  <td>8</td>
-                  <td>120</td>
-                  <td>1234567</td>
-                  <td>21</td>
-                  <td className="vt-table-view" onClick={handleViewButtonClick}>View</td>
-                  <td className="vt-table-edit" onClick={handleEditButtonClick}>Edit</td>
-                  <td className="vt-table-delete">Delete</td>
-                </tr>
-                <tr>
-                  <td>{+5}</td>
-                  <td>The Endgame</td>
-                  <td>14</td>
-                  <td>6</td>
-                  <td>84</td>
-                  <td>1234567</td>
-                  <td>18</td>
-                  <td className="vt-table-view" onClick={handleViewButtonClick}>View</td>
-                  <td className="vt-table-edit" onClick={handleEditButtonClick}>Edit</td>
-                  <td className="vt-table-delete">Delete</td>
-                </tr>
-
-                <tr>
-                  <td>{+6}</td>
-                  <td>The Endgame</td>
-                  <td>Spanish, Latin</td>
-                  <td>6</td>
-                  <td>60</td>
-                  <td>1234567</td>
-                  <td>Family</td>
-                  <td className="vt-table-view" onClick={handleViewButtonClick}>View</td>
-                  <td className="vt-table-edit" onClick={handleEditButtonClick}>Edit</td>
-                  <td className="vt-table-delete">Delete</td>
-                </tr>
-                <tr>
-                  <td>{+7}</td>
-                  <td>The Endgame</td>
-                  <td>Spanish, Latin</td>
-                  <td>8</td>
-                  <td>144</td>
-                  <td>1234567</td>
-                  <td>12+</td>
-                  <td className="vt-table-view" onClick={handleViewButtonClick}>View</td>
-                  <td className="vt-table-edit" onClick={handleEditButtonClick}>Edit</td>
-                  <td className="vt-table-delete">Delete</td>
-                </tr>
-
-                <tr>
-                  <td>{+8}</td>
-                  <td>The Endgame</td>
-                  <td>6</td>
-                  <td>6</td>
-                  <td>36</td>
-                  <td>1234567</td>
-                  <td>13+</td>
-                  <td className="vt-table-view" onClick={handleViewButtonClick}>View</td>
-                  <td className="vt-table-edit" onClick={handleEditButtonClick}>Edit</td>
-                  <td className="vt-table-delete">Delete</td>
-                </tr>
+                {movieTable.map((movie) => (
+                  <tr key={movie.id}>
+                    <td>{movie.serialNumber}</td>
+                    <td>{movie.name}</td>
+                    <td>{movie.language}</td>
+                    <td>{movie.cast ? movie.cast.join(', ') : 'N/A'}</td>
+                    <td>{movie.production_studio}</td>
+                    <td>{movie.duration}</td>
+                    <td>{movie.pg_rating}</td>
+                    <td className="vt-table-view" onClick={handleViewButtonClick}>
+                      View
+                    </td>
+                    <td className="vt-table-edit" onClick={handleEditButtonClick}>
+                      {" "}
+                      Edit
+                    </td>
+                    <td className="vt-table-delete">Delete</td>
+                  </tr>
+                ))}
               </tbody>
             </table>
           </div>
         </div>
       </div>
     </div>
-  )
+  );
 }
 
-export default ViewMovies
+export default ViewMovies;
