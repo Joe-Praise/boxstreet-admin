@@ -1,7 +1,13 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import TheaterNav from "../Navigation/TheaterNav";
 import "../stylesTheater/viewTheaters.css";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
+
+let MODE = "PROD";
+let LOCAL = "http://lolcalhost:5000";
+let ONLINE = "https://boxstreet.onrender.com";
+let BASE_URL = MODE === "PROD" ? ONLINE : LOCAL;
 
 function ViewTheaters() {
   const navigate = useNavigate();
@@ -12,6 +18,36 @@ function ViewTheaters() {
   const handleViewButtonClick = () => {
     navigate("/seat-layout");
   }; 
+
+  const [theaterTable, setTheaterTable] = useState([]);
+  console.log(theaterTable)
+
+  useEffect(() => {
+    let theater_table_url = `${BASE_URL}/api/v1/theaters`;
+
+    axios
+      .get(theater_table_url)
+      .then((res) => {
+        let theaters = res.data;
+        let data = theaters?.map((theater) => {
+          return {
+            id: theater.id,
+            name: theater.name,
+            branch: theater.branch_id,
+            row: theater.row,
+            column: theater.column,
+            seating_capacity: theater.seating_capacity,
+            col_matrix_1: theater.col_matrix_1,
+            col_matrix_2: theater.col_matrix_2,
+          };
+        });
+        console.log(theaters)
+        setTheaterTable([...data]);
+      })
+      .catch((error) => {
+        console.error("Error fetching theater data:", error);
+      });
+  }, []);
 
   return (
     <div>
@@ -25,12 +61,9 @@ function ViewTheaters() {
             </div>
           </div>
           <div className="vt-select">
-            <select>
-              <option value="cinema">Cinema</option>
-              <option value="Jabi">Jabi</option>
-              <option value="Wuse">Wuse</option>
-              <option value="Garki">Garki</option>
-            </select>
+            <span>
+              Blue Sea Cinemas
+            </span>
 
             <button className="addtheaterbtn">
                 Add New Theater
@@ -53,108 +86,23 @@ function ViewTheaters() {
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>{+1}</td>
-                  <td>CTO000</td>
-                  <td>8</td>
-                  <td>6</td>
-                  <td>48</td>
-                  <td>1234567</td>
-                  <td>1234567</td>
-                  <td className="vt-table-view" onClick={handleViewButtonClick}>View</td>
-                  <td className="vt-table-edit" onClick={handleEditButtonClick}>
-                    {" "}
-                    Edit</td>
-                  <td className="vt-table-delete">Delete</td>
-                </tr>
-                
-                <tr>
-                  <td>{+2}</td>
-                  <td>CTO001</td>
-                  <td>9</td>
-                  <td>6</td>
-                  <td>54</td>
-                  <td>1234567</td>
-                  <td>1234567</td>
-                  <td className="vt-table-view" onClick={handleViewButtonClick}>View</td>
-                  <td className="vt-table-edit"  onClick={handleEditButtonClick}>Edit</td>
-                  <td className="vt-table-delete">Delete</td>
-                </tr>
-                <tr>
-                  <td>{+3}</td>
-                  <td>CTO002</td>
-                  <td>6</td>
-                  <td>3</td>
-                  <td>18</td>
-                  <td>1234567</td>
-                  <td>1234567</td>
-                  <td className="vt-table-view" onClick={handleViewButtonClick}>View</td>
-                  <td className="vt-table-edit" onClick={handleEditButtonClick}>Edit</td>
-                  <td className="vt-table-delete">Delete</td>
-                </tr>
+                {theaterTable.map((theater) => (
+                  <tr key={theater.id}>
+                    <td>1</td>
+                    <td>{theater.name}</td>
+                    <td>{theater.row}</td>
+                    <td>{theater.column}</td>
+                    <td>{theater.seating_capacity}</td>
+                    <td>{theater.col_matrix_1 ? theater.col_matrix_1.join(", ") : "N/A"}</td>
+                    <td>{theater.col_matrix_2 ? theater.col_matrix_2.join(", ") : "N/A"}</td>
+                    <td className="vt-table-view" onClick={handleViewButtonClick}>View</td>
+                    <td className="vt-table-edit" onClick={handleEditButtonClick}>
+                      {" "}
+                      Edit</td>
+                    <td className="vt-table-delete">Delete</td>
+                  </tr>
+                ))}
 
-                <tr>
-                  <td>{+4}</td>
-                  <td>CTO003</td>
-                  <td>15</td>
-                  <td>8</td>
-                  <td>120</td>
-                  <td>1234567</td>
-                  <td>1234567</td>
-                  <td className="vt-table-view" onClick={handleViewButtonClick}>View</td>
-                  <td className="vt-table-edit" onClick={handleEditButtonClick}>Edit</td>
-                  <td className="vt-table-delete">Delete</td>
-                </tr>
-                <tr>
-                  <td>{+5}</td>
-                  <td>CTO004</td>
-                  <td>14</td>
-                  <td>6</td>
-                  <td>84</td>
-                  <td>1234567</td>
-                  <td>1234567</td>
-                  <td className="vt-table-view" onClick={handleViewButtonClick}>View</td>
-                  <td className="vt-table-edit" onClick={handleEditButtonClick}>Edit</td>
-                  <td className="vt-table-delete">Delete</td>
-                </tr>
-
-                <tr>
-                  <td>{+6}</td>
-                  <td>CTO005</td>
-                  <td>10</td>
-                  <td>6</td>
-                  <td>60</td>
-                  <td>1234567</td>
-                  <td>1234567</td>
-                  <td className="vt-table-view" onClick={handleViewButtonClick}>View</td>
-                  <td className="vt-table-edit" onClick={handleEditButtonClick}>Edit</td>
-                  <td className="vt-table-delete">Delete</td>
-                </tr>
-                <tr>
-                  <td>{+7}</td>
-                  <td>CTO006</td>
-                  <td>18</td>
-                  <td>8</td>
-                  <td>144</td>
-                  <td>1234567</td>
-                  <td>1234567</td>
-                  <td className="vt-table-view" onClick={handleViewButtonClick}>View</td>
-                  <td className="vt-table-edit" onClick={handleEditButtonClick}>Edit</td>
-                  <td className="vt-table-delete">Delete</td>
-                </tr>
-
-                <tr>
-                  <td>{+8}</td>
-                  <td>CTO007</td>
-                  <td>6</td>
-                  <td>6</td>
-                  <td>36</td>
-                  <td>1234567</td>
-                  <td>1234567</td>
-                  <td className="vt-table-view" onClick={handleViewButtonClick}>View</td>
-                  <td className="vt-table-edit" onClick={handleEditButtonClick}>Edit</td>
-                  <td className="vt-table-delete">Delete</td>
-                </tr>
               </tbody>
             </table>
           </div>

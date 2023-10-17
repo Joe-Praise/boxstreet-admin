@@ -7,7 +7,7 @@ function TheaterSideNav() {
     <div className="theaterSideNav">
       <div className="theatersideNav">
         <ul>
-        <Link className="theatersideNavLinks" to="/theater-admin">
+          <Link className="theatersideNavLinks" to="/theater-admin">
             <li>HOME</li>
           </Link>
           <Link className="theatersideNavLinks" to="/theater-admin/view-theaters">
@@ -37,6 +37,10 @@ function TheaterSideNav() {
 
           <Link className="theatersideNavLinks" to="/theater-admin/add-counter">
             <li>REGISTER COUNTER</li>
+          </Link>
+
+          <Link className="theatersideNavLinks" to="/theater-admin/profile">
+            <li>PROFILE</li>
           </Link>
         </ul>
       </div>
