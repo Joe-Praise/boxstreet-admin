@@ -1,4 +1,6 @@
 import React from "react";
+import axios from "axios";
+import config from "../../config";
 
 import { useState, useEffect } from "react";
 // import '../stylesCounter/counterBooking.css'
@@ -7,7 +9,7 @@ import img from "../../uploads/expendables.webp";
 import "../stylesCounter/bookSeat.css";
 import CounterNav from "../Navigation/CounterNav";
 import { Link, useParams } from "react-router-dom";
-import axios from "axios";
+
 
 let MODE = "PROD";
 let LOCAL = "http://localhost:5000";
@@ -16,6 +18,9 @@ let ONLINE = "https://boxstreet.onrender.com";
 let BASE_URL = MODE === "PROD" ? ONLINE : LOCAL;
 
 function BookSeat() {
+
+  const [formErrorMessage, setFormErrorMessage] = useState("");
+
   let { id } = useParams();
 
   let theater_id = id;
@@ -29,6 +34,9 @@ function BookSeat() {
     [{}, {}, {}],
     [{}, {}],
   ]);
+
+  let email = "";
+  let [amount, setAmount] = useState(100);
 
   let setActive = (row, col, pos) => {
     let d;
@@ -44,6 +52,24 @@ function BookSeat() {
       d = col_2_new[row][col];
       d.is_booked = !d.is_booked;
       setColMatrix2(col_2_new);
+    }
+  };
+
+  let handlePayment = async (e) => {
+    e.preventDefault();
+
+    try {
+      const response = await axios.post(
+        config.PAYMENT_BASE_URL + "/initiate-payment",
+        email, amount
+      );
+      if (response?.data.status === "success") {
+        console.log(response);
+      } else {
+        setFormErrorMessage("Payment transaction Unsuccessful");
+      }
+    } catch (error) {
+      setFormErrorMessage("An error occurred in payment transaction.");
     }
   };
 
@@ -74,7 +100,7 @@ function BookSeat() {
       setColMatrix1(Object.values(left_seats));
       setColMatrix2(Object.values(right_seats));
     });
-  }, [theater_id,id]);
+  }, [theater_id, id]);
 
   return (
     <div className="book-seat">
@@ -186,10 +212,9 @@ function BookSeat() {
                     </div>
                     <div>
                       <div>
-                        <Link to="/seat">
-                          {" "}
-                          <button class="seat-btn">Pay Now!</button>
-                        </Link>
+                        <button class="seat-btn" onClick={handlePayment}>
+                          Pay Now!
+                        </button>
                       </div>
                     </div>
                   </div>
