@@ -1,8 +1,28 @@
 import React from "react";
+import { useState, useEffect } from "react";
 import CounterNav from "../Navigation/CounterNav";
 import "../stylesCounter/bookedinfo.css";
+import { useParams } from "react-router-dom";
+import axios from "axios";
+let MODE = "PROD" 
+let LOCAL = "http://localhost:5000";
+let ONLINE = "https://boxstreet.onrender.com";
+
+let BASE_URL = MODE === "PROD" ? ONLINE : LOCAL;
 
 function BookedInfo() {
+  const {id} = useParams();
+ const[booked, setBooked] = useState("")
+  useEffect(()=>{
+    let booking_url = `${BASE_URL}/api/v1/bookings/${id}`
+
+    axios.get(booking_url)
+    .then(res=>{
+      let data = res.data;
+     console.log(data)
+     setBooked(data)
+    })
+  },[])
   return (
     <div className="bookedinfo">
       <CounterNav />
@@ -11,17 +31,17 @@ function BookedInfo() {
           <div className="infosheet">
             <div className="sheetdetails">
               <h3>Customer Name:</h3>
-              <span>Precious Joe Austin</span>
+              <span>{booked.fullname}</span>
             </div>
 
             <div className="sheetdetails">
               <h3>Phone Number:</h3>
-              <span>08147451236</span>
+              <span>{booked.phone}</span>
             </div>
 
             <div className="sheetdetails">
               <h3>Email:</h3>
-              <span>preshjoeaustin@yahoo.com</span>
+              <span>{booked.email}</span>
             </div>
 
             <div className="sheetdetails">
@@ -46,7 +66,7 @@ function BookedInfo() {
             </div>
             <div className="sheetdetails">
               <h3>Movie Price:</h3>
-              <span>3,500</span>
+              <span>{booked.seat_price}</span>
             </div>
 
             <div className="sheetdetails">
@@ -56,32 +76,32 @@ function BookedInfo() {
 
             <div className="sheetdetails">
               <h3>Booking Type:</h3>
-              <span>Regular</span>
+              <span>{booked.booking_type}</span>
             </div>
 
             <div className="sheetdetails">
               <h3>Seat Price:</h3>
-              <span>3,500</span>
+              <span>{booked.seat_price}</span>
             </div>
 
             <div className="sheetdetails">
               <h3>Sub-total:</h3>
-              <span>3,500</span>
+              <span>{booked.sub_total}</span>
             </div>
 
             <div className="sheetdetails">
               <h3>Seat Number:</h3>
-              <span>F9</span>
+              <span>{booked.seat_number}</span>
             </div>
 
             <div className="sheetdetails">
               <h3>Ticket Type:</h3>
-              <span>Regular</span>
+              <span>{booked.ticket_type}</span>
             </div>
 
             <div className="sheetdetails">
               <h3>Ticket No.:</h3>
-              <span>2332H4J58</span>
+              <span>{booked.ticket_no}</span>
             </div>
 
             <div className="sheetdetails">
