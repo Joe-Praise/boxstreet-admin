@@ -127,7 +127,7 @@ const shows =[
   },
 ]
 
-let MODE = "PROD" 
+let MODE = "PROD";
 let LOCAL = "http://localhost:5000";
 let ONLINE = "https://boxstreet.onrender.com";
 
