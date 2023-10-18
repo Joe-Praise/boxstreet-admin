@@ -23,8 +23,7 @@ function BookSeat() {
   const [seats, setSeat] = useState([]);
   let [amount, setAmount] = useState(0);
 
-  let booking = JSON.parse(localStorage.getItem("booking"))
-  
+  let booking = JSON.parse(localStorage.getItem("booking"));
 
   const [col_matrix_1, setColMatrix1] = useState([
     [{}],
@@ -55,10 +54,9 @@ function BookSeat() {
             type: d.category_id.name,
             price: d.category_id.price,
           });
-
         } else {
           amount -= d.category_id.price;
-          _seats = _seats.filter(x=>x.no !== d.seat_number)
+          _seats = _seats.filter((x) => x.no !== d.seat_number);
         }
 
         setColMatrix1(col_1_new);
@@ -79,10 +77,9 @@ function BookSeat() {
             type: d.category_id.name,
             price: d.category_id.price,
           });
-
         } else {
           amount -= d.category_id.price;
-          _seats = _seats.filter(x=>x.no !== d.seat_number)
+          _seats = _seats.filter((x) => x.no !== d.seat_number);
         }
 
         setColMatrix2(col_2_new);
@@ -91,7 +88,6 @@ function BookSeat() {
 
     setSeat(_seats);
     setAmount(amount);
-
   };
 
   const handlePayment = async (e) => {
@@ -100,33 +96,28 @@ function BookSeat() {
     let email = booking.email;
 
     try {
-      
-        const payment_url = BASE_URL + "/api/v1/payments/initiate-payment";
-        const booking_url = BASE_URL + "/api/v1/bookings";
-        const data = { email, amount };
-        const response = await axios.post(payment_url, data);
+      const payment_url = BASE_URL + "/api/v1/payments/initiate-payment";
+      const booking_url = BASE_URL + "/api/v1/bookings";
+      const data = { email, amount };
+      const response = await axios.post(payment_url, data);
 
-        booking.seats = seats;
+      booking.seats = seats;
 
-        if(response?.data.data.paymentLink){
-         
-          await axios.post(booking_url, booking);
-          
-          window.open(
-            response?.data.data.paymentLink.data.authorization_url,
-            "_blank"
-          );
+      if (response?.data.data.paymentLink) {
+        await axios.post(booking_url, booking);
 
-        }
-      
-
+        window.open(
+          response?.data.data.paymentLink.data.authorization_url,
+          "_blank"
+        );
+        localStorage.removeItem("booking")
+      }
     } catch (error) {
       setFormErrorMessage("An error occurred in payment transaction.");
     }
   };
 
   useEffect(() => {
-
     let left_seats = {};
     let right_seats = {};
 
@@ -163,7 +154,6 @@ function BookSeat() {
       setColMatrix1(Object.values(left_seats));
       setColMatrix2(Object.values(right_seats));
     });
-
   }, [theater_id, id]);
 
   return (
@@ -171,7 +161,7 @@ function BookSeat() {
       <div>
         <CounterNav />
       </div>
-   
+
       <div className="counterBookingFlex">
         <div className="counterBookingForm">
           <div className="booking-page">
@@ -184,7 +174,7 @@ function BookSeat() {
                   </div>
                   <div className="booking-seat-side">
                     <span className="booking-seat-vip"></span>
-                    <p>VIP</p>
+                    <p>VIP </p>
                   </div>
                   <div className="booking-seat-side">
                     <span className="booking-seat-regular"></span>
@@ -192,7 +182,9 @@ function BookSeat() {
                   </div>
                   <div className="booking-seat-side">
                     <span className="booking-seat-number"></span>
-                    <p className="booking-seat-select">Seat count <>{seats.length}</></p>
+                    <p className="booking-seat-select">
+                      Selected seat <>{seats.length}</>
+                    </p>
                   </div>
                 </div>
                 <div className="booking-container-col1">
@@ -212,8 +204,10 @@ function BookSeat() {
                                 return (
                                   <p
                                     className={
-                                      c.is_booked
-                                        ? `${c?.category_id?.name} col1p booked`
+                                      c.is_booked && c.is_active
+                                        ? `${c?.category_id?.name} col1p booked-seat`
+                                        : c.is_booked && !c.is_active
+                                        ? `${c?.category_id?.name} col1p selected-seat`
                                         : `${c?.category_id?.name} col1p`
                                     }
                                     key={i2}
@@ -236,8 +230,10 @@ function BookSeat() {
                                 return (
                                   <p
                                     className={
-                                      c.is_booked
-                                        ? `${c?.category_id?.name} col1p booked`
+                                      c.is_booked && c.is_active
+                                        ? `${c?.category_id?.name} col1p booked-seat`
+                                        : c.is_booked && !c.is_active
+                                        ? `${c?.category_id?.name} col1p selected-seat`
                                         : `${c?.category_id?.name} col1p`
                                     }
                                     key={i2}
@@ -256,21 +252,13 @@ function BookSeat() {
 
                   <div className="booking-container-col1-inputs">
                     <div className="booking-container-col1-input">
-                      <input type="radio" />
-                      <span className="booking-container-col-text">
+                      <span className="booking-container-col-text book-box">
                         Selected
                       </span>
                     </div>
                     <div className="booking-container-col1-input">
-                      <input type="radio" />
-                      <span className="booking-container-col-text">
-                        Reserved
-                      </span>
-                    </div>
-                    <div className="booking-container-col1-input">
-                      <input type="radio" />
-                      <span className="booking-container-col-text">
-                        Available
+                      <span className="booking-container-col-text select-box">
+                        Booked
                       </span>
                     </div>
                   </div>
