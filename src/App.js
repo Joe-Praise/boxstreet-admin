@@ -20,7 +20,7 @@ import CounterPW from "./components/Counter/Profile/CounterPW";
 import TheaterBooking from "./components/Theater/TheaterBooking/TheaterBooking";
 import TheaterBookingSeat from "./components/Theater/TheaterBooking/TheaterBookingSeat";
 import BookedInfo from "./components/Counter/Booking/BookedInfo";
-import Login from "./components/Theater/Add Forms/Login";
+import Login from "./components/Login/Login";
 
 function App() {
   return (
@@ -31,7 +31,7 @@ function App() {
 
           <Route path="/counter" element={<Counter />} />
           <Route path="/counter/booking/:id" element={<CounterBooking />} />
-          <Route path="/counter/seat/:id" element={<BookSeat />} />
+          <Route path="/counter/seat/:id/:movie_id" element={<BookSeat />} />
           <Route path="/counter/profile" element={<Profile />} />
           <Route path="/counter/change-password" element={<CounterPW />} />
           <Route path="/counter/seat-layout" element={<ViewSeatingLayer />} />

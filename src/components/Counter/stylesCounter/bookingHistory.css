@@ -78,10 +78,11 @@
       color: #fff;
       text-align: center;
       cursor: pointer;
+      font-size: 15px;
   }
   
   .ch-table-view{
-      background-color: #6a9480;
+      background-color: #6a7c94;
       border-radius: 4px;
       font-size: 12px;
       color: #fff;
@@ -91,8 +92,18 @@
       border: none;
   }
   
+  .ch-table-check-success {
+    background-color:  #6a9480;
+    border-radius: 4px;
+    color: #fff;
+    text-align: center;
+    cursor: pointer;
+    padding: 10px 8px;
+    border: none;
+  }
+
   .ch-table-check {
-    background-color: #6a7c94;
+    background-color:  #3a86ff;
     border-radius: 4px;
     color: #fff;
     text-align: center;

@@ -1,79 +1,103 @@
 import React, { useState, useEffect } from "react";
-import '../stylesCounter/bookingHistory.css'
+import "../stylesCounter/bookingHistory.css";
 import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
 import CounterNav from "../Navigation/CounterNav";
 import axios from "axios";
-let MODE = "PROD"
+
+let MODE = "PROD";
 let LOCAL = "http://localhost:5000";
 let ONLINE = "https://boxstreet.onrender.com";
 
 let BASE_URL = MODE === "PROD" ? ONLINE : LOCAL;
 
 function BookingHistory() {
-  const navigate = useNavigate(); 
+  const branch_id = localStorage.getItem("branch_id");
+
   const [booked, setBooked] = useState([]);
-  const [searchTicket, setSearchTicket] = useState("");
+  const [prev, setPrev] = useState([]);
+  const [ticket, setTicket] = useState("");
 
-  function handleSearch() {
-    if (searchTicket = "") {
-      setBooked(booked);
-      return;
+  const handleFindTicket = () => {
+    let ticket_url = `${BASE_URL}/api/v1/bookings/${ticket}/ticket-no`;
+    if (ticket) {
+      axios
+        .get(ticket_url)
+        .then((res) => {
+          let data = [res.data];
+          let booked = data?.map((e) => ({
+            id: e._id,
+            title: e?.movie_id?.name,
+            showingtime: e?.schedule_id?.show_time,
+            customer_name: e?.fullname,
+            amount: e?.sub_total,
+            ticket_no: e?.ticket_no,
+            type: e.booking_type,
+            seat_booked: e?.seats.length,
+            booked_date: e?.created_at.toLocaleString("en-US"),
+          }));
+
+          setBooked([...booked]);
+        })
+        .catch((err) => {
+          setBooked([]);
+        });
     }
-    const filterByTicket = booked.filter((ticket) => {
-      if(ticket.includes(searchTicket)){
-        return ticket
-      }
-    })
-    setBooked(filterByTicket)
-  }
+  };
 
-  const handleNewMovie = () => {
-    navigate("/counter")
-  }
+  const handleCheckIn = (b) => {
+    let check_in_url = `${BASE_URL}/api/v1/bookings/check-in`;
+    let data = {
+      ticket_no: b.ticket_no,
+      status: true,
+    };
 
-  const handleViewButtonClick = () => {
-    navigate("/counter/receipt");
+    axios
+      .put(check_in_url, data)
+      .then((res) => {
+
+        alert("Checked in successfully");
+
+        let old_booking = [...booked];
+        let book = old_booking.find((x) => x.id === b.id);
+        book.is_checked = true;
+
+        setBooked(old_booking);
+        setPrev(old_booking);
+      })
+      .catch((err) => alert("Invalid ticket number"));
+  };
+
+  const handleReset = () => {
+    setTicket("");
+    setBooked(prev);
   };
 
   useEffect(() => {
-    let booked_history_url = `${BASE_URL}/api/v1/bookings?branch_id=652aa4576de9462d0253351c`
-    axios.get(booked_history_url)
-      .then(res => {
-        let data = res.data;
-        let booked = data?.map(e => ({
-          id: e._id,
-          title: e?.movie_id?.name,
-          showingtime: e?.schedule_id?.show_time,
-          customer_name: e?.fullname,
-          category: e?.ticket_type,
-          tickect_no: e?.ticket_no,
-          seat_number: e?.seat_number,
-        }))
-        console.log(booked)
-        setBooked([...booked])
-      })
-  }, [])
+    
+    let booked_history_url = `${BASE_URL}/api/v1/bookings?branch_id=${branch_id}`;
+    axios.get(booked_history_url).then((res) => {
 
-  // useEffect(() => {
-  //   let ticket_search_url = `${BASE_URL}/api/v1/bookings/U100lnsypwys/ticket-no`
-  //   axios.get(ticket_search_url)
-  //   .then(res => {
-  //     let data = res.data;
-  //     let ticket = data?.map(e => ({
-  //       id: e._id,
-  //       title: e?.movie_id?.name,
-  //       showingtime: e?.schedule_id?.show_time,
-  //       customer_name: e?.fullname,
-  //       category: e?.ticket_type,
-  //       tickect_no: e?.ticket_no,
-  //       seat_number: e?.seat_number,
-  //     }))
-  //     setSearchTicket([...ticket])
-  //     console.log(ticket)
-  //   })
-  // })
+      let data = res.data;
 
+      let booked = data?.map((e) => ({
+        id: e._id,
+        title: e?.movie_id?.name,
+        showingtime: e?.schedule_id?.show_time,
+        customer_name: e?.full_name,
+        amount: e?.sub_total,
+        ticket_no: e?.ticket_no,
+        type: e.booking_type,
+        seat_booked: e?.seats.length,
+        is_checked: e?.is_checked,
+        booked_date: e?.created_at.toLocaleString("en-US"),
+      }));
+
+      setBooked([...booked]);
+      setPrev([...booked]);
+
+    });
+  }, []);
 
   return (
     <div>
@@ -82,13 +106,25 @@ function BookingHistory() {
         <div className="ch-page">
           <div className="bh-page-top">
             <div className="bh-input">
-              <input placeholder="search" onChange={e => setSearchTicket(e.target.value)}/>
-              <span className="bh-input-btn" onClick={handleSearch}>Search</span>
+              <input
+                placeholder="search"
+                value={ticket}
+                onChange={(e) => setTicket(e.target.value)}
+              />
+              <span className="bh-input-btn" onClick={handleFindTicket}>
+                Search
+              </span>
+              <span className="bh-input-btn" onClick={handleReset}>
+                Reset
+              </span>
             </div>
           </div>
           <div className="ch-select">
+            <div></div>
 
-            <button className="newBooking" onClick={handleNewMovie}>Create New Booking</button>
+            <Link to="/counter" className="newBooking">
+              Create New Booking
+            </Link>
           </div>
           <div className="ch-table-container">
             <table className="ch-table">
@@ -98,8 +134,8 @@ function BookingHistory() {
                   <th>Ticket No</th>
                   <th>Customer Name</th>
                   <th>Movie Title</th>
-                  <th>Movie Time</th>
-                  <th>Category</th>
+                  <th>Amount</th>
+                  <th>Type</th>
                   <th>Seat</th>
                   <th>Date & Time</th>
                   <th>Action</th>
@@ -108,20 +144,29 @@ function BookingHistory() {
               <tbody>
                 {booked.map((b, id) => (
                   <tr key={b.id}>
-                    <td>{id+1}</td>
-                    <td>{b.tickect_no}</td>
+                    <td>{id + 1}</td>
+                    <td>{b.ticket_no}</td>
                     <td>{b.customer_name}</td>
                     <td>{b.title}</td>
-                    <td>2:15pm</td>
-                    <td>{b.category}</td>
-                    <td>{b.seat_number}</td>
-                    <td>22-01-2023 1:59pm</td>
+                    <td>N{b.amount}</td>
+                    <td>{b.type}</td>
+                    <td>+{b.seat_booked}</td>
+                    <td>{b.booked_date}</td>
                     <td className="actions">
                       <Link to={`/counter/receipt/${b.id}`}>
-                      <button className="ch-table-view">View</button>
+                        <button className="ch-table-view">View</button>
                       </Link>
                       <button className="ch-table-print">Print</button>
-                      <button className="ch-table-check">Check-In</button>
+                      <button
+                        className={
+                          b.is_checked
+                            ? "ch-table-check-success"
+                            : "ch-table-check"
+                        }
+                        onClick={() => handleCheckIn(b)}
+                      >
+                        {b.is_checked ? "Checked" : "Check-In"}
+                      </button>
                     </td>
                   </tr>
                 ))}
