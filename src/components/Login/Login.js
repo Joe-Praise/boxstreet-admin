@@ -96,6 +96,12 @@ function SignInForm({
             localStorage.setItem('cinema_id',info.user.cinema_id);
             localStorage.setItem('user_id',info.user._id);
         }
+        if(info.user.role === "THEATER"){
+            navigate("/theater");
+            localStorage.setItem('branch_id',info.user.branch_id);
+            localStorage.setItem('cinema_id',info.user.cinema_id);
+            localStorage.setItem('user_id',info.user._id);
+        }
 
       } else {
         setFormErrorMessage("Sign-in failed. Please try again.");
