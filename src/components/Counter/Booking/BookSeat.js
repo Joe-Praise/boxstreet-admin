@@ -184,7 +184,7 @@ function BookSeat() {
                   </div>
                   <div className="booking-seat-side">
                     <span className="booking-seat-vip"></span>
-                    <p>VIP</p>
+                    <p>VIP </p>
                   </div>
                   <div className="booking-seat-side">
                     <span className="booking-seat-regular"></span>
