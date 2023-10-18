@@ -85,6 +85,7 @@ function SignInForm({
         formData
       );
 
+      setLoading(false);
       if (response?.data.status === "success") {
       
         setLoading(false)
