@@ -20,27 +20,28 @@ function ViewMovies() {
   };
 
   const [movieTable, setMovieTable] = useState([]);
-  const [serialNumber, setSerialNumber] = useState(1);
+  const branch_id = localStorage.getItem('branch_id');
 
   console.log(movieTable);
 
   useEffect(() => {
-    let movie_table_url = `${BASE_URL}/api/v1/movies`;
+    let movie_table_url = `${BASE_URL}/api/v1/movieschedule?branch_id=${branch_id}`;
 
     axios
       .get(movie_table_url)
       .then((res) => {
         let movies = res.data?.data;
+        console.log(movies)
         let data = movies?.map((movie) => {
           return {
             id: movie._id,
-            name: movie.name,
-            language: movie.language,
-            genre: movie.genre.name,
-            duration: movie.duration,
-            pg_rating: movie.pg_rating,
-            genre: movie.genre,
-            production_studio: movie.production_studio,
+            name: movie?.movie_id?.name,
+            language: movie?.movie_id?.language,
+            genre: movie?.movie_id?.genre.name,
+            duration: movie?.movie_id?.duration,
+            pg_rating: movie?.movie_id?.pg_rating,
+            genre: movie?.movie_id?.genre,
+            production_studio: movie?.movie_id?.production_studio,
           };
         });
         setMovieTable([...data]);
@@ -49,7 +50,6 @@ function ViewMovies() {
         console.error("Error fetching movie data:", error);
       });
   }, []);
-  // let serialNo = serialNumber++
 
   return (
     <div>
@@ -89,7 +89,7 @@ function ViewMovies() {
                 </tr>
               </thead>
               <tbody>
-                {movieTable.map((movie) => (
+                {movieTable.map((movie, index) => (
                   <tr key={movie.id}>
                     <td>{movie.serialNumber}</td>
                     <td>{movie.name}</td>

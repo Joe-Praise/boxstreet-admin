@@ -13,17 +13,18 @@ function ViewTheaters() {
   const navigate = useNavigate();
 
   const handleEditButtonClick = () => {
-    navigate("/newTheater");
+    navigate("/theater/newTheater");
   };
   const handleViewButtonClick = () => {
-    navigate("/seat-layout");
+    navigate("/theater/seat-layout");
   }; 
 
   const [theaterTable, setTheaterTable] = useState([]);
+  const branch_id = localStorage.getItem('branch_id');
   console.log(theaterTable)
 
   useEffect(() => {
-    let theater_table_url = `${BASE_URL}/api/v1/theaters`;
+    let theater_table_url = `${BASE_URL}/api/v1/theaters?branch_id=${branch_id}`;
 
     axios
       .get(theater_table_url)
@@ -32,8 +33,8 @@ function ViewTheaters() {
         let data = theaters?.map((theater) => {
           return {
             id: theater.id,
+            cinema_name: theater?.cinema_id?.name,
             name: theater.name,
-            branch: theater.branch_id,
             row: theater.row,
             column: theater.column,
             seating_capacity: theater.seating_capacity,
@@ -61,9 +62,11 @@ function ViewTheaters() {
             </div>
           </div>
           <div className="vt-select">
-            <span>
-              Blue Sea Cinemas
+          {theaterTable.map((theater) => (
+            <span key={theater.id}>
+              {theater.cinema_name}
             </span>
+          ))}
 
             <button className="addtheaterbtn">
                 Add New Theater

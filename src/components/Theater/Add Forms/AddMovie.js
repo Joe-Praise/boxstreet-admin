@@ -97,6 +97,13 @@ function AddMovie() {
     }));
   };
 
+  
+  const [movieSubmit, setMovieSubmit] = useState(false);
+
+  const handleSubmitMovie = (e) => {
+    e.preventDefault();
+    setMovieSubmit(true);
+  }
   return (
     <div>
       <TheaterNav />
@@ -116,13 +123,13 @@ function AddMovie() {
               <input
                 type="text"
                 placeholder="Name"
-                value={cast.name || ""}
+                value={""}
                 onChange={(e) => handleCastChange(index, "name", e.target.value)}
               />
               <input
                 type="text"
                 placeholder="Image Url"
-                value={cast.role || ""}
+                value={""}
                 onChange={(e) => handleCastChange(index, "image_url", e.target.value)}
               />
               <button type="button" className="addcastBTN" onClick={() => removeCastField(index)}>
@@ -218,7 +225,9 @@ function AddMovie() {
             </div>
           </div>
           <div class="addmovieform-group">
-            <button class="counterform-btn">Upload Movie</button>
+            <button class="counterform-btn" onClick={handleSubmitMovie}>
+              Upload Movie
+            </button>
           </div>
         </form>
       </div>
