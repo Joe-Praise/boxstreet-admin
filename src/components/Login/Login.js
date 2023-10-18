@@ -90,17 +90,16 @@ function SignInForm({
         setLoading(false)
         let info = response.data?.data
        
+        localStorage.setItem('branch_id',info.user.branch_id);
+        localStorage.setItem('cinema_id',info.user.cinema_id);
+        localStorage.setItem('user_id',info.user._id);
+
         if(info.user.role === "COUNTER"){
             navigate("/counter");
-            localStorage.setItem('branch_id',info.user.branch_id);
-            localStorage.setItem('cinema_id',info.user.cinema_id);
-            localStorage.setItem('user_id',info.user._id);
         }
+
         if(info.user.role === "THEATER"){
             navigate("/theater");
-            localStorage.setItem('branch_id',info.user.branch_id);
-            localStorage.setItem('cinema_id',info.user.cinema_id);
-            localStorage.setItem('user_id',info.user._id);
         }
 
       } else {
