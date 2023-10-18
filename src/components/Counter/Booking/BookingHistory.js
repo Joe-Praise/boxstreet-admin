@@ -11,8 +11,27 @@ let ONLINE = "https://boxstreet.onrender.com";
 let BASE_URL = MODE === "PROD" ? ONLINE : LOCAL;
 
 function BookingHistory() {
-  const navigate = useNavigate();
+  const navigate = useNavigate(); 
   const [booked, setBooked] = useState([]);
+  const [searchTicket, setSearchTicket] = useState("");
+
+  function handleSearch() {
+    if (searchTicket = "") {
+      setBooked(booked);
+      return;
+    }
+    const filterByTicket = booked.filter((ticket) => {
+      if(ticket.includes(searchTicket)){
+        return ticket
+      }
+    })
+    setBooked(filterByTicket)
+  }
+
+  const handleNewMovie = () => {
+    navigate("/counter")
+  }
+
   const handleViewButtonClick = () => {
     navigate("/counter/receipt");
   };
@@ -30,12 +49,30 @@ function BookingHistory() {
           category: e?.ticket_type,
           tickect_no: e?.ticket_no,
           seat_number: e?.seat_number,
-
         }))
         console.log(booked)
         setBooked([...booked])
       })
   }, [])
+
+  // useEffect(() => {
+  //   let ticket_search_url = `${BASE_URL}/api/v1/bookings/U100lnsypwys/ticket-no`
+  //   axios.get(ticket_search_url)
+  //   .then(res => {
+  //     let data = res.data;
+  //     let ticket = data?.map(e => ({
+  //       id: e._id,
+  //       title: e?.movie_id?.name,
+  //       showingtime: e?.schedule_id?.show_time,
+  //       customer_name: e?.fullname,
+  //       category: e?.ticket_type,
+  //       tickect_no: e?.ticket_no,
+  //       seat_number: e?.seat_number,
+  //     }))
+  //     setSearchTicket([...ticket])
+  //     console.log(ticket)
+  //   })
+  // })
 
 
   return (
@@ -45,19 +82,13 @@ function BookingHistory() {
         <div className="ch-page">
           <div className="bh-page-top">
             <div className="bh-input">
-              <input placeholder="search" />
-              <span className="bh-input-btn">Search</span>
+              <input placeholder="search" onChange={e => setSearchTicket(e.target.value)}/>
+              <span className="bh-input-btn" onClick={handleSearch}>Search</span>
             </div>
           </div>
           <div className="ch-select">
-            <select>
-              <option value="cinema">Cinema</option>
-              <option value="Jabi">Jabi</option>
-              <option value="Wuse">Wuse</option>
-              <option value="Garki">Garki</option>
-            </select>
 
-            <button className="newBooking">Create New Booking</button>
+            <button className="newBooking" onClick={handleNewMovie}>Create New Booking</button>
           </div>
           <div className="ch-table-container">
             <table className="ch-table">
@@ -76,7 +107,6 @@ function BookingHistory() {
               </thead>
               <tbody>
                 {booked.map((b, id) => (
-
                   <tr key={b.id}>
                     <td>{id+1}</td>
                     <td>{b.tickect_no}</td>
@@ -95,114 +125,6 @@ function BookingHistory() {
                     </td>
                   </tr>
                 ))}
-
-{/* 
-                <tr>
-                  <td>{+2}</td>
-                  <td>MOV6745</td>
-                  <td>Oluwafemi Noel</td>
-                  <td>Tom and Jerry</td>
-                  <td>2:15pm</td>
-                  <td>VVIP</td>
-                  <td>B4</td>
-                  <td>22-01-2023 1:59pm</td>
-                  <td className="actions">
-                    <button onClick={handleViewButtonClick} className="ch-table-view">View</button>
-                    <button className="ch-table-print">Print</button>
-                    <button className="ch-table-check">Check-In</button>
-                  </td>
-                </tr>
-                <tr>
-                  <td>{+3}</td>
-                  <td>MOV6745</td>
-                  <td>Precious Aboki</td>
-                  <td>Tom and Jerry</td>
-                  <td>2:15pm</td>
-                  <td>VVIP</td>
-                  <td>B4</td>
-                  <td>22-01-2023 1:59pm</td>
-                  <td className="actions">
-                    <button onClick={handleViewButtonClick} className="ch-table-view">View</button>
-                    <button className="ch-table-print">Print</button>
-                    <button className="ch-table-check">Check-In</button>
-                  </td>
-                </tr>
-
-                <tr>
-                  <td>{+4}</td>
-                  <td>MOV6745</td>
-                  <td>Austin Igwe</td>
-                  <td>Spider Spider Spider Man!</td>
-                  <td>2:15pm</td>
-                  <td>VVIP</td>
-                  <td>B4</td>
-                  <td>22-01-2023 1:59pm</td>
-                  <td className="actions">
-                    <button onClick={handleViewButtonClick} className="ch-table-view">View</button>
-                    <button className="ch-table-print">Print</button>
-                    <button className="ch-table-check">Check-In</button>
-                  </td>
-                </tr>
-                <tr>
-                  <td>{+5}</td>
-                  <td>MOV6745</td>
-                  <td>Jon Jerry</td>
-                  <td>Teenage Mutant Ninja Turles 5: The Return</td>
-                  <td>2:15pm</td>
-                  <td>VVIP</td>
-                  <td>B4</td>
-                  <td>22-01-2023 1:59pm</td>
-                  <td className="actions">
-                    <button onClick={handleViewButtonClick} className="ch-table-view">View</button>
-                    <button className="ch-table-print">Print</button>
-                    <button className="ch-table-check">Check-In</button>
-                  </td>
-                </tr>
-                <tr>
-                  <td>{+6}</td>
-                  <td>MOV6745</td>
-                  <td>Paul Czech</td>
-                  <td>Garfield</td>
-                  <td>2:15pm</td>
-                  <td>VVIP</td>
-                  <td>B4</td>
-                  <td>22-01-2023 1:59pm</td>
-                  <td className="actions">
-                    <button onClick={handleViewButtonClick} className="ch-table-view">View</button>
-                    <button className="ch-table-print">Print</button>
-                    <button className="ch-table-check">Check-In</button>
-                  </td>
-                </tr>
-                <tr>
-                  <td>{+7}</td>
-                  <td>MOV6745</td>
-                  <td>Boluwa Ijoko</td>
-                  <td>Garfield</td>
-                  <td>2:15pm</td>
-                  <td>VVIP</td>
-                  <td>B4</td>
-                  <td>22-01-2023 1:59pm</td>
-                  <td className="actions">
-                    <button onClick={handleViewButtonClick} className="ch-table-view">View</button>
-                    <button className="ch-table-print">Print</button>
-                    <button className="ch-table-check">Check-In</button>
-                  </td>
-                </tr>
-                <tr>
-                  <td>{+8}</td>
-                  <td>MOV6745</td>
-                  <td>Ogoji Caro</td>
-                  <td>Garfield</td>
-                  <td>2:15pm</td>
-                  <td>VVIP</td>
-                  <td>B4</td>
-                  <td>22-01-2023 1:59pm</td>
-                  <td className="actions">
-                    <button onClick={handleViewButtonClick} className="ch-table-view">View</button>
-                    <button className="ch-table-print">Print</button>
-                    <button className="ch-table-check">Check-In</button>
-                  </td>
-                </tr> */}
               </tbody>
             </table>
           </div>

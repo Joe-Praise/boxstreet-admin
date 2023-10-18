@@ -36,7 +36,7 @@ function ViewMovies() {
             id: movie._id,
             name: movie.name,
             language: movie.language,
-            casts: movie.cast,
+            genre: movie.genre.name,
             duration: movie.duration,
             pg_rating: movie.pg_rating,
             genre: movie.genre,
@@ -79,7 +79,7 @@ function ViewMovies() {
                   <th>S/N</th>
                   <th>Movie Title</th>
                   <th>Language</th>
-                  <th>Casts</th>
+                  <th>Genre</th>
                   <th>Production Studio</th>
                   <th>Duration</th>
                   <th>PG Rating</th>
@@ -94,7 +94,7 @@ function ViewMovies() {
                     <td>{movie.serialNumber}</td>
                     <td>{movie.name}</td>
                     <td>{movie.language}</td>
-                    <td>{movie.cast ? movie.cast.join(", ") : "N/A"}</td>
+                    <td>{movie.genre}</td>
                     <td>{movie.production_studio}</td>
                     <td>{movie.duration}</td>
                     <td>{movie.pg_rating}</td>
