@@ -16,23 +16,16 @@
   background: #f5f4f5d3;
 }
 
-.vt-select {
+.vt-select{
   width: 100%;
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
-.vt-select option {
-  outline: none;
-  border: none;
-  width: 200px;
-  height: 40px;
-}
-.vt-select select {
-  outline: none;
-  border: none;
-  width: 200px;
-  height: 40px;
-  border-radius: 5px;
+
+.vt-select span {
+  font-size: 1.5rem;
+  font-weight: bold;
 }
 
 .addtheaterbtn{
@@ -108,7 +101,7 @@ td {
 }
 .vt-table {
   width: 100%;
-  margin-top: 30px;
+  margin-top: 10px;
   border-collapse: collapse;
 }
 .vt-table .vt-table-header {

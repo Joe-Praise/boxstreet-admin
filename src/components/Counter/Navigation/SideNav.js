@@ -7,15 +7,15 @@ function SideNav() {
     <div className="sideNav">
       <ul>
         <Link className="sideNavLinks" to="/counter">
-          <li>Home</li>
+          <li>HOME</li>
         </Link>
 
         <Link to="/counter/history" className="sideNavLinks">
-          <li>Booking History</li>
+          <li>BOOKING HISTORY</li>
         </Link>
 
-        <Link className="sideNavLinks" to="">
-          <li> SETTINGS</li>
+        <Link className="sideNavLinks" to="/counter/profile">
+          <li> PROFILE</li>
         </Link>
       </ul>
     </div>
