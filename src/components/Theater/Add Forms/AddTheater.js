@@ -13,14 +13,16 @@ function AddTheater() {
   const branch_id = localStorage.getItem('branch_id');
   const [theaterData, setTheaterData] = useState({
     name: "",
+    screen: 1,
     branch_id
   });
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
+    const { name, screen, value } = e.target;
     setTheaterData({
       ...theaterData,
       [name]: value,
+      [screen]: value,
     });
   };
 
@@ -65,7 +67,7 @@ function AddTheater() {
               className="inputs"
               required
               onChange={handleChange}
-              value={theaterData.name}
+              value={theaterData.screen}
             />
           </div>
           <div className="addtheaaterform-group">

@@ -3,21 +3,26 @@ import TheaterNav from "../Navigation/TheaterNav";
 import "../stylesTheater/viewTheaters.css";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import UpdateTheater from "../Add Forms/UpdateTheater";
 
 let MODE = "PROD";
-let LOCAL = "http://lolcalhost:5000";
+let LOCAL = "http://localhost:5000";
 let ONLINE = "https://boxstreet.onrender.com";
 let BASE_URL = MODE === "PROD" ? ONLINE : LOCAL;
 
 function ViewTheaters() {
   const navigate = useNavigate();
 
-  const handleEditButtonClick = () => {
-    navigate("/theater/new-theater");
+  const handleEditButtonClick = (theaterId, theater) => {
+    navigate(`/theater/update-theater/${theaterId}`, {
+      state: { theaterData: theater },
+    });
   };
+
   const handleViewButtonClick = (theaterId) => {
     navigate(`/theater/seat-layout/${theaterId}`);
   };
+
   const handleSeatTableButtonClick = () => {
     navigate(`/theater/view-seats`);
   };
@@ -47,8 +52,7 @@ function ViewTheaters() {
       .catch((error) => {
         console.error("Error fetching theater data:", error);
       });
-
-  }, []);
+  }, [BASE_URL, branch_id]);
 
   const handleDeleteButtonClick = (theaterId) => {
     axios
@@ -111,7 +115,7 @@ function ViewTheaters() {
                     <td>{theater.seat_capacity}</td>
                     <td>{theater.available_seat}</td>
                     <td>{theater.unavailable_seat}</td>
-                  
+
                     <td
                       className="vt-table-viewseat"
                       onClick={() => handleSeatTableButtonClick()}
@@ -126,7 +130,7 @@ function ViewTheaters() {
                     </td>
                     <td
                       className="vt-table-edit"
-                      onClick={handleEditButtonClick}
+                      onClick={() => handleEditButtonClick(theater.id, theater)}
                     >
                       Edit
                     </td>

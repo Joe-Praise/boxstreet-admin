@@ -215,14 +215,11 @@ function AddMovie() {
                     alert("Movie created successfully");
                   }
               });
-
-             
             }
           })
           .catch((error) => {
             console.error("Error creating movie", error);
           });
-
     } else {
       console.log("Validation errors:", errors);
     }
