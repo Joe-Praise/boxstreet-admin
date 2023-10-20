@@ -21,6 +21,9 @@ import TheaterBooking from "./components/Theater/TheaterBooking/TheaterBooking";
 import TheaterBookingSeat from "./components/Theater/TheaterBooking/TheaterBookingSeat";
 import BookedInfo from "./components/Counter/Booking/BookedInfo";
 import Login from "./components/Login/Login";
+import ViewSingleMovie from "./components/Theater/View Tables/ViewSingleMovie";
+import AddSeat from "./components/Theater/Add Forms/AddSeat";
+import ViewSeats from "./components/Theater/View Tables/ViewSeats";
 
 function App() {
   return (
@@ -43,14 +46,18 @@ function App() {
           <Route path="/theater/seat" element={<TheaterBookingSeat />} />
           <Route path="/theater/new-theater" element={<AddTheater />} />
           <Route path="/theater/view-theaters" element={<ViewTheaters />} />
-          <Route path="/theater/seat-layout" element={<ViewSeatingLayer />} />
+          <Route path="/theater/seat-layout/:id" element={<ViewSeatingLayer />} />
+          <Route path="/theater/view-seats" element={<ViewSeats />} />
+          <Route path="/theater/add-counter" element={<AddCounter />} />
           <Route path="/theater/add-counter" element={<AddCounter />} />
           <Route path="/theater/profile" element={<TProfile />} />
           <Route path="/theater/add-movie" element={<AddMovie />} />
           <Route path="/theater/view-movies" element={<ViewMovies />} />
+          <Route path="/theater/single-movie/:id" element={<ViewSingleMovie />} />
           <Route path="/theater/change-password" element={<ChangePass />} />
           <Route path="/theater/movieschedule" element={<CreateMovieSchedule />} />
           <Route path="/theater/movieschedulelisting" element={<MovieScheduleListing />} />
+          <Route path="/theater/add-seat" element={<AddSeat />}/>
       
         </Routes>
       </BrowserRouter>

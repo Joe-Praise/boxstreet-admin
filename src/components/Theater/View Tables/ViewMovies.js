@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
-import '../stylesTheater/viewmovies.css'
+import "../stylesTheater/viewmovies.css";
 import TheaterNav from "../Navigation/TheaterNav";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 let MODE = "PROD";
-let LOCAL = "http://lolcalhost:5000";
+let LOCAL = "http://localhost:5000";
 let ONLINE = "https://boxstreet.onrender.com";
 let BASE_URL = MODE === "PROD" ? ONLINE : LOCAL;
 
@@ -13,35 +13,34 @@ function ViewMovies() {
   const navigate = useNavigate();
 
   const handleEditButtonClick = () => {
-    navigate("/theater-admin/add-movie");
+    navigate("/theater/add-movie");
   };
-  const handleViewButtonClick = () => {
-    navigate("/theater-admin/seat-layout");
+  const handleViewButtonClick = (movieId) => {
+    navigate(`/theater/single-movie/${movieId}`);
   };
 
   const [movieTable, setMovieTable] = useState([]);
-  const branch_id = localStorage.getItem('branch_id');
+  const branch_id = localStorage.getItem("branch_id");
 
   console.log(movieTable);
 
   useEffect(() => {
-    let movie_table_url = `${BASE_URL}/api/v1/movieschedule?branch_id=${branch_id}`;
+    let movie_table_url = `${BASE_URL}/api/v1/movies?branch_id=${branch_id}`;
 
     axios
       .get(movie_table_url)
       .then((res) => {
         let movies = res.data?.data;
-        console.log(movies)
+        console.log(movies);
         let data = movies?.map((movie) => {
           return {
             id: movie._id,
-            name: movie?.movie_id?.name,
-            language: movie?.movie_id?.language,
-            genre: movie?.movie_id?.genre.name,
-            duration: movie?.movie_id?.duration,
-            pg_rating: movie?.movie_id?.pg_rating,
-            genre: movie?.movie_id?.genre,
-            production_studio: movie?.movie_id?.production_studio,
+            name: movie?.name,
+            language: movie?.language,
+            genre: movie?.genre_id?.name,
+            duration: movie?.duration,
+            pg_rating: movie?.pg_rating,
+            production_studio: movie?.production_studio,
           };
         });
         setMovieTable([...data]);
@@ -50,6 +49,24 @@ function ViewMovies() {
         console.error("Error fetching movie data:", error);
       });
   }, []);
+
+  const handleDeleteButtonClick = (movieId) => {
+    axios
+      .delete(`${BASE_URL}/api/v1/movies/${movieId}`)
+      .then((response) => {
+        console.log("Movie deleted successfully");
+
+        setMovieTable((prevMovieTable) => {
+          const updatedMovieTable = prevMovieTable.filter(
+            (movie) => movie.id !== movieId
+          );
+          return updatedMovieTable;
+        });
+      })
+      .catch((error) => {
+        console.error("Error deleting movie:", error);
+      });
+  };
 
   return (
     <div>
@@ -70,7 +87,9 @@ function ViewMovies() {
               <option value="Garki">Garki</option>
             </select>
 
-            <button className="addmoviesbtn" onClick={handleEditButtonClick}>Add New Movie</button>
+            <button className="addmoviesbtn" onClick={handleEditButtonClick}>
+              Add New Movie
+            </button>
           </div>
           <div className="vm-table-container">
             <table className="vm-table">
@@ -91,7 +110,7 @@ function ViewMovies() {
               <tbody>
                 {movieTable.map((movie, index) => (
                   <tr key={movie.id}>
-                    <td>{movie.serialNumber}</td>
+                    <td>{index + 1}</td>
                     <td>{movie.name}</td>
                     <td>{movie.language}</td>
                     <td>{movie.genre}</td>
@@ -100,7 +119,7 @@ function ViewMovies() {
                     <td>{movie.pg_rating}</td>
                     <td
                       className="vm-table-view"
-                      onClick={handleViewButtonClick}
+                      onClick={() => handleViewButtonClick(movie.id)}
                     >
                       View
                     </td>
@@ -110,7 +129,13 @@ function ViewMovies() {
                     >
                       Edit
                     </td>
-                    <td className="vm-table-delete">Delete</td>
+                    <td
+                      className="vm-table-delete"
+                      onClick={() => handleDeleteButtonClick(movie.id)}
+                    >
+                      Delete
+                    </td>
+                    ;
                   </tr>
                 ))}
               </tbody>
