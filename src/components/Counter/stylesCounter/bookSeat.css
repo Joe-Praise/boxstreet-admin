@@ -130,7 +130,8 @@ display: flex;
 }
 
 .booking-choose-seat-text{
-  color: #4f0df6;
+  /* color: #4f0df6; */
+  color:#6a7c94;
   font-size: 25px;
   text-align: center;
   margin-right: 170px;
@@ -152,25 +153,26 @@ display: flex;
     width: 20px;
     height: 20px;
     border-radius: 50%;
-    background-color:#ffff00;
+    background-color:#faac1d;
 }
 .booking-seat-vip{
     width: 20px;
     height: 20px;
     border-radius: 50%;
-    background-color: #00d0ff;
+    background-color: #1c94d2;
 }
 .booking-seat-regular{
     width: 20px;
     height: 20px;
     border-radius: 50%;
-    background-color: rgb(247, 193, 230);
+    background-color: #ec167f;
 }
 
 .booking-seat-select{
  
-  color: rebeccapurple;
- 
+  font-size:13px;
+  font-weight: 900px;
+ color: #333;
 }
 
 /* .booking-container-col1{
@@ -254,14 +256,11 @@ rotate: 180deg;
     margin-top: 15px;
 }
 
-.box1-col1 .col1p{
-    width: 40px;
-    height: 40px;
-    border: 1px solid #c5e3f3;
-    background: #c5e3f3;
-    border-radius: 14px;
+.box1-col1 .col1p {
+  width: 50px;
+  height: 50px;
+  border-radius: 25px;
 }
-
 
 .box1 .col1p span.active {
     width: 20px;
@@ -345,19 +344,25 @@ rotate: 180deg;
     margin-top: 10px;
     width: 590px;
     height: 100px;
-    border: solid 7px #00d0ff;
-    border-color: #00d0ff transparent transparent;
+    border: solid 7px #a0afc7;
+    border-color: #a0afc7 transparent transparent;
     border-radius:60% ;
 }
 
 .booking-container-col1-inputs{
-margin: 40px 0;
+margin: 70px 0;
+padding-right: 50px;
 display: flex;
+/* justify-content: center; */
 gap: 100px;
 }
 
+.amount-length{
+  display: flex;
+}
+
 .booking-container-col-text{
-color: #7848f4;
+color: #333;
 font-weight: 200px;
 font-size: 18px;
 padding-left: 10px;
@@ -367,7 +372,7 @@ display: flex;
 gap: 10px;
 }
 .booking-totalh{
-color: #7848f4;
+color: #333;
 }
 
 .booking-totalp{
@@ -472,7 +477,7 @@ color: #ffffff;
     margin-top: 9.4rem;
     color: #333;
     /* background-color: #ffffff; */
-    /* height: 100%; */
+    height: 100vh;
     display: flex;
     flex-direction: column;
     margin-left: 5px;
@@ -527,7 +532,7 @@ color: #ffffff;
   }
 
   .seat-btn {
-    background: #27a5ee;
+    background: #6a7c94;
     color: #eee;
     border: none;
     padding: 10px 30px;
@@ -535,6 +540,7 @@ color: #ffffff;
     margin-top: 40px;
     margin-bottom: 10px;
     font-size: 18px;
+    font-weight: bold;
     outline: none;
     cursor: pointer;
     display: flex;

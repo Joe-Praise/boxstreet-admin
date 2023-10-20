@@ -90,6 +90,7 @@
       cursor: pointer;
       padding: 10px 8px;
       border: none;
+      margin-left: 15px;
   }
   
   .ch-table-check-success {
@@ -100,6 +101,7 @@
     cursor: pointer;
     padding: 10px 8px;
     border: none;
+    margin-left: 15px;
   }
 
   .ch-table-check {
@@ -110,6 +112,7 @@
     cursor: pointer;
     padding: 10px 8px;
     border: none;
+    margin-left: 15px;
   }
   
   .ch-table-print {
@@ -120,6 +123,7 @@
     cursor: pointer;
     padding: 10px 8px;
     border: none;
+    margin-left: 10px;
   }
   .ch-page-top {
     display: flex;
@@ -171,12 +175,12 @@
   }
   
   .ch-table-header th {
-    padding: 10px;
+    padding: 12px;
   }
   
   .ch-table tbody td {
-    padding: 13px;
-    font-size: 16px;
+    padding: 5px;
+    font-size: 12px;
     max-width: 200px;
     text-align: center;
     align-items: center;
