@@ -3,7 +3,6 @@ import TheaterNav from "../Navigation/TheaterNav";
 import "../stylesTheater/viewTheaters.css";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import UpdateTheater from "../Add Forms/UpdateTheater";
 
 let MODE = "PROD";
 let LOCAL = "http://localhost:5000";
@@ -23,8 +22,8 @@ function ViewTheaters() {
     navigate(`/theater/seat-layout/${theaterId}`);
   };
 
-  const handleSeatTableButtonClick = () => {
-    navigate(`/theater/view-seats`);
+  const handleSeatTableButtonClick = (theaterId) => {
+    navigate(`/theater/view-seats/${theaterId}`);
   };
 
   const [theaterTable, setTheaterTable] = useState([]);
@@ -118,7 +117,7 @@ function ViewTheaters() {
 
                     <td
                       className="vt-table-viewseat"
-                      onClick={() => handleSeatTableButtonClick()}
+                      onClick={() => handleSeatTableButtonClick(theater.id)}
                     >
                       Seat Table
                     </td>

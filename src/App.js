@@ -49,7 +49,7 @@ function App() {
           <Route path="/theater/update-theater/:id" element={<UpdateTheater />} />
           <Route path="/theater/view-theaters" element={<ViewTheaters />} />
           <Route path="/theater/seat-layout/:id" element={<ViewSeatingLayer />} />
-          <Route path="/theater/view-seats" element={<ViewSeats />} />
+          <Route path="/theater/view-seats/:id" element={<ViewSeats />} />
           <Route path="/theater/add-counter" element={<AddCounter />} />
           <Route path="/theater/add-counter" element={<AddCounter />} />
           <Route path="/theater/profile" element={<TProfile />} />
