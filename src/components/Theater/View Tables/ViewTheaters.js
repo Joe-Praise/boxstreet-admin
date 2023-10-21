@@ -28,9 +28,10 @@ function ViewTheaters() {
 
   const [theaterTable, setTheaterTable] = useState([]);
   const branch_id = localStorage.getItem("branch_id");
+  const cinema_id = localStorage.getItem("cinema_id");
 
   useEffect(() => {
-    let theater_table_url = `${BASE_URL}/api/v1/theaters?branch_id=${branch_id}`;
+    let theater_table_url = `${BASE_URL}/api/v1/theaters?cinema_id=${cinema_id}&branch_id=${branch_id}`;
 
     axios
       .get(theater_table_url)

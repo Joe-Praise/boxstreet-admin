@@ -11,10 +11,12 @@ let BASE_URL = MODE === "PROD" ? ONLINE : LOCAL;
 
 function AddTheater() {
   const branch_id = localStorage.getItem('branch_id');
+  const cinema_id = localStorage.getItem('cinema_id');
   const [theaterData, setTheaterData] = useState({
     name: "",
     screen: 1,
-    branch_id
+    branch_id,
+    cinema_id
   });
 
   const handleChange = (e) => {

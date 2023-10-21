@@ -40,13 +40,12 @@
     position: relative;
     background-color: #fff;
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
-    transition: transform 0.2s ease-in-out;
   }
   
-  .tmovieBox:hover {
+  /* .tmovieBox:hover {
     transform: scale(1.015);
     box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
-  }
+  } */
   
   .tmovieBox img {
     width: 100%;
@@ -61,7 +60,6 @@
     height: auto;
     overflow: hidden;
     position: relative;
-    transition: ease-in-out 1s;
   }
   
   .tmovieInfo h3 {
@@ -151,5 +149,6 @@
   .tmovieInfo:hover .cardActions {
     visibility: visible;
     height: 100%;
+    transition-delay: .3s;
   }
   

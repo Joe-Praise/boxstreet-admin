@@ -52,7 +52,7 @@ let BASE_URL = MODE === "PROD" ? ONLINE : LOCAL;
   }
 
   useEffect(()=>{
-    let theater_url = `${BASE_URL}/api/v1/theaters?branch_id=${branch_id}`;
+    let theater_url = `${BASE_URL}/api/v1/theaters?cinema_id=${cinema_id}&branch_id=${branch_id}`;
     let category_url = `${BASE_URL}/api/v1/categories?cinema_id=${cinema_id}`;
 
     axios
