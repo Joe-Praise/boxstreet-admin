@@ -67,7 +67,7 @@ function ViewTheaters() {
         });
       })
       .catch((error) => {
-        console.error("Error Deleting Movie", error);
+        console.error("Error Deleting Theater", error);
       });
   };
 

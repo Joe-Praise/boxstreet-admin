@@ -1,10 +1,10 @@
-import React, { useState,useEffect } from 'react'
-import '../stylesTheater/theater.css'
-import TheaterNav from '../Navigation/TheaterNav';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from "react";
+import "../stylesTheater/theater.css";
+import TheaterNav from "../Navigation/TheaterNav";
+import { Link } from "react-router-dom";
 import axios from "axios";
 
-const shows =[
+const shows = [
   {
     id: 1,
     title: "Spider-Man: Far From Home",
@@ -125,7 +125,7 @@ const shows =[
     description:
       "When the Joker wreaks havoc on Gotham City, Batman must confront his own demons while trying to stop the chaos.",
   },
-]
+];
 
 let MODE = "PROD";
 let LOCAL = "http://localhost:5000";
@@ -133,16 +133,14 @@ let ONLINE = "https://boxstreet.onrender.com";
 
 let BASE_URL = MODE === "PROD" ? ONLINE : LOCAL;
 
-  
 function TheaterHome() {
+  const [movieListing, setMovieListing] = useState(shows);
+  const [genres, setGenre] = useState([]);
+  const branch_id = localStorage.getItem("branch_id");
 
-  const [movieListing,setMovieListing] =  useState(shows);
-  const [genres,setGenre] = useState([])
-  const branch_id = localStorage.getItem('branch_id');
-
-  const filterTime = (e) =>{
+  const filterTime = (e) => {
     let index = 0;
-    console.log(e)
+    console.log(e);
     // for(let i=0;i<e.length;i++){
     //   let d = new Date(e[i]).getTime();
     //   let today = Date.now();
@@ -151,50 +149,65 @@ function TheaterHome() {
     //     break;
     //   }
     // }
-    return [index]
-  }
-  useEffect(()=>{
-    
-    let movie_schedule_url = `${BASE_URL}/api/v1/movies?branch_id=${branch_id}`
-    let genre_url = `${BASE_URL}/api/v1/genres`
+    return [index];
+  };
+  useEffect(() => {
+    let movie_schedule_url = `${BASE_URL}/api/v1/movies?branch_id=${branch_id}`;
+    let genre_url = `${BASE_URL}/api/v1/genres`;
 
-    axios.get(movie_schedule_url)
-    .then(res=>{
+    axios.get(movie_schedule_url).then((res) => {
       let movies = res.data?.data;
-      let data = movies?.map(e =>({
+      let data = movies?.map((e) => ({
         id: e._id,
         title: e?.name,
         genre: e?.movie_id?.genre,
         showingtime: filterTime(e.show_time),
-        imageUrl:e?.image,
-        description:e?.description
-      }))
-      console.log(data)
-      setMovieListing([...data])
-    })
+        imageUrl: e?.image,
+        description: e?.description,
+      }));
+      console.log(data);
+      setMovieListing([...data]);
+    });
 
-    axios.get(genre_url)
-    .then(res=>{
+    axios.get(genre_url).then((res) => {
       let data = res.data;
-      let info = data?.map(e =>({
+      let info = data?.map((e) => ({
         id: e._id,
         name: e?.name,
-      }))
-      setGenre([...info])
-    })
+      }));
+      setGenre([...info]);
+    });
+  }, [branch_id]);
 
-  },[branch_id])
-
-  const [, setSelectedMovieTime] =
-    useState("Select Movie Time");
+  const [, setSelectedMovieTime] = useState("Select Movie Time");
   const [, setSelectedGenre] = useState("Genre");
+
+  const handleDeleteButtonClick = (movieId) => {
+    if (window.confirm("Are you sure you want to delete this movie?")) {
+      axios
+        .delete(`${BASE_URL}/api/v1/movies/${movieId}`)
+        .then((response) => {
+          window.reload();
+          setMovieListing((prevMovie) => {
+            const updatedMovies = prevMovie.filter(
+              (movie) => movie.id !== movieId
+            );
+            return updatedMovies;
+          });
+        })
+        .catch((error) => {
+          console.error("Error Deleting Movie", error);
+        });
+    }
+  };
 
   return (
     <div>
       <TheaterNav />
       <div className="counter">
         <div className="selectBtns">
-          <select className="select"
+          <select
+            className="select"
             name="movie time"
             onChange={(e) => setSelectedMovieTime(e.target.value)}
           >
@@ -204,7 +217,11 @@ function TheaterHome() {
             <option value="3:30pm - 4:45pm">3:30pm - 4:45pm</option>
             <option value="5:00pm - 6:50pm">5:00pm - 6:50pm</option>
           </select>
-          <select className="select" name="genre" onChange={(e) => setSelectedGenre(e.target.value)} >
+          <select
+            className="select"
+            name="genre"
+            onChange={(e) => setSelectedGenre(e.target.value)}
+          >
             <option value="Genre">Genre</option>
             <option value="Action">Action</option>
             <option value="Adventure">Adventure</option>
@@ -222,19 +239,30 @@ function TheaterHome() {
             <option value="Music">Music</option>
           </select>
         </div>
-        <div className="counterMovies">
+        <div className="tMovies">
           {movieListing.map((movie) => (
-            <Link className="movieBox" to={`/theater/single-movie/${movie.id}`} key={movie.id}>
-              <img src={movie.imageUrl} alt={movie.title} />
-              <div className="movieInfo">
-                <p>{movie.showingtime}</p>
-                <div>
+            <div className="tmovieBox">
+              <Link to={`/theater/single-movie/${movie.id}`} key={movie.id}>
+                <img src={movie.imageUrl} alt={movie.title} />
+              </Link>
+              <div className="tmovieInfo">
+                <div className="cardDetails">
+                  <p>{movie.showingtime}</p>
                   <h3>{movie.title}</h3>
                   <span>{movie.genre}</span>
                   <p>{movie.description}</p>
                 </div>
+                <div className="cardActions">
+                  <button className="btnEdit">Edit</button>
+                  <button
+                    className="btnDelete"
+                    onClick={() => handleDeleteButtonClick(movie.id)}
+                  >
+                    Delete
+                  </button>
+                </div>
               </div>
-            </Link>
+            </div>
           ))}
         </div>
       </div>
@@ -242,4 +270,4 @@ function TheaterHome() {
   );
 }
 
-export default TheaterHome
+export default TheaterHome;
