@@ -21,6 +21,13 @@ import TheaterBooking from "./components/Theater/TheaterBooking/TheaterBooking";
 import TheaterBookingSeat from "./components/Theater/TheaterBooking/TheaterBookingSeat";
 import BookedInfo from "./components/Counter/Booking/BookedInfo";
 import Login from "./components/Login/Login";
+import ViewSingleMovie from "./components/Theater/View Tables/ViewSingleMovie";
+import AddSeat from "./components/Theater/Add Forms/AddSeat";
+import ViewSeats from "./components/Theater/View Tables/ViewSeats";
+import CreateCinema from "./components/Website-Admin/CreateCinema";
+import AddUser from "./components/Cinema-Admin/AddUser";
+import Home from "./components/Website-Admin/Home";
+import Cinemas from "./components/Website-Admin/Cinemas";
 
 function App() {
   return (
@@ -38,20 +45,27 @@ function App() {
           <Route path="/counter/history" element={<BookingHistory />} />
           <Route path="/counter/receipt/:id" element={<BookedInfo />} />
 
-          <Route path="/theater-admin" element={<TheaterHome />} />
-          <Route path="/theater-admin/booking/:id" element={<TheaterBooking />} />
-          <Route path="/theater-admin/seat" element={<TheaterBookingSeat />} />
-          <Route path="/theater-admin/new-theater" element={<AddTheater />} />
-          <Route path="/theater-admin/view-theaters" element={<ViewTheaters />} />
-          <Route path="/theater-admin/seat-layout" element={<ViewSeatingLayer />} />
-          <Route path="/theater-admin/add-counter" element={<AddCounter />} />
-          <Route path="/theater-admin/profile" element={<TProfile />} />
-          <Route path="/theater-admin/add-movie" element={<AddMovie />} />
-          <Route path="/theater-admin/view-movies" element={<ViewMovies />} />
-          <Route path="/theater-admin/change-password" element={<ChangePass />} />
-          <Route path="/theater-admin/movieschedule" element={<CreateMovieSchedule />} />
-          <Route path="/theater-admin/movieschedulelisting" element={<MovieScheduleListing />} />
-      
+          <Route path="/theater" element={<TheaterHome />} />
+          <Route path="/theater/booking/:id" element={<TheaterBooking />} />
+          <Route path="/theater/seat" element={<TheaterBookingSeat />} />
+          <Route path="/theater/new-theater" element={<AddTheater />} />
+          <Route path="/theater/view-theaters" element={<ViewTheaters />} />
+          <Route path="/theater/seat-layout/:id" element={<ViewSeatingLayer />} />
+          <Route path="/theater/view-seats" element={<ViewSeats />} />
+          <Route path="/theater/add-counter" element={<AddCounter />} />
+          <Route path="/theater/add-counter" element={<AddCounter />} />
+          <Route path="/theater/profile" element={<TProfile />} />
+          <Route path="/theater/add-movie" element={<AddMovie />} />
+          <Route path="/theater/view-movies" element={<ViewMovies />} />
+          <Route path="/theater/single-movie/:id" element={<ViewSingleMovie />} />
+          <Route path="/theater/change-password" element={<ChangePass />} />
+          <Route path="/theater/movieschedule" element={<CreateMovieSchedule />} />
+          <Route path="/theater/movieschedulelisting" element={<MovieScheduleListing />} />
+          <Route path="/theater/add-seat" element={<AddSeat />}/>
+          <Route path="/web-admin/cinema" element={<CreateCinema />}/>
+          <Route path="/web-admin/add-user" element={<AddUser/>}/>
+          <Route path="/web-admin" element={<Home/>}/>
+          <Route path="/web-cinemas" element={<Cinemas/>}/>
         </Routes>
       </BrowserRouter>
     </div>
