@@ -103,6 +103,10 @@ function SignInForm({
             navigate("/theater");
         }
 
+        if(info.user.role === "CINEMA"){
+          navigate("/cinema");
+      }
+
       } else {
         setFormErrorMessage("Sign-in failed. Please try again.");
       }
