@@ -109,6 +109,10 @@ function SignInForm({
             localStorage.setItem('user_id',info.user._id);
         }
 
+        if(info.user.role === "CINEMA"){
+          navigate("/cinema");
+      }
+
       } else {
         setFormErrorMessage("Sign-in failed. Please try again.");
       }

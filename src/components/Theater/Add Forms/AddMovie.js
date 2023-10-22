@@ -211,18 +211,13 @@ function AddMovie() {
             if (response.data) {
               axios.put(`${BASE_URL}/api/v1/movies/${response.data.data._id}/resources`, formdata)
               .then((e) => {
-                  if(e.code == 200){
-                    alert("Movie created successfully");
-                  }
+                    alert("Movie created successfully")
               });
-
-             
             }
           })
           .catch((error) => {
             console.error("Error creating movie", error);
           });
-
     } else {
       console.log("Validation errors:", errors);
     }

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import TheaterNav from "../Navigation/TheaterNav";
 import "../stylesTheater/viewTheaters.css";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 
 let MODE = "PROD";
@@ -12,6 +12,10 @@ let BASE_URL = MODE === "PROD" ? ONLINE : LOCAL;
 function ViewSeats() {
     const navigate = useNavigate();
 
+    const handleNewSeatClick = () => {
+        navigate("/theater/add-seat");
+      };
+
     const handleEditButtonClick = () => {
       navigate("/theater/new-theater");
     };
@@ -20,10 +24,10 @@ function ViewSeats() {
     };
   
     const [seatTable, setSeatTable] = useState([]);
-    const theater_id = "652aa9066de9462d02533530"
+    const { id } = useParams();
   
     useEffect(() => {
-      let seat_url = `${BASE_URL}/api/v1/seats?theater_id=${theater_id}`;
+      let seat_url = `${BASE_URL}/api/v1/seats?theater_id=${id}`;
   
       axios
         .get(seat_url)
@@ -45,6 +49,34 @@ function ViewSeats() {
         });
   
     }, []);
+
+    const [theaterTable, setTheaterTable] = useState([]);
+    const branch_id = localStorage.getItem("branch_id");
+  
+    useEffect(() => {
+      let theater_table_url = `${BASE_URL}/api/v1/theaters?branch_id=${branch_id}`;
+  
+      axios
+        .get(theater_table_url)
+        .then((res) => {
+          let theaters = res.data;
+          let data = theaters?.map((theater) => {
+            return {
+              id: theater._id,
+              name: theater.name,
+              screen: theater.screen,
+              seat_capacity: theater.seat_capacity,
+              available_seat: theater.available_seat,
+              unavailable_seat: theater.unavailable_seat,
+            };
+          });
+          setTheaterTable([...data]);
+          console.log(theaters)
+        })
+        .catch((error) => {
+          console.error("Error fetching theater data:", error);
+        });
+    }, [BASE_URL, branch_id]);
   
     const handleDeleteButtonClick = (theaterId) => {
       axios
@@ -71,10 +103,10 @@ function ViewSeats() {
         </div>
         <div className="vt-select">
           {/* {theaterTable.map((theater) => (
-            <span key={theater.id}>{theater.cinema_name}</span>
+            <span key={theater.id}>{theater.name}</span>
           ))} */}
 
-          <button className="addtheaterbtn">Add New Seat</button>
+          <button className="addtheaterbtn" onClick={handleNewSeatClick}>Add New Seat</button>
         </div>
         <div className="vt-table-container">
           <table className="vt-table">
