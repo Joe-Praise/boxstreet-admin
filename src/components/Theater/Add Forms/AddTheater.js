@@ -1,57 +1,81 @@
-import React from "react";
+import React, { useState } from "react";
 import "../stylesTheater/addtheater.css";
 import TheaterNav from "../Navigation/TheaterNav";
+import axios from "axios";
+
+let MODE = "PROD";
+let LOCAL = "http://localhost:5000";
+let ONLINE = "https://boxstreet.onrender.com";
+
+let BASE_URL = MODE === "PROD" ? ONLINE : LOCAL;
 
 function AddTheater() {
+  const branch_id = localStorage.getItem('branch_id');
+  const cinema_id = localStorage.getItem('cinema_id');
+  const [theaterData, setTheaterData] = useState({
+    name: "",
+    screen: 1,
+    branch_id,
+    cinema_id
+  });
+
+  const handleChange = (e) => {
+    const { name, screen, value } = e.target;
+    setTheaterData({
+      ...theaterData,
+      [name]: value,
+      [screen]: value,
+    });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    axios
+    .post(`${BASE_URL}/api/v1/theaters`, theaterData)
+    .then((response) => {
+        if(response.data._id){
+          alert("Theater created successfully");
+
+        }
+      })
+      .catch((error) => {
+        console.error("Error creating theater:", error);
+      });
+  };
+
   return (
     <div>
       <TheaterNav />
       <div className="addtheaaterForm">
-        <form className="addtheaaterform">
+        <form className="addtheaaterform" onSubmit={handleSubmit}>
           <h2>Add a New Theater</h2>
-          <div className="addtheaaterformnameflex">
-            <div class="addtheaaterform-group">
-              <label for="">Cinema Name:</label>
-              <span></span>
-              <input type="text" name="name" class="inputs" required />
-            </div>
-            <div class="addtheaaterform-group">
-              <label for="">Theater:</label>
-              <span></span>
-              <input type="text" name="category" class="inputs" required />
-            </div>
+          <div className="addtheaaterform-group">
+            <label htmlFor="name">Theater Name:</label>
+            <input
+              type="text"
+              name="name"
+              className="inputs"
+              required
+              onChange={handleChange}
+              value={theaterData.name}
+            />
           </div>
-          <div className="addtheaaterformnameflex">
-            <div class="addtheaaterform-group">
-              <label for="">Seating Capacity:</label>
-              <span></span>
-              <input type="number" name="price" class="inputs" required />
-            </div>
-            <div class="addtheaaterform-group">
-              <label for="">Rows:</label>
-              <span></span>
-              <input type="number" name="quantity" class="inputs" required />
-            </div>
-            <div class="addtheaaterform-group">
-              <label for="">Columns:</label>
-              <span></span>
-              <input type="number" name="quantity" class="inputs" required />
-            </div>
+          <div className="addtheaaterform-group">
+            <label htmlFor="name">Number of Screens:</label>
+            <input
+              type="number"
+              name="screen"
+              className="inputs"
+              required
+              onChange={handleChange}
+              value={theaterData.screen}
+            />
           </div>
-          <div className="addtheaaterformnameflex">
-            <div class="addtheaaterform-group">
-              <label for="">Col-matrix 1:</label>
-              <span></span>
-              <input type="number" name="quantity" class="inputs" required />
-            </div>
-            <div class="addtheaaterform-group">
-              <label for="">Col-matrix 2:</label>
-              <span></span>
-              <input type="number" name="quantity" class="inputs" required />
-            </div>
-          </div>
-          <div class="addtheaaterform-group">
-            <button class="counterform-btn">Register Theater</button>
+          <div className="addtheaaterform-group">
+            <button type="submit" className="counterform-btn">
+              Register Theater
+            </button>
           </div>
         </form>
       </div>

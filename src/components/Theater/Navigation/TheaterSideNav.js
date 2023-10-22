@@ -18,6 +18,10 @@ function TheaterSideNav() {
             <li>ADD THEATER</li>
           </Link>
 
+          <Link className="theatersideNavLinks" to="/theater/add-seat">
+            <li>ADD SEAT</li>
+          </Link>
+
           <Link className="theatersideNavLinks" to="/theater/view-movies">
             <li>VIEW MOVIES</li>
           </Link>
@@ -31,7 +35,7 @@ function TheaterSideNav() {
           </Link>
 
 
-          <Link className="theatersideNavLinks" to="">
+          <Link className="theatersideNavLinks" to="/theater/movieschedule">
             <li>CREATE SCHEDULE</li>
           </Link>
 
