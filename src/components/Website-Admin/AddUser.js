@@ -4,6 +4,7 @@ import "../Theater/stylesTheater/addcounter.css";
 import { toast } from "react-toastify";
 import axios from "axios";
 import config from "../config";
+import WebNav from "./Navigation/WebNav";
 
 function AddUser() {
   const navigate = useNavigate();
@@ -113,7 +114,7 @@ function AddUser() {
 
   return (
     <div>
-      <FullNav/>
+      <WebNav/>
       <div className="addcounterForm">
         <form onSubmit={handleSignUp} className="addtheaaterform">
           <h2>Register a User</h2>

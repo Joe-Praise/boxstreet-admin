@@ -22,13 +22,13 @@ function SideNav() {
           <li> UPDATE CINEMA ADMIN</li>
         </Link>
         <Link className="sideNavLinks" to="/web-cinemas">
-          <li> VIEW CINEMAS</li>
+          <li> CINEMAS</li>
         </Link>
-        <Link className="sideNavLinks" to="/counter">
-          <li> VIEW CINEMA ADMINS</li>
+        <Link className="sideNavLinks" to="/web-users">
+          <li> CINEMA ADMINS</li>
         </Link>
-        <Link className="sideNavLinks" to="/counter">
-          <li> VIEW ALL MOVIES</li>
+        <Link className="sideNavLinks" to="/web-movies">
+          <li> MOVIES</li>
         </Link>
         <Link className="sideNavLinks" to="/counter">
           <li> ARCHIVED</li>

@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import axios from "axios";
-import "../utils/upload";
 import WebNav from "./Navigation/WebNav";
 
 const BASE_URL =

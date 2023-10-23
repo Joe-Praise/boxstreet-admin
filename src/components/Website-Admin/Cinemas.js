@@ -1,16 +1,10 @@
 import React, { useEffect, useState,  } from 'react'
 import { Link } from "react-router-dom";
 import WebNav from './Navigation/WebNav';
-import cinemas from './style/cinemas.css';
+import  './style/cinemas.css';
 import axios from "axios";
 import config from "../config";
 
-
-let MODE = "PROD";
-let LOCAL = "http://localhost:5000";
-let ONLINE = "https://boxstreet.onrender.com";
-
-let BASE_URL = MODE === "PROD" ? ONLINE : LOCAL;
 
 function Cinemas() {
     const [cinema, setCinema] = useState([]);
@@ -27,7 +21,6 @@ function Cinemas() {
     <div>
         <WebNav/>
       </div>
-   
        
         <div className="web-cinema">
         <div className="web-cinema-page">
