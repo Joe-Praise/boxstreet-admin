@@ -12,8 +12,10 @@ let BASE_URL = MODE === "PROD" ? ONLINE : LOCAL;
 function ViewMovies() {
   const navigate = useNavigate();
 
-  const handleEditButtonClick = () => {
-    navigate("/theater/add-movie");
+  const handleEditButtonClick = (movieId, movie) => {
+    navigate(`/theater/update-movie/${movieId}`, {
+      state: {movieData: movie}
+    });
   };
   const handleViewButtonClick = (movieId) => {
     navigate(`/theater/single-movie/${movieId}`);
@@ -125,7 +127,7 @@ function ViewMovies() {
                     </td>
                     <td
                       className="vm-table-edit"
-                      onClick={handleEditButtonClick}
+                      onClick={() => handleEditButtonClick(movie.id, movie)}
                     >
                       Edit
                     </td>

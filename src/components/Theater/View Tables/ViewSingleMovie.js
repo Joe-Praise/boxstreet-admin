@@ -40,8 +40,8 @@ function ViewSingleMovie() {
               <ul>
                 {singleMovie.cast.map((actor, index) => (
                   <li key={index}>
-                    <span>{actor.text},</span>
-                    {/* <img src={actor.image} alt={actor.text} /> */}
+                    <span>{actor.name},</span>
+                    <img src={actor.image_url} alt={actor.text} />
                   </li>
                 ))}
               </ul>

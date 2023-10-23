@@ -25,6 +25,7 @@ import ViewSingleMovie from "./components/Theater/View Tables/ViewSingleMovie";
 import AddSeat from "./components/Theater/Add Forms/AddSeat";
 import ViewSeats from "./components/Theater/View Tables/ViewSeats";
 import UpdateTheater from "./components/Theater/Add Forms/UpdateTheater";
+import UpdateMovie from "./components/Theater/Add Forms/UpdateMovie";
 
 function App() {
   return (
@@ -54,6 +55,7 @@ function App() {
           <Route path="/theater/add-counter" element={<AddCounter />} />
           <Route path="/theater/profile" element={<TProfile />} />
           <Route path="/theater/add-movie" element={<AddMovie />} />
+          <Route path="/theater/update-movie/:id" element={<UpdateMovie />} />
           <Route path="/theater/view-movies" element={<ViewMovies />} />
           <Route path="/theater/single-movie/:id" element={<ViewSingleMovie />} />
           <Route path="/theater/change-password" element={<ChangePass />} />
