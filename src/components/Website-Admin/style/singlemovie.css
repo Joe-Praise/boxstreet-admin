@@ -1,0 +1,92 @@
+.singlemov{
+    width: 100%;
+    margin-top: 8rem;
+}
+
+.moviedetailspage{
+    width: fit-content;
+    margin: 0 350px;
+    padding: 20px;
+    border: .5px solid #003f88;
+    border-radius: 10px;
+}
+
+.Smovie-h1{
+    color: #003f88;
+    margin-bottom: 30px;
+}
+
+.infosheet{
+    margin-top: 20px;
+    gap: 20px;
+}
+
+.movsheetdetails{
+    display: block;
+    /* justify-content: space-between;
+    align-items: center; */
+    line-height: 2;
+    width: 100%;
+}
+
+.movsheetdetails h3{
+    font-weight: 700;
+    font-size: 1rem;
+}
+
+.movsheetdetails span{
+    font-weight: 700;
+    font-size: 1.0rem;
+    color: #003f88;
+}
+
+.movsheetdetails ul{
+list-style: none;
+display: flex;
+}
+
+.movsheetdetails ul li {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.movsheetdetails ul img{
+    width: 50px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.movsheetdetails button {
+    display: flex;
+    float: right;
+    padding: 3px 10px;
+    background-color: #333;
+    border: none;
+    color: #fff;
+    border-radius: 5px;
+}
+
+p.col1p.booked span {
+    background: red;
+    width: 25px;
+    height: 25px;
+    display: block;
+    position: relative;
+    left: 6px;
+    top: 6px;
+    border-radius: 8px;
+}
+
+.VIP{
+    border:1px solid #00d0ff !important;
+}
+
+.VVIP{
+    border:1px solid #ffff00 !important;
+}
+
+.REGULAR{
+    border:1px solid rgb(247, 193, 230) !important;
+}

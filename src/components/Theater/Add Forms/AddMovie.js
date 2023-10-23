@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
 import "../stylesTheater/addMovie.css";
 import TheaterNav from "../Navigation/TheaterNav";
 import axios from "axios";
 import { FcAddDatabase, FcDeleteDatabase } from "react-icons/fc";
+import { useEffect, useState } from "react";
 
 let MODE = "PROD";
 let LOCAL = "http://localhost:5000";
@@ -39,7 +39,7 @@ function AddMovie() {
 
   useEffect(() => {
     let genre_url = `${BASE_URL}/api/v1/genres`;
-
+  
     axios.get(genre_url).then((res) => {
       let data = res.data;
       let info = data?.map((e) => ({

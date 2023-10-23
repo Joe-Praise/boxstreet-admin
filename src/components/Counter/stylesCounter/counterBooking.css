@@ -144,3 +144,14 @@
 .movieDescription.expand .read-more {
   display: inline;
 }
+
+.error {
+  border: 2px solid red;
+  margin-bottom: 12px;
+}
+
+.validation-message {
+  color: red;
+  margin-bottom: 12px;
+}
+

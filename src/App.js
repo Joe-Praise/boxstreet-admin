@@ -27,6 +27,17 @@ import ViewSeats from "./components/Theater/View Tables/ViewSeats";
 import UpdateTheater from "./components/Theater/Add Forms/UpdateTheater";
 import UpdateMovie from "./components/Theater/Add Forms/UpdateMovie";
 
+import Cinema1 from "./components/Cinema_Admin/Cinema/Cinema1";
+import Transaction from "./components/Cinema_Admin/Transaction/Transaction";
+import Dashboardc from "./components/Cinema_Admin/Cinema-Dashboard/Dashboard";
+import Branch from "./components/Cinema_Admin/Cinema-baranch/Branch";
+import CreateCinema from "./components/Website-Admin/CreateCinema";
+import AddUser from "./components/Website-Admin/AddUser";
+import Home from "./components/Website-Admin/Home";
+import Cinemas from "./components/Website-Admin/Cinemas";
+import Movies from "./components/Website-Admin/Movies";
+import SingleMovie from "./components/Website-Admin/SingleMovie";
+import Users from "./components/Website-Admin/Users";
 function App() {
   return (
     <div className="App">
@@ -42,6 +53,10 @@ function App() {
           <Route path="/counter/seat-layout" element={<ViewSeatingLayer />} />
           <Route path="/counter/history" element={<BookingHistory />} />
           <Route path="/counter/receipt/:id" element={<BookedInfo />} />
+          <Route path="/cinema/account" element={<Transaction />} />
+          <Route path="/cinema" element={< Dashboardc />} />
+          <Route path="/cinema/create-branch" element={<Cinema1 />} />
+          <Route path="/cinema/view-branch" element={<Branch/>} />
 
           <Route path="/theater" element={<TheaterHome />} />
           <Route path="/theater/booking/:id" element={<TheaterBooking />} />
@@ -62,7 +77,14 @@ function App() {
           <Route path="/theater/movieschedule" element={<CreateMovieSchedule />} />
           <Route path="/theater/movieschedulelisting" element={<MovieScheduleListing />} />
           <Route path="/theater/add-seat" element={<AddSeat />}/>
-      
+          
+          <Route path="/web-admin/cinema" element={<CreateCinema/>}/>
+          <Route path="/web-admin/add-user" element={<AddUser/>}/>
+          <Route path="/web-admin" element={<Home/>}/>
+          <Route path="/web-cinemas" element={<Cinemas/>}/>
+          <Route path="/web-movies" element={<Movies/>}/>
+          <Route path="/web-movies/single-movie/:id" element={<SingleMovie />} />
+          <Route path="/web-users" element={<Users/>}/>
         </Routes>
       </BrowserRouter>
     </div>

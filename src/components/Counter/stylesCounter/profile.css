@@ -60,3 +60,7 @@
     background-color: #6a7c94;
     cursor: pointer;
 }
+
+.cProfileDetails span{
+    color: rgb(130, 130, 238);
+}

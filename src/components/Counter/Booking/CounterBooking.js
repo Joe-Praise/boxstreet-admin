@@ -6,10 +6,8 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 
 let MODE = "PROD";
-let LOCAL = "http://localhost:5000";
-let ONLINE = "https://boxstreet.onrender.com";
 
-let BASE_URL = MODE === "PROD" ? ONLINE : LOCAL;
+let BASE_URL = MODE === "PROD" ? "https://boxstreet.onrender.com" : "http://localhost:5000";
 
 function CounterBooking() {
   const navigate = useNavigate();
@@ -18,26 +16,27 @@ function CounterBooking() {
 
   const [theaterlisting, setTheaterListing] = useState([]);
   const [showtime, setShowTime] = useState([]);
-  const [schedule, setSchedule] = useState("");
+  const [schedule, setSchedule] = useState(null); 
   const [filter, setFilter] = useState("");
+  const [formErrors, setFormErrors] = useState({});
+  const [validationMessages, setValidationMessages] = useState({});
 
   const [record, setRecord] = useState({
     first_name: "",
-    full_name:"",
-    booking_type:"ONSITE",
+    full_name: "",
+    booking_type: "ONSITE",
     last_name: "",
     email: "",
     phone: "",
     show_time: "",
     theater_id: "",
-    cinema_id:"",
-    branch_id:"",
-    counter_id:"",
-    movie_id:"",
-    movie_price:"",
-    schedule_id:"",
-    seats:[]
-
+    cinema_id: "",
+    branch_id: "",
+    counter_id: "",
+    movie_id: "",
+    movie_price: "",
+    schedule_id: "",
+    seats: [],
   });
 
   const filterTime = (e) => {
@@ -54,18 +53,59 @@ function CounterBooking() {
   };
 
   const handleBookSeat = () => {
-
-    record.full_name = record.first_name +" "+record.last_name;
-    record.cinema_id = localStorage.getItem('cinema_id')
-    record.branch_id = localStorage.getItem('branch_id')
-    record.counter_id = localStorage.getItem('user_id')
-    record.schedule_id = schedule?._id
-    record.movie_id = schedule?.movie_id._id
-    record.movie_price = schedule?.price
-
-    localStorage.setItem("booking",JSON.stringify(record))
-    navigate(`/counter/seat/${record.theater_id}/${id}`);
   
+    if (!validateForm()) {
+      
+      return;
+    }
+
+    
+    record.full_name = record.first_name + " " + record.last_name;
+    record.cinema_id = localStorage.getItem("cinema_id");
+    record.branch_id = localStorage.getItem("branch_id");
+    record.counter_id = localStorage.getItem("user_id");
+    record.schedule_id = schedule?._id;
+    record.movie_id = schedule?.movie_id._id;
+    record.movie_price = schedule?.price;
+
+    localStorage.setItem("booking", JSON.stringify(record));
+    navigate(`/counter/seat/${record.theater_id}/${id}`);
+  };
+
+  const validateForm = () => {
+    const errors = {};
+    const messages = {};
+
+    if (!record.first_name.trim()) {
+      errors.first_name = "First name is required.";
+    }
+
+    if (!record.last_name.trim()) {
+      errors.last_name = "Last name is required.";
+    }
+
+    if (!record.email.trim()) {
+      errors.email = "Email is required.";
+    } else if (!/^\S+@\S+\.\S+$/.test(record.email)) {
+      errors.email = "Invalid email format.";
+    }
+
+    if (!record.phone.trim()) {
+      errors.phone = "Phone number is required.";
+    }
+
+    if (!record.theater_id) {
+      errors.theater_id = "Theater is required.";
+    }
+
+    if (!record.show_time) {
+      errors.show_time = "Showtime is required.";
+    }
+
+    setFormErrors(errors);
+    setValidationMessages(messages);
+
+    return Object.keys(errors).length === 0;
   };
 
   useEffect(() => {
@@ -83,7 +123,6 @@ function CounterBooking() {
       setFilter(filterTime(data.show_time));
       setShowTime([...info]);
       setSchedule(data);
-
     });
 
     axios.get(theater_url).then((res) => {
@@ -94,9 +133,7 @@ function CounterBooking() {
       }));
 
       setTheaterListing([...info]);
-      
     });
-
   }, []);
 
   return (
@@ -110,8 +147,7 @@ function CounterBooking() {
             <h2>Customer's Information</h2>
             <div className="counterformnameflex">
               <div className="counterform-group">
-                <label htmlFor="">First name:</label>
-                <span></span>
+                <label htmlFor="first_name">First name:</label>
                 <input
                   type="text"
                   name="first_name"
@@ -119,13 +155,16 @@ function CounterBooking() {
                   onChange={(e) =>
                     setRecord({ ...record, [e.target.name]: e.target.value })
                   }
-                  className="inputs"
-                  required
+                  className={`inputs ${formErrors.first_name ? "error" : ""}`}
                 />
+                <span>{formErrors.first_name}</span>
+                <span className="validation-message">
+                  {validationMessages.first_name}
+                </span>
               </div>
+
               <div className="counterform-group">
-                <label htmlFor="">Last name:</label>
-                <span></span>
+                <label htmlFor="last_name">Last name:</label> 
                 <input
                   type="text"
                   name="last_name"
@@ -133,14 +172,16 @@ function CounterBooking() {
                   onChange={(e) =>
                     setRecord({ ...record, [e.target.name]: e.target.value })
                   }
-                  className="inputs"
-                  required
+                  className={`inputs ${formErrors.last_name ? "error" : ""}`}
                 />
+                <span>{formErrors.last_name}</span>
+                <span className="validation-message">
+                  {validationMessages.last_name}
+                </span>
               </div>
             </div>
             <div className="counterform-group">
-              <label htmlFor="">Email:</label>
-              <span></span>
+              <label htmlFor="email">Email:</label> 
               <input
                 type="email"
                 name="email"
@@ -148,13 +189,15 @@ function CounterBooking() {
                 onChange={(e) =>
                   setRecord({ ...record, [e.target.name]: e.target.value })
                 }
-                className="inputs"
-                required
+                className={`inputs ${formErrors.email ? "error" : ""}`}
               />
+              <span>{formErrors.email}</span>
+              <span className="validation-message">
+                {validationMessages.email}
+              </span>
             </div>
             <div className="counterform-group">
-              <label htmlFor="">Phone Number:</label>
-              <span></span>
+              <label htmlFor="phone">Phone Number:</label> 
               <input
                 type="text"
                 name="phone"
@@ -162,20 +205,23 @@ function CounterBooking() {
                 onChange={(e) =>
                   setRecord({ ...record, [e.target.name]: e.target.value })
                 }
-                className="inputs"
-                required
+                className={`inputs ${formErrors.phone ? "error" : ""}`}
               />
+              <span>{formErrors.phone}</span>
+              <span className="validation-message">
+                {validationMessages.phone}
+              </span>
             </div>
             <div className="counterformnameflex">
               <div className="counterform-group">
-                <label htmlFor="">Theater:</label>
-
+                <label htmlFor="theater_id">Theater:</label> 
                 <select
                   value={record.theater_id}
                   name="theater_id"
                   onChange={(e) =>
                     setRecord({ ...record, [e.target.name]: e.target.value })
                   }
+                  className={`inputs ${formErrors.theater_id ? "error" : ""}`}
                 >
                   <option value=""></option>
                   {theaterlisting.map((t) => (
@@ -184,27 +230,39 @@ function CounterBooking() {
                     </option>
                   ))}
                 </select>
+                <span>{formErrors.theater_id}</span>
+                <span className="validation-message">
+                  {validationMessages.theater_id}
+                </span>
               </div>
 
               <div className="counterform-group">
-                <label htmlFor="">Showtime:</label>
-
+                <label htmlFor="show_time">Showtime:</label> 
                 <select
                   name="show_time"
                   value={record.show_time}
                   onChange={(e) =>
                     setRecord({ ...record, [e.target.name]: e.target.value })
                   }
+                  className={`inputs ${formErrors.show_time ? "error" : ""}`}
                 >
                   <option value=""></option>
                   {showtime.map((e) => (
                     <option key={e.id}>{e.value}</option>
                   ))}
                 </select>
+                <span>{formErrors.show_time}</span>
+                <span className="validation-message">
+                  {validationMessages.show_time}
+                </span>
               </div>
             </div>
             <div className="counterform-group">
-              <button className="counterform-btn" onClick={handleBookSeat} type="button">
+              <button
+                className="counterform-btn"
+                onClick={handleBookSeat}
+                type="button"
+              >
                 Book Seat
               </button>
             </div>
@@ -220,7 +278,6 @@ function CounterBooking() {
                 </li>
               ))}
             </ul>
-
             <div>
               <h3>{schedule?.movie_id?.name}</h3>
               <span>{schedule?.movie_id?.genre}</span>
@@ -239,3 +296,4 @@ function CounterBooking() {
 }
 
 export default CounterBooking;
+
