@@ -1,8 +1,9 @@
+import React, { useEffect, useState } from "react";
 import "../stylesTheater/addMovie.css";
 import TheaterNav from "../Navigation/TheaterNav";
 import axios from "axios";
 import { FcAddDatabase, FcDeleteDatabase } from "react-icons/fc";
-import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 
 let MODE = "PROD";
 let LOCAL = "http://localhost:5000";
@@ -10,12 +11,13 @@ let ONLINE = "https://boxstreet.onrender.com";
 
 let BASE_URL = MODE === "PROD" ? ONLINE : LOCAL;
 
-function AddMovie() {
-  const cinema_id = localStorage.getItem("cinema_id");
-  const branch_id = localStorage.getItem("branch_id");
+function UpdateMovie() {
+  const { id } = useParams();
 
-  const [value, onChange] = useState("");
-  const [movieInfo, setMovieInfo] = useState({
+  const branch_id = localStorage.getItem("branch_id");
+  const cinema_id = localStorage.getItem("cinema_id");
+
+  const [updatedMovieInfo, setUpdatedMovieInfo] = useState({
     name: "",
     cast: [],
     coming_soon: false,
@@ -28,10 +30,45 @@ function AddMovie() {
     release_date: "",
     movie_director: "",
     trailer: "",
-    image: "",
-    cinema_id,
-    branch_id,
   });
+
+  useEffect(() => {
+    axios
+      .get(`${BASE_URL}/api/v1/movies/${id}`)
+      .then((response) => {
+        const {
+          name,
+          cast,
+          coming_soon,
+          language,
+          genre_id,
+          description,
+          duration,
+          production_studio,
+          pg_rating,
+          release_date,
+          movie_director,
+          trailer,
+        } = response.data;
+        setUpdatedMovieInfo({
+          name,
+          cast,
+          coming_soon,
+          language,
+          genre_id,
+          description,
+          duration,
+          production_studio,
+          pg_rating,
+          release_date,
+          movie_director,
+          trailer,
+        });
+      })
+      .catch((error) => {
+        console.error("error fetching movies data:", error);
+      });
+  }, [id]);
 
   const [genres, setGenres] = useState([]);
   const [file, setFile] = useState("");
@@ -39,7 +76,7 @@ function AddMovie() {
 
   useEffect(() => {
     let genre_url = `${BASE_URL}/api/v1/genres`;
-  
+
     axios.get(genre_url).then((res) => {
       let data = res.data;
       let info = data?.map((e) => ({
@@ -49,15 +86,15 @@ function AddMovie() {
       setGenres([...info]);
     });
 
-    setMovieInfo((prev) => ({
+    setUpdatedMovieInfo((prev) => ({
       ...prev,
-      cinema_id,
+      id,
     }));
 
-    setMovieInfo((prev) => ({
-      ...prev,
-      branch_id,
-    }));
+    // setUpdatedMovieInfo((prev) => ({
+    //   ...prev,
+    //   branch_id,
+    // }));
   }, []);
 
   const handleGenreClick = (e) => {
@@ -67,14 +104,14 @@ function AddMovie() {
     } else {
       setSelectedGenres([...selectedGenres, clickedGenreId]);
     }
-    setMovieInfo((prev) => ({
+    setUpdatedMovieInfo((prev) => ({
       ...prev,
       genre: selectedGenres,
     }));
   };
 
   const handleCastChange = (index, field, value) => {
-    const newCasts = [...movieInfo.cast];
+    const newCasts = [...updatedMovieInfo.cast];
     if (!newCasts[index]) {
       newCasts[index] = {};
     }
@@ -84,32 +121,40 @@ function AddMovie() {
       newCasts[index].image_url = "";
     }
 
-    setMovieInfo((prev) => ({
+    setUpdatedMovieInfo((prev) => ({
       ...prev,
       cast: newCasts,
     }));
   };
 
   const addNewCastField = () => {
-    setMovieInfo((prev) => ({
+    setUpdatedMovieInfo((prev) => ({
       ...prev,
       cast: [...prev.cast, {}],
     }));
   };
 
   const removeCastField = (index) => {
-    const newCasts = [...movieInfo.cast];
+    const newCasts = [...updatedMovieInfo.cast];
     newCasts.splice(index, 1);
-    setMovieInfo((prev) => ({
+    setUpdatedMovieInfo((prev) => ({
       ...prev,
       cast: newCasts,
     }));
   };
 
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setUpdatedMovieInfo({
+      ...updatedMovieInfo,
+      [name]: value,
+    });
+  };
+
   const formValidation = () => {
     const errors = {};
 
-    if (!movieInfo.name.trim()) {
+    if (!updatedMovieInfo.name.trim()) {
       errors.name = "Please enter a movie name";
     }
 
@@ -131,36 +176,36 @@ function AddMovie() {
       errors.genre = "Please select at least one genre";
     }
 
-    if (!movieInfo.coming_soon) {
+    if (!updatedMovieInfo.coming_soon) {
       errors.coming_soon =
         "Please select whether the movie is showing or coming soon";
     }
 
-    if (!movieInfo.language.trim()) {
+    if (!updatedMovieInfo.language.trim()) {
       errors.language = "Enter the movie's languages";
     }
 
-    if (!movieInfo.duration.trim()) {
+    if (!updatedMovieInfo.duration.trim()) {
       errors.duration = "Enter the movie's duration";
     }
 
-    if (!movieInfo.production_studio.trim()) {
+    if (!updatedMovieInfo.production_studio.trim()) {
       errors.production_studio = "Enter the production studio";
     }
 
-    if (!movieInfo.pg_rating.trim()) {
+    if (!updatedMovieInfo.pg_rating.trim()) {
       errors.pg_rating = "Enter the PG rating";
     }
 
-    if (!movieInfo.release_date) {
+    if (!updatedMovieInfo.release_date) {
       errors.release_date = "Enter the movie's release date";
     }
 
-    if (!movieInfo.movie_director.trim()) {
+    if (!updatedMovieInfo.movie_director.trim()) {
       errors.movie_director = "Enter the movie's director";
     }
 
-    if (!movieInfo.trailer.trim()) {
+    if (!updatedMovieInfo.trailer.trim()) {
       errors.trailer = "Enter the movie's trailer link";
     }
 
@@ -171,53 +216,24 @@ function AddMovie() {
     return errors;
   };
 
-  // const cinemaId = localStorage.getItem("cinema_id");
-
-  // if (cinemaId) {
-  //   console.log("Cinema ID:", cinemaId);
-  // } else {
-  //   console.log("Cinema ID not found in local storage.");
-  // }
-
-  // const branchId = localStorage.getItem("branch_id");
-
-  // if (branchId) {
-  //   console.log("Branch ID:", branchId);
-  // } else {
-  //   console.log("Branch ID not found in local storage.");
-  // }
-
-  const handleSubmitMovie = (e) => {
+  const handleSubmitUpdate = (e) => {
     e.preventDefault();
 
     const errors = formValidation();
 
     if (Object.keys(errors).length === 0) {
-      movieInfo.genre_id = selectedGenres;
+      updatedMovieInfo.genre_id = selectedGenres;
 
-      if (!file) {
-        errors.image = "Upload a movie poster image";
-        return;
-      }
+      let movie_update_url = `${BASE_URL}/api/v1/movies/${id}`;
 
-      let formdata = new FormData();
-      formdata.append("image", file);
-
-    
       axios
-          .post(`${BASE_URL}/api/v1/movies`, movieInfo)
-          .then((response) => {
-
-            if (response.data) {
-              axios.put(`${BASE_URL}/api/v1/movies/${response.data.data._id}/resources`, formdata)
-              .then((e) => {
-                    alert("Movie created successfully")
-              });
-            }
-          })
-          .catch((error) => {
-            console.error("Error creating movie", error);
-          });
+        .put(movie_update_url, updatedMovieInfo)
+        .then((response) => {
+          alert("Movie Details updated successfully", response.data);
+        })
+        .catch((error) => {
+          console.error("Error updating movie", error);
+        });
     } else {
       console.log("Validation errors:", errors);
     }
@@ -227,7 +243,7 @@ function AddMovie() {
     <div>
       <TheaterNav />
       <div className="addmovieForm">
-        <form className="addmovieform">
+        <form className="addmovieform" onSubmit={handleSubmitUpdate}>
           <h2>Add a New Movie</h2>
           <div class="addmovieform-group">
             <label for="">Movie Title:</label>
@@ -236,14 +252,17 @@ function AddMovie() {
               type="text"
               name="name"
               class="inputs"
-              value={movieInfo.name}
+              value={updatedMovieInfo.name}
               onChange={(e) =>
-                setMovieInfo({ ...movieInfo, name: e.target.value })
+                setUpdatedMovieInfo({
+                  ...updatedMovieInfo,
+                  name: e.target.value,
+                })
               }
             />
           </div>
 
-          {movieInfo.cast.map((cast, index) => (
+          {updatedMovieInfo.cast.map((cast, index) => (
             <div key={index} className="addmovieform-group">
               <label htmlFor={`castName${index}`}>Cast {index + 1}:</label>
               <span></span>
@@ -251,6 +270,7 @@ function AddMovie() {
                 type="text"
                 placeholder="Name"
                 name={`castName${index}`}
+                value={cast.name}
                 onChange={(e) =>
                   handleCastChange(index, "name", e.target.value)
                 }
@@ -259,6 +279,7 @@ function AddMovie() {
                 type="text"
                 placeholder="Image Url"
                 name={`castUrl${index}`}
+                value={cast.image_url}
                 onChange={(e) =>
                   handleCastChange(index, "image_url", e.target.value)
                 }
@@ -291,9 +312,12 @@ function AddMovie() {
                 type="text"
                 name="coming_soon"
                 class="inputs"
-                value={movieInfo.coming_soon}
+                value={updatedMovieInfo.coming_soon}
                 onChange={(e) =>
-                  setMovieInfo({ ...movieInfo, coming_soon: e.target.value })
+                  setUpdatedMovieInfo({
+                    ...updatedMovieInfo,
+                    coming_soon: e.target.value,
+                  })
                 }
               >
                 <option value="true">True</option>
@@ -309,9 +333,12 @@ function AddMovie() {
                 type="text"
                 name="language"
                 class="inputs"
-                value={movieInfo.language}
+                value={updatedMovieInfo.language}
                 onChange={(e) =>
-                  setMovieInfo({ ...movieInfo, language: e.target.value })
+                  setUpdatedMovieInfo({
+                    ...updatedMovieInfo,
+                    language: e.target.value,
+                  })
                 }
               />
             </div>
@@ -324,21 +351,24 @@ function AddMovie() {
               type="text"
               name="description"
               class="inputs"
-              value={movieInfo.description}
+              value={updatedMovieInfo.description}
               onChange={(e) =>
-                setMovieInfo({ ...movieInfo, description: e.target.value })
+                setUpdatedMovieInfo({
+                  ...updatedMovieInfo,
+                  description: e.target.value,
+                })
               }
             />
           </div>
 
-          <div class="addmovieform-group">
-            <label for="">Genre:</label>
+          <div className="addmovieform-group">
+            <label htmlFor="genre_id">Genre:</label>
             <span></span>
             <select
               name="genre_id"
               multiple
-              value={selectedGenres}
-              onClick={handleGenreClick}
+              value={updatedMovieInfo.genre_id}
+              onChange={handleGenreClick}
             >
               {genres.map((e) => (
                 <option key={e.id} value={e.id}>
@@ -347,6 +377,7 @@ function AddMovie() {
               ))}
             </select>
           </div>
+
           <div className="addmovieformnameflex">
             <div class="addmovieform-group">
               <label for="">Movie Duration:</label>
@@ -355,9 +386,12 @@ function AddMovie() {
                 type="text"
                 name="duration"
                 class="inputs"
-                value={movieInfo.duration}
+                value={updatedMovieInfo.duration}
                 onChange={(e) =>
-                  setMovieInfo({ ...movieInfo, duration: e.target.value })
+                  setUpdatedMovieInfo({
+                    ...updatedMovieInfo,
+                    duration: e.target.value,
+                  })
                 }
               />
             </div>
@@ -368,10 +402,10 @@ function AddMovie() {
                 type="text"
                 name="production_studio"
                 class="inputs"
-                value={movieInfo.production_studio}
+                value={updatedMovieInfo.production_studio}
                 onChange={(e) =>
-                  setMovieInfo({
-                    ...movieInfo,
+                  setUpdatedMovieInfo({
+                    ...updatedMovieInfo,
                     production_studio: e.target.value,
                   })
                 }
@@ -386,9 +420,12 @@ function AddMovie() {
                 type="text"
                 name="pg_rating"
                 class="inputs"
-                value={movieInfo.pg_rating}
+                value={updatedMovieInfo.pg_rating}
                 onChange={(e) =>
-                  setMovieInfo({ ...movieInfo, pg_rating: e.target.value })
+                  setUpdatedMovieInfo({
+                    ...updatedMovieInfo,
+                    pg_rating: e.target.value,
+                  })
                 }
               />
             </div>
@@ -399,9 +436,12 @@ function AddMovie() {
                 type="date"
                 name="release_date"
                 class="inputs"
-                value={movieInfo.release_date}
+                value={updatedMovieInfo.release_date}
                 onChange={(e) =>
-                  setMovieInfo({ ...movieInfo, release_date: e.target.value })
+                  setUpdatedMovieInfo({
+                    ...updatedMovieInfo,
+                    release_date: e.target.value,
+                  })
                 }
               />
             </div>
@@ -412,9 +452,12 @@ function AddMovie() {
                 type="text"
                 name="movie_director"
                 class="inputs"
-                value={movieInfo.movie_director}
+                value={updatedMovieInfo.movie_director}
                 onChange={(e) =>
-                  setMovieInfo({ ...movieInfo, movie_director: e.target.value })
+                  setUpdatedMovieInfo({
+                    ...updatedMovieInfo,
+                    movie_director: e.target.value,
+                  })
                 }
               />
             </div>
@@ -427,26 +470,30 @@ function AddMovie() {
                 type="text"
                 name="trailer"
                 class="inputs"
-                value={movieInfo.trailer}
+                value={updatedMovieInfo.trailer}
                 onChange={(e) =>
-                  setMovieInfo({ ...movieInfo, trailer: e.target.value })
+                  setUpdatedMovieInfo({
+                    ...updatedMovieInfo,
+                    trailer: e.target.value,
+                  })
                 }
               />
             </div>
-            <div class="addmovieform-group">
+            {/* <div class="addmovieform-group">
               <label for="">Movie Poster:</label>
               <span></span>
               <input
                 type="file"
                 name="image"
                 class="inputs"
+                // value={updatedMovieInfo.image}
                 onChange={(e) => setFile((prev) => e.target.files[0])}
               />
-            </div>
+            </div> */}
           </div>
           <div class="addmovieform-group">
-            <button class="counterform-btn" onClick={handleSubmitMovie}>
-              Upload Movie
+            <button type="submit" class="counterform-btn">
+              Update Movie
             </button>
           </div>
         </form>
@@ -455,4 +502,4 @@ function AddMovie() {
   );
 }
 
-export default AddMovie;
+export default UpdateMovie;

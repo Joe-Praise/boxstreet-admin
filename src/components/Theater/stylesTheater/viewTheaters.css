@@ -73,7 +73,7 @@
   display: flex;
   justify-content: center;
 }
-.vt-page-top .vt-input {
+.vt-input {
   display: flex;
   gap: 20px;
   color: aqua;

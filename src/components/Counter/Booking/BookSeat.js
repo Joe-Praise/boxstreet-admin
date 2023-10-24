@@ -110,7 +110,7 @@ function BookSeat() {
           response?.data.data.paymentLink.data.authorization_url,
           "_blank"
         );
-        localStorage.removeItem("booking")
+        localStorage.removeItem("booking");
       }
     } catch (error) {
       setFormErrorMessage("An error occurred in payment transaction.");
@@ -182,17 +182,16 @@ function BookSeat() {
                   </div>
                   <div className="booking-seat-side">
                     <span className="booking-seat-number"></span>
-                    <p className="booking-seat-select">
-                      Selected seat <>{seats.length}</>
-                    </p>
                   </div>
                 </div>
+
                 <div className="booking-container-col1">
                   <div className="booking-container-top">
-                    <p className="booking-choose-seat-text">Choose your Seat</p>
+                    <p className="booking-choose-seat-text">Select Seat</p>
                     <div className="box-line">
                       <div className="line"></div>
                     </div>
+             
                   </div>
                   <div className="box-container">
                     <div className="main-boxx">
@@ -249,8 +248,26 @@ function BookSeat() {
                       </div>
                     </div>
                   </div>
-
+                  {/* <div className="booking-choose-seat-text">
+                  <p className="booking-seat-select">
+                      Selected seat: <>{seats.length}</>
+                    </p>
+                    <p className="booking-seat-select">
+                      Movie Price: <>N{amount}</>
+                    </p>
+                  </div> */}
                   <div className="booking-container-col1-inputs">
+                
+                    <div className="amount-length">
+                      <span >
+                      Selected seat: <>{seats.length}</>
+                      </span>
+                    </div>
+                    <div className="amount-length">
+                      <span>
+                      Movie Price: <>N{amount}</>
+                      </span>
+                    </div>
                     <div className="booking-container-col1-input">
                       <span className="booking-container-col-text book-box">
                         Selected
@@ -260,6 +277,7 @@ function BookSeat() {
                       <span className="booking-container-col-text select-box">
                         Booked
                       </span>
+
                     </div>
                   </div>
                   <div className="seat-footer">
@@ -270,7 +288,7 @@ function BookSeat() {
                     <div>
                       <div>
                         <button className="seat-btn" onClick={handlePayment}>
-                          Pay Now!
+                          Pay Now
                         </button>
                       </div>
                     </div>
