@@ -27,6 +27,8 @@ import ViewSeats from "./components/Theater/View Tables/ViewSeats";
 import UpdateTheater from "./components/Theater/Add Forms/UpdateTheater";
 import UpdateMovie from "./components/Theater/Add Forms/UpdateMovie";
 
+import CreateTheater from "./components/Cinema_Admin/Create-theater/CreateTheater";
+import CreateCounter from "./components/Cinema_Admin/Create-counter/CreateCounter";
 import Cinema1 from "./components/Cinema_Admin/Cinema/Cinema1";
 import Transaction from "./components/Cinema_Admin/Transaction/Transaction";
 import Dashboardc from "./components/Cinema_Admin/Cinema-Dashboard/Dashboard";
@@ -38,6 +40,7 @@ import Cinemas from "./components/Website-Admin/Cinemas";
 import Movies from "./components/Website-Admin/Movies";
 import SingleMovie from "./components/Website-Admin/SingleMovie";
 import Users from "./components/Website-Admin/Users";
+
 function App() {
   return (
     <div className="App">
