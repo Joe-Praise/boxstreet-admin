@@ -94,7 +94,7 @@ function SignInForm({
         localStorage.setItem('branch_id',info.branch_id);
         localStorage.setItem('cinema_id',info.cinema_id);
         localStorage.setItem('user_id',info._id);
-
+        localStorage.setItem('username',info.fullname);
         if(info.role === "COUNTER"){
             navigate("/counter");
         }
@@ -102,7 +102,7 @@ function SignInForm({
         if(info.role === "THEATER"){
             navigate("/theater");
         }
-        if(info.user.role === "THEATER"){
+        if(info.role === "THEATER"){
             navigate("/theater");
             localStorage.setItem('branch_id',info.user.branch_id);
             localStorage.setItem('cinema_id',info.user.cinema_id);
@@ -112,6 +112,10 @@ function SignInForm({
         if(info.role === "CINEMA"){
           navigate("/cinema");
       }
+
+      if(info.role === "ACCOUNT"){
+        navigate("/account");
+    }
 
       } else {
         setFormErrorMessage("Sign-in failed. Please try again.");

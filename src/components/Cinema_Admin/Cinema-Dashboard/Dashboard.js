@@ -2,6 +2,8 @@ import "./dashboard.css";
 import CounterNav from "../../Counter/Navigation/CounterNav";
 import Topnav from "../Cinema-Navigation/Topnav/Topnav";
 function Dashboardc(){
+    // let username = localStorage.getItem("username")
+    // console.log(username)
     return(
         <div className="cinema-dash-container">
             <Topnav/>

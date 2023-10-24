@@ -12,6 +12,11 @@ let BASE_URL = MODE === "PROD" ? ONLINE : LOCAL;
 function CreateTheater() {
     const branch_id = localStorage.getItem('branch_id');
     const cinema_id = localStorage.getItem('cinema_id');
+
+    const [formErrors, setFormErrors] = useState({});
+    const [isSignUpSuccess, setIsSignUpSuccess] = useState(false);
+    const [formErrorMessage, setFormErrorMessage] = useState("");
+
     const [theaterData, setTheaterData] = useState({
       name: "",
       screen: 1,
@@ -19,6 +24,18 @@ function CreateTheater() {
       cinema_id
     });
   
+    // const validateForm =()=>{
+    //   const errors={};
+    //   if(!theaterData.name.trim()){
+    //     errors.name ="Field Required";
+    //   }
+    //   if(!theaterData.screen.trim()){
+    //     errors.screen ="Field Required";
+    //   }
+    //   setFormErrors(errors);
+    //   return Object.keys(errors).length === 0;
+    // };
+
     const handleChange = (e) => {
       const { name, screen, value } = e.target;
       setTheaterData({

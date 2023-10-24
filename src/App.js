@@ -1,9 +1,11 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
+import Account from "./components/Account/Account";
 import Counter from "./components/Counter/Home/Counter";
 import CounterBooking from "./components/Counter/Booking/CounterBooking";
 import TheaterHome from "./components/Theater/Landing/TheaterHome";
 import AddTheater from "./components/Theater/Add Forms/AddTheater";
+import AddTheaterAdmin from "./components/Cinema_Admin/Create-theater/AddTheaterAdmin";
 import ViewTheaters from "./components/Theater/View Tables/ViewTheaters";
 import ViewSeatingLayer from "./components/Theater/View Tables/ViewSeatingLayer";
 import AddCounter from "./components/Theater/Add Forms/AddCounter";
@@ -29,7 +31,8 @@ import UpdateMovie from "./components/Theater/Add Forms/UpdateMovie";
 
 import CreateTheater from "./components/Cinema_Admin/Create-theater/CreateTheater";
 import CreateCounter from "./components/Cinema_Admin/Create-counter/CreateCounter";
-import Cinema1 from "./components/Cinema_Admin/Cinema/Cinema1";
+import Cinema1 from "./components/Cinema_Admin/Cinema/CreateBranch";
+import CreateBranch from "./components/Cinema_Admin/Cinema/CreateBranch";
 import Transaction from "./components/Cinema_Admin/Transaction/Transaction";
 import Dashboardc from "./components/Cinema_Admin/Cinema-Dashboard/Dashboard";
 import Branch from "./components/Cinema_Admin/Cinema-baranch/Branch";
@@ -48,6 +51,7 @@ function App() {
         <Routes>
         <Route path="/" element={<Login/>} />
 
+        <Route path="/account" element={<Account/>} />
           <Route path="/counter" element={<Counter />} />
           <Route path="/counter/booking/:id" element={<CounterBooking />} />
           <Route path="/counter/seat/:id/:movie_id" element={<BookSeat />} />
@@ -58,9 +62,10 @@ function App() {
           <Route path="/counter/receipt/:id" element={<BookedInfo />} />
           <Route path="/cinema/account" element={<Transaction />} />
           <Route path="/cinema" element={< Dashboardc />} />
-          <Route path="/cinema/create-branch" element={<Cinema1/>} />
+          <Route path="/cinema/create-branch" element={<CreateBranch/>} />
           <Route path="/cinema/view-branch" element={<Branch/>}/>
           <Route path="/cinema/create-theater" element={<CreateTheater/>}/>
+          <Route path="/cinema/create-theater-admin" element={<AddTheaterAdmin/>}/>
           <Route path="/cinema/create-counter" element={<CreateCounter/>}/>
           <Route path="/theater" element={<TheaterHome />} />
           <Route path="/theater/booking/:id" element={<TheaterBooking />} />

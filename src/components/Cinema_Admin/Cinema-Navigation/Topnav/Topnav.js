@@ -6,6 +6,8 @@ import "./topnav.css"
 import { Link } from "react-router-dom";
 
 function Topnav() {
+  let username = localStorage.getItem("username")
+  console.log(username)
   return (
     <header>
       <div className="navHead">
@@ -18,7 +20,7 @@ function Topnav() {
           <div>
             <ul className="navlinks">
               <Link to="/" className="textdecor">
-                <li className="bsColour">CINEMA ADMIN</li>
+                <li className="bsColour">{username}</li>
               </Link>
             </ul>
           </div>
