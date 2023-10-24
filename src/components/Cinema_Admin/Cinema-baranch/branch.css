@@ -8,7 +8,7 @@
     width: 80%;
     overflow-y: hidden;
     margin-left: auto;
-    margin-top: 100px;
+    margin-top: 150px;
 }
 .cinema-branch-card{
     width: 76%;
@@ -19,11 +19,34 @@
 .cinema-branch-texts{
     padding: 30px;
 }
+.cinema-branch-text p{
+    font-size: 20px;
+    font-weight: 700;
+}
+.cinema-branch-text span{
+    font-size: 20px;
+   
+}
 .cinema-branch-text-span{
     margin-left: 30px;
 }
 .cinema-branch-text-span2{
     margin-left: 35px;
+}
+.cinema-branch-text-span1{
+    margin-left: 30px;
+}
+.cinema-branch-text-span2{
+    margin-left: 40px;
+}
+.cinema-branch-text-span3{
+    margin-left: 25px;
+}
+.cinema-branch-text-span4{
+    margin-left: 35px;
+}
+.cinema-branch-text-span5{
+    margin-left: 40px;
 }
 .cinema-branch-text{
     display: flex;
@@ -49,6 +72,7 @@
     background-color: #617cf7;
     border-radius: 5px;
     color: #ece9e9;
+    cursor: pointer;
 }
 
 .cinema-branch-deletebtn button{
@@ -58,6 +82,7 @@
     background-color: #f76161;
     border-radius: 5px;
     color: #ece9e9;
+    cursor: pointer;
 }
 
 .edit-input-box{
@@ -67,6 +92,92 @@
     border-radius: 5px;
     padding: 12px;
   /* background: transparent; */
-   
-
 }
+.edit-input-box1{
+    margin-left: 5px;
+ width: 50%;
+ height: 50px;
+ border-radius: 8px;
+ background: transparent;
+ border:1px solid #a3a2a2 ;
+ outline: none;
+ /* border-bottom: 1px solid #a3a2a2; */
+}
+.edit-input-box1:focus{
+   background-color: #f5f2f2;
+   height: 50px; 
+   border-radius: 5px;
+   font-size: 20px;
+}
+.edit-input-box2{
+    margin-left: 10px;
+ width: 50%;
+ height: 50px;
+ border-radius: 8px;
+ background: transparent;
+ border:1px solid #a3a2a2 ;
+ outline: none;
+}
+.edit-input-box2:focus{
+    background-color: #f5f2f2;
+    height: 50px; 
+    border-radius: 5px;
+    font-size: 20px;
+ }
+.edit-input-box3{
+    margin-left: 0px;
+ width: 50%;
+ height: 50px;
+ border-radius: 8px;
+ background: transparent;
+ border:1px solid #a3a2a2 ;
+ outline: none;
+}
+.edit-input-box3:focus{
+    background-color: #f5f2f2;
+    height: 50px; 
+    border-radius: 5px;
+    font-size: 20px;
+ }
+.edit-input-box4{
+    margin-left: 10px;
+   width: 50%;
+   height: 50px;
+   border-radius: 8px;
+   background: transparent;
+   border:1px solid #a3a2a2 ;
+   outline: none;  
+}
+.edit-input-box4:focus{
+    background-color: #f5f2f2;
+    height: 50px; 
+    border-radius: 5px;
+    font-size: 20px;
+ }
+.edit-input-box5{
+    margin-left: 15px; width: 50%;
+    height: 50px;
+    border-radius: 8px;
+    background: transparent;
+    border:1px solid #a3a2a2 ;
+    outline: none;
+}
+.edit-input-box5:focus{
+    background-color: #f5f2f2;
+    height: 50px; 
+    border-radius: 5px;
+    font-size: 20px;
+ }
+ .cinema-branch-update-btn{
+    margin-bottom: 20px;
+ }
+ .cinema-branch-update-btn button{
+    width: 120px;
+    height: 50px;
+    border-radius: 8px;
+    background: #617cf7;
+    color: #fff;
+    border: none;
+    outline: none;
+    cursor: pointer;
+ }

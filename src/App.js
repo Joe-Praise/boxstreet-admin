@@ -29,6 +29,8 @@ import Cinema1 from "./components/Cinema_Admin/Cinema/Cinema1";
 import Transaction from "./components/Cinema_Admin/Transaction/Transaction";
 import Dashboardc from "./components/Cinema_Admin/Cinema-Dashboard/Dashboard";
 import Branch from "./components/Cinema_Admin/Cinema-baranch/Branch";
+import CreateTheater from "./components/Cinema_Admin/Create-theater/CreateTheater";
+import CreateCounter from "./components/Cinema_Admin/Create-counter/Counter";
 function App() {
   return (
     <div className="App">
@@ -46,9 +48,10 @@ function App() {
           <Route path="/counter/receipt/:id" element={<BookedInfo />} />
           <Route path="/cinema/account" element={<Transaction />} />
           <Route path="/cinema" element={< Dashboardc />} />
-          <Route path="/cinema/create-branch" element={<Cinema1 />} />
-          <Route path="/cinema/view-branch" element={<Branch/>} />
-
+          <Route path="/cinema/create-branch" element={<Cinema1/>} />
+          <Route path="/cinema/view-branch" element={<Branch/>}/>
+          <Route path="/cinema/create-theater" element={<CreateTheater/>}/>
+          <Route path="/cinema/create-counter" element={<CreateCounter/>}/>
           <Route path="/theater" element={<TheaterHome />} />
           <Route path="/theater/booking/:id" element={<TheaterBooking />} />
           <Route path="/theater/seat" element={<TheaterBookingSeat />} />

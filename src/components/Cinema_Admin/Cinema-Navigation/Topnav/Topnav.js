@@ -18,7 +18,7 @@ function Topnav() {
           <div>
             <ul className="navlinks">
               <Link to="/" className="textdecor">
-                <li className="bsColour">MOVIE LISTINGS</li>
+                <li className="bsColour">CINEMA ADMIN</li>
               </Link>
             </ul>
           </div>

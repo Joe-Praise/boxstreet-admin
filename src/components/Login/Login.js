@@ -90,20 +90,20 @@ function SignInForm({
       
         setLoading(false)
         let info = response.data?.data
-       
-        localStorage.setItem('branch_id',info.user.branch_id);
-        localStorage.setItem('cinema_id',info.user.cinema_id);
-        localStorage.setItem('user_id',info.user._id);
+       console.log(info)
+        localStorage.setItem('branch_id',info.branch_id);
+        localStorage.setItem('cinema_id',info.cinema_id);
+        localStorage.setItem('user_id',info._id);
 
-        if(info.user.role === "COUNTER"){
+        if(info.role === "COUNTER"){
             navigate("/counter");
         }
 
-        if(info.user.role === "THEATER"){
+        if(info.role === "THEATER"){
             navigate("/theater");
         }
 
-        if(info.user.role === "CINEMA"){
+        if(info.role === "CINEMA"){
           navigate("/cinema");
       }
 

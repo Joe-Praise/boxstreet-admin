@@ -5,5 +5,6 @@ const Config = {
   BRANCH_BASE_URL: "http://localhost:5000/api/v1/branches",
   MANAGEMENT_BASE_URL: "http://localhost:5000/api/v1/managements",
   PAYMENT_BASE_URL: "http://localhost:5000/api/v1/payments",
+  LOCATION_BASE_URL:"http://localhost:5000/api/v1/locations"
 };
 export default Config;

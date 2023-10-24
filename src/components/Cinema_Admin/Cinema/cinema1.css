@@ -34,6 +34,25 @@
     border-radius: 5px;
 }
 
+.add-cinema-form-group select{
+    width: 60%;
+    display: block;
+    height: 50px;
+    margin-top: 5px;
+    padding: 8px 10px;
+    font-size: 16px;
+    outline: none;
+    color: #333;
+    background-color: transparent;
+    border: 0.5px solid #333;
+    border-radius: 5px;
+}
+/* .add-cinema-form-select{
+    width: 60%;
+    height: 50px;
+    margin-top: 5px;
+    padding: 8px 10px;
+} */
 .cinema-form-group-btn{
     background: #6a7c94;
     width: 60%;
