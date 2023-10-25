@@ -20,21 +20,21 @@ function AddTheater() {
   });
 
   const handleChange = (e) => {
-    const { name, screen, value } = e.target;
+    const { name, value } = e.target;
     setTheaterData({
       ...theaterData,
-      [name]: value,
+      [name]: value
     });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.log(theaterData)
     axios
     .post(`${BASE_URL}/api/v1/theaters`, theaterData)
     .then((response) => {
-        if(response.data._id){
+        if(response.data.status === "success"){
           alert("Theater created successfully");
-
         }
       })
       .catch((error) => {
