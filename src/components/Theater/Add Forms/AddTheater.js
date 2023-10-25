@@ -24,13 +24,11 @@ function AddTheater() {
     setTheaterData({
       ...theaterData,
       [name]: value,
-      [screen]: value,
     });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
     axios
     .post(`${BASE_URL}/api/v1/theaters`, theaterData)
     .then((response) => {
