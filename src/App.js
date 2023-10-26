@@ -44,7 +44,8 @@ import Movies from "./components/Website-Admin/Movies";
 import SingleMovie from "./components/Website-Admin/SingleMovie";
 import Users from "./components/Website-Admin/Users";
 import ViewBranch from "./components/Cinema_Admin/Cinema/ViewBranch";
-import CreateCategory from "./components/Cinema_Admin/Category/CreateCategory";
+import CreateCategory from "./components/Cinema_Admin/Category/CreateCategory";import Category from "./components/Cinema_Admin/CinemaCategory/Category";
+
 function App() {
   return (
     <div className="App">
@@ -52,7 +53,8 @@ function App() {
         <Routes>
         <Route path="/" element={<Login/>} />
 
-        <Route path="/account" element={<Account/>} />
+          <Route path="/account" element={<Account/>} />
+
           <Route path="/counter" element={<Counter />} />
           <Route path="/counter/booking/:id" element={<CounterBooking />} />
           <Route path="/counter/seat/:id/:movie_id" element={<BookSeat />} />
@@ -61,6 +63,7 @@ function App() {
           <Route path="/counter/seat-layout" element={<ViewSeatingLayer />} />
           <Route path="/counter/history" element={<BookingHistory />} />
           <Route path="/counter/receipt/:id" element={<BookedInfo />} />
+
           <Route path="/cinema/account" element={<Transaction />} />
           <Route path="/cinema" element={< Dashboardc />} />
           <Route path="/cinema/create-branch" element={<CreateBranch/>} />
@@ -70,6 +73,9 @@ function App() {
           <Route path="/cinema/create-theater" element={<CreateTheater/>}/>
           <Route path="/cinema/create-theater-admin" element={<AddTheaterAdmin/>}/>
           <Route path="/cinema/create-counter" element={<CreateCounter/>}/>
+          <Route path="/cinema/create-category" element={<Category />}/>
+
+
           <Route path="/theater" element={<TheaterHome />} />
           <Route path="/theater/booking/:id" element={<TheaterBooking />} />
           <Route path="/theater/seat" element={<TheaterBookingSeat />} />
@@ -97,6 +103,7 @@ function App() {
           <Route path="/web-movies" element={<Movies/>}/>
           <Route path="/web-movies/single-movie/:id" element={<SingleMovie />} />
           <Route path="/web-users" element={<Users/>}/>
+
         </Routes>
       </BrowserRouter>
     </div>
