@@ -1,44 +1,19 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 import "../stylesCounter/nav.css";
 import logo from "../../uploads/Screenshot__335_-removebg-preview (1).png";
 import { Link } from "react-router-dom";
 import SideNav from "./SideNav";
-import config from "../../config"
+import config from "../../config";
 
 function CounterNav() {
-
-  const [managers, setManagers] = useState([]); 
+  const [managers, setManagers] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  useEffect(() => {
-    async function getManagersByRole(role) {
-        try {
-          const response = await axios.get(config.MGT_BASE_URL + "/role", {
-            params: {
-              role: role,
-            },
-          });
-      
-          if (response.status === 200) {
-            setManagers(response.data);
-            // console.log('Response data:', response.data);
-
-          } else {
-            setError('Failed to retrieve managers');
-          }
-        } catch (error) {
-          console.error('Axios error:', error); 
-          setError('Axios error: ' + error.message);
-        } finally {
-          setLoading(false);
-        }
-      }
-      
-
-    getManagersByRole('COUNTER');
-  }, []);
+  const fullname = localStorage.getItem("fullname");
+  const cinema = localStorage.getItem("cinema");
+  const location = localStorage.getItem("branch");
 
   return (
     <header>
@@ -52,13 +27,13 @@ function CounterNav() {
           <div>
             <ul className="navlinks">
               <Link to="/" className="textdecor">
-                <li className="bsColour">Counter User</li>
+                <li className="bsColour">Counter User - {cinema} - {location}</li>
               </Link>
             </ul>
           </div>
           <div>
             <ul className="navlinks">
-            <li className="from-left-and-back">Welcome back {managers.fullname}</li>
+              <li className="from-left-and-back">Welcome back {fullname}</li>
             </ul>
           </div>
         </nav>

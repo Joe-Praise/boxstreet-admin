@@ -26,9 +26,10 @@ let BASE_URL = MODE === "PROD" ? ONLINE : LOCAL;
 function Counter() {
   const [movieListing, setMovieListing] = useState(shows);
   const [genres, setGenre] = useState([]);
+  const [times, setTimes] = useState([]);
   const [cinema, setCinema] = useState([]);
   const [branches, setBranches] = useState([]);
-  const branch_id = localStorage.getItem('branch_id');
+  const branch_id = localStorage.getItem("branch_id");
 
   const filterTime = (e) => {
     let index = 0;
@@ -41,67 +42,63 @@ function Counter() {
       }
     }
     return e[index];
-  }
+  };
 
-  console.log(movieListing)
+  // console.log(movieListing);
 
   useEffect(() => {
-    let movie_schedule_url = `${BASE_URL}/api/v1/movieschedule?branch_id=${branch_id}`
-    let genre_url = `${BASE_URL}/api/v1/genres`
-    let cinema_url = `${BASE_URL}/api/v1/cinemas`
-    let branch_url = `${BASE_URL}/api/v1/branches`
+    let movie_schedule_url = `${BASE_URL}/api/v1/movieschedule?branch_id=${branch_id}`;
+    let genre_url = `${BASE_URL}/api/v1/genres`;
+    let cinema_url = `${BASE_URL}/api/v1/cinemas`;
+    let branch_url = `${BASE_URL}/api/v1/branches`;
 
-    axios.get(movie_schedule_url)
-      .then(res => {
-        let movies = res.data?.data;
-        let data = movies?.map(e => ({
-          id: e._id,
-          title: e?.movie_id?.name,
-          genre: e?.movie_id?.genre,
-          showingtime: filterTime(e.show_time),
-          imageUrl: e?.movie_id?.image,
-          description: e?.movie_id?.description
-        }))
-        setMovieListing([...data]);
-      })
+    axios.get(movie_schedule_url).then((res) => {
+      let movies = res.data?.data;
+      let data = movies?.map((e) => ({
+        id: e._id,
+        title: e?.movie_id?.name,
+        genre: e?.movie_id?.genre,
+        showingtime: filterTime(e.show_time),
+        imageUrl: e?.movie_id?.image,
+        description: e?.movie_id?.description,
+      }));
 
-    axios.get(genre_url)
-      .then(res => {
-        let data = res.data;
-        let info = data?.map(e => ({
-          id: e._id,
-          name: e?.name,
-        }))
-        setGenre([...info]);
-      })
+      setMovieListing([...data]);
+    });
 
-    axios.get(cinema_url)
-      .then(res => {
-        let data = res.data;
-        let info = data?.map(e => ({
-          id: e._id,
-          name: e?.name,
-        }))
-        setCinema([...info]);
-      })
+    axios.get(genre_url).then((res) => {
+      let data = res.data;
+      let info = data?.map((e) => ({
+        id: e._id,
+        name: e?.name,
+      }));
+      setGenre([...info]);
+    });
 
-    axios.get(branch_url)
-      .then(res => {
-        let data = res.data;
-        let info = data?.map(e => ({
-          id: e._id,
-          name: e?.name,
-        }))
-        console.log(data)
-        setBranches([...info]);
-      })
+    axios.get(cinema_url).then((res) => {
+      let data = res.data;
+      let info = data?.map((e) => ({
+        id: e._id,
+        name: e?.name,
+      }));
+      setCinema([...info]);
+    });
 
-  }, [branch_id])
+    axios.get(branch_url).then((res) => {
+      let data = res.data;
+      let info = data?.map((e) => ({
+        id: e._id,
+        name: e?.location_id?.name,
+      }));
+      setBranches([...info]);
+    });
+  }, [branch_id]);
 
   const [, setSelectedMovieTime] = useState("Select Movie Time");
   const [, setSelectedGenre] = useState("Genre");
   const [, setSelectedCinema] = useState("cinema");
   const [, setSelectedBranches] = useState("branch");
+  // const [, setSelectedTime] = useState("time");
 
   return (
     <div>
@@ -112,23 +109,42 @@ function Counter() {
           <span className="ch-search-btn">Search</span>
         </div>
         <div className="selectBtns">
-          <select className="counterselect"
+          {/* <select
+            className="counterselect"
             name="cinema"
             onChange={(e) => setSelectedCinema(e.target.value)}
           >
             <option value="">Cinemas</option>
-            {cinema.map(e => (
-              <option key={e.id} value={e.id}>{e.name}</option>
-           ) )}
-          </select>
+            {cinema.map((e) => (
+              <option key={e.id} value={e.id}>
+                {e.name}
+              </option>
+            ))}
+          </select> */}
 
-          <select className="counterselect"
+          {/* <select
+            className="counterselect"
             name="branch"
             onChange={(e) => setSelectedBranches(e.target.value)}
           >
             <option value="">Branches</option>
-            {branches.map(e => (
-              <option key={e.id} value={e.id}>{e.id}</option>
+            {branches.map((e) => (
+              <option key={e._id} value={e._id}>
+                {e.name}
+              </option>
+            ))}
+          </select> */}
+
+          <select
+            className="counterselect"
+            name="Select Movie Time"
+            onChange={(e) => setMovieListing(e.target.value)}
+          >
+            <option value="">Movie Time</option>
+            {movieListing.map((e) => (
+              <option key={e._id} value={e._id}>
+                {e.showingtime}
+              </option>
             ))}
           </select>
 
@@ -138,8 +154,10 @@ function Counter() {
             onChange={(e) => setSelectedGenre(e.target.value)}
           >
             <option value="">Genre</option>
-            {genres.map(e => (
-              <option key={e.id} value={e.id}>{e.name}</option>
+            {genres.map((e) => (
+              <option key={e.id} value={e.id}>
+                {e.name}
+              </option>
             ))}
           </select>
         </div>
@@ -150,7 +168,7 @@ function Counter() {
               to={`/counter/booking/${movie.id}`}
               key={movie.id}
             >
-              <img src={movie.imageUrl} alt={movie.id.title} />
+              <img src={movie.imageUrl} alt={movie.title} />
               <div className="movieInfo">
                 <p>{movie.showingtime}</p>
                 <div>
@@ -168,4 +186,3 @@ function Counter() {
 }
 
 export default Counter;
-

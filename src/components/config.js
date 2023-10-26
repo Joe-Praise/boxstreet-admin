@@ -10,6 +10,7 @@ const Config = {
   ADMIN_BASE_URL: "http://localhost:5000/api/v1/admins",
   THEATER_BASE_URL: "http://localhost:5000/api/v1/theaters",
   SEAT_BASE_URL: "http://localhost:5000/api/v1/seats",
+  MOVIE_BASE_URL: "http://localhost:5000/api/v1/movies",
   // CLOUD_NAME:dcvc3e5k3,
   // API_KEY: 679192955852274,
   // API_SECRET:lXJHD3RbfvBUweWmOOmPzilpvZ4,
