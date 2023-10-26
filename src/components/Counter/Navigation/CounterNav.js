@@ -27,7 +27,7 @@ function CounterNav() {
           <div>
             <ul className="navlinks">
               <Link to="/" className="textdecor">
-                <li className="bsColour">Counter User - {cinema} - {location}</li>
+                <li className="bsColour">Counter User - {cinema}</li>
               </Link>
             </ul>
           </div>

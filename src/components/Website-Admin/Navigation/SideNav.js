@@ -1,8 +1,32 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import sidenav from './sidenav.css';
+import axios from "axios";
+import config from "../../config";
 
 function SideNav() {
+  const navigate = useNavigate();
+
+  const LogOut = () => {
+    axios
+      .post(config.MGT_BASE_URL + "/logOut", {
+        // You can send any additional data in the request body if needed
+      })
+      .then((response) => {
+        const data = response.data;
+        console.log(data);
+        if (data === "LogOut Successful") {
+          // Assuming the server returns "LogOut Successful" on successful logout
+          navigate("/");
+        } else {
+          navigate("/admin-web");
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+
   return (
     <div className="sideNav">
       <ul>
@@ -40,7 +64,7 @@ function SideNav() {
           <li> ARCHIVED</li>
         </Link>
 
-        <li className="exist">LOGOUT</li>
+        <li className="exist" onClick={LogOut}>LOGOUT</li>
       </ul>
     </div>
   );
