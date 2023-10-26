@@ -45,7 +45,8 @@ import SingleMovie from "./components/Website-Admin/SingleMovie";
 import Users from "./components/Website-Admin/Users";
 import ViewBranch from "./components/Cinema_Admin/Cinema/ViewBranch";
 import CreateCategory from "./components/Cinema_Admin/Category/CreateCategory";import Category from "./components/Cinema_Admin/CinemaCategory/Category";
-
+import BranchAcct from "./components/Account/Branch-Acct";
+import CinemaProfile from "./components/Cinema_Admin/Cinema-profile/CinemaProfile";
 function App() {
   return (
     <div className="App">
@@ -54,6 +55,7 @@ function App() {
         <Route path="/" element={<Login/>} />
 
           <Route path="/account" element={<Account/>} />
+          <Route path="/account/view-account" element={<BranchAcct/>} />
 
           <Route path="/counter" element={<Counter />} />
           <Route path="/counter/booking/:id" element={<CounterBooking />} />
@@ -64,17 +66,16 @@ function App() {
           <Route path="/counter/history" element={<BookingHistory />} />
           <Route path="/counter/receipt/:id" element={<BookedInfo />} />
 
-          <Route path="/cinema/account" element={<Transaction />} />
+          <Route path="/cinema/account" element={<Transaction/>} />
           <Route path="/cinema" element={< Dashboardc />} />
           <Route path="/cinema/create-branch" element={<CreateBranch/>} />
-          <Route path="/cinema/create-category" element={<CreateCategory/>} />
           <Route path="/cinema/view-branch" element={<ViewBranch/>}/>
           <Route path="/cinema/view-branch/:id" element={<Branch/>}/>
           <Route path="/cinema/create-theater" element={<CreateTheater/>}/>
           <Route path="/cinema/create-theater-admin" element={<AddTheaterAdmin/>}/>
           <Route path="/cinema/create-counter" element={<CreateCounter/>}/>
-          <Route path="/cinema/create-category" element={<Category />}/>
-
+          <Route path="/cinema/create-category" element={<Category/>}/>
+          <Route path="/cinema/profile" element={<CinemaProfile/>}/>
 
           <Route path="/theater" element={<TheaterHome />} />
           <Route path="/theater/booking/:id" element={<TheaterBooking />} />
