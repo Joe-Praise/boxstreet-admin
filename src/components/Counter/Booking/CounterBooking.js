@@ -7,7 +7,8 @@ import { useParams } from "react-router-dom";
 
 let MODE = "PROD";
 
-let BASE_URL = MODE === "PROD" ? "https://boxstreet.onrender.com" : "http://localhost:5000";
+let BASE_URL =
+  MODE === "PROD" ? "https://boxstreet.onrender.com" : "http://localhost:5000";
 
 function CounterBooking() {
   const navigate = useNavigate();
@@ -16,7 +17,7 @@ function CounterBooking() {
 
   const [theaterlisting, setTheaterListing] = useState([]);
   const [showtime, setShowTime] = useState([]);
-  const [schedule, setSchedule] = useState(null); 
+  const [schedule, setSchedule] = useState(null);
   const [filter, setFilter] = useState("");
   const [formErrors, setFormErrors] = useState({});
   const [validationMessages, setValidationMessages] = useState({});
@@ -37,6 +38,7 @@ function CounterBooking() {
     movie_price: "",
     schedule_id: "",
     seats: [],
+    payment_method: "",
   });
 
   const filterTime = (e) => {
@@ -53,13 +55,10 @@ function CounterBooking() {
   };
 
   const handleBookSeat = () => {
-  
     if (!validateForm()) {
-      
       return;
     }
 
-    
     record.full_name = record.first_name + " " + record.last_name;
     record.cinema_id = localStorage.getItem("cinema_id");
     record.branch_id = localStorage.getItem("branch_id");
@@ -102,39 +101,54 @@ function CounterBooking() {
       errors.show_time = "Showtime is required.";
     }
 
+    if (!record.payment_method) {
+      errors.payment_method = "Payment method is required.";
+    }
+
     setFormErrors(errors);
     setValidationMessages(messages);
 
     return Object.keys(errors).length === 0;
   };
 
-  useEffect(() => {
-    let theater_url = `${BASE_URL}/api/v1/theaters?branch_id=${branch_id}`;
-    let movie_schedule_url = `${BASE_URL}/api/v1/movieschedule/${id}`;
+  // useEffect(() => {
+  //   let theater_url = `${BASE_URL}/api/v1/theaters?branch_id=${branch_id}`;
+  //   let movie_schedule_url = `${BASE_URL}/api/v1/movieschedule/${id}`;
 
-    axios.get(movie_schedule_url).then((res) => {
-      let data = res.data.data;
+  //   axios.get(movie_schedule_url).then((res) => {
+  //     let data = res.data.data;
 
-      let info = data.show_time?.map((e, i) => ({
-        id: i + 1,
-        value: e,
-      }));
+  //     let info = data.show_time?.map((e, i) => ({
+  //       id: i + 1,
+  //       value: e,
+  //     }));
 
-      setFilter(filterTime(data.show_time));
-      setShowTime([...info]);
-      setSchedule(data);
-    });
+  //     setFilter(filterTime(data.show_time));
+  //     setShowTime([...info]);
+  //     setSchedule(data);
+  //   });
 
-    axios.get(theater_url).then((res) => {
-      let data = res.data;
-      let info = data?.map((t) => ({
-        id: t._id,
-        name: t?.name,
-      }));
+  //   axios.get(theater_url).then((res) => {
+  //     let data = res.data;
+  //     let info = data?.map((t) => ({
+  //       id: t._id,
+  //       name: t?.name,
+  //     }));
 
-      setTheaterListing([...info]);
-    });
-  }, []);
+  //     setTheaterListing([...info]);
+  //   });
+  // }, []);
+
+  const paymentMethodOptions = [
+    {
+      id: "1e",
+      value: "Card",
+    },
+    {
+      id: "2e",
+      value: "Cash",
+    },
+  ];
 
   return (
     <div className="counterBooking">
@@ -164,7 +178,7 @@ function CounterBooking() {
               </div>
 
               <div className="counterform-group">
-                <label htmlFor="last_name">Last name:</label> 
+                <label htmlFor="last_name">Last name:</label>
                 <input
                   type="text"
                   name="last_name"
@@ -181,7 +195,7 @@ function CounterBooking() {
               </div>
             </div>
             <div className="counterform-group">
-              <label htmlFor="email">Email:</label> 
+              <label htmlFor="email">Email:</label>
               <input
                 type="email"
                 name="email"
@@ -197,7 +211,7 @@ function CounterBooking() {
               </span>
             </div>
             <div className="counterform-group">
-              <label htmlFor="phone">Phone Number:</label> 
+              <label htmlFor="phone">Phone Number:</label>
               <input
                 type="text"
                 name="phone"
@@ -214,7 +228,7 @@ function CounterBooking() {
             </div>
             <div className="counterformnameflex">
               <div className="counterform-group">
-                <label htmlFor="theater_id">Theater:</label> 
+                <label htmlFor="theater_id">Theater:</label>
                 <select
                   value={record.theater_id}
                   name="theater_id"
@@ -237,7 +251,7 @@ function CounterBooking() {
               </div>
 
               <div className="counterform-group">
-                <label htmlFor="show_time">Showtime:</label> 
+                <label htmlFor="show_time">Showtime:</label>
                 <select
                   name="show_time"
                   value={record.show_time}
@@ -254,6 +268,29 @@ function CounterBooking() {
                 <span>{formErrors.show_time}</span>
                 <span className="validation-message">
                   {validationMessages.show_time}
+                </span>
+              </div>
+
+              <div className="counterform-group">
+                <label htmlFor="payment_method">Payment method:</label>
+                <select
+                  name="payment_method"
+                  value={record.payment_method}
+                  onChange={(e) =>
+                    setRecord({ ...record, [e.target.name]: e.target.value })
+                  }
+                  className={`inputs ${
+                    formErrors.payment_method ? "error" : ""
+                  }`}
+                >
+                  <option value=""></option>
+                  {paymentMethodOptions.map((e) => (
+                    <option key={e.id}>{e.value}</option>
+                  ))}
+                </select>
+                <span>{formErrors.payment_method}</span>
+                <span className="validation-message">
+                  {validationMessages.payment_method}
                 </span>
               </div>
             </div>
@@ -296,4 +333,3 @@ function CounterBooking() {
 }
 
 export default CounterBooking;
-
