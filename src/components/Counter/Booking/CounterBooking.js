@@ -58,7 +58,6 @@ function CounterBooking() {
       
       return;
     }
-
     
     record.full_name = record.first_name + " " + record.last_name;
     record.cinema_id = localStorage.getItem("cinema_id");
