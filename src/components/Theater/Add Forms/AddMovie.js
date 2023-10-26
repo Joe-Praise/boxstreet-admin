@@ -131,9 +131,8 @@ function AddMovie() {
       errors.genre = "Please select at least one genre";
     }
 
-    if (!movieInfo.coming_soon) {
-      errors.coming_soon =
-        "Please select whether the movie is showing or coming soon";
+    if (movieInfo.coming_soon === null) {
+      errors.coming_soon = "Please select whether the movie is showing or coming soon";
     }
 
     if (!movieInfo.language.trim()) {
@@ -297,9 +296,7 @@ function AddMovie() {
                 }
               >
                 <option value="true">True</option>
-                <option selected value="false">
-                  False
-                </option>
+                <option value="false">False</option>
               </select>
             </div>
             <div class="addmovieform-group">

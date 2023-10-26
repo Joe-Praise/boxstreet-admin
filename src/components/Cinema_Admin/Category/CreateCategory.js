@@ -95,6 +95,8 @@ if(isFormValid){
                 <option value="VIP">VIP</option>
                 <option value="VVIP">VVIP</option>
                 <option value="REGULAR">REGULAR</option>
+                <option value="BOSS">BOSS</option>
+                <option value="CHAIRMAN">CHAIRMAN</option>
               </select>
               {formErrors.name && (
                 <div className="error-message">{formErrors.name}</div>

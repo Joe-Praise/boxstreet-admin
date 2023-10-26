@@ -22,17 +22,15 @@ function Sidenav() {
         <Link className="sideNavLinks" to="/cinema/create-category">
           <li>CREATE CATEGORY</li>
         </Link>
-        <Link className="sideNavLinks" to="/cinema/create-category">
-          <li>ADD CATEGORY</li>
-        </Link>
-
         <Link className="sideNavLinks" to="/cinema/create-theater-admin">
           <li>ADD USER</li>
         </Link>
         <Link className="sideNavLinks" to="/cinema/account">
-          <li>VIEW ACCOUNT</li>
+          <li>CINEMA ACCOUNT</li>
         </Link>
-       
+        <Link className="sideNavLinks" to="/cinema/profile">
+          <li>PROFILE</li>
+        </Link>
         <div className="sideNavLinks">
         <li className="">LOG OUT</li>
         </div>

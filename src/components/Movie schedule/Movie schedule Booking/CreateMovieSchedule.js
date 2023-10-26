@@ -12,8 +12,8 @@ let ONLINE = "https://boxstreet.onrender.com";
 let BASE_URL = MODE === "PROD" ? ONLINE : LOCAL;
 
 function MovieScheduleBooking() {
-  let branch_id = localStorage.getItem("branch_id")
-  let cinema_id = localStorage.getItem("cinema_id")
+  let branch_id = localStorage.getItem("branch_id");
+  let cinema_id = localStorage.getItem("cinema_id");
 
   const [value, onChange] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -40,13 +40,12 @@ function MovieScheduleBooking() {
       let info = res.data.data;
       let movieinfo = info?.map((e) => ({
         id: e._id,
-        name: e.name
+        name: e.name,
       }));
-      console.log(info)
+      console.log(info);
       setMovies([...movieinfo]);
     });
   }, []);
-
 
   useEffect(() => {
     if (!preview.previewFile) return;
@@ -108,22 +107,61 @@ function MovieScheduleBooking() {
   const handleFormSubmittion = (e) => {
     e.preventDefault();
 
+    console.log(formInfo)
+
     axios
-    .post(`${BASE_URL}/api/v1/movieschedule`, formInfo)
-    .then((res) => {
-      if(res.data){
-        alert("Movie has been scheduled");
-      }
-    })
-    .catch((err) => {
-      console.error("Error in scheduling this movie:", err)
-    })
+      .post(`${BASE_URL}/api/v1/movieschedule`, formInfo)
+      .then((res) => {
+        if (res.data) {
+          alert("Movie has been scheduled");
+        }
+      })
+      .catch((err) => {
+        console.error("Error in scheduling this movie:", err);
+      });
 
     setIsLoading(true);
     setTimeout(() => {
       setIsLoading(false);
     }, 1000);
   };
+
+  const [cinemaName, setCinemaName] = useState("");
+  useEffect(() => {
+    const cinemaUrl = `${BASE_URL}/api/v1/cinemas/${cinema_id}`;
+
+    axios
+      .get(cinemaUrl)
+      .then((res) => {
+        const cinemaData = res.data;
+        if (cinemaData) {
+          setCinemaName(cinemaData.name);
+        }
+        console.log(cinemaData);
+      })
+      .catch((err) => {
+        console.error("Error fetching cinema name:", err);
+      });
+  }, [cinema_id]);
+
+  const [branchName, setBranchName] = useState("");
+
+  useEffect(() => {
+    const branchUrl = `${BASE_URL}/api/v1/branches/${branch_id}`;
+
+    axios
+      .get(branchUrl)
+      .then((res) => {
+        const branchData = res.data;
+        if (branchData) {
+          setBranchName(branchData?.location_id?.name);
+        }
+        console.log(branchName);
+      })
+      .catch((err) => {
+        console.error("Error fetching branch name:", err);
+      });
+  }, [branch_id]);
 
   return (
     <div className="movieschedule-Booking ">
@@ -164,7 +202,8 @@ function MovieScheduleBooking() {
                   type="text"
                   id="cinema_id"
                   name="cinema_id"
-                  value={"Genesis Cinema"}
+                  placeholder={cinemaName}
+                  value={cinema_id}
                   disabled
                   onChange={inputChangeHandler}
                 />
@@ -175,7 +214,7 @@ function MovieScheduleBooking() {
                   type="text"
                   id="branch_id"
                   name="branch_id"
-                  value={"Jabi"}
+                  value={branch_id}
                   disabled
                   onChange={inputChangeHandler}
                 />
@@ -190,7 +229,7 @@ function MovieScheduleBooking() {
                 >
                   <option value="">Select a movie</option>
                   {movies.map((e) => (
-                    <option key={e.id} value={e._id}>
+                    <option key={e.id} value={e.id}>
                       {e.name}
                     </option>
                   ))}

@@ -4,14 +4,29 @@
     margin-left: auto;
 }
 
-.cinema-branch-main{
+.cinema-branch-main-p{
+    display: flex;
+    gap: 10px;
     width: 80%;
     overflow-y: hidden;
     margin-left: auto;
     margin-top: 150px;
 }
-.cinema-branch-card{
-    width: 76%;
+.cinema-branch-img-cont{
+    width: 350px;
+    height: 350px;
+border: 1px solid gray;
+   
+}
+.cinema-branch-img{
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    background-color: #f76161;
+    margin: 20px;
+}
+.cinema-branch-card-p{
+    width: 56%;
     height: 350px;
     border: 1px solid gray;
     border-radius: 10px;
