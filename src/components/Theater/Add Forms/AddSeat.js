@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from "react";
 import TheaterNav from "../Navigation/TheaterNav";
 import "../stylesTheater/addseat.css";
-import config from "../../config";
 import axios from "axios";
 
 function AddSeat() {
 
 let MODE = "PROD";
-let LOCAL = "http://lolcalhost:5000";
+let LOCAL = "http://localhost:5000";
 let ONLINE = "https://boxstreet.onrender.com";
 let BASE_URL = MODE === "PROD" ? ONLINE : LOCAL;
 
@@ -70,7 +69,6 @@ let BASE_URL = MODE === "PROD" ? ONLINE : LOCAL;
     .catch((error) => {
       console.error("Error fetching theater data:", error);
     });
-
 
     axios
     .get(category_url)

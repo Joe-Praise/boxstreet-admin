@@ -1,5 +1,4 @@
 import React from "react";
-// import '../stylesCounter/sidenav.css'
 import "./sidenav.css";
 import { Link } from "react-router-dom";
 
@@ -17,9 +16,23 @@ function Sidenav() {
         <Link className="sideNavLinks" to="/cinema/create-branch">
           <li>CREATE BRANCH</li>
         </Link>
-        {/* <Link className="sideNavLinks" to="/counter/profile">
-          <li> PROFILE</li>
-        </Link> */}
+        <Link className="sideNavLinks" to="/cinema/create-theater">
+          <li>CREATE THEATER</li>
+        </Link>
+        <Link className="sideNavLinks" to="/cinema/create-category">
+          <li>CREATE CATEGORY</li>
+        </Link>
+        <Link className="sideNavLinks" to="/cinema/create-category">
+          <li>ADD CATEGORY</li>
+        </Link>
+
+        <Link className="sideNavLinks" to="/cinema/create-theater-admin">
+          <li>ADD USER</li>
+        </Link>
+        <Link className="sideNavLinks" to="/cinema/account">
+          <li>VIEW ACCOUNT</li>
+        </Link>
+       
         <div className="sideNavLinks">
         <li className="">LOG OUT</li>
         </div>

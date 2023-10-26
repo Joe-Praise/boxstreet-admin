@@ -1,91 +1,128 @@
 import "./branch.css";
 import Topnav from "../Cinema-Navigation/Topnav/Topnav";
-import { useState } from "react";
-function Branch(){
+import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import axios from "axios";
+
+let MODE = "PROD";
+let LOCAL = "http://localhost:5000";
+let ONLINE = "https://boxstreet.onrender.com";
+
+let BASE_URL = MODE === "PROD" ? ONLINE : LOCAL;
+function Branch() {
     const [updatemode, setUpdatemode] = useState(false);
-    const[cinema, setCinema] = useState();
-    const[branch, setBranch] = useState();
-    return(
+    const [cinema, setCinema] = useState();
+    const [branch, setBranch] = useState();
+    let {id} = useParams();
+
+    const [cinemaname, setCinemaname] =useState();
+    const [branchname, setBranchname] =useState();
+    const [opening, setOpening] =useState();
+    const [closing, setClosing] =useState();
+    const [phones, setPhones] =useState();
+
+useEffect(()=>{
+let branch_url =`${BASE_URL}/api/v1/branches/${id}`
+axios.get(branch_url)
+.then((res)=>{
+   let data =res?.data;
+   console.log(data._id)
+   localStorage.setItem("mybranch_id", data._id)
+   setBranch(data)
+})
+},[id])
+    return (
         <div className="cinema-branch-container">
-            <Topnav/>
+            <Topnav />
             <div className="cinema-branch-main">
-            <h3>Banch Single page</h3>
-            <div className="cinema-branch-card">
-                <div className="cinema-branch-texts">
-                    <div className="cinema-branch-text">
-                    <p>Cinema</p>
-                    {updatemode?<input
-                    className="edit-input-box"
-                    type="text"
-                    />:(
-                        <span className="cinema-branch-text-span">Brooklyn</span>
-                    )
 
-                    }
-            
+                <div className="cinema-branch-card">
+                    <div className="cinema-branch-texts">
+                        <div className="cinema-branch-text">
+                            <p>Cinema</p>
+                            {updatemode ? <input
+                                className="edit-input-box1"
+                                type="text"
+                            /> : (
+                                <span className="cinema-branch-text-span1">{branch?.cinema_id.name}</span>
+                            )
+
+                            }
+
+                        </div>
+                        <div className="cinema-branch-text">
+                            <p>Branch</p>
+
+                            {updatemode ? <input
+                                className="edit-input-box2"
+                                type="text"
+                            /> : (
+                                <span className="cinema-branch-text-span2">{branch?.location_id.name}</span>
+                            )
+
+                            }
+
+                        </div>
+                        <div className="cinema-branch-text">
+                            <p>Opening</p>
+                            {updatemode ? <input
+                                className="edit-input-box3"
+                                type="text"
+                            /> : (
+                                <span className="cinema-branch-text-span3">{branch?.opening}</span>
+                            )
+
+                            }
+
+                        </div>
+
+                        <div className="cinema-branch-text">
+                            <p>Closing</p>
+
+                            {updatemode ? <input
+                                className="edit-input-box4"
+                                type="text"
+                            /> : (
+                                <span className="cinema-branch-text-span4">{branch?.closing}</span>
+                            )
+
+                            }
+
+                        </div>
+                        <div className="cinema-branch-text">
+                            <p>Phone</p>
+                            {updatemode ? <input
+                                className="edit-input-box5"
+                                type="text"
+                            /> : (
+                                <span className="cinema-branch-text-span5">{branch?.phones}</span>
+                            )
+
+                            }
+
+                        </div>
+                        {updatemode && (
+                            <div className="cinema-branch-update-btn">
+                                <button>UPDATE BRANCH</button>
+                            </div>
+                        )
+
+                        }
+
+                        <div className="cinema-branch-btn">
+                            {updatemode ? ("") : <div className="cinema-branch-edtbtn">
+                                <button onClick={() => setUpdatemode(true)}>Edit</button>
+                            </div>
+
+                            }
+                            {updatemode ? ("") : <div className="cinema-branch-deletebtn">
+                                <button>Delete</button>
+                            </div>}
+
+                        </div>
                     </div>
-                    <div className="cinema-branch-text">
-                    <p>Branch</p>
 
-                    {updatemode?<input
-                    className="edit-input-box2"
-                    type="text"
-                    />:(
-                        <span className="cinema-branch-text-span2">Apocalyps</span>
-                    )
-
-                    }
-            
-                    </div>
-                    <div className="cinema-branch-text">
-                    <p>Opening</p>
-                    {updatemode?<input
-                    className="edit-input-box3"
-                    type="text"
-                    />:(
-                        <span className="cinema-branch-text-span3">12:00am</span>
-                    )
-
-                    }
-             
-                    </div>
-                    
-                    <div className="cinema-branch-text">
-                    <p>Closing</p>
-
-                    {updatemode?<input
-                    className="edit-input-box"
-                    type="text"
-                    />:(
-                        <span className="cinema-branch-text-span4">12:00pm</span>
-                    )
-
-                    }
-              
-                    </div>
-                    <div className="cinema-branch-text">
-                    <p>Phone</p>
-                    {updatemode?<input
-                    className="edit-input-box"
-                    type="text"
-                    />:(
-                        <span className="cinema-branch-text-span5">12345678910</span>
-                    )
-
-                    }
-                
-                    </div>
-              <div className="cinema-branch-btn">
-<div className="cinema-branch-edtbtn">
-    <button onClick={()=>setUpdatemode(true)}>Edit</button>
-</div>
-<div className="cinema-branch-deletebtn">
-    <button>Delete</button>
-</div>
-              </div>
                 </div>
-                
-            </div>
             </div>
 
         </div>

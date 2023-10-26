@@ -1,0 +1,31 @@
+.account-main{
+    width: 100%;
+    margin-left: auto;
+}
+.account-table-container{
+    width: 80%;
+    overflow-y: hidden;
+    margin-left: auto;
+    margin-top: 100px;
+    
+}
+.account-table-container table{
+    width: 80%; background-color:#efebeb;
+    border-collapse: collapse; 
+    border-left: 10px solid gray;
+}
+.accoun-table-header{
+    background-color: #3e3e3d;
+    color: #d3d2d2;
+}
+thead th{
+    font-size: 20px;
+    margin-right: 20px;
+}
+tbody td{ 
+    padding: 7px;
+    font-size: 16px;
+    border-bottom: 8px solid #fff;
+  text-align: center;
+ height: 80px;
+    }
