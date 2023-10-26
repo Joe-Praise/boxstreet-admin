@@ -132,6 +132,7 @@
   th,
   td {
     padding: 1rem;
+    /* font-size: 10px; */
   }
   .web-movies-table {
     width: 100%;
@@ -149,8 +150,8 @@
   }
   
   .web-movies-table tbody td {
-    padding: 13px;
-    font-size: 16px;
+    padding: 5px;
+    font-size: 12px;
     text-align: center;
     align-items: center;
     border-top: 10px solid #dfdddd;

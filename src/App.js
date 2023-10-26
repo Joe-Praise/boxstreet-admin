@@ -43,6 +43,12 @@ import Cinemas from "./components/Website-Admin/Cinemas";
 import Movies from "./components/Website-Admin/Movies";
 import SingleMovie from "./components/Website-Admin/SingleMovie";
 import Users from "./components/Website-Admin/Users";
+import Archives from "./components/Website-Admin/Archives";
+import Theaters from "./components/Website-Admin/Theaters";
+import Seats from "./components/Website-Admin/Seat";
+import Layout from "./components/Website-Admin/Layout";
+import ViewBranch from "./components/Cinema_Admin/Cinema/ViewBranch";
+import CreateCategory from "./components/Cinema_Admin/Category/CreateCategory";
 import Category from "./components/Cinema_Admin/CinemaCategory/Category";
 
 function App() {
@@ -50,9 +56,9 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Routes>
-        <Route path="/" element={<Login/>} />
+          <Route path="/" element={<Login />} />
 
-          <Route path="/account" element={<Account/>} />
+          <Route path="/account" element={<Account />} />
 
           <Route path="/counter" element={<Counter />} />
           <Route path="/counter/booking/:id" element={<CounterBooking />} />
@@ -64,22 +70,32 @@ function App() {
           <Route path="/counter/receipt/:id" element={<BookedInfo />} />
 
           <Route path="/cinema/account" element={<Transaction />} />
-          <Route path="/cinema" element={< Dashboardc />} />
-          <Route path="/cinema/create-branch" element={<CreateBranch/>} />
-          <Route path="/cinema/view-branch" element={<Branch/>}/>
-          <Route path="/cinema/create-theater" element={<CreateTheater/>}/>
-          <Route path="/cinema/create-theater-admin" element={<AddTheaterAdmin/>}/>
-          <Route path="/cinema/create-counter" element={<CreateCounter/>}/>
-          <Route path="/cinema/create-category" element={<Category />}/>
-
+          <Route path="/cinema" element={<Dashboardc />} />
+          <Route path="/cinema/create-branch" element={<CreateBranch />} />
+          <Route path="/cinema/create-category" element={<CreateCategory />} />
+          <Route path="/cinema/view-branch" element={<ViewBranch />} />
+          <Route path="/cinema/view-branch/:id" element={<Branch />} />
+          <Route path="/cinema/create-theater" element={<CreateTheater />} />
+          <Route
+            path="/cinema/create-theater-admin"
+            element={<AddTheaterAdmin />}
+          />
+          <Route path="/cinema/create-counter" element={<CreateCounter />} />
+          <Route path="/cinema/create-category" element={<Category />} />
 
           <Route path="/theater" element={<TheaterHome />} />
           <Route path="/theater/booking/:id" element={<TheaterBooking />} />
           <Route path="/theater/seat" element={<TheaterBookingSeat />} />
           <Route path="/theater/new-theater" element={<AddTheater />} />
-          <Route path="/theater/update-theater/:id" element={<UpdateTheater />} />
+          <Route
+            path="/theater/update-theater/:id"
+            element={<UpdateTheater />}
+          />
           <Route path="/theater/view-theaters" element={<ViewTheaters />} />
-          <Route path="/theater/seat-layout/:id" element={<ViewSeatingLayer />} />
+          <Route
+            path="/theater/seat-layout/:id"
+            element={<ViewSeatingLayer />}
+          />
           <Route path="/theater/view-seats/:id" element={<ViewSeats />} />
           <Route path="/theater/add-counter" element={<AddCounter />} />
           <Route path="/theater/add-counter" element={<AddCounter />} />
@@ -87,12 +103,14 @@ function App() {
           <Route path="/theater/add-movie" element={<AddMovie />} />
           <Route path="/theater/update-movie/:id" element={<UpdateMovie />} />
           <Route path="/theater/view-movies" element={<ViewMovies />} />
-          <Route path="/theater/single-movie/:id" element={<ViewSingleMovie />} />
+          <Route
+            path="/theater/single-movie/:id"
+            element={<ViewSingleMovie />}
+          />
           <Route path="/theater/change-password" element={<ChangePass />} />
           <Route path="/theater/movieschedule" element={<CreateMovieSchedule />} />
           <Route path="/theater/movieschedulelisting" element={<MovieScheduleListing />} />
           <Route path="/theater/add-seat" element={<AddSeat />}/>
-          
           <Route path="/web-admin/cinema" element={<CreateCinema/>}/>
           <Route path="/web-admin/add-user" element={<AddUser/>}/>
           <Route path="/web-admin" element={<Home/>}/>
@@ -100,7 +118,30 @@ function App() {
           <Route path="/web-movies" element={<Movies/>}/>
           <Route path="/web-movies/single-movie/:id" element={<SingleMovie />} />
           <Route path="/web-users" element={<Users/>}/>
+          <Route path="/web-archives" element={<Archives/>}/>
+          <Route path="/web-theaters" element={<Theaters/>}/>
+          <Route path="/web-seat/:id" element={<Seats/>}/>
+          <Route path="/web-layout/:id" element={<Layout/>}/>
+          <Route
+            path="/theater/movieschedule"
+            element={<CreateMovieSchedule />}
+          />
+          <Route
+            path="/theater/movieschedulelisting"
+            element={<MovieScheduleListing />}
+          />
+          <Route path="/theater/add-seat" element={<AddSeat />} />
 
+          <Route path="/web-admin/cinema" element={<CreateCinema />} />
+          <Route path="/web-admin/add-user" element={<AddUser />} />
+          <Route path="/web-admin" element={<Home />} />
+          <Route path="/web-cinemas" element={<Cinemas />} />
+          <Route path="/web-movies" element={<Movies />} />
+          <Route
+            path="/web-movies/single-movie/:id"
+            element={<SingleMovie />}
+          />
+          <Route path="/web-users" element={<Users />} />
         </Routes>
       </BrowserRouter>
     </div>

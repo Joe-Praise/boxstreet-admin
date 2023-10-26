@@ -30,6 +30,9 @@ function CreateBranch() {
   const [locations, setLocations] = useState([])
   const validateForm = () => {
     const errors = {};
+    if (!formData.location_id.trim()) {
+      errors.opening = "Field Required";
+    }
     if (!formData.opening.trim()) {
       errors.opening = "Field Required";
     }
@@ -51,11 +54,15 @@ function CreateBranch() {
         const response = await axios.post(
           config.BRANCH_BASE_URL,
           formData
-        );
+        ).then((resp)=>{
+          if(resp?.status === "success"){
+            alert("Branch Created")
+          }
+        })
         console.log(response);
 
         if (response?.status === "success") {
-          navigate("/cinema/view-branch");
+         
           setIsSignUpSuccess(true);
           setFormErrorMessage("");
         }
@@ -118,7 +125,9 @@ function CreateBranch() {
                 ))}
 
               </select>
-
+              {formErrors.opening && (
+                <div className="error-message">{formErrors.opening}</div>
+              )}
             </div>
 
             <div className="add-cinema-form-group">

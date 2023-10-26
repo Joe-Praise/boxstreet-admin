@@ -1,0 +1,93 @@
+.addtheaaterForm{
+    width: 80%;
+    height: 100vh;
+    overflow-y: hidden;
+    margin: 150px auto;
+  }
+  
+  .addtheaaterBookingFlex {
+    display: flex;
+    justify-content: space-between;
+    margin-left: 250px;
+  }
+  
+  .addtheaaterBookingForm {
+    width: 100%;
+    margin-top: 150px;
+  }
+  
+  .addtheaaterBookingForm h2 {
+    color: #333;
+  }
+  
+  .addtheaaterform {
+    background: transparent;
+    background-size: cover;
+    width: 80%;
+    height: auto;
+    margin: 10px auto;
+    padding: 25px 50px;
+  }
+  
+  .addtheaaterformnameflex {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+  }
+  
+  .addtheaaterform-group {
+    width: 100%;
+    margin: 20px 0px;
+  }
+  
+  .addtheaaterform-group label {
+    color: #333;
+    font-size: 16px;
+  }
+  
+  .addtheaaterform-group input {
+    width: 100%;
+    display: block;
+    margin-top: 5px;
+    padding: 8px 10px;
+    font-size: 16px;
+    outline: none;
+    color: #333;
+    background-color: transparent;
+    border: 0.5px solid #333;
+    border-radius: 5px;
+  }
+  
+  .addtheaaterform-group span {
+    font-size: 12px;
+    margin-left: 10px;
+    color: red;
+  }
+  
+  .addtheaaterform-group button {
+    background: #6a7c94;
+    color: #000;
+    border: none;
+    padding: 10px 30px;
+    font-size: 18px;
+    outline: none;
+    cursor: pointer;
+    display: block;
+    border-radius: 10px;
+  }
+  
+  .addtheaaterform-group button a {
+    text-decoration: none;
+    color: #eee;
+  }
+  
+  .addtheaaterform-group select {
+    width: 100%;
+    display: block;
+    padding: 10px 15px;
+    font-size: 17px;
+    outline: none;
+    background-color: #eee;
+    border: 1px solid #000;
+    border-radius: 5px;
+  }

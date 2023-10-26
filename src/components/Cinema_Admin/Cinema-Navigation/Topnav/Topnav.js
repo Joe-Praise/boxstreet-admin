@@ -20,7 +20,7 @@ function Topnav() {
           <div>
             <ul className="navlinks">
               <Link to="/" className="textdecor">
-                <li className="bsColour">{username}</li>
+                <li className="bsColour">{ `Welcome-${username}`}</li>
               </Link>
             </ul>
           </div>

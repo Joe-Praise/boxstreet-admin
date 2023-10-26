@@ -1,10 +1,36 @@
 import "./branch.css";
 import Topnav from "../Cinema-Navigation/Topnav/Topnav";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import axios from "axios";
+
+let MODE = "PROD";
+let LOCAL = "http://localhost:5000";
+let ONLINE = "https://boxstreet.onrender.com";
+
+let BASE_URL = MODE === "PROD" ? ONLINE : LOCAL;
 function Branch() {
     const [updatemode, setUpdatemode] = useState(false);
     const [cinema, setCinema] = useState();
     const [branch, setBranch] = useState();
+    let {id} = useParams();
+
+    const [cinemaname, setCinemaname] =useState();
+    const [branchname, setBranchname] =useState();
+    const [opening, setOpening] =useState();
+    const [closing, setClosing] =useState();
+    const [phones, setPhones] =useState();
+
+useEffect(()=>{
+let branch_url =`${BASE_URL}/api/v1/branches/${id}`
+axios.get(branch_url)
+.then((res)=>{
+   let data =res?.data;
+   console.log(data._id)
+   localStorage.setItem("mybranch_id", data._id)
+   setBranch(data)
+})
+},[id])
     return (
         <div className="cinema-branch-container">
             <Topnav />
@@ -18,7 +44,7 @@ function Branch() {
                                 className="edit-input-box1"
                                 type="text"
                             /> : (
-                                <span className="cinema-branch-text-span1">Brooklyn</span>
+                                <span className="cinema-branch-text-span1">{branch?.cinema_id.name}</span>
                             )
 
                             }
@@ -31,7 +57,7 @@ function Branch() {
                                 className="edit-input-box2"
                                 type="text"
                             /> : (
-                                <span className="cinema-branch-text-span2">Apocalyps</span>
+                                <span className="cinema-branch-text-span2">{branch?.location_id.name}</span>
                             )
 
                             }
@@ -43,7 +69,7 @@ function Branch() {
                                 className="edit-input-box3"
                                 type="text"
                             /> : (
-                                <span className="cinema-branch-text-span3">12:00am</span>
+                                <span className="cinema-branch-text-span3">{branch?.opening}</span>
                             )
 
                             }
@@ -57,7 +83,7 @@ function Branch() {
                                 className="edit-input-box4"
                                 type="text"
                             /> : (
-                                <span className="cinema-branch-text-span4">12:00pm</span>
+                                <span className="cinema-branch-text-span4">{branch?.closing}</span>
                             )
 
                             }
@@ -69,7 +95,7 @@ function Branch() {
                                 className="edit-input-box5"
                                 type="text"
                             /> : (
-                                <span className="cinema-branch-text-span5">12345678910</span>
+                                <span className="cinema-branch-text-span5">{branch?.phones}</span>
                             )
 
                             }
