@@ -7,7 +7,6 @@ import config from "../config";
 import Loading from "../Loading";
 
 function SignUp() {
-
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -66,7 +65,7 @@ function SignInForm({
 }) {
   const navigate = useNavigate();
 
-  const [loading,setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -87,47 +86,37 @@ function SignInForm({
 
       setLoading(false);
       if (response?.data.status === "success") {
-      
-        setLoading(false)
-        let info = response.data?.data
-       console.log(info)
-        localStorage.setItem('branch_id',info.branch_id);
-        localStorage.setItem('cinema_id',info.cinema_id);
-        localStorage.setItem('user_id',info._id);
-        localStorage.setItem('username',info.fullname);
-        if(info.role === "COUNTER"){
-            navigate("/counter");
-        }
+        setLoading(false);
+        let info = response.data?.data;
 
-        if(info.role === "THEATER"){
-            navigate("/theater");
-        }
-        if(info.role === "THEATER"){
-            navigate("/theater");
-            localStorage.setItem('branch_id',info.user.branch_id);
-            localStorage.setItem('cinema_id',info.user.cinema_id);
-            localStorage.setItem('user_id',info.user._id);
-        }
+        localStorage.setItem("branch_id", info.branch_id);
+        localStorage.setItem("branch", info.branch_id?.location_id?.name);
+        localStorage.setItem("cinema_id", info.cinema_id?._id);
+        localStorage.setItem("cinema", info.cinema_id?.name);
+        localStorage.setItem("user_id", info._id);
+        localStorage.setItem("fullname", info.fullname);
 
-        if(info.role === "CINEMA"){
+        if (info.role === "COUNTER") {
+          navigate("/counter");
+        } else if (info.role === "THEATER") {
+          navigate("/theater");
+        } else if (info.role === "THEATER") {
+          navigate("/theater");
+        } else if (info.role === "CINEMA") {
           navigate("/cinema");
-      }
-
-      if(info.role === "ACCOUNT"){
-        navigate("/account");
-    }
-
+        }
       } else {
         setFormErrorMessage("Sign-in failed. Please try again.");
       }
     } catch (error) {
+      console.log(error);
       setFormErrorMessage("An error occurred while signing in.");
     }
   };
 
   return (
     <form onSubmit={handleSignIn}>
-      <h1 className="reg-text">Sign In to Boxstreet</h1>
+      <h1 className="reg-text">Counter Login</h1>
       <div className="social-container">
         <Link className="social">
           <i className="fb">
@@ -176,7 +165,7 @@ function SignInForm({
       {formErrorMessage && <p className="error-message">{formErrorMessage}</p>}
       <div>
         <button type="submit" className="reg-button">
-          {loading? <Loading/> : "Sign In" }
+          {loading ? <Loading /> : "Sign In"}
         </button>
       </div>
     </form>

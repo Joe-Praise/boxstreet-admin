@@ -96,14 +96,27 @@ function BookSeat() {
     let email = booking.email;
 
     try {
-      const payment_url = BASE_URL + "/api/v1/payments/initiate-payment";
+      // const payment_url = BASE_URL + "/api/v1/payments/initiate-payment";
+      // const booking_url = BASE_URL + "/api/v1/bookings";
+      // const data = { email, amount };
+      // const response = await axios.post(payment_url, data);
+
+      const counterPaymentData = {
+        amount: booking.movie_price,
+        email: email,
+        cinema_id: booking.cinema_id,
+        branch_id: booking.branch_id,
+        channel: booking.payment_method,
+      };
+
+      const payment_url = BASE_URL + "/api/v1/payments/counter";
       const booking_url = BASE_URL + "/api/v1/bookings";
-      const data = { email, amount };
-      const response = await axios.post(payment_url, data);
+      const response = await axios.post(payment_url, counterPaymentData);
 
       booking.seats = seats;
+      booking.payment_method = undefined;
 
-      if (response?.data.data.paymentLink) {
+      if (response?.data?.status === "Transaction successful") {
         await axios.post(booking_url, booking);
 
         window.open(
@@ -191,7 +204,6 @@ function BookSeat() {
                     <div className="box-line">
                       <div className="line"></div>
                     </div>
-             
                   </div>
                   <div className="box-container">
                     <div className="main-boxx">
@@ -257,15 +269,14 @@ function BookSeat() {
                     </p>
                   </div> */}
                   <div className="booking-container-col1-inputs">
-                
                     <div className="amount-length">
-                      <span >
-                      Selected seat: <>{seats.length}</>
+                      <span>
+                        Selected seat: <>{seats.length}</>
                       </span>
                     </div>
                     <div className="amount-length">
                       <span>
-                      Movie Price: <>N{amount}</>
+                        Movie Price: <>N{amount}</>
                       </span>
                     </div>
                     <div className="booking-container-col1-input">
@@ -277,7 +288,6 @@ function BookSeat() {
                       <span className="booking-container-col-text select-box">
                         Booked
                       </span>
-
                     </div>
                   </div>
                   <div className="seat-footer">
