@@ -1,9 +1,26 @@
 import "./dashboard.css";
 import CounterNav from "../../Counter/Navigation/CounterNav";
 import Topnav from "../Cinema-Navigation/Topnav/Topnav";
+import axios from "axios";
+import { useState, useEffect } from "react";
+let MODE = "PROD";
+let LOCAL = "http://localhost:5000";
+let ONLINE = "https://boxstreet.onrender.com";
+
+let BASE_URL = MODE === "PROD" ? ONLINE : LOCAL;
 function Dashboardc(){
     // let username = localStorage.getItem("username")
     // console.log(username)
+    const [branches, setBranches]= useState([])
+    useEffect(()=>{
+        let branch_url =`${BASE_URL}/api/v1/branches`
+        axios.get(branch_url)
+        .then((res)=>{
+           let data =res?.data;
+           console.log(data.length)
+           setBranches(data)
+        })
+        },[])
     return(
         <div className="cinema-dash-container">
             <Topnav/>
@@ -15,7 +32,7 @@ function Dashboardc(){
             
                 <div className="cinema-dash-col">
                     <h4>Banches</h4>
-                    <span>4</span>
+                    <span>{branches.length}</span>
                 </div>
                 <div className="cinema-dash-col">
                     <h4>Theater</h4>
@@ -46,22 +63,6 @@ function Dashboardc(){
                 <span>20</span>
             </div>
             </div>
-
-            {/* <div className="cinema-dash-top">
-            
-            <div className="cinema-dash-col">
-                <h4>Banches</h4>
-                <span>4</span>
-            </div>
-            <div className="cinema-dash-col">
-                <h4>Theater</h4>
-                <span>4</span>
-            </div>
-            <div className="cinema-dash-col">
-                <h4>Counters</h4>
-                <span>20</span>
-            </div>
-        </div> */}
             <div className="cinema-dash-bottom">
             <table className="dash-table">
         <thead>

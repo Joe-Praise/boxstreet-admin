@@ -8,6 +8,11 @@ import config from "../../config";
 // import WebNav from "./Navigation/WebNav";
 import Topnav from "../Cinema-Navigation/Topnav/Topnav";
 
+let MODE = "PROD";
+let LOCAL = "http://localhost:5000";
+let ONLINE = "https://boxstreet.onrender.com";
+let BASE_URL = MODE === "PROD" ? ONLINE : LOCAL;
+
 function AddTheaterAdmin() {
   const navigate = useNavigate();
   let cinema_id = localStorage.getItem("cinema_id")
@@ -70,12 +75,12 @@ function AddTheaterAdmin() {
       const isFormValid = validateForm();
 
       if (isFormValid) {
-        console.log(formData);
+        // console.log(formData);
         const response = await axios.post(
           config.MANAGEMENT_BASE_URL + "/register",
           formData
         );
-        console.log(response);
+        // console.log(response);
 
         if (response?.data.status === "success") {
           setIsSignUpSuccess(true);
@@ -87,7 +92,7 @@ function AddTheaterAdmin() {
         );
       }
     } catch (error) {
-      console.error("Error signing up:", error);
+      console.error("Error creating theater Admin:", error);
     }
   };
 
@@ -102,9 +107,10 @@ function AddTheaterAdmin() {
     axios.get(config.CINEMA_BASE_URL).then((result) => {
       setCinemaData(result.data);
     });
-
-    axios.get(config.BRANCH_BASE_URL).then((result) => {
+let branch_url = `${BASE_URL}/api/v1/branches?cinema_id=${cinema_id}`
+    axios.get(branch_url).then((result) => {
       setBranchData(result.data);
+      // console.log(result.data)
     });
   }, []);
 

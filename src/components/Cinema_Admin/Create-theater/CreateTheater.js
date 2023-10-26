@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 // import "../../../stylesTheater/addtheater.css";
 import "./theater.css"
 import axios from "axios";
@@ -10,7 +10,7 @@ let BASE_URL = MODE === "PROD" ? ONLINE : LOCAL;
 
 
 function CreateTheater() {
-    const branch_id = localStorage.getItem('branch_id');
+    const branch_id = localStorage.getItem('mybranch_id');
     const cinema_id = localStorage.getItem('cinema_id');
 
     const [formErrors, setFormErrors] = useState({});
@@ -24,17 +24,17 @@ function CreateTheater() {
       cinema_id
     });
   
-    // const validateForm =()=>{
-    //   const errors={};
-    //   if(!theaterData.name.trim()){
-    //     errors.name ="Field Required";
-    //   }
-    //   if(!theaterData.screen.trim()){
-    //     errors.screen ="Field Required";
-    //   }
-    //   setFormErrors(errors);
-    //   return Object.keys(errors).length === 0;
-    // };
+    const validateForm =()=>{
+      const errors={};
+      if(!theaterData.name.trim()){
+        errors.name ="Field Required";
+      }
+      if(!theaterData.screen.trim()){
+        errors.screen ="Field Required";
+      }
+      setFormErrors(errors);
+      return Object.keys(errors).length === 0;
+    };
 
     const handleChange = (e) => {
       const { name, screen, value } = e.target;
@@ -61,6 +61,20 @@ function CreateTheater() {
         });
     };
   
+    const [branches, setBranches]= useState([])
+    useEffect(()=>{
+        let branch_url =`${BASE_URL}/api/v1/branches`
+        axios.get(branch_url)
+        .then((res)=>{
+           let data =res?.data;
+          const newBranch = data.filter((newbranch)=>{
+          return newbranch.cinema_id ===cinema_id
+          })
+           setBranches(newBranch)
+           console.log(newBranch)
+        })
+        },[])
+
     return (
       <div>
         <Topnav/>

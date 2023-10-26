@@ -43,7 +43,8 @@ import Cinemas from "./components/Website-Admin/Cinemas";
 import Movies from "./components/Website-Admin/Movies";
 import SingleMovie from "./components/Website-Admin/SingleMovie";
 import Users from "./components/Website-Admin/Users";
-
+import ViewBranch from "./components/Cinema_Admin/Cinema/ViewBranch";
+import CreateCategory from "./components/Cinema_Admin/Category/CreateCategory";
 function App() {
   return (
     <div className="App">
@@ -63,7 +64,9 @@ function App() {
           <Route path="/cinema/account" element={<Transaction />} />
           <Route path="/cinema" element={< Dashboardc />} />
           <Route path="/cinema/create-branch" element={<CreateBranch/>} />
-          <Route path="/cinema/view-branch" element={<Branch/>}/>
+          <Route path="/cinema/create-category" element={<CreateCategory/>} />
+          <Route path="/cinema/view-branch" element={<ViewBranch/>}/>
+          <Route path="/cinema/view-branch/:id" element={<Branch/>}/>
           <Route path="/cinema/create-theater" element={<CreateTheater/>}/>
           <Route path="/cinema/create-theater-admin" element={<AddTheaterAdmin/>}/>
           <Route path="/cinema/create-counter" element={<CreateCounter/>}/>

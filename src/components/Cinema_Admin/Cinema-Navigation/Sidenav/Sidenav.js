@@ -19,12 +19,12 @@ function Sidenav() {
         <Link className="sideNavLinks" to="/cinema/create-theater">
           <li>CREATE THEATER</li>
         </Link>
-        <Link className="sideNavLinks" to="/cinema/create-counter">
-          <li>CREATE COUNTER</li>
+        <Link className="sideNavLinks" to="/cinema/create-category">
+          <li>CREATE CATEGORY</li>
         </Link>
 
         <Link className="sideNavLinks" to="/cinema/create-theater-admin">
-          <li>CREATE COUNTER ADMIN</li>
+          <li>ADD USER</li>
         </Link>
         <Link className="sideNavLinks" to="/cinema/account">
           <li>VIEW ACCOUNT</li>

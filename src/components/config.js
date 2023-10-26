@@ -7,6 +7,7 @@ const Config = {
   MGT_BASE_URL: "http://localhost:5000/api/v1/managements",
   LOCATION_BASE_URL: "http://localhost:5000/api/v1/locations",
   PAYMENT_BASE_URL: "http://localhost:5000/api/v1/payments",
+  CATEGORY_BASE_URL: "http://localhost:5000/api/v1/categories",
   // CLOUD_NAME:dcvc3e5k3,
   // API_KEY: 679192955852274,
   // API_SECRET:lXJHD3RbfvBUweWmOOmPzilpvZ4,
