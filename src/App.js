@@ -36,6 +36,10 @@ import Cinemas from "./components/Website-Admin/Cinemas";
 import Movies from "./components/Website-Admin/Movies";
 import SingleMovie from "./components/Website-Admin/SingleMovie";
 import Users from "./components/Website-Admin/Users";
+import Archives from "./components/Website-Admin/Archives";
+import Theaters from "./components/Website-Admin/Theaters";
+import Seats from "./components/Website-Admin/Seat";
+import Layout from "./components/Website-Admin/Layout";
 function App() {
   return (
     <div className="App">
@@ -81,6 +85,10 @@ function App() {
           <Route path="/web-movies" element={<Movies/>}/>
           <Route path="/web-movies/single-movie/:id" element={<SingleMovie />} />
           <Route path="/web-users" element={<Users/>}/>
+          <Route path="/web-archives" element={<Archives/>}/>
+          <Route path="/web-theaters" element={<Theaters/>}/>
+          <Route path="/web-seat/:id" element={<Seats/>}/>
+          <Route path="/web-layout/:id" element={<Layout/>}/>
         </Routes>
       </BrowserRouter>
     </div>

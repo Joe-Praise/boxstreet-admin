@@ -123,7 +123,7 @@ function SignInForm({
 
   return (
     <form onSubmit={handleSignIn}>
-      <h1 className="reg-text">Sign In to Boxstreet</h1>
+      <h1 className="reg-text">Counter Login</h1>
       <div className="social-container">
         <Link className="social">
           <i className="fb">

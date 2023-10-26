@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from  "react";
 import { Link, useNavigate } from "react-router-dom";
 import "../Theater/stylesTheater/addcounter.css";
 import { toast } from "react-toastify";
@@ -6,17 +6,26 @@ import axios from "axios";
 import config from "../config";
 import WebNav from "./Navigation/WebNav";
 
+const BASE_URL =
+  process.env.NODE_ENV === "production"
+    ? "https://boxstreet.onrender.com"
+    : "http://localhost:5000";
+
 function AddUser() {
   const navigate = useNavigate();
 
+  const generateCode = () => {
+    return Math.random().toString("32").substring(2,10);
+  };
+
   const [formData, setFormData] = useState({
-    // branch_id: '',
+    branch_id: "",
     fullname: "",
-    role: "",
+    role: "CINEMA",
     email: "",
     phone: "",
     cinema_id: "",
-    password: "",
+    password: generateCode(),
   });
 
   const [cinemaData, setCinemaData] = useState([]);
@@ -26,12 +35,7 @@ function AddUser() {
   const [formErrorMessage, setFormErrorMessage] = useState("");
 
   const validateForm = () => {
-    const errors = {};
-
-    // Basic validation checks, add more as needed
-    if (!formData.branch_id.trim()) {
-      errors.branch_id = "Please select a branch";
-    }
+    const errors = {};  
 
     if (!formData.fullname.trim()) {
       errors.fullname = "Full Names are required";
@@ -79,12 +83,9 @@ function AddUser() {
           config.MANAGEMENT_BASE_URL + "/register",
           formData
         );
-        console.log(response);
+        toast.success("Admin created successfully");
+            navigate("/web-users");
 
-        if (response?.data.status === "success") {
-          setIsSignUpSuccess(true);
-          setFormErrorMessage("");
-        }
       } else {
         setFormErrorMessage(
           "Please fill in all required fields and correct any validation errors."
@@ -107,9 +108,9 @@ function AddUser() {
       setCinemaData(result.data);
     });
 
-    axios.get(config.BRANCH_BASE_URL).then((result) => {
-      setBranchData(result.data);
-    });
+    // axios.get(config.BRANCH_BASE_URL).then((result) => {
+    //   setBranchData(result.data);
+    // });
   }, []);
 
   return (
@@ -117,7 +118,7 @@ function AddUser() {
       <WebNav/>
       <div className="addcounterForm">
         <form onSubmit={handleSignUp} className="addtheaaterform">
-          <h2>Register a User</h2>
+          <h2>Register an Admin</h2>
           <div className="addcounterformnameflex">
             <div className="addtheaaterform-group">
               <label htmlFor="">Full Name:</label>
@@ -140,6 +141,7 @@ function AddUser() {
                 type="text"
                 name="role"
                 className="inputs"
+                disabled
                 value={formData.role}
                 onChange={handleChange}
               />
@@ -181,25 +183,6 @@ function AddUser() {
 
           <div className="addcounterformnameflex">
             <div className="addtheaaterform-group">
-              <label htmlFor="">Branch:</label>
-              <span></span>
-              <select
-                name="branch_id"
-                value={formData.branch_id}
-                onChange={handleChange}
-              >
-                <option value="">Select Branch</option>
-                {branchData?.map((branch) => (
-                  <option key={branch._id} value={branch._id}>
-                    {branch.location_id.name}
-                  </option>
-                ))}
-              </select>
-              {formErrors.branch_id && (
-                <p className="error-message">{formErrors.branch_id}</p>
-              )}
-            </div>
-            <div className="addcounterform-group">
               <label htmlFor="">Cinema:</label>
               <span></span>
               <select
@@ -215,27 +198,42 @@ function AddUser() {
                 ))}
               </select>
               {formErrors.cinema_id && (
-                <p className="error-message">{formErrors.cinema_id}</p>
+                <div className="error-message">{formErrors.cinema_id}</div>
+              )}
+            </div>
+            <div className="addcounterform-group">
+              <label htmlFor="">Password:</label>
+              <span></span>
+              <input
+                type="text"
+                name="password"
+                
+                className="inputs"
+                value={formData.password}
+                onChange={handleChange}
+              />
+              {formErrors.password && (
+                <div className="error-message">{formErrors.password}</div>
               )}
             </div>
           </div>
 
-          <div className="addcounterform-group">
+          {/* <div className="addcounterform-group">
             <label htmlFor="">Password:</label>
             <span></span>
-            <input
-              type="password"
-              name="password"
-              className="inputs"
-              value={formData.password}
-              onChange={handleChange}
-            />
-            {formErrors.password && (
-              <div className="error-message">{formErrors.password}</div>
-            )}
-          </div>
+            <input type="password"  
+             name="password"
+                className="inputs"
+                value={formData.password}
+                onChange={handleChange}
+              />
+              {formErrors.password && (
+                <div className="error-message">{formErrors.password}</div>
+              )}
+              </div> */}
+
           <div className="addcounterform-group">
-            <button className="counterform-btn">Register User</button>
+            <button type="submit" className="counterform-btn">Register User</button>
           </div>
         </form>
       </div>
