@@ -50,6 +50,7 @@ import Layout from "./components/Website-Admin/Layout";
 import ViewBranch from "./components/Cinema_Admin/Cinema/ViewBranch";
 import CreateCategory from "./components/Cinema_Admin/Category/CreateCategory";
 import Category from "./components/Cinema_Admin/CinemaCategory/Category";
+import CinemaProfile from "./components/Cinema_Admin/Cinema-profile/CinemaProfile"
 
 function App() {
   return (
@@ -79,7 +80,7 @@ function App() {
           <Route path="/cinema/create-theater-admin" element={<AddTheaterAdmin/>}/>
           <Route path="/cinema/create-counter" element={<CreateCounter/>}/>
           <Route path="/cinema/create-category" element={<Category />}/>
-
+          <Route path="/cinema/profile" element={<CinemaProfile/>}/>
 
           <Route path="/theater" element={<TheaterHome />} />
           <Route path="/theater/booking/:id" element={<TheaterBooking />} />
