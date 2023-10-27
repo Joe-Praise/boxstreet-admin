@@ -50,6 +50,8 @@ import Layout from "./components/Website-Admin/Layout";
 import ViewBranch from "./components/Cinema_Admin/Cinema/ViewBranch";
 import CreateCategory from "./components/Cinema_Admin/Category/CreateCategory";
 import Category from "./components/Cinema_Admin/CinemaCategory/Category";
+import CreateLocation from "./components/Website-Admin/CreateLocation";
+import ViewLocation from "./components/Website-Admin/ViewLocation";
 
 function App() {
   return (
@@ -140,6 +142,8 @@ function App() {
             element={<SingleMovie />}
           />
           <Route path="/web-users" element={<Users />} />
+          <Route path="/web-create-location" element={<CreateLocation/>} />
+          <Route path="/web-view-location" element={<ViewLocation/>} />
         </Routes>
       </BrowserRouter>
     </div>

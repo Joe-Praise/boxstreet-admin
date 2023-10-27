@@ -39,7 +39,10 @@ function SignUp() {
             <p className="reg-sub-text">
               To keep connected with us, please login with your personal info
             </p>
-            <Link to="/signin" className="reg-button ghost">Sign In</Link> {/* Use Link instead of button for navigation */}
+            <Link to="/signin" className="reg-button ghost">
+              Sign In
+            </Link>{" "}
+            {/* Use Link instead of button for navigation */}
           </div>
           <div className="overlay-panel overlay-right">
             <h1 className="reg-text">Management Login</h1>
@@ -78,10 +81,13 @@ function SignInForm({
 
     const admin = {
       email: "web@gmail.com",
-      password: "admin123"
-    }
+      password: "admin123",
+    };
 
-    if (formData.email === admin.email && formData.password === admin.password) {
+    if (
+      formData.email === admin.email &&
+      formData.password === admin.password
+    ) {
       navigate("/web-admin");
     } else {
       try {
@@ -96,7 +102,7 @@ function SignInForm({
           setLoading(false);
           let info = response.data?.data;
 
-          localStorage.setItem("branch_id", info.branch_id);
+          localStorage.setItem("branch_id", info?.branch_id);
           localStorage.setItem("branch", info.branch_id?.location_id?.name);
           localStorage.setItem("cinema_id", info.cinema_id?._id);
           localStorage.setItem("cinema", info.cinema_id?.name);
@@ -179,4 +185,3 @@ function SignInForm({
 }
 
 export default SignUp;
-

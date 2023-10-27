@@ -134,7 +134,7 @@ function AddUser() {
                 <div className="error-message">{formErrors.fullname}</div>
               )}
             </div>
-            <div className="addcounterform-group">
+            {/* <div className="addcounterform-group">
               <label htmlFor="">Role:</label>
               <span></span>
               <input
@@ -148,7 +148,7 @@ function AddUser() {
               {formErrors.role && (
                 <div className="error-message">{formErrors.role}</div>
               )}
-            </div>
+            </div> */}
           </div>
           <div className="addcounterformnameflex">
             <div className="addtheaaterform-group">
