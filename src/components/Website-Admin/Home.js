@@ -15,7 +15,8 @@ import scree from "../uploads/screen.jpg";
 import seat from "../uploads/theater.jpg";
 import user from "../uploads/users.png";
 import branch from "../uploads/branch.png";
-import movie from "../uploads/movie-time-hey-im-with-the-band-blog.png"
+import movie from "../uploads/movie-time-hey-im-with-the-band-blog.png";
+import lo from "../uploads/—Pngtree—vector location icon free and_8490246.png"
 
 function Home() {
   const [summary, setSummary] = useState({});
@@ -92,6 +93,11 @@ function Home() {
               <img className="image" src={movie} alt="" />
               <h3 className="box-h3">MOVIE_SCHEDULE</h3>
               <p className="box-p">{summary.movie_schedule}</p>
+            </div>
+            <div className="box effect7">
+              <img className="image" src={lo} alt="" />
+              <h3 className="box-h3">LOCATIONS</h3>
+              <p className="box-p">{summary.location}</p>
             </div>
             <div className="box effect7">
               <img className="image" src={Mov} alt="" />

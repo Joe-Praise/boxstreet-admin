@@ -57,7 +57,7 @@ const handleUpdate = async()=>{
                     <div className="cinema-branch-texts">
                       
                         <div className="cinema-branch-text">
-                            <p>Opening</p>
+                            <h3>Opening</h3>
                             {updatemode ? <input
                                 className="edit-input-box3"
                                 type="text"
@@ -73,7 +73,7 @@ const handleUpdate = async()=>{
                         </div>
 
                         <div className="cinema-branch-text">
-                            <p>Closing</p>
+                            <h3>Closing</h3>
 
                             {updatemode ? <input
                                 className="edit-input-box4"
@@ -89,7 +89,7 @@ const handleUpdate = async()=>{
 
                         </div>
                         <div className="cinema-branch-text">
-                            <p>Phone</p>
+                            <h3>Phone</h3>
                             {updatemode ? <input
                                 className="edit-input-box5"
                                 type="text"

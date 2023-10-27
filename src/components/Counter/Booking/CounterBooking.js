@@ -112,33 +112,33 @@ function CounterBooking() {
     return Object.keys(errors).length === 0;
   };
 
-  // useEffect(() => {
-  //   let theater_url = `${BASE_URL}/api/v1/theaters?branch_id=${branch_id}`;
-  //   let movie_schedule_url = `${BASE_URL}/api/v1/movieschedule/${id}`;
+  useEffect(() => {
+    let theater_url = `${BASE_URL}/api/v1/theaters?branch_id=${branch_id}`;
+    let movie_schedule_url = `${BASE_URL}/api/v1/movieschedule/${id}`;
 
-  //   axios.get(movie_schedule_url).then((res) => {
-  //     let data = res.data.data;
+    axios.get(movie_schedule_url).then((res) => {
+      let data = res.data.data;
 
-  //     let info = data.show_time?.map((e, i) => ({
-  //       id: i + 1,
-  //       value: e,
-  //     }));
+      let info = data.show_time?.map((e, i) => ({
+        id: i + 1,
+        value: e,
+      }));
 
-  //     setFilter(filterTime(data.show_time));
-  //     setShowTime([...info]);
-  //     setSchedule(data);
-  //   });
+      setFilter(filterTime(data.show_time));
+      setShowTime([...info]);
+      setSchedule(data);
+    });
 
-  //   axios.get(theater_url).then((res) => {
-  //     let data = res.data;
-  //     let info = data?.map((t) => ({
-  //       id: t._id,
-  //       name: t?.name,
-  //     }));
+    axios.get(theater_url).then((res) => {
+      let data = res.data;
+      let info = data?.map((t) => ({
+        id: t._id,
+        name: t?.name,
+      }));
 
-  //     setTheaterListing([...info]);
-  //   });
-  // }, []);
+      setTheaterListing([...info]);
+    });
+  }, []);
 
   const paymentMethodOptions = [
     {

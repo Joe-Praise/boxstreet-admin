@@ -16,14 +16,17 @@ let BASE_URL = MODE === "PROD" ? ONLINE : LOCAL;
 function AddTheaterAdmin() {
   const navigate = useNavigate();
   let cinema_id = localStorage.getItem("cinema_id")
-  console.log(cinema_id)
+  const generateCode = () => {
+    return Math.random().toString("32").substring(2,10);
+  };
+
   const [formData, setFormData] = useState({
     cinema_id,
     fullname: "",
     role: "",
     email: "",
     phone: "",
-    password: "",
+    password: generateCode(),
   });
   const [cinemaData, setCinemaData] = useState([]);
   const [branchData, setBranchData] = useState([]);
@@ -31,6 +34,8 @@ function AddTheaterAdmin() {
   const [isSignUpSuccess, setIsSignUpSuccess] = useState(false);
   const [formErrorMessage, setFormErrorMessage] = useState("");
   const [role, setRole] = useState("");
+
+
   const validateForm = () => {
     const errors = {};
 
@@ -196,7 +201,7 @@ let branch_url = `${BASE_URL}/api/v1/branches?cinema_id=${cinema_id}`
                 <option value="">Select Branch</option>
                 {branchData?.map((branch) => (
                   <option key={branch._id} value={branch._id}>
-                    {branch.location_id.name}
+                    {branch.location_id.name}-{branch.name}
                   </option>
                 ))}
               </select>
@@ -229,7 +234,7 @@ let branch_url = `${BASE_URL}/api/v1/branches?cinema_id=${cinema_id}`
             <label htmlFor="">Password:</label>
             <span></span>
             <input
-              type="password"
+              type="text"
               name="password"
               className="inputs"
               value={formData.password}
