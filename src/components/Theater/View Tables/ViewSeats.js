@@ -25,6 +25,8 @@ function ViewSeats() {
   
     const [seatTable, setSeatTable] = useState([]);
     const { id } = useParams();
+
+    console.log(seatTable)
   
     useEffect(() => {
       let seat_url = `${BASE_URL}/api/v1/seats?theater_id=${id}`;
@@ -36,6 +38,8 @@ function ViewSeats() {
           let data = seats?.map((seat) => {
             return {
               id: seat._id,
+              category_id: seat.category_id.name,
+              price: seat.category_id.price,
               name: seat.seat_number,
               position: seat.position,
               row: seat.row,
@@ -114,6 +118,8 @@ function ViewSeats() {
               <tr className="vt-table-header">
                 <th>S/N</th>
                 <th>Seat Name</th>
+                <th>Category</th>
+                <th>Price</th>
                 <th>Position</th>
                 <th>Row</th>
                 <th>Booked</th>
@@ -126,6 +132,8 @@ function ViewSeats() {
                 <tr key={seat.id}>
                   <td>{index + 1}</td>
                   <td>{seat.name}</td>
+                  <td>{seat.category_id}</td>
+                  <td>{seat.price}</td>
                   <td>{seat.position}</td>
                   <td>{seat.row}</td>
                   <td>{seat.is_booked}</td>

@@ -38,13 +38,13 @@
   width: 20px;
   height: 20px;
   border-radius: 50%;
-  background-color: #00d0ff;
+  background-color: #1C94D2;
 }
 .vs-seat-regular {
   width: 20px;
   height: 20px;
   border-radius: 50%;
-  background-color: #555;
+  background-color: #ec167f;
 }
 .vs-container-col1 {
     margin-top: 150px;
@@ -74,7 +74,7 @@
 }
 
 .vs-box1 {
-  rotate: 180deg;
+  /* rotate: 180deg; */
   margin-top: 20px;
 }
 
@@ -112,6 +112,10 @@
   position: relative;
   left: 8px;
   top: 9px;
+}
+
+.vs-box2{
+  margin-top: -45px;
 }
 
 .vs-box2 .vs-col1p span.active {

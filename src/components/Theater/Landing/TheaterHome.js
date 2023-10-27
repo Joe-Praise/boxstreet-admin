@@ -137,7 +137,6 @@ function TheaterHome() {
               </Link>
               <div className="tmovieInfo">
                 <div className="cardDetails">
-                  <p>{movie.showingtime}</p>
                   <h3>{movie.title}</h3>
                   <span>{movie.genre}</span>
                   <p>{movie.description}</p>
