@@ -46,7 +46,7 @@
     }
     .view-branch-edit{
         background-color: #00a2ff;
-    width: 50px;
+    
       color: #fff; 
       cursor: pointer;
     }
@@ -56,5 +56,9 @@
        width: 80px;
        color: #fff;
        cursor: pointer;
+    }
+    .table-edit-link{
+        width: 100%;
+        text-decoration: none;
     }
     

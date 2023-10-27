@@ -12,12 +12,16 @@
 }
 .cinema-branch-card{
     width: 76%;
-    height: 550px;
+    height: 350px;
     border: 1px solid gray;
     border-radius: 10px;
 }
 .cinema-branch-texts{
     padding: 30px;
+}
+
+.cinema-branch-text input{
+    padding: 10px;
 }
 .cinema-branch-text p{
     font-size: 20px;

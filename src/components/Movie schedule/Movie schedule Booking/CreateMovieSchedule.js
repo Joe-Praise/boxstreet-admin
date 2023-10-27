@@ -12,8 +12,8 @@ let ONLINE = "https://boxstreet.onrender.com";
 let BASE_URL = MODE === "PROD" ? ONLINE : LOCAL;
 
 function MovieScheduleBooking() {
-  let branch_id = localStorage.getItem("branch_id")
-  let cinema_id = localStorage.getItem("cinema_id")
+  let branch_id = localStorage.getItem("branch_id");
+  let cinema_id = localStorage.getItem("cinema_id");
 
   const [value, onChange] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -40,13 +40,12 @@ function MovieScheduleBooking() {
       let info = res.data.data;
       let movieinfo = info?.map((e) => ({
         id: e._id,
-        name: e.name
+        name: e.name,
       }));
-      console.log(info)
+      console.log(info);
       setMovies([...movieinfo]);
     });
   }, []);
-
 
   useEffect(() => {
     if (!preview.previewFile) return;
@@ -108,22 +107,61 @@ function MovieScheduleBooking() {
   const handleFormSubmittion = (e) => {
     e.preventDefault();
 
+    console.log(formInfo)
+
     axios
-    .post(`${BASE_URL}/api/v1/movieschedule`, formInfo)
-    .then((res) => {
-      if(res.data){
-        alert("Movie has been scheduled");
-      }
-    })
-    .catch((err) => {
-      console.error("Error in scheduling this movie:", err)
-    })
+      .post(`${BASE_URL}/api/v1/movieschedule`, formInfo)
+      .then((res) => {
+        if (res.data) {
+          alert("Movie has been scheduled");
+        }
+      })
+      .catch((err) => {
+        console.error("Error in scheduling this movie:", err);
+      });
 
     setIsLoading(true);
     setTimeout(() => {
       setIsLoading(false);
     }, 1000);
   };
+
+  const [cinemaName, setCinemaName] = useState("");
+  useEffect(() => {
+    const cinemaUrl = `${BASE_URL}/api/v1/cinemas/${cinema_id}`;
+
+    axios
+      .get(cinemaUrl)
+      .then((res) => {
+        const cinemaData = res.data;
+        if (cinemaData) {
+          setCinemaName(cinemaData.name);
+        }
+        console.log(cinemaData);
+      })
+      .catch((err) => {
+        console.error("Error fetching cinema name:", err);
+      });
+  }, [cinema_id]);
+
+  const [branchName, setBranchName] = useState("");
+
+  useEffect(() => {
+    const branchUrl = `${BASE_URL}/api/v1/branches/${branch_id}`;
+
+    axios
+      .get(branchUrl)
+      .then((res) => {
+        const branchData = res.data;
+        if (branchData) {
+          setBranchName(branchData?.location_id?.name);
+        }
+        console.log(branchName);
+      })
+      .catch((err) => {
+        console.error("Error fetching branch name:", err);
+      });
+  }, [branch_id]);
 
   return (
     <div className="movieschedule-Booking ">
@@ -135,8 +173,24 @@ function MovieScheduleBooking() {
               Create Movie Schedule
               <p>Double click on the date picker container to choose a date</p>
             </legend>
+              <div className="addtheaaterform-group">
+                <label htmlFor="movie_id">Movie</label>
+                {/* <input type="text" id="movie_id" name="movie_id" /> */}
+                <select
+                  name="movie_id"
+                  id="movie_id"
+                  onChange={inputChangeHandler}
+                >
+                  <option value="">Select a movie</option>
+                  {movies.map((e) => (
+                    <option key={e.id} value={e.id}>
+                      {e.name}
+                    </option>
+                  ))}
+                </select>
+              </div>
             <div className="movieScheduleFormInputContainer">
-              <div className="formGroup">
+              <div className="addtheaaterform-group">
                 <label htmlFor="show_time">Show time</label>
                 <input
                   type="datetime-local"
@@ -147,7 +201,7 @@ function MovieScheduleBooking() {
                   onDoubleClick={() => handleMultiDates(value)}
                 />
               </div>
-              <div className="formGroup">
+              <div className="addtheaaterform-group">
                 <label htmlFor="price" name="price">
                   Price
                 </label>
@@ -158,63 +212,6 @@ function MovieScheduleBooking() {
                   onChange={inputChangeHandler}
                 />
               </div>
-              <div className="formGroup">
-                <label htmlFor="cinema_id">Cinema</label>
-                <input
-                  type="text"
-                  id="cinema_id"
-                  name="cinema_id"
-                  value={"Genesis Cinema"}
-                  disabled
-                  onChange={inputChangeHandler}
-                />
-              </div>
-              <div className="formGroup">
-                <label htmlFor="branch_id">Branch</label>
-                <input
-                  type="text"
-                  id="branch_id"
-                  name="branch_id"
-                  value={"Jabi"}
-                  disabled
-                  onChange={inputChangeHandler}
-                />
-              </div>
-              <div className="formGroup">
-                <label htmlFor="movie_id">Movie</label>
-                {/* <input type="text" id="movie_id" name="movie_id" /> */}
-                <select
-                  name="movie_id"
-                  id="movie_id"
-                  onChange={inputChangeHandler}
-                >
-                  <option value="">Select a movie</option>
-                  {movies.map((e) => (
-                    <option key={e.id} value={e._id}>
-                      {e.name}
-                    </option>
-                  ))}
-                </select>
-              </div>
-              {/* <div className="formGroup">
-                <label htmlFor="image" className="image">
-                  {" "}
-                  <FcAddImage className="uploadImg" />{" "}
-                </label>
-                <input
-                  type="file"
-                  id="image"
-                  name="image"
-                  multiple
-                  onChange={inputChangeHandler}
-                />
-              </div> */}
-            </div>
-
-            <div className="movieScheduleFormBtnContainer">
-              <button onClick={handleFormSubmittion}>
-                {!isLoading ? "Create Schedule" : "Creating..."}
-              </button>
             </div>
             <div>
               <DisplayMovieScheduleInfo
@@ -222,7 +219,12 @@ function MovieScheduleBooking() {
                 formInfo={formInfo}
                 onSetFormInfo={setFormInfo}
               />
-              {/* <img src={preview.preview} alt="" /> */}
+            </div>
+
+            <div className="movieScheduleFormBtnContainer">
+              <button onClick={handleFormSubmittion}>
+                {!isLoading ? "Create Schedule" : "Creating..."}
+              </button>
             </div>
           </form>
         </div>

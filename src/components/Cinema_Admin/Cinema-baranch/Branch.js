@@ -29,8 +29,25 @@ axios.get(branch_url)
    console.log(data._id)
    localStorage.setItem("mybranch_id", data._id)
    setBranch(data)
+   setOpening(data.opening)
+   setClosing(data.closing)
+   setPhones(data.phones)
 })
 },[id])
+
+const handleUpdate = async()=>{
+    try {
+    let branch_url =`${BASE_URL}/api/v1/branches/${id}` 
+    await axios.put(branch_url,{
+      opening,
+      closing,
+      phones  
+    })
+
+    } catch (error) {
+       console.log(error) 
+    }
+}
     return (
         <div className="cinema-branch-container">
             <Topnav />
@@ -38,36 +55,15 @@ axios.get(branch_url)
 
                 <div className="cinema-branch-card">
                     <div className="cinema-branch-texts">
-                        <div className="cinema-branch-text">
-                            <p>Cinema</p>
-                            {updatemode ? <input
-                                className="edit-input-box1"
-                                type="text"
-                            /> : (
-                                <span className="cinema-branch-text-span1">{branch?.cinema_id.name}</span>
-                            )
-
-                            }
-
-                        </div>
-                        <div className="cinema-branch-text">
-                            <p>Branch</p>
-
-                            {updatemode ? <input
-                                className="edit-input-box2"
-                                type="text"
-                            /> : (
-                                <span className="cinema-branch-text-span2">{branch?.location_id.name}</span>
-                            )
-
-                            }
-
-                        </div>
+                      
                         <div className="cinema-branch-text">
                             <p>Opening</p>
                             {updatemode ? <input
                                 className="edit-input-box3"
                                 type="text"
+                                name="opening"
+                                value={opening}
+                                onChange={(e)=>setOpening(e.target.value)}
                             /> : (
                                 <span className="cinema-branch-text-span3">{branch?.opening}</span>
                             )
@@ -82,6 +78,9 @@ axios.get(branch_url)
                             {updatemode ? <input
                                 className="edit-input-box4"
                                 type="text"
+                                name="closing"
+                                value={closing}
+                                onChange={(e)=>setClosing(e.target.value)}
                             /> : (
                                 <span className="cinema-branch-text-span4">{branch?.closing}</span>
                             )
@@ -94,6 +93,9 @@ axios.get(branch_url)
                             {updatemode ? <input
                                 className="edit-input-box5"
                                 type="text"
+                                name="phones"
+                                value={phones}
+                                onChange={(e)=>setPhones(e.target.value)}
                             /> : (
                                 <span className="cinema-branch-text-span5">{branch?.phones}</span>
                             )
@@ -103,7 +105,7 @@ axios.get(branch_url)
                         </div>
                         {updatemode && (
                             <div className="cinema-branch-update-btn">
-                                <button>UPDATE BRANCH</button>
+                                <button onClick={handleUpdate}>UPDATE BRANCH</button>
                             </div>
                         )
 
@@ -115,10 +117,7 @@ axios.get(branch_url)
                             </div>
 
                             }
-                            {updatemode ? ("") : <div className="cinema-branch-deletebtn">
-                                <button>Delete</button>
-                            </div>}
-
+                           
                         </div>
                     </div>
 

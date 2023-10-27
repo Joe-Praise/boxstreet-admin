@@ -1,0 +1,185 @@
+.vs-layer{
+    height: 100vh;
+}
+
+.vs-main{
+    margin-left: 275px;
+}
+
+.vs-container {
+    width: 80%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+}
+
+.vs-container-seat {
+  margin-top: 100px;
+  padding: 100px;
+  color: #000;
+}
+.vs-seat-side {
+  display: flex;
+  gap: 10px;
+  margin-top: 50px;
+}
+.vs-seat-side p {
+  font-size: 20px;
+  font-weight: 400;
+  color: #000;
+}
+.vs-seat-vvip {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: goldenrod   ;
+}
+.vs-seat-vip {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: #00d0ff;
+}
+.vs-seat-regular {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: #555;
+}
+.vs-container-col1 {
+    margin-top: 150px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.vs-header-text {
+  margin-bottom: 30px;
+  color: #000;
+  line-height: 20px;
+}
+
+.vs-choose-seat-text {
+  color: #000;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.vs-main-boxx {
+    width: 100%;
+    margin-top: -50px;
+  display: flex;
+  gap: 50px;
+  align-items: center;
+}
+
+.vs-box1 {
+  rotate: 180deg;
+  margin-top: 20px;
+}
+
+.vs-box1-col1 {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.vs-box1-col1 .vs-col1p {
+  width: 40px;
+  height: 40px;
+  border: 1px solid gray;
+  background: #999;
+  border-radius: 14px;
+}
+
+.vs-box1 .vs-col1p span.active {
+  width: 20px;
+  height: 20px;
+  display: block;
+  background-color: #4ab1b3;
+  border-radius: 10px;
+  position: relative;
+  left: 8px;
+  top: 9px;
+}
+
+.vs-box1 .vs-col1p i {
+  width: 20px;
+  height: 20px;
+  display: block;
+  background-color: #4ab1b3;
+  border-radius: 10px;
+  position: relative;
+  left: 8px;
+  top: 9px;
+}
+
+.vs-box2 .vs-col1p span.active {
+  width: 20px;
+  height: 20px;
+  display: block;
+  background-color: #4ab1b3;
+  border-radius: 10px;
+  position: relative;
+  left: 9px;
+  top: 9px;
+}
+
+.vs-box2 .vs-col1p i.vvip {
+  width: 9px;
+  height: 9px;
+  display: block;
+  background-color: yellow;
+  border-radius: 10px;
+  position: relative;
+  left: 32px;
+  top: 0px;
+}
+
+.vs-box2 .vs-col1p i.vs-vip {
+  width: 9px;
+  height: 9px;
+  display: block;
+  background-color: blue;
+  border-radius: 10px;
+  position: relative;
+  left: 32px;
+  top: 0px;
+}
+
+.vs-box2 .vs-col1p i.vs-regular {
+  width: 9px;
+  height: 9px;
+  display: block;
+  background-color: #555;
+  border-radius: 10px;
+  position: relative;
+  left: 32px;
+  top: 0px;
+}
+
+.vs-line{
+  width: 100%;
+  height: 100px;
+  border: solid 7px #65f8fa;
+  border-color: #65f8fa transparent transparent;
+  border-radius: 60%;
+  box-shadow: 0px 156px 153px -67px #65f8fa;
+}
+
+.vs-booking-total {
+    width: 100%;
+    margin-top: 20px;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+.vs-booking-totalh {
+  color: #747272;
+}
+
+.vs-booking-totalp {
+  color: #000;
+  font-size: 20px;
+  font-weight: 700;
+}
