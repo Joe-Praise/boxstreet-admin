@@ -1,8 +1,28 @@
 import React from "react";
 import "../stylesTheater/theatersidenav.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
+import config from "../../config";
 
 function TheaterSideNav() {
+  const navigate = useNavigate();
+
+  const LogOut = () => {
+    axios
+      .post(config.MGT_BASE_URL + "/logOut", {})
+      .then((response) => {
+        const data = response.data;
+        console.log(data);
+        if (data === "LogOut Successful") {
+          navigate("/");
+        } else {
+          navigate("/theater");
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
   return (
     <div className="theaterSideNav">
       <div className="theatersideNav">
@@ -13,7 +33,7 @@ function TheaterSideNav() {
           <Link className="theatersideNavLinks" to="/theater/view-theaters">
             <li>VIEW THEATERS</li>
           </Link>
-          
+
           <Link className="theatersideNavLinks" to="/theater/new-theater">
             <li>ADD THEATER</li>
           </Link>
@@ -30,10 +50,12 @@ function TheaterSideNav() {
             <li>ADD MOVIE</li>
           </Link>
 
-          <Link className="theatersideNavLinks" to="/theater/movieschedulelisting">
+          <Link
+            className="theatersideNavLinks"
+            to="/theater/movieschedulelisting"
+          >
             <li>VIEW SCHEDULES</li>
           </Link>
-
 
           <Link className="theatersideNavLinks" to="/theater/movieschedule">
             <li>CREATE SCHEDULE</li>
@@ -42,6 +64,10 @@ function TheaterSideNav() {
           <Link className="theatersideNavLinks" to="/theater/profile">
             <li>PROFILE</li>
           </Link>
+
+          <li className="exist" onClick={LogOut}>
+            LOGOUT
+          </li>
         </ul>
       </div>
     </div>

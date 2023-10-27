@@ -96,7 +96,6 @@ let BASE_URL = MODE === "PROD" ? ONLINE : LOCAL;
           <h2>Add a seat</h2>
           <div className="addtheaaterform-group">
             <label htmlFor="name">Theater name:</label>
-
             <select
               className="inputs"
               name="theater_id"

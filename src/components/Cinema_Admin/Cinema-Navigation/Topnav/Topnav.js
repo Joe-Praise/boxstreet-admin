@@ -6,7 +6,7 @@ import "./topnav.css"
 import { Link } from "react-router-dom";
 
 function Topnav() {
-  let username = localStorage.getItem("username")
+  let username = localStorage.getItem("fullname")
   console.log(username)
   return (
     <header>
@@ -20,7 +20,7 @@ function Topnav() {
           <div>
             <ul className="navlinks">
               <Link to="/" className="textdecor">
-                <li className="bsColour">{ `Welcome-${username}`}</li>
+                <li className="bsColour">{ "Welcome" + "-" + username}</li>
               </Link>
             </ul>
           </div>

@@ -10,7 +10,10 @@ let BASE_URL = MODE === "PROD" ? ONLINE : LOCAL;
 
 function CinemaProfile(){
     const [updatemode, setUpdatemode] = useState(false);
-    
+    const [cinemaAdmin, setCinemaAdmin]= useState("");
+    useEffect(()=>{
+        // let cinema_url = `${BASE_URL}/api/v1/theaters?role=${}`
+    })
     return(
         <div className="cinema-branch-container">
             <Topnav />
@@ -24,7 +27,7 @@ function CinemaProfile(){
                     <div className="cinema-branch-texts">
                       
                         <div className="cinema-branch-text">
-                            <p>Opening</p>
+                            <h3>Opening</h3>
                             {updatemode ? <input
                                 className="edit-input-box3"
                                 type="text"
@@ -40,7 +43,7 @@ function CinemaProfile(){
                         </div>
 
                         <div className="cinema-branch-text">
-                            <p>Closing</p>
+                            <h3>Closing</h3>
 
                             {updatemode ? <input
                                 className="edit-input-box4"
@@ -56,7 +59,7 @@ function CinemaProfile(){
 
                         </div>
                         <div className="cinema-branch-text">
-                            <p>Phone</p>
+                            <h3>Phone</h3>
                             {updatemode ? <input
                                 className="edit-input-box5"
                                 type="text"
@@ -64,7 +67,7 @@ function CinemaProfile(){
                                 // value={phones}
                                 // onChange={(e)=>setPhones(e.target.value)}
                             /> : (
-                                <span className="cinema-branch-text-span5">Name</span>
+                                <span className="cinema-branch-text-span5">Phone</span>
                             )
 
                             }

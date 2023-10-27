@@ -79,7 +79,7 @@
     font-size: 0.9rem;
     color: #555;
     display: -webkit-box;
-    -webkit-line-clamp: 2;
+    -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -101,7 +101,6 @@
     visibility: hidden;
     display: flex;
     gap: 10px;
-    justify-content: space-between;
     justify-content: center;
     align-items: center;
     transition: ease-in-out 1s;

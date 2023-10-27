@@ -11,15 +11,35 @@ let BASE_URL = MODE === "PROD" ? ONLINE : LOCAL;
 function Dashboardc(){
     // let username = localStorage.getItem("username")
     // console.log(username)
-    const [branches, setBranches]= useState([])
+    const branch_id = localStorage.getItem("branch_id");
+    const cinema_id = localStorage.getItem("cinema_id");
+    const [cinemas, setCinemas]= useState([]);
+    const [theaters1, setTheaters1]= useState([]);
+    const [theaters2, setTheaters2]= useState([]);
+    const [branches, setBranches]= useState([]);
     useEffect(()=>{
-        let branch_url =`${BASE_URL}/api/v1/branches`
+        let branch_url =`${BASE_URL}/api/v1/branches`;
+        let theater1_url =`${BASE_URL}/api/v1/theaters?cinema_id=${cinema_id}`;
+        let theater2_url =`${BASE_URL}/api/v1/theaters?branch_id=${branch_id}`;
         axios.get(branch_url)
         .then((res)=>{
            let data =res?.data;
            console.log(data.length)
            setBranches(data)
         })
+    axios.get(theater1_url)
+    .then((res)=>{
+        let data =res?.data
+        console.log(data.length)
+        setTheaters1(data)
+    });
+
+    axios.get(theater2_url)
+    .then((res)=>{
+        let data =res?.data
+        console.log(data.length)
+        setTheaters2(data)
+    })
         },[])
     return(
         <div className="cinema-dash-container">
@@ -36,7 +56,7 @@ function Dashboardc(){
                 </div>
                 <div className="cinema-dash-col">
                     <h4>Theater</h4>
-                    <span>4</span>
+                    <span>{theaters1.length}</span>
                 </div>
                 <div className="cinema-dash-col">
                     <h4>Counters</h4>
