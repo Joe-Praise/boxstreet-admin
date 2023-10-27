@@ -1,9 +1,12 @@
 import React from 'react'
 import TheaterSideNav from './TheaterSideNav'
-import logo from '../../uploads/FHC LOGO.png'
+import logo from '../../uploads/Screenshot__335_-removebg-preview (1).png'
 import { Link } from 'react-router-dom'
 
 function TheaterNav() {
+  const fullname = localStorage.getItem("fullname");
+  const cinema = localStorage.getItem("cinema");
+
   return (
     <header>
       <div className="navHead">
@@ -16,16 +19,15 @@ function TheaterNav() {
           <div>
             <ul className="navlinks">
               <Link to="/theater-admin" className="textdecor">
-                <li className="bsColour">THEATER LISTINGS</li>
+                <li className="bsColour">{"Theater Admin - " + cinema}</li>
               </Link>
             </ul>
           </div>
           <div>
             <ul className="navlinks">
                 <Link to='/theater-admin/profile' className='textnone'>
-                    <li className="from-left-and-back">BOOKING HISTORY</li>
+                    <li className="from-left-and-back">Welcome, {fullname}</li>
                 </Link>
-              <li className="from-left-and-back">SIGN IN</li>
             </ul>
           </div>
         </nav>

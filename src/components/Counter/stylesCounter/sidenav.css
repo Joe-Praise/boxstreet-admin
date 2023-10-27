@@ -1,5 +1,5 @@
 .sideNav{
-    width: 18%;
+    width: 17%;
     height: 100vh;
     position: fixed;
     top: 80px;
@@ -7,7 +7,7 @@
     /* background-color: #8ca0b1; */
     /* background-color: #a7bbcb; */
     /* background-color: #24344d; */
-    padding: 50px 20px;
+    padding: 30px 20px;
 }
 
 .sideNav ul {
@@ -19,7 +19,7 @@
 }
 
 .sideNavLinks li{
-    font-size: 1rem;
+    font-size: 0.75rem;
     margin: 20px 10px;
     padding: 10px 15px;
     /* border: 0.5px solid #ffffff; */
