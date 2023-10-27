@@ -39,10 +39,6 @@ function TheaterSideNav() {
             <li>CREATE SCHEDULE</li>
           </Link>
 
-          <Link className="theatersideNavLinks" to="/theater/add-counter">
-            <li>REGISTER COUNTER</li>
-          </Link>
-
           <Link className="theatersideNavLinks" to="/theater/profile">
             <li>PROFILE</li>
           </Link>
