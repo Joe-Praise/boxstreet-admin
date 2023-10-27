@@ -10,13 +10,11 @@ function SideNav() {
   const LogOut = () => {
     axios
       .post(config.MGT_BASE_URL + "/logOut", {
-        // You can send any additional data in the request body if needed
       })
       .then((response) => {
         const data = response.data;
         console.log(data);
         if (data === "LogOut Successful") {
-          // Assuming the server returns "LogOut Successful" on successful logout
           navigate("/");
         } else {
           navigate("/admin-web");

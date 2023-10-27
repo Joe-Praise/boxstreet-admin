@@ -32,7 +32,6 @@ function Cinemas() {
   const closeModal = () => {
     setShowModal(false);
   };
-  
 
   // Fetch cinema data based on the ID parameter
   const handleFindCinemas = () => {
@@ -65,6 +64,7 @@ function Cinemas() {
       email: cinema.email,
       phone: cinema.phone,
     });
+
   };
 
   // Handle input changes for editing cinema data
@@ -83,13 +83,12 @@ function Cinemas() {
       .put(editUrl, editedCinemaData)
       .then((response) => {
         console.log("Cinema data updated:", response.data);
-
-        let data = response.data.data;
-        let _cinemas = [...cinemas];
-        let d = _cinemas.find((x) => x._id == data._id);
-        d = { ...d, ...data };
-
-        setCinemas(_cinemas);
+        let data = response.data
+        let _cinemas = [...cinemas]
+        let d = _cinemas.find(x=>x._id == data._id)
+         d = {...d,...data}
+        
+        setCinemas(_cinemas)
         //editedCinemaData
         setEditedCinemaData({
           _id: "",
@@ -144,7 +143,7 @@ function Cinemas() {
 
   useEffect(() => {
     // Assuming this effect runs when showModal and editedCinema change
-    if (showModal && editedCinema) {
+    if (showModal && branches) {
       axios
         .get(config.BRANCH_BASE_URL)
         .then((result) => {
@@ -152,7 +151,7 @@ function Cinemas() {
           setBranches(result.data);
           // Filter branches for the selected cinema
           const cinemaBranches = result.data.filter(
-            (branch) => branch.location_name === editedCinema.name
+            (branch) => branch.location_name === branches.name
           );
           setSelectedCinemaBranches(cinemaBranches);
           console.log(cinemaBranches);
@@ -161,7 +160,7 @@ function Cinemas() {
           console.error("Error fetching branch data:", error); // Log any errors
         });
     }
-  }, [showModal, editedCinema]);
+  }, [showModal, branches]);
 
   return (
     <div className="counterBooking">
