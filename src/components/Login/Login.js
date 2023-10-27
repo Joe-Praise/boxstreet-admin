@@ -101,7 +101,7 @@ function SignInForm({
         
           let info = response.data?.data;
          
-          localStorage.setItem("branch_id", info.branch_id._id);
+          localStorage.setItem("branch_id", info.branch_id?._id);
           localStorage.setItem("branch", info.branch_id?.location_id?.name);
           localStorage.setItem("cinema_id", info.cinema_id?._id);
           localStorage.setItem("cinema", info.cinema_id?.name);
