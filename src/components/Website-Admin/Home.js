@@ -35,78 +35,78 @@ function Home() {
       <div className="web-cinema">
         <div className="web-cinema-page">
           <div className="dash-intro">
-            <h3>DASHBOARD SUMMARY</h3>
+            <h3 className="dash-intro"> SUMMARY</h3>
           </div>
           <div className="web-archive-top">
             <div className="box effect7">
               <img className="image" src={Nema} alt="" />
-              <h3>CINEMAS</h3>
-              <p>{summary.cinemas}</p>
+              <h3 className="box-h3">CINEMAS</h3>
+              <p className="box-p">{summary.cinemas}</p>
             </div>
             <div className="box effect7">
               <img className="image" src={Ad} alt="" />
-              <h3>ADMINS</h3>
-              <p>{summary.cinema_admin}</p>
+              <h3 className="box-h3">ADMINS</h3>
+              <p className="box-p">{summary.cinema_admin}</p>
             </div>
             <div className="box effect7">
               <img className="image" src={Mov} alt="" />
-              <h3>MOVIES</h3>
-              <p>{summary.movie}</p>
+              <h3 className="box-h3">MOVIES</h3>
+              <p className="box-p">{summary.movie}</p>
             </div>
             <div className="box effect7">
               <img className="image" src={theater} alt="" />
-              <h3>THEATERS</h3>
-              <p>{summary.theaters}</p>
+              <h3 className="box-h3">THEATERS</h3>
+              <p className="box-p">{summary.theaters}</p>
             </div>
             <div className="box effect7">
               <img className="image" src={counter} alt="" />
-              <h3>COUNTERS</h3>
-              <p>{summary.counter_admin}</p>
+              <h3 className="box-h3">COUNTERS</h3>
+              <p className="box-p">{summary.counter_admin}</p>
             </div>
             <div className="box effect7">
               <img className="image" src={book} alt="" />
-              <h3>BOOKINGS</h3>
-              <p>{summary.bookings}</p>
+              <h3 className="box-h3">BOOKINGS</h3>
+              <p className="box-p">{summary.bookings}</p>
             </div>
             <div className="box effect7">
               <img className="image" src={scree} alt="" />
-              <h3>SCREENS</h3>
-              <p>{summary.screens}</p>
+              <h3 className="box-h3">SCREENS</h3>
+              <p className="box-p">{summary.screens}</p>
             </div>
             <div className="box effect7">
               <img className="image" src={seat} alt="" />
-              <h3>SEATS</h3>
-              <p>{summary.seat}</p>
+              <h3 className="box-h3">SEATS</h3>
+              <p className="box-p">{summary.seat}</p>
             </div>
             <div className="box effect7">
               <img className="image" src={user} alt="" />
-              <h3>SUBSCRIBERS</h3>
-              <p>{summary.users}</p>
+              <h3 className="box-h3">SUBSCRIBERS</h3>
+              <p className="box-p">{summary.users}</p>
             </div>
             <div className="box effect7">
               <img className="image" src={branch} alt="" />
-              <h3>BRANCHES</h3>
-              <p>{summary.branch}</p>
+              <h3 className="box-h3">BRANCHES</h3>
+              <p className="box-p">{summary.branch}</p>
             </div>
             <div className="box effect7">
               <img className="image" src={movie} alt="" />
-              <h3>MOVIE_SCHEDULE</h3>
-              <p>{summary.movie_schedule}</p>
+              <h3 className="box-h3">MOVIE_SCHEDULE</h3>
+              <p className="box-p">{summary.movie_schedule}</p>
             </div>
             <div className="box effect7">
               <img className="image" src={Mov} alt="" />
-              <h3>DAILY BOOKINGS</h3>
-              <p>{}</p>
+              <h3 className="box-h3">DAILY BOOKINGS</h3>
+              <p className="box-p">{}</p>
             </div>
             <div className="box effect7">
               <img className="image" src={Mov} alt="" />
-              <h3>WEEKLY BOOKINGS</h3>
-              <p>{}</p>
+              <h3 className="box-h3">WEEKLY BOOKINGS</h3>
+              <p className="box-p">{}</p>
             </div>
             <div className="box effect7">
               <img className="image" src={Mov} alt="" />
-              <h3>MONTHLY BOOKINGS</h3>
-              <p>{}</p>
+              <h3 className="box-h3">MONTHLY BOOKINGS</h3>
+              <p className="box-p">{}</p>
             </div>
           </div>
 

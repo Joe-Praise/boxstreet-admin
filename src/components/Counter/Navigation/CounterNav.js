@@ -5,6 +5,7 @@ import logo from "../../uploads/Screenshot__335_-removebg-preview (1).png";
 import { Link } from "react-router-dom";
 import SideNav from "./SideNav";
 import config from "../../config";
+import { FaUserAlt } from "react-icons/fa";
 
 function CounterNav() {
   const [managers, setManagers] = useState([]);
@@ -26,15 +27,17 @@ function CounterNav() {
           </div>
           <div>
             <ul className="navlinks">
-              <Link to="/" className="textdecor">
-                <li className="bsColour">Counter User - {cinema} - {location}</li>
+              <Link to="/counter/profile" className="textdecor">
+                <li className="bsColour">Counter User - {cinema}</li>
               </Link>
             </ul>
           </div>
           <div>
-            <ul className="navlinks">
-              <li className="from-left-and-back">Welcome back {fullname}</li>
-            </ul>
+            <Link className="navlinks">
+              <li className="from-left-and-back">Welcome back {fullname}
+              <FaUserAlt style={{fill:"#fff", marginLeft:"10px"}}/>
+              </li>
+            </Link>
           </div>
         </nav>
       </div>

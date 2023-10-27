@@ -1,6 +1,6 @@
 import "./account.css";
 import Topbar from "./Navigation/Acct-Topnav";
-function Account() {
+function BranchAcct() {
     return (
         <div className="account-main">
             <Topbar />
@@ -10,21 +10,22 @@ function Account() {
                     <thead>
                         <tr className="accoun-table-header">
                             <th>S/N</th>
-                            <th>Cinema</th>
                             <th>Branch</th>
-                            <th> Total Amount</th>
+                            <th>Theater</th>
+                            <th>Total Amount</th>
                             <th>Currency</th>
+                            <th>Booking Type</th>
                             <th>Date</th>
-
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
                             <td>1</td>
-                            <td>Suurmaville</td>
                             <td>Wuse</td>
+                            <td>theater</td>
                             <td>20000</td>
                             <td>NIGN</td>
+                            <td>onsite</td>
                             <td>21/10/23</td>
 
                         </tr>
@@ -35,4 +36,4 @@ function Account() {
         </div>
     )
 }
-export default Account
+export default BranchAcct

@@ -26,12 +26,9 @@ function SignUp() {
         <SignInForm
           formData={formData}
           setFormData={setFormData}
-          //   isSignUpSuccess={isSignUpSuccess}
           formErrorMessage={formErrorMessage}
           formErrors={formErrors}
           setFormErrors={setFormErrors}
-          //   setIsSignUpSuccess={setIsSignUpSuccess}
-          setFormErrorMessage={setFormErrorMessage}
         />
       </div>
       <div className="overlay-container">
@@ -42,12 +39,15 @@ function SignUp() {
             <p className="reg-sub-text">
               To keep connected with us, please login with your personal info
             </p>
-            <button className="reg-button ghost">Sign In</button>
+            <Link to="/signin" className="reg-button ghost">
+              Sign In
+            </Link>{" "}
+            {/* Use Link instead of button for navigation */}
           </div>
           <div className="overlay-panel overlay-right">
-            <h1 className="reg-text">Hello, Friend!</h1>
+            <h1 className="reg-text">Management Login</h1>
             <p className="reg-sub-text">
-              Enter your personal details and start your journey with us
+              Welcome to Boxstreet Team........ We're happy to have you here!
             </p>
           </div>
         </div>
@@ -66,6 +66,7 @@ function SignInForm({
   const navigate = useNavigate();
 
   const [loading, setLoading] = useState(false);
+
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -78,45 +79,55 @@ function SignInForm({
 
     setLoading(true);
 
-    try {
-      const response = await axios.post(
-        config.AUTH_REQUEST_URL + "/management-login",
-        formData
-      );
+    const admin = {
+      email: "web@gmail.com",
+      password: "admin123",
+    };
 
-      setLoading(false);
-      if (response?.data.status === "success") {
+    if (
+      formData.email === admin.email &&
+      formData.password === admin.password
+    ) {
+      navigate("/web-admin");
+    } else {
+      try {
+        const response = await axios.post(
+          config.AUTH_REQUEST_URL + "/management-login",
+          formData
+        );
+
         setLoading(false);
-        let info = response.data?.data;
+        if (response?.data.status === "status") {
+          setLoading(false);
+          let info = response.data?.data;
 
-        localStorage.setItem("branch_id", info.branch_id._id);
-        localStorage.setItem("branch", info.branch_id?.location_id?.name);
-        localStorage.setItem("cinema_id", info.cinema_id?._id);
-        localStorage.setItem("cinema", info.cinema_id?.name);
-        localStorage.setItem("user_id", info._id);
-        localStorage.setItem("fullname", info.fullname);
+          localStorage.setItem("branch_id", info.branch_id._id);
+          localStorage.setItem("branch", info.branch_id?.location_id?.name);
+          localStorage.setItem("cinema_id", info.cinema_id?._id);
+          localStorage.setItem("cinema", info.cinema_id?.name);
+          localStorage.setItem("user_id", info._id);
+          localStorage.setItem("fullname", info.fullname);
 
-        if (info.role === "COUNTER") {
-          navigate("/counter");
-        } else if (info.role === "THEATER") {
-          navigate("/theater");
-        } else if (info.role === "THEATER") {
-          navigate("/theater");
-        } else if (info.role === "CINEMA") {
-          navigate("/cinema");
+          if (info.role === "COUNTER") {
+            navigate("/counter");
+          } else if (info.role === "THEATER") {
+            navigate("/theater");
+          } else if (info.role === "CINEMA") {
+            navigate("/cinema");
+          } else {
+            setFormErrorMessage("Sign-in failed. Please try again.");
+          }
         }
-      } else {
-        setFormErrorMessage("Sign-in failed. Please try again.");
+      } catch (error) {
+        console.log(error);
+        setFormErrorMessage("An error occurred while signing in.");
       }
-    } catch (error) {
-      console.log(error);
-      setFormErrorMessage("An error occurred while signing in.");
     }
   };
 
   return (
     <form onSubmit={handleSignIn}>
-      <h1 className="reg-text">Counter Login</h1>
+      <h1 className="reg-text">SignIn BoxStreet</h1>
       <div className="social-container">
         <Link className="social">
           <i className="fb">

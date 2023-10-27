@@ -57,7 +57,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Login />} />
 
-          <Route path="/account" element={<Account />} />
+          <Route path="/account" element={<Account/>} />
 
           <Route path="/counter" element={<Counter />} />
           <Route path="/counter/booking/:id" element={<CounterBooking />} />
@@ -69,18 +69,16 @@ function App() {
           <Route path="/counter/receipt/:id" element={<BookedInfo />} />
 
           <Route path="/cinema/account" element={<Transaction />} />
-          <Route path="/cinema" element={<Dashboardc />} />
-          <Route path="/cinema/create-branch" element={<CreateBranch />} />
-          <Route path="/cinema/create-category" element={<CreateCategory />} />
-          <Route path="/cinema/view-branch" element={<ViewBranch />} />
-          <Route path="/cinema/view-branch/:id" element={<Branch />} />
-          <Route path="/cinema/create-theater" element={<CreateTheater />} />
-          <Route
-            path="/cinema/create-theater-admin"
-            element={<AddTheaterAdmin />}
-          />
-          <Route path="/cinema/create-counter" element={<CreateCounter />} />
-          <Route path="/cinema/create-category" element={<Category />} />
+          <Route path="/cinema" element={< Dashboardc />} />
+          <Route path="/cinema/create-branch" element={<CreateBranch/>} />
+          <Route path="/cinema/create-category" element={<CreateCategory/>} />
+          <Route path="/cinema/view-branch" element={<ViewBranch/>}/>
+          <Route path="/cinema/view-branch/:id" element={<Branch/>}/>
+          <Route path="/cinema/create-theater" element={<CreateTheater/>}/>
+          <Route path="/cinema/create-theater-admin" element={<AddTheaterAdmin/>}/>
+          <Route path="/cinema/create-counter" element={<CreateCounter/>}/>
+          <Route path="/cinema/create-category" element={<Category />}/>
+
 
           <Route path="/theater" element={<TheaterHome />} />
           <Route path="/theater/booking/:id" element={<TheaterBooking />} />

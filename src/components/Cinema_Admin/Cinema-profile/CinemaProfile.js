@@ -1,59 +1,26 @@
-import "./branch.css";
-import Topnav from "../Cinema-Navigation/Topnav/Topnav";
-import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import "./cinemaprofile.css";
+import {useState, useEffect } from "react";
 import axios from "axios";
+import Topnav from "../Cinema-Navigation/Topnav/Topnav";
 
 let MODE = "PROD";
 let LOCAL = "http://localhost:5000";
 let ONLINE = "https://boxstreet.onrender.com";
-
 let BASE_URL = MODE === "PROD" ? ONLINE : LOCAL;
-function Branch() {
+
+function CinemaProfile(){
     const [updatemode, setUpdatemode] = useState(false);
-    const [cinema, setCinema] = useState();
-    const [branch, setBranch] = useState();
-    let {id} = useParams();
-
-    const [cinemaname, setCinemaname] =useState();
-    const [branchname, setBranchname] =useState();
-    const [opening, setOpening] =useState();
-    const [closing, setClosing] =useState();
-    const [phones, setPhones] =useState();
-
-useEffect(()=>{
-let branch_url =`${BASE_URL}/api/v1/branches/${id}`
-axios.get(branch_url)
-.then((res)=>{
-   let data =res?.data;
-   console.log(data._id)
-   localStorage.setItem("mybranch_id", data._id)
-   setBranch(data)
-   setOpening(data.opening)
-   setClosing(data.closing)
-   setPhones(data.phones)
-})
-},[id])
-
-const handleUpdate = async()=>{
-    try {
-    let branch_url =`${BASE_URL}/api/v1/branches/${id}` 
-    await axios.put(branch_url,{
-      opening,
-      closing,
-      phones  
-    })
-
-    } catch (error) {
-       console.log(error) 
-    }
-}
-    return (
+    
+    return(
         <div className="cinema-branch-container">
             <Topnav />
-            <div className="cinema-branch-main">
+            <div className="cinema-branch-main-p">
+              <div className="cinema-branch-img-cont">
+                <div className="cinema-branch-img">
 
-                <div className="cinema-branch-card">
+                </div>
+                </div>
+                <div className="cinema-branch-card-p">
                     <div className="cinema-branch-texts">
                       
                         <div className="cinema-branch-text">
@@ -62,10 +29,10 @@ const handleUpdate = async()=>{
                                 className="edit-input-box3"
                                 type="text"
                                 name="opening"
-                                value={opening}
-                                onChange={(e)=>setOpening(e.target.value)}
+                                // value={opening}
+                                // onChange={(e)=>setOpening(e.target.value)}
                             /> : (
-                                <span className="cinema-branch-text-span3">{branch?.opening}</span>
+                                <span className="cinema-branch-text-span3"></span>
                             )
 
                             }
@@ -79,10 +46,10 @@ const handleUpdate = async()=>{
                                 className="edit-input-box4"
                                 type="text"
                                 name="closing"
-                                value={closing}
-                                onChange={(e)=>setClosing(e.target.value)}
+                                // value={closing}
+                                // onChange={(e)=>setClosing(e.target.value)}
                             /> : (
-                                <span className="cinema-branch-text-span4">{branch?.closing}</span>
+                                <span className="cinema-branch-text-span4"></span>
                             )
 
                             }
@@ -94,10 +61,10 @@ const handleUpdate = async()=>{
                                 className="edit-input-box5"
                                 type="text"
                                 name="phones"
-                                value={phones}
-                                onChange={(e)=>setPhones(e.target.value)}
+                                // value={phones}
+                                // onChange={(e)=>setPhones(e.target.value)}
                             /> : (
-                                <span className="cinema-branch-text-span5">{branch?.phones}</span>
+                                <span className="cinema-branch-text-span5">Name</span>
                             )
 
                             }
@@ -105,7 +72,7 @@ const handleUpdate = async()=>{
                         </div>
                         {updatemode && (
                             <div className="cinema-branch-update-btn">
-                                <button onClick={handleUpdate}>UPDATE BRANCH</button>
+                                {/* <button onClick={handleUpdate}>UPDATE BRANCH</button> */}
                             </div>
                         )
 
@@ -127,4 +94,4 @@ const handleUpdate = async()=>{
         </div>
     )
 }
-export default Branch
+export default CinemaProfile
