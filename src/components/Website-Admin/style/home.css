@@ -10,7 +10,7 @@
     background:#fff;
     margin:50px auto;
   }
-  .box h3{
+  .box-h3{
     position: absolute;
     left: 50%;
     top: 70%;
@@ -33,7 +33,7 @@
     padding-top: 10px;
   }
   
-  p {
+  .box-p {
     position: absolute;
     left: 50%;
     top: 85%;
