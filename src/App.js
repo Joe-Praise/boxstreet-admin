@@ -48,10 +48,9 @@ import Theaters from "./components/Website-Admin/Theaters";
 import Seats from "./components/Website-Admin/Seat";
 import Layout from "./components/Website-Admin/Layout";
 import ViewBranch from "./components/Cinema_Admin/Cinema/ViewBranch";
-import CreateCategory from "./components/Cinema_Admin/Category/CreateCategory";
 import Category from "./components/Cinema_Admin/CinemaCategory/Category";
 import CinemaProfile from "./components/Cinema_Admin/Cinema-profile/CinemaProfile"
-
+import ViewUsers from "./components/Cinema_Admin/Users/ViewUsers";
 function App() {
   return (
     <div className="App">
@@ -73,7 +72,7 @@ function App() {
           <Route path="/cinema/account" element={<Transaction />} />
           <Route path="/cinema" element={< Dashboardc />} />
           <Route path="/cinema/create-branch" element={<CreateBranch/>} />
-          <Route path="/cinema/create-category" element={<CreateCategory/>} />
+          <Route path="/cinema/create-category" element={<Category/>} />
           <Route path="/cinema/view-branch" element={<ViewBranch/>}/>
           <Route path="/cinema/view-branch/:id" element={<Branch/>}/>
           <Route path="/cinema/create-theater" element={<CreateTheater/>}/>
@@ -81,6 +80,7 @@ function App() {
           <Route path="/cinema/create-counter" element={<CreateCounter/>}/>
           <Route path="/cinema/create-category" element={<Category />}/>
           <Route path="/cinema/profile" element={<CinemaProfile/>}/>
+          <Route path="/cinema/view-user" element={<ViewUsers/>}/>
 
           <Route path="/theater" element={<TheaterHome />} />
           <Route path="/theater/booking/:id" element={<TheaterBooking />} />

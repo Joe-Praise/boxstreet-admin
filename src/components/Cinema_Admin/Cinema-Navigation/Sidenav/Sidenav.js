@@ -25,6 +25,9 @@ function Sidenav() {
         <Link className="sideNavLinks" to="/cinema/create-theater-admin">
           <li>ADD USER</li>
         </Link>
+        <Link className="sideNavLinks" to="/cinema/view-user">
+          <li>VIEW USERS</li>
+        </Link>
         <Link className="sideNavLinks" to="/cinema/account">
           <li>CINEMA ACCOUNT</li>
         </Link>

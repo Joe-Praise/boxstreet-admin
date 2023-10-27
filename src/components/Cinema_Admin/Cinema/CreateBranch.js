@@ -25,7 +25,8 @@ function CreateBranch() {
     opening: "",
     closing: "",
     phones: "",
-    name: ""
+    name: "",
+    address:""
   });
 
   const [locations, setLocations] = useState([])
@@ -36,6 +37,9 @@ function CreateBranch() {
     }
     if (!formData.name.trim()) {
       errors.name = "Field Required";
+    }
+    if (!formData.address.trim()) {
+      errors.address = "Field Required";
     }
     if (!formData.opening.trim()) {
       errors.opening = "Field Required";
@@ -94,7 +98,9 @@ function CreateBranch() {
     let location_url = `${BASE_URL}/api/v1/locations`;
     axios.get(location_url).then((res) => {
       let data = res.data;
-      
+      if(res.data.status ==="success"){
+        alert("Branch Created")
+      }
       setLocations(data)
     })
   }, [])
@@ -138,12 +144,25 @@ function CreateBranch() {
               <label htmlFor="">Branch Name:</label>
               <span></span>
               <input type="text" name="name" className="inputs"
-                value={formData.opening}
+                value={formData.name}
                 onChange={handleChange}
               />
 
               {formErrors.name && (
                 <div className="error-message">{formErrors.name}</div>
+              )}
+            </div>
+
+            <div className="add-cinema-form-group">
+              <label htmlFor="">Branch Address:</label>
+              <span></span>
+              <input type="text" name="address" className="inputs"
+                value={formData.address}
+                onChange={handleChange}
+              />
+
+              {formErrors.address && (
+                <div className="error-message">{formErrors.address}</div>
               )}
             </div>
             <div className="add-cinema-form-group">

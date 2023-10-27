@@ -10,27 +10,19 @@ let ONLINE = "https://boxstreet.onrender.com";
 let BASE_URL = MODE === "PROD" ? ONLINE : LOCAL;
 
 function Category() {
-  const [editCategory, setEditCategory] = useState(null);
-
-  const handleEditButtonClick = (categoryId, category) => {
-    setEditCategory(category);
-  };
-
-  useEffect(() => {
-    if (editCategory) {
-      setFormData({
-        name: editCategory.name,
-        price: editCategory.price,
-      });
-    }
-  }, [editCategory]);
 
   let cinema_id = localStorage.getItem("cinema_id");
+
+  const [editCategory, ] = useState(false);
+  const [is_edited, setEdited] = useState(false);
+  const [category, setCategory] = useState([]);
   const [formData, setFormData] = useState({
     cinema_id,
     name: "",
     price: "",
+    id:""
   });
+
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -40,51 +32,40 @@ function Category() {
     });
   };
 
-  const [category, setCategory] = useState([]);
+  const handleEditButtonClick = (category) => {
+    setFormData(category)
+    setEdited(true);
+  };
 
-  useEffect(() => {
-    let category_table = `${BASE_URL}/api/v1/categories?cinema_id=${cinema_id}`;
-    axios
-      .get(category_table)
-      .then((res) => {
-        let categories = res.data;
-        let data = categories?.map((category) => {
-          return {
-            id: category._id,
-            name: category.name,
-            price: category.price,
-          };
-        });
-        setCategory([...data]);
-      })
-      .catch((error) => {
-        console.error("Error fetching theater data:", error);
-      });
-  }, []);
-
-  const handleSignUp = async (e) => {
+  const handleCreateCategory = async (e) => {
     e.preventDefault();
 
-    if (editCategory) {
-      // If editCategory is not null, it means we are in edit mode
+    if (is_edited) {
+      // If edited is not null, it means we are in edit mode
       axios
-        .put(`${BASE_URL}/api/v1/categories/${editCategory.id}`, formData)
+        .put(`${BASE_URL}/api/v1/categories/${formData.id}`, formData)
         .then((res) => {
-          if (res.data.status === "success") {
+          if (res.data) {
             alert("Category Has been Edited");
-            setEditCategory(null); // Clear the editCategory state after editing
+            setEdited(false); // Clear the edited state after editing
+            setFormData({})
+
           }
         })
         .catch((error) => {
           console.error("Error editing category:", error);
         });
     } else {
-      // If editCategory is null, it means we are in create mode
+      let data = {...formData}
+      delete data.id
+   
+      // If edited is null, it means we are in create mode
       axios
-        .post(`${BASE_URL}/api/v1/categories`, formData)
+        .post(`${BASE_URL}/api/v1/categories`, data)
         .then((res) => {
-          if (res.data.status === "success") {
+          if (res.data._id) {
             alert("Category Has been Created");
+            setFormData({})
           }
         })
         .catch((error) => {
@@ -111,12 +92,38 @@ function Category() {
       });
   };
 
+
+  useEffect(() => {
+    let category_table = `${BASE_URL}/api/v1/categories?cinema_id=${cinema_id}`;
+    axios
+      .get(category_table)
+      .then((res) => {
+        let categories = res.data;
+        let data = categories?.map((category) => {
+          return {
+            id: category._id,
+            name: category.name,
+            price: category.price,
+          };
+        });
+     
+        setCategory([...data]);
+      })
+      .catch((error) => {
+        console.error("Error fetching theater data:", error);
+      });
+  }, []);
+
+
+
+
   return (
     <div>
       <Topnav />
+    
       <div className="addcategoryForm">
-        <form onSubmit={handleSignUp} className="addtheaaterform">
-          <h2>{editCategory ? "Edit Category" : "Register a New Category"}</h2>
+        <form onSubmit={handleCreateCategory} className="addtheaaterform">
+          <h2>{is_edited ? "Edit Category" : "Register a New Category"}</h2>
           <div className="addcounterform-group">
             <label htmlFor="">Category:</label>
             <span></span>
@@ -141,11 +148,12 @@ function Category() {
           </div>
           <div className="addcounterform-group">
             <button className="counterform-btn">
-              {editCategory ? "Edit Category" : "Create Category"}
+              {is_edited ? "Edit Category" : "Create Category"}
             </button>
           </div>
         </form>
         <div>
+        
           <div className="category-table-container">
             <table className="category-table">
               <thead>
@@ -166,7 +174,7 @@ function Category() {
                     <td
                       className="vt-table-edit"
                       onClick={() =>
-                        handleEditButtonClick(tableCategory.id, category)
+                        handleEditButtonClick(tableCategory)
                       }
                     >
                       Edit
