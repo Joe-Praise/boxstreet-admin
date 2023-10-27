@@ -8,7 +8,6 @@ import AddTheater from "./components/Theater/Add Forms/AddTheater";
 import AddTheaterAdmin from "./components/Cinema_Admin/Create-theater/AddTheaterAdmin";
 import ViewTheaters from "./components/Theater/View Tables/ViewTheaters";
 import ViewSeatingLayer from "./components/Theater/View Tables/ViewSeatingLayer";
-import AddCounter from "./components/Theater/Add Forms/AddCounter";
 import BookSeat from "./components/Counter/Booking/BookSeat";
 import CreateMovieSchedule from "./components/Movie schedule/Movie schedule Booking/CreateMovieSchedule";
 import MovieScheduleListing from "./components/Movie schedule/View movie schedule/MovieScheduleListing";
@@ -96,8 +95,6 @@ function App() {
             element={<ViewSeatingLayer />}
           />
           <Route path="/theater/view-seats/:id" element={<ViewSeats />} />
-          <Route path="/theater/add-counter" element={<AddCounter />} />
-          <Route path="/theater/add-counter" element={<AddCounter />} />
           <Route path="/theater/profile" element={<TProfile />} />
           <Route path="/theater/add-movie" element={<AddMovie />} />
           <Route path="/theater/update-movie/:id" element={<UpdateMovie />} />
@@ -141,6 +138,8 @@ function App() {
             element={<SingleMovie />}
           />
           <Route path="/web-users" element={<Users />} />
+          <Route path="/web-create-location" element={<CreateLocation/>} />
+          <Route path="/web-view-location" element={<ViewLocation/>} />
         </Routes>
       </BrowserRouter>
     </div>
