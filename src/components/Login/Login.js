@@ -97,12 +97,15 @@ function SignInForm({
         );
 
         setLoading(false);
-
-        if (response?.data.status === "success") {
+        if (response?.data.status === "status") {
           setLoading(false);
           let info = response.data?.data;
 
+<<<<<<< HEAD
           localStorage.setItem("branch_id", info?.branch_id);
+=======
+          localStorage.setItem("branch_id", info.branch_id._id);
+>>>>>>> ed3bdad1433e5ab70c483411c2101edd2b074099
           localStorage.setItem("branch", info.branch_id?.location_id?.name);
           localStorage.setItem("cinema_id", info.cinema_id?._id);
           localStorage.setItem("cinema", info.cinema_id?.name);
@@ -115,9 +118,9 @@ function SignInForm({
             navigate("/theater");
           } else if (info.role === "CINEMA") {
             navigate("/cinema");
+          } else {
+            setFormErrorMessage("Sign-in failed. Please try again.");
           }
-        } else {
-          setFormErrorMessage("Sign-in failed. Please try again.");
         }
       } catch (error) {
         console.log(error);

@@ -173,53 +173,7 @@ function MovieScheduleBooking() {
               Create Movie Schedule
               <p>Double click on the date picker container to choose a date</p>
             </legend>
-            <div className="movieScheduleFormInputContainer">
-              <div className="formGroup">
-                <label htmlFor="show_time">Show time</label>
-                <input
-                  type="datetime-local"
-                  id="show_time"
-                  name="show_time"
-                  onChange={(e) => onChange(e.target.value)}
-                  value={value}
-                  onDoubleClick={() => handleMultiDates(value)}
-                />
-              </div>
-              <div className="formGroup">
-                <label htmlFor="price" name="price">
-                  Price
-                </label>
-                <input
-                  type="number"
-                  id="price"
-                  name="price"
-                  onChange={inputChangeHandler}
-                />
-              </div>
-              <div className="formGroup">
-                <label htmlFor="cinema_id">Cinema</label>
-                <input
-                  type="text"
-                  id="cinema_id"
-                  name="cinema_id"
-                  placeholder={cinemaName}
-                  value={cinema_id}
-                  disabled
-                  onChange={inputChangeHandler}
-                />
-              </div>
-              <div className="formGroup">
-                <label htmlFor="branch_id">Branch</label>
-                <input
-                  type="text"
-                  id="branch_id"
-                  name="branch_id"
-                  value={branch_id}
-                  disabled
-                  onChange={inputChangeHandler}
-                />
-              </div>
-              <div className="formGroup">
+              <div className="addtheaaterform-group">
                 <label htmlFor="movie_id">Movie</label>
                 {/* <input type="text" id="movie_id" name="movie_id" /> */}
                 <select
@@ -235,25 +189,29 @@ function MovieScheduleBooking() {
                   ))}
                 </select>
               </div>
-              {/* <div className="formGroup">
-                <label htmlFor="image" className="image">
-                  {" "}
-                  <FcAddImage className="uploadImg" />{" "}
+            <div className="movieScheduleFormInputContainer">
+              <div className="addtheaaterform-group">
+                <label htmlFor="show_time">Show time</label>
+                <input
+                  type="datetime-local"
+                  id="show_time"
+                  name="show_time"
+                  onChange={(e) => onChange(e.target.value)}
+                  value={value}
+                  onDoubleClick={() => handleMultiDates(value)}
+                />
+              </div>
+              <div className="addtheaaterform-group">
+                <label htmlFor="price" name="price">
+                  Price
                 </label>
                 <input
-                  type="file"
-                  id="image"
-                  name="image"
-                  multiple
+                  type="number"
+                  id="price"
+                  name="price"
                   onChange={inputChangeHandler}
                 />
-              </div> */}
-            </div>
-
-            <div className="movieScheduleFormBtnContainer">
-              <button onClick={handleFormSubmittion}>
-                {!isLoading ? "Create Schedule" : "Creating..."}
-              </button>
+              </div>
             </div>
             <div>
               <DisplayMovieScheduleInfo
@@ -261,7 +219,12 @@ function MovieScheduleBooking() {
                 formInfo={formInfo}
                 onSetFormInfo={setFormInfo}
               />
-              {/* <img src={preview.preview} alt="" /> */}
+            </div>
+
+            <div className="movieScheduleFormBtnContainer">
+              <button onClick={handleFormSubmittion}>
+                {!isLoading ? "Create Schedule" : "Creating..."}
+              </button>
             </div>
           </form>
         </div>

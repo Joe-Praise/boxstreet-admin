@@ -33,9 +33,7 @@ function AddTheater() {
     axios
     .post(`${BASE_URL}/api/v1/theaters`, theaterData)
     .then((response) => {
-        if(response.data.status === "success"){
-          alert("Theater created successfully");
-        }
+          alert("Theater created successfully")
       })
       .catch((error) => {
         console.error("Error creating theater:", error);
