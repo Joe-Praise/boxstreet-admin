@@ -56,11 +56,7 @@ function SignUp() {
   );
 }
 
-function SignInForm({
-  formData,
-  setFormData,
-  formErrors,
-}) {
+function SignInForm({ formData, setFormData, formErrors }) {
   const navigate = useNavigate();
   const [formErrorMessage, setFormErrorMessage] = useState("");
   const [loading, setLoading] = useState(false);
@@ -96,29 +92,26 @@ function SignInForm({
 
         setLoading(false);
         if (response?.data.status === "success") {
-        
           let info = response.data?.data;
-         
+
           localStorage.setItem("branch_id", info.branch_id?._id);
           localStorage.setItem("branch", info.branch_id?.location_id?.name);
           localStorage.setItem("cinema_id", info.cinema_id?._id);
           localStorage.setItem("cinema", info.cinema_id?.name);
           localStorage.setItem("user_id", info._id);
           localStorage.setItem("fullname", info.fullname);
-    
+
           if (info.role === "COUNTER") {
             navigate("/counter");
-          } 
-          else if (info.role === "THEATER") {
+          } else if (info.role === "THEATER") {
             navigate("/theater");
-          } 
-          else if (info.role === "CINEMA") {
+          } else if (info.role === "CINEMA") {
             navigate("/cinema");
-          } 
-          else {
+          } else if (info.role === "ACCOUNT") {
+            navigate("/account");
+          } else {
             setFormErrorMessage("Sign-in failed. Please try again.");
           }
-
         }
       } catch (error) {
         console.log(error);
