@@ -55,6 +55,8 @@ function Sidenav() {
         <div className="sideNavLinks">
         {/* <li className="cinem-admin-log-out" onClick={LogOut}>LOG OUT</li> */}
         <li className="exist" onClick={LogOut}>LOG OUT</li>
+        <li className="cinem-admin-log-out" onClick={LogOut}>LOG OUT</li>
+        
         </div>
        
       </ul>
