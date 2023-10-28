@@ -40,7 +40,7 @@ function Sidebar() {
         </Link> */}
 
         <div className="sideNavLinks">
-          <li className="" onClick={LogOut}>
+          <li className="exist" onClick={LogOut}>
             LOG OUT
           </li>
         </div>
