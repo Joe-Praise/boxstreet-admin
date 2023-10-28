@@ -5,6 +5,7 @@ import { toast } from "react-toastify";
 import axios from "axios";
 import config from "../config";
 import WebNav from "./Navigation/WebNav";
+import Loading from "../Loading";
 
 const BASE_URL =
   process.env.NODE_ENV === "production"
@@ -33,6 +34,7 @@ function AddUser() {
   const [formErrors, setFormErrors] = useState({});
   const [isSignUpSuccess, setIsSignUpSuccess] = useState(false);
   const [formErrorMessage, setFormErrorMessage] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const validateForm = () => {
     const errors = {};  
@@ -74,6 +76,8 @@ function AddUser() {
   const handleSignUp = async (e) => {
     e.preventDefault();
 
+    setLoading(true);
+
     try {
       const isFormValid = validateForm();
 
@@ -83,6 +87,7 @@ function AddUser() {
           config.MANAGEMENT_BASE_URL + "/register",
           formData
         );
+        setLoading(false);
         toast.success("Admin created successfully");
             navigate("/web-users");
 
@@ -102,6 +107,7 @@ function AddUser() {
       [e.target.name]: e.target.value,
     });
   };
+
 
   useEffect(() => {
     axios.get(config.CINEMA_BASE_URL).then((result) => {
@@ -233,7 +239,7 @@ function AddUser() {
               </div> */}
 
           <div className="addcounterform-group">
-            <button type="submit" className="counterform-btn">Register User</button>
+            <button type="submit" className="counterform-btn"> {loading ? <Loading/> : "Register Admin"}</button>
           </div>
         </form>
       </div>

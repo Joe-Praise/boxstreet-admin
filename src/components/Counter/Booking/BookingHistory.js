@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
 import "../stylesCounter/bookingHistory.css";
 import { useNavigate } from "react-router";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import CounterNav from "../Navigation/CounterNav";
 import axios from "axios";
+import config from "../../config";
 
 let MODE = "PROD";
 let LOCAL = "http://localhost:5000";
@@ -17,6 +18,9 @@ function BookingHistory() {
   const [booked, setBooked] = useState([]);
   const [prev, setPrev] = useState([]);
   const [ticket, setTicket] = useState("");
+  const { id } = useParams();
+  const [searchTerm, setSearchTerm] = useState("");
+  const [booking, setBookings] = useState([]);
 
   const handleFindTicket = () => {
     let ticket_url = `${BASE_URL}/api/v1/bookings/${ticket}/ticket-no`;
@@ -40,6 +44,28 @@ function BookingHistory() {
           setBooked([...booked]);
         })
         .catch((err) => {
+          setBooked([]);
+        });
+    }
+  };
+
+  // Fetch cinema data based on the ID parameter
+  const handleFindCinemas = () => {
+    const cinemasUrl = `${config.BOOKING_BASE_URL}/${id}`;
+    if (cinemasUrl) {
+      axios
+        .get(cinemasUrl)
+        .then((response) => {
+          const cinemaData = response.data;
+          const formattedCinema = {
+            _id: cinemaData._id,
+            name: cinemaData.cinema?.name,
+            email: cinemaData.cinema?.email,
+            phone: cinemaData.cinema?.phone,
+          };
+          setBooked([formattedCinema]);
+        })
+        .catch((error) => {
           setBooked([]);
         });
     }
@@ -99,6 +125,13 @@ function BookingHistory() {
     });
   }, []);
 
+  useEffect(() => {
+    // Fetch cinema data when the ID parameter changes
+    if (id) {
+      handleFindCinemas();
+    }
+  }, [id]);
+
   return (
     <div>
       <CounterNav />
@@ -107,16 +140,19 @@ function BookingHistory() {
           <div className="bh-page-top">
             <div className="bh-input">
               <input
-                placeholder="search"
-                value={ticket}
-                onChange={(e) => setTicket(e.target.value)}
-              />
-              <span className="bh-input-btn" onClick={handleFindTicket}>
-                Search
-              </span>
-              <span className="bh-input-btn" onClick={handleReset}>
+                  placeholder="Search booking by client's Name"
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                />
+                <span
+                  className="web-cinema-input-btn"
+                  onClick={handleFindCinemas}
+                >
+                  Search
+                </span>
+              {/* <span className="bh-input-btn" onClick={handleReset}>
                 Reset
-              </span>
+              </span> */}
             </div>
           </div>
           <div className="ch-select">
@@ -142,7 +178,9 @@ function BookingHistory() {
                 </tr>
               </thead>
               <tbody>
-                {booked.map((b, id) => (
+                {booked.filter((b) =>
+                    b.customer_name.toLowerCase().includes(searchTerm.toLowerCase())
+                  ).map((b, id) => (
                   <tr key={b.id}>
                     <td>{id + 1}</td>
                     <td>{b.ticket_no}</td>

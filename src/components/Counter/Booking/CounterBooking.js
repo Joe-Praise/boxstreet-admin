@@ -4,6 +4,7 @@ import CounterNav from "../Navigation/CounterNav";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useParams } from "react-router-dom";
+import Loading from "../../Loading";
 
 let MODE = "PROD";
 
@@ -14,6 +15,7 @@ function CounterBooking() {
   const navigate = useNavigate();
   const { id } = useParams();
   const branch_id = localStorage.getItem("branch_id");
+  const [loading, setLoading] = useState(false);
 
   const [theaterlisting, setTheaterListing] = useState([]);
   const [showtime, setShowTime] = useState([]);
@@ -55,6 +57,8 @@ function CounterBooking() {
   };
 
   const handleBookSeat = () => {
+    setLoading(true);
+
     if (!validateForm()) {
       return;
     }
@@ -69,6 +73,7 @@ function CounterBooking() {
     record.movie_price = schedule?.price;
 
     localStorage.setItem("booking", JSON.stringify(record));
+    setLoading(false);
     navigate(`/counter/seat/${record.theater_id}/${id}`);
   };
 
@@ -301,7 +306,7 @@ function CounterBooking() {
                 onClick={handleBookSeat}
                 type="button"
               >
-                Book Seat
+                {loading ? <Loading/>: "Book Seat"}
               </button>
             </div>
           </form>

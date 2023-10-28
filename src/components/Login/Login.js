@@ -160,9 +160,9 @@ function SignInForm({
 
       <div className="pswd">
         <label>Password</label>
-        <Link to="/forgot" className="forget">
+        {/* <Link to="/forgot" className="forget">
           Forgot your password?
-        </Link>
+        </Link> */}
       </div>
       <input
         type="password"

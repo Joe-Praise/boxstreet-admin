@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import axios from "axios";
 import WebNav from "./Navigation/WebNav";
+import Loading from "../Loading";
 
 const BASE_URL =
   process.env.NODE_ENV === "production"
@@ -11,6 +12,7 @@ const BASE_URL =
 
 function CreateCinema() {
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
 
   const [cinemaData, setCinemaData] = useState({
     name: "",
@@ -90,6 +92,8 @@ function CreateCinema() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    setLoading(true);
+
     if (validateForm()) {
       try {
         let file = cinemaData.image;
@@ -114,6 +118,7 @@ function CreateCinema() {
             navigate("/web-admin/add-user");
           });
         }
+        setLoading(false);
       } catch (error) {
         console.error("Error creating Cinema", error.response.data.error);
         toast.error("Error creating Cinema");
@@ -183,7 +188,7 @@ function CreateCinema() {
 
             <div className="addcounterform-group">
               <button className="counterform-btn" type="submit">
-                Create Cinema
+              {loading ? <Loading/>: "Create Cinema"}
               </button>
             </div>
           </form>

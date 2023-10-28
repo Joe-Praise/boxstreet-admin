@@ -35,6 +35,19 @@ function Users() {
     }
   };
 
+  const handleDeleteButtonClick = (adminId) => {
+    axios
+      .delete(`${config.MGT_BASE_URL}/${adminId}`)
+      .then((response) => {
+        alert("Admin deleted successfully");
+
+
+      })
+      .catch((error) => {
+        console.error("Error Deleting Admin", error);
+      });
+  };
+
   useEffect(() => {
     async function getManagersByRole(role) {
         try {
@@ -119,11 +132,11 @@ function Users() {
         <td>{user.phone}</td>
         <td className="actions">
             
-          <button className="web-cinema-table-check-success">View</button>
+          {/* <button className="web-cinema-table-check-success">View</button> */}
           <Link to={`/web-admin/edit-user/${user._id}`} className="web-cinema-table-view">
             Edit
           </Link>
-          <button className="web-cinema-table-print">Archive</button>
+          <button className="web-cinema-table-print"  onClick={() => handleDeleteButtonClick(user._id)}>Deelete</button>
         </td>
       </tr>
     ))}
