@@ -12,21 +12,20 @@ let BASE_URL = MODE === "PROD" ? ONLINE : LOCAL;
 function ViewUsers(){
     const branch_id = localStorage.getItem("branch_id");
     const cinema_id = localStorage.getItem("cinema_id");
+    const cinema = localStorage.getItem("cinema")
     const [branch, setBranch] = useState([]);
     const navigate = useNavigate();
-    const handleEditButtonClick = (branchId, branch) => {
-      navigate(`/cinema/view-branch/${branchId}`, {
-        state: { branchData: branch },
+    const handleEditButtonClick = (userId, branch) => {
+      navigate(`/cinema/single-user/${userId}`, {
+        state: { userData: branch },
       });
     };
     useEffect(()=>{
-     
         let user_url = `${BASE_URL}/api/v1/managements?cinema_id=${cinema_id}`
         axios.get(user_url)
         .then((res)=>{
            let users =res?.data;
            let data = users?.map((user)=>{
-            
                 return{
                     id :user._id,
                     branchname:user.branch_id?.name,
@@ -63,6 +62,7 @@ function ViewUsers(){
         <div className="cinema-view-branch-container">
         <Topnav />
         <div className="cinema-view-branch-main">
+          <h2 className="cinema-name">{"Welcome to" +"-" + cinema}</h2>
           <div className="cinema-view-branch-bottom">
             <table className="view-branch-table">
               <thead>
@@ -82,14 +82,14 @@ function ViewUsers(){
                 {branch.map((user, i) => {
                     if(user.role === "CINEMA") return ""
                     return <tr key={user._id}>
-                     <td>{i + 1}</td>
+                     <td>{i }</td>
                      <td>{user.locationname}</td>
                      <td>{user.branchname}</td>
                      <td>{user.fullname}</td>
                      <td>{user.role}</td>
                      <td>{user.email}</td>
                      <td>{user.phone}</td>
-                     <td className="view-branch-edit" onClick={() => handleEditButtonClick(user._id, branch)}>Edit</td>
+                     <td className="view-branch-edit" onClick={() => handleEditButtonClick(user.id, branch)}>Edit</td>
                      <td className="view-branch-delete"
                        onClick={() => handleDeleteButtonClick(user._id)}
                      >Delete</td>

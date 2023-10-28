@@ -17,7 +17,8 @@ function CreateBranch() {
   const [isSignUpSuccess, setIsSignUpSuccess] = useState(false);
   const [formErrorMessage, setFormErrorMessage] = useState("");
   const [locationid, setLocationId] = useState()
-  let cinemaId = localStorage.getItem("cinema_id")
+  const cinema = localStorage.getItem("cinema")
+  let cinemaId = localStorage.getItem("cinema_id");
 
   const [formData, setFormData] = useState({
     cinema_id: cinemaId,
@@ -109,7 +110,7 @@ function CreateBranch() {
     <div className="cinema-admin-container">
       <Topnav />
       <div className="cinema-admin-main">
-        <h2>Welcome To Boxstreet</h2>
+        <h2>{"Welcome to" +"-" + cinema}</h2>
 
         <div className="cinema-admin-form-container">
           <form className="cinema-admin-form" onSubmit={handleSubmit}>

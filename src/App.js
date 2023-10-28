@@ -27,7 +27,7 @@ import AddSeat from "./components/Theater/Add Forms/AddSeat";
 import ViewSeats from "./components/Theater/View Tables/ViewSeats";
 import UpdateTheater from "./components/Theater/Add Forms/UpdateTheater";
 import UpdateMovie from "./components/Theater/Add Forms/UpdateMovie";
-
+import SingleUser from "./components/Cinema_Admin/Users/SingleUser";
 import CreateTheater from "./components/Cinema_Admin/Create-theater/CreateTheater";
 import CreateCounter from "./components/Cinema_Admin/Create-counter/CreateCounter";
 import Cinema1 from "./components/Cinema_Admin/Cinema/CreateBranch";
@@ -82,6 +82,7 @@ function App() {
           <Route path="/cinema/create-category" element={<Category />}/>
           <Route path="/cinema/profile" element={<CinemaProfile/>}/>
           <Route path="/cinema/view-user" element={<ViewUsers/>}/>
+          <Route path="/cinema/single-user/:id" element={<SingleUser/>}/>
 
           <Route path="/theater" element={<TheaterHome />} />
           <Route path="/theater/booking/:id" element={<TheaterBooking />} />

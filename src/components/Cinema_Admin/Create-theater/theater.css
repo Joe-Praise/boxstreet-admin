@@ -5,6 +5,9 @@
     margin: 150px auto;
   }
   
+  .addtheaaterForm h2{
+    color: #a52a2a;
+  }
   .addtheaaterBookingFlex {
     display: flex;
     justify-content: space-between;

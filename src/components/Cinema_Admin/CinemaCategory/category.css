@@ -12,7 +12,12 @@
 .addtheaaterBookingForm h2 {
   color: #333;
 }
-
+.cinema-cat-text{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #a52a2a;
+}
 .addtheaaterform {
   background: transparent;
   background-size: cover;

@@ -1,6 +1,6 @@
 import React from "react";
 // import "../stylesCounter/nav.css";
-import logo from "../../../uploads/FHC LOGO.png";
+import logo from "../../../uploads/Screenshot__335_-removebg-preview (1).png";
 import Sidenav from "../Sidenav/Sidenav";
 import "./topnav.css"
 import { Link } from "react-router-dom";
@@ -20,7 +20,7 @@ function Topnav() {
           <div>
             <ul className="navlinks">
               <Link to="/" className="textdecor">
-                <li className="bsColour">{ "Welcome" + "-" + username}</li>
+                <li className="bsColour">{ "Cinema Admin" + "-" + username}</li>
               </Link>
             </ul>
           </div>

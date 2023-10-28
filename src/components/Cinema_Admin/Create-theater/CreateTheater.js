@@ -12,7 +12,7 @@ let BASE_URL = MODE === "PROD" ? ONLINE : LOCAL;
 function CreateTheater() {
     const branch_id = localStorage.getItem('mybranch_id');
     const cinema_id = localStorage.getItem('cinema_id');
-
+const cinema = localStorage.getItem("cinema")
     const [formErrors, setFormErrors] = useState({});
     const [isSignUpSuccess, setIsSignUpSuccess] = useState(false);
     const [formErrorMessage, setFormErrorMessage] = useState("");
@@ -80,7 +80,7 @@ function CreateTheater() {
         <Topnav/>
         <div className="addtheaaterForm">
           <form className="addtheaaterform" onSubmit={handleSubmit}>
-            <h2>Add a New Theater</h2>
+            <h2>{"Welcome to" +"-" + cinema}</h2>
             <div className="addtheaaterform-group">
               <label htmlFor="name">Theater Name:</label>
               <input
