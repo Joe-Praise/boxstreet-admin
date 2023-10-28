@@ -78,10 +78,10 @@ function ViewTheaters() {
       <div className="vtPage">
         <div className="vt-page">
           <div className="vt-page-top">
-            <div className="vt-input">
+            {/* <div className="vt-input">
               <input placeholder="search" />
               <span className="vt-input-btn">Search</span>
-            </div>
+            </div> */}
           </div>
           <div className="vt-select">
             {theaterTable.map((theater) => (

@@ -76,18 +76,18 @@ function ViewMovies() {
       <div className="vmPage">
         <div className="vm-page">
           <div className="vm-page-top">
-            <div className="vm-input">
+            {/* <div className="vm-input">
               <input placeholder="search" />
               <span className="mt-input-btn">Search</span>
-            </div>
+            </div> */}
           </div>
           <div className="vm-select">
-            <select>
+            {/* <select>
               <option value="cinema">Cinema</option>
               <option value="Jabi">Jabi</option>
               <option value="Wuse">Wuse</option>
               <option value="Garki">Garki</option>
-            </select>
+            </select> */}
 
             <button className="addmoviesbtn" onClick={handleEditButtonClick}>
               Add New Movie

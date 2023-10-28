@@ -176,9 +176,8 @@ function UpdateMovie() {
       errors.genre = "Please select at least one genre";
     }
 
-    if (!updatedMovieInfo.coming_soon) {
-      errors.coming_soon =
-        "Please select whether the movie is showing or coming soon";
+    if (!updatedMovieInfo.coming_soon === null) {
+      errors.coming_soon = "Please select whether the movie is showing or coming soon";
     }
 
     if (!updatedMovieInfo.language.trim()) {
@@ -229,7 +228,7 @@ function UpdateMovie() {
       axios
         .put(movie_update_url, updatedMovieInfo)
         .then((response) => {
-          alert("Movie Details updated successfully", response.data);
+          alert("Movie updated successfully", response.data);
         })
         .catch((error) => {
           console.error("Error updating movie", error);
@@ -367,7 +366,7 @@ function UpdateMovie() {
             <select
               name="genre_id"
               multiple
-              value={updatedMovieInfo.genre_id}
+              value={selectedGenres}
               onChange={handleGenreClick}
             >
               {genres.map((e) => (
