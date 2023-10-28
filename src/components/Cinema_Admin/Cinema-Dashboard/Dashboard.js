@@ -3,6 +3,7 @@ import CounterNav from "../../Counter/Navigation/CounterNav";
 import Topnav from "../Cinema-Navigation/Topnav/Topnav";
 import axios from "axios";
 import { useState, useEffect } from "react";
+import config from "../../config";
 let MODE = "PROD";
 let LOCAL = "http://localhost:5000";
 let ONLINE = "https://boxstreet.onrender.com";
@@ -13,14 +14,18 @@ function Dashboardc(){
     // console.log(username)
     const branch_id = localStorage.getItem("branch_id");
     const cinema_id = localStorage.getItem("cinema_id");
+    const cinema = localStorage.getItem("cinema");
     const [cinemas, setCinemas]= useState([]);
     const [theaters1, setTheaters1]= useState([]);
     const [theaters2, setTheaters2]= useState([]);
     const [branches, setBranches]= useState([]);
+    const [movies, setMovies]= useState([]);
+    const [summary, setSummary] =useState({});
     useEffect(()=>{
         let branch_url =`${BASE_URL}/api/v1/branches`;
         let theater1_url =`${BASE_URL}/api/v1/theaters?cinema_id=${cinema_id}`;
         let theater2_url =`${BASE_URL}/api/v1/theaters?branch_id=${branch_id}`;
+        let movie_url = `${BASE_URL}/api/v1/movies`;
         axios.get(branch_url)
         .then((res)=>{
            let data =res?.data;
@@ -39,14 +44,23 @@ function Dashboardc(){
         let data =res?.data
         console.log(data.length)
         setTheaters2(data)
-    })
+    });
+    axios.get(movie_url)
+    .then((res)=>{
+        let data =res?.data
+        console.log(data.length)
+        setMovies(data)
+    });
+    axios.get(config.ADMIN_BASE_URL).then((result) => {
+        setSummary(result.data);
+      });
         },[])
     return(
         <div className="cinema-dash-container">
             <Topnav/>
            <div className="cinema-dash-main">
          <div className="cinema-dash-top-cont">
-            
+            <h2>{"Welcome to" +"-" + cinema}</h2>
          </div>
             <div className="cinema-dash-top">
             
@@ -59,31 +73,25 @@ function Dashboardc(){
                     <span>{theaters1.length}</span>
                 </div>
                 <div className="cinema-dash-col">
-                    <h4>Counters</h4>
-                    <span>20</span>
+                    <h4>Movies</h4>
+                    <span>{movies.length}</span>
                 </div>
                 <div className="cinema-dash-col">
                 <h4>Counters</h4>
-                <span>20</span>
+                <span>{summary.counter_admin}</span>
             </div>
             <div className="cinema-dash-col">
-                <h4>Counters</h4>
-                <span>20</span>
+                <h4>Screens</h4>
+                <span>{summary.screens}</span>
             </div>
             <div className="cinema-dash-col">
-                <h4>Counters</h4>
-                <span>20</span>
+                <h4>Seats</h4>
+                <span>{summary.seat}</span>
             </div>
-            <div className="cinema-dash-col">
-                <h4>Counters</h4>
-                <span>20</span>
+           
+            
             </div>
-            <div className="cinema-dash-col">
-                <h4>Counters</h4>
-                <span>20</span>
-            </div>
-            </div>
-            <div className="cinema-dash-bottom">
+            {/* <div className="cinema-dash-bottom">
             <table className="dash-table">
         <thead>
             <tr className="dash-table-header">
@@ -145,7 +153,7 @@ function Dashboardc(){
     </tr>
 </tbody>
     </table>
-            </div>
+            </div> */}
             </div> 
         </div>
     )

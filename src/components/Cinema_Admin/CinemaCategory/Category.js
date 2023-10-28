@@ -12,7 +12,7 @@ let BASE_URL = MODE === "PROD" ? ONLINE : LOCAL;
 function Category() {
 
   let cinema_id = localStorage.getItem("cinema_id");
-
+const cinema = localStorage.getItem("cinema")
   const [editCategory, ] = useState(false);
   const [is_edited, setEdited] = useState(false);
   const [category, setCategory] = useState([]);
@@ -120,8 +120,12 @@ function Category() {
   return (
     <div>
       <Topnav />
-    
+    <h3>hoooo</h3>
       <div className="addcategoryForm">
+        <div className="cinema-cat-text">
+        <h2>{"Welcome to" +"-" + cinema}</h2>
+        </div>
+      
         <form onSubmit={handleCreateCategory} className="addtheaaterform">
           <h2>{is_edited ? "Edit Category" : "Register a New Category"}</h2>
           <div className="addcounterform-group">

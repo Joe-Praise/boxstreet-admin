@@ -36,6 +36,7 @@ function ViewSingleMovie() {
 
           {singleMovie.cast && singleMovie.cast.length > 0 && (
             <div className="movsheetdetails">
+
               <h3>Casts:</h3>
               <ul>
                 {singleMovie.cast.map((actor, index) => (
@@ -78,19 +79,14 @@ function ViewSingleMovie() {
             <span>{singleMovie.duration}</span>
           </div>
 
-          <div className="movsheetdetails">
-            <h3>PG Rating:</h3>
-            <span>{singleMovie.pg_rating}</span>
-          </div>
+          {/* <div className="movsheetdetails">
+            <h3>Genres:</h3>
+            <span>{singleMovie.genre_id?.name}</span>
+          </div> */}
 
           <div className="movsheetdetails">
             <h3>PG Rating:</h3>
             <span>{singleMovie.pg_rating}</span>
-          </div>
-
-          <div className="movsheetdetails">
-            <div></div>
-            <button>Print</button>
           </div>
         </div>
       </div>

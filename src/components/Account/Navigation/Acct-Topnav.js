@@ -1,41 +1,39 @@
 // import "../stylesCounter/nav.css";
-// import logo from "../../../uploads/FHC LOGO.png";
-import logo from "../../uploads/FHC LOGO.png"
+import logo from "../../uploads/Screenshot__335_-removebg-preview (1).png";
 // import Sidenav from "../Sidenav/Sidenav";
 import Sidebar from "./Acct-Sidebar";
-import "./navigation.css"
+import "./navigation.css";
 import { Link } from "react-router-dom";
 
 function Topbar() {
-  let username = localStorage.getItem("username")
-  console.log(username)
+  let username = localStorage.getItem("fullname");
   return (
     <header>
       <div className="navHead">
         <nav className="navigation">
           <div>
-            <Link to="/">
+            <Link to="/account">
               <img className="logo" src={logo} alt="web logo" />
             </Link>
           </div>
           <div>
             <ul className="navlinks">
-              <Link to="/" className="textdecor">
-                <li className="bsColour">{ `Welcome-${username}`}</li>
+              <Link to="/account" className="textdecor">
+                <li className="bsColour">{`Welcome-${username}`}</li>
               </Link>
             </ul>
           </div>
-          <div>
+          {/* <div>
             <ul className="navlinks">
-              <Link to='/counter/history'>
-                {/* <li className="from-left-and-back">BOOKING HISTORY</li> */}
+              <Link to="/counter/history">
+                <li className="from-left-and-back">BOOKING HISTORY</li>
               </Link>
-              {/* <li className="from-left-and-back">SIGN IN</li> */}
+              <li className="from-left-and-back">SIGN IN</li>
             </ul>
-          </div>
+          </div> */}
         </nav>
       </div>
-      <Sidebar/>
+      <Sidebar />
     </header>
   );
 }

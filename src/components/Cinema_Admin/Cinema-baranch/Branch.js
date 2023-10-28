@@ -11,51 +11,92 @@ let ONLINE = "https://boxstreet.onrender.com";
 let BASE_URL = MODE === "PROD" ? ONLINE : LOCAL;
 function Branch() {
     const [updatemode, setUpdatemode] = useState(false);
-    const [cinema, setCinema] = useState();
+    // const [cinema, setCinema] = useState();
     const [branch, setBranch] = useState();
-    let {id} = useParams();
+    let { id } = useParams();
+    const cinema = localStorage.getItem("cinema");
+    const [cinemaname, setCinemaname] = useState();
+    const [branchname, setBranchname] = useState();
+    const [opening, setOpening] = useState();
+    const [closing, setClosing] = useState();
+    const [phones, setPhones] = useState();
+    const [name, setName] = useState();
+    const [address, setAddress] = useState();
 
-    const [cinemaname, setCinemaname] =useState();
-    const [branchname, setBranchname] =useState();
-    const [opening, setOpening] =useState();
-    const [closing, setClosing] =useState();
-    const [phones, setPhones] =useState();
+    useEffect(() => {
+        let branch_url = `${BASE_URL}/api/v1/branches/${id}`
+        axios.get(branch_url)
+            .then((res) => {
+                let data = res?.data;
+                console.log(data._id)
+                localStorage.setItem("mybranch_id", data._id)
+                setBranch(data)
+                setOpening(data.opening)
+                setClosing(data.closing)
+                setPhones(data.phones)
+                setName(data.name)
+                setAddress(data.address)
+                setBranchname(data.location_id.name)
+            })
+    }, [id])
 
-useEffect(()=>{
-let branch_url =`${BASE_URL}/api/v1/branches/${id}`
-axios.get(branch_url)
-.then((res)=>{
-   let data =res?.data;
-   console.log(data._id)
-   localStorage.setItem("mybranch_id", data._id)
-   setBranch(data)
-   setOpening(data.opening)
-   setClosing(data.closing)
-   setPhones(data.phones)
-})
-},[id])
+    const handleUpdate = async () => {
+        try {
+            let branch_url = `${BASE_URL}/api/v1/branches/${id}`
+            await axios.put(branch_url, {
+                opening,
+                closing,
+                phones,
+                address,
+                branchname,
+                name
+            })
 
-const handleUpdate = async()=>{
-    try {
-    let branch_url =`${BASE_URL}/api/v1/branches/${id}` 
-    await axios.put(branch_url,{
-      opening,
-      closing,
-      phones  
-    })
-
-    } catch (error) {
-       console.log(error) 
+        } catch (error) {
+            console.log(error)
+        }
     }
-}
     return (
         <div className="cinema-branch-container">
             <Topnav />
             <div className="cinema-branch-main">
-
+                <div className="cinema-branch-cinemaname">
+                    <h3>{"Welcome to" +"-" + cinema}</h3>
+                </div>
                 <div className="cinema-branch-card">
                     <div className="cinema-branch-texts">
-                      
+
+                        <div className="cinema-branch-text">
+                            <h3>Name</h3>
+                            {updatemode ? <input
+                                className="edit-input-box6"
+                                type="text"
+                                name="name"
+                                value={name}
+                                onChange={(e) => setName(e.target.value)}
+                            /> : (
+                                <span className="cinema-branch-text-span6">{branch?.name}</span>
+                            )
+
+                            }
+
+                        </div>
+
+                        <div className="cinema-branch-text">
+                            <h3>Address</h3>
+                            {updatemode ? <input
+                                className="edit-input-box7"
+                                type="text"
+                                name="address"
+                                value={address}
+                                onChange={(e) => setAddress(e.target.value)}
+                            /> : (
+                                <span className="cinema-branch-text-span7">{branch?.address}</span>
+                            )
+
+                            }
+
+                        </div>
                         <div className="cinema-branch-text">
                             <h3>Opening</h3>
                             {updatemode ? <input
@@ -63,7 +104,7 @@ const handleUpdate = async()=>{
                                 type="text"
                                 name="opening"
                                 value={opening}
-                                onChange={(e)=>setOpening(e.target.value)}
+                                onChange={(e) => setOpening(e.target.value)}
                             /> : (
                                 <span className="cinema-branch-text-span3">{branch?.opening}</span>
                             )
@@ -80,7 +121,7 @@ const handleUpdate = async()=>{
                                 type="text"
                                 name="closing"
                                 value={closing}
-                                onChange={(e)=>setClosing(e.target.value)}
+                                onChange={(e) => setClosing(e.target.value)}
                             /> : (
                                 <span className="cinema-branch-text-span4">{branch?.closing}</span>
                             )
@@ -95,7 +136,7 @@ const handleUpdate = async()=>{
                                 type="text"
                                 name="phones"
                                 value={phones}
-                                onChange={(e)=>setPhones(e.target.value)}
+                                onChange={(e) => setPhones(e.target.value)}
                             /> : (
                                 <span className="cinema-branch-text-span5">{branch?.phones}</span>
                             )
@@ -117,7 +158,7 @@ const handleUpdate = async()=>{
                             </div>
 
                             }
-                           
+
                         </div>
                     </div>
 

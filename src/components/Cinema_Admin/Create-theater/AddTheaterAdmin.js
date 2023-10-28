@@ -15,6 +15,7 @@ let BASE_URL = MODE === "PROD" ? ONLINE : LOCAL;
 
 function AddTheaterAdmin() {
   const navigate = useNavigate();
+  const cinema = localStorage.getItem("cinema")
   let cinema_id = localStorage.getItem("cinema_id")
   const generateCode = () => {
     return Math.random().toString("32").substring(2,10);
@@ -85,7 +86,10 @@ function AddTheaterAdmin() {
           config.MANAGEMENT_BASE_URL + "/register",
           formData
         );
-        // console.log(response);
+        console.log(response);
+        if(response?.data.data._id){
+          alert("User Created")
+        }
 
         if (response?.data.status === "success") {
           setIsSignUpSuccess(true);
@@ -124,7 +128,7 @@ let branch_url = `${BASE_URL}/api/v1/branches?cinema_id=${cinema_id}`
       <Topnav/>
       <div className="addcounterForm">
         <form onSubmit={handleSignUp} className="addtheaaterform">
-          <h2>Register a User</h2>
+          <h2 className="cinema-name">{"Welcome to" +"-" + cinema}</h2>
           <div className="addcounterformnameflex">
             <div className="addtheaaterform-group">
               <label htmlFor="">Full Name:</label>
