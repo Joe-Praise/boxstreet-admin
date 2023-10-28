@@ -11,20 +11,23 @@
     margin-top: 100px;
 }
 .cinema-dash-top-cont{
-    display: flex;
-
+display: flex;
+justify-content: center;
+align-items: center;
+margin: 30px;
+color: #a52a2a;
 }
 .cinema-dash-top{
     width: 100%;
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 20px;
     margin-bottom: 20px;
     
 }
 .cinema-dash-col{
     width: 350px;
-    height: 100px;
+    height: 200px;
     border: 0.1px solid gray;
     border-radius: 10px;
     box-shadow: 5px 10px 10px 5px rgba(0, 0, 0, 0.1);
@@ -32,13 +35,14 @@
 .cinema-dash-col h4{
     text-align: center;
     padding-top: 10px;
-    color: #ff6347;
+    color: #a52a2a;
 }
 .cinema-dash-col span{
     display: flex;
     justify-content: center;
     align-items: center;
     margin-top: 10px;
+    font-size: 20px;
 }
 .cinema-dash-bottom{
     width: 100%;

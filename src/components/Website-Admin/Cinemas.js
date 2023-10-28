@@ -22,9 +22,11 @@ function Cinemas() {
 
   const [showModal, setShowModal] = useState(false);
   const [selectedCinemaBranches, setSelectedCinemaBranches] = useState([]);
+  // console.log(branches);
 
   // Open the modal
-  const openModal = () => {
+  const openModal = (cinema) => {
+    setBranches(cinema.branches);
     setShowModal(true);
   };
 
@@ -46,6 +48,7 @@ function Cinemas() {
             name: cinemaData.cinema?.name,
             email: cinemaData.cinema?.email,
             phone: cinemaData.cinema?.phone,
+            branches: cinemaData.branches // Assuming branches are part of the cinema data
           };
           setCinemas([formattedCinema]);
         })
@@ -64,7 +67,6 @@ function Cinemas() {
       email: cinema.email,
       phone: cinema.phone,
     });
-
   };
 
   // Handle input changes for editing cinema data
@@ -147,7 +149,7 @@ function Cinemas() {
       axios
         .get(config.BRANCH_BASE_URL)
         .then((result) => {
-          console.log("Branch Data:", result.data); // Log the branch data
+          // console.log("Branch Data:", result.data);
           setBranches(result.data);
           // Filter branches for the selected cinema
           const cinemaBranches = result.data.filter(
@@ -213,12 +215,12 @@ function Cinemas() {
                       <td>{cinema.email}</td>
                       <td>{cinema.phone}</td>
                       <td className="actions">
-                        <button
+                        {/* <button
                           className="web-cinema-table-check-success"
-                          onClick={openModal}
+                          onClick={() => openModal(cinema)}
                         >
                           Branches
-                        </button>
+                        </button> */}
                         <button
                           className="web-cinema-table-view"
                           onClick={() => handleEditCinema(cinema)}
@@ -237,16 +239,16 @@ function Cinemas() {
               </tbody>
             </table>
           </div>
-          {showModal && editedCinema && (
+          {/* {showModal && branches && (
             <div className="modal">
               <div className="modal-content">
-                <h2>Branches</h2>
+                <h2>Branches for {branches[0].name}</h2>
                 <ul>
-                  {selectedCinemaBranches.map((branch, index) => (
-                    <li key={index}>
+                  {branches.map((branch, index) => (
+                    <li key={branch._id}>
                       <strong>Branch Name:</strong> {branch.name}
                       <br />
-                      <strong>Location Name:</strong> {branch.location_name}
+                      <strong>Location Name:</strong> {branch.location_id.name}
                       <br />
                     </li>
                   ))}
@@ -254,7 +256,7 @@ function Cinemas() {
                 <button onClick={closeModal}>Close</button>
               </div>
             </div>
-          )}
+          )} */}
         </div>
       </div>
       {editedCinema && (
@@ -305,3 +307,4 @@ function Cinemas() {
 }
 
 export default Cinemas;
+

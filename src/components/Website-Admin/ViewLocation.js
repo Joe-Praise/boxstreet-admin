@@ -29,19 +29,15 @@ function ViewLocation() {
 
   // Fetch cinema data based on the ID parameter
   const handleFindCinemas = () => {
-    const locationUrl = `${config.LOCATION_BASE_URL}/${id}`;
-
+    const locationUrl = `${config.LOCATION_BASE_URL}`;
+    // console.log(locationUrl);
     if (locationUrl) {
       axios
         .get(locationUrl)
         .then((response) => {
           const locationData = response.data;
-          const formattedLocation = {
-            _id: locationData._id,
-            name: locationData.location?.name,
-          };
-        //  console.log(locationData)
-          setLocation([...formattedLocation ]);
+         
+          setLocation([...locationData]);
         })
         .catch((error) => {
           setLocation([]);
@@ -54,7 +50,7 @@ function ViewLocation() {
   const handleEditCinema = (location) => {
     setEditedCinema(location);
     setEditedLocationData({
-      _id: location.location_id,
+      _id: location._id,
       name: location.name,
     });
   };
@@ -92,18 +88,17 @@ function ViewLocation() {
   };
 
   // Archive a cinema
-  const handleDeleteCinema = async (id) => {
-    try {
-      //   setArchiving(true);
-      //   const response = await axios.put(
-      //     config.LOCATION_BASE_URL + `/${id}/archived`
-      //   );
-      //   navigate("/web-create-location");
-    } catch (error) {
-      // Handle error
-    } finally {
-      setArchiving(false);
-    }
+  const handleDeleteCinema = (adminId) => {
+    axios
+      .delete(`${config.LOCATION_BASE_URL}/${adminId}`)
+      .then((response) => {
+        alert("Location deleted successfully");
+
+
+      })
+      .catch((error) => {
+        console.error("Error Deleting Admin", error);
+      });
   };
 
   useEffect(() => {

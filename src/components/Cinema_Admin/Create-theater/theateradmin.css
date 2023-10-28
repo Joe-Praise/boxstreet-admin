@@ -29,7 +29,10 @@
     margin: 10px auto;
     padding: 25px 50px;
   }
-  
+  .cinema-name{
+color: #a52a2a;
+margin-bottom: 20px;
+  }
   .addcounterformnameflex {
     display: flex;
     justify-content: space-between;

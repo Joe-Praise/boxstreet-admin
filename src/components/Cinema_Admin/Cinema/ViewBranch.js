@@ -12,7 +12,7 @@ function ViewBranch() {
   const [branch, setBranch] = useState([]);
 
   const navigate = useNavigate();
-
+const cinema = localStorage.getItem("cinema")
   const handleEditButtonClick = (branchId, branch) => {
     navigate(`/cinema/view-branch/${branchId}`, {
       state: { branchData: branch },
@@ -50,6 +50,9 @@ function ViewBranch() {
     <div className="cinema-view-branch-container">
       <Topnav />
       <div className="cinema-view-branch-main">
+      <div className="cinema-branch-cinemaname">
+                    <h3>{"Welcome to" +"-" + cinema}</h3>
+                </div>
         <div className="cinema-view-branch-bottom">
           <table className="view-branch-table">
             <thead>

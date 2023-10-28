@@ -5,6 +5,7 @@ import '../Theater/stylesTheater/addcounter.css';
 import { toast } from 'react-toastify';
 import axios from 'axios';
 import config from '../config';
+import Loading from '../Loading';
 
 function CreateLocation() {
   const navigate = useNavigate();
@@ -16,6 +17,7 @@ function CreateLocation() {
   const [location, setLocation] = useState({});
 
   const [formErrors, setFormErrors] = useState({});
+  const [loading, setLoading] = useState(false);
 
   const validateForm = () => {
     const errors = {};
@@ -31,6 +33,8 @@ function CreateLocation() {
   const handleSignUp = async (e) => {
     e.preventDefault();
 
+    setLoading(true);
+
     try {
       const isFormValid = validateForm();
 
@@ -40,6 +44,7 @@ function CreateLocation() {
           `${config.LOCATION_BASE_URL}`,
           formData
         );
+        setLoading(false);
         toast.success('Location created successfully');
         navigate('/web-view-location');
       } else {
@@ -91,7 +96,7 @@ function CreateLocation() {
           </div>
           <div className="addcounterform-group">
             <button type="submit" className="counterform-btn">
-              Create Location
+            {loading ? <Loading/> : "Create"}
             </button>
           </div>
         </form>

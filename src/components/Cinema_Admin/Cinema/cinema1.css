@@ -9,6 +9,9 @@
     margin-top: 100px;
  
 }
+.cinema-admin-main h2{
+    color: brown;
+}
 .cinema-admin-form-container{
     width: 100%;
     margin-left: auto;

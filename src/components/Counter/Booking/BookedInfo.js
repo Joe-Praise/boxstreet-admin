@@ -13,15 +13,19 @@ let BASE_URL = MODE === "PROD" ? ONLINE : LOCAL;
 function BookedInfo() {
   const { id } = useParams();
   const [booked, setBooked] = useState({});
+  console.log(id);
   useEffect(() => {
     let booking_url = `${BASE_URL}/api/v1/bookings/${id}`;
+ 
 
     axios.get(booking_url).then((res) => {
       let data = res.data;
       console.log(data);
       setBooked(data);
     });
+
   }, []);
+
   return (
     <div className="bookedinfo">
       <CounterNav />
@@ -47,20 +51,20 @@ function BookedInfo() {
             <h3>Movie Title:</h3>
             <span>{booked?.movie_id?.name}</span>
           </div>
-          
+
           <div className="sheetdetails">
             <h3>Cinema:</h3>
             <span>{booked?.cinema_id?.name}</span>
           </div>
-           <div className="sheetdetails">
+          <div className="sheetdetails">
             <h3>Movie Time:</h3>
             <span>{booked?.show_time}</span>
           </div>
-         {/* <div className="sheetdetails">
+          {/* <div className="sheetdetails">
             <h3>Branch:</h3>
             <span>{booked?.branch_id}</span>
           </div> */}
-           <div className="sheetdetails">
+          <div className="sheetdetails">
             <h3>Theater:</h3>
             <span>{booked?.theater_id?.name}</span>
           </div>
@@ -68,7 +72,7 @@ function BookedInfo() {
             <h3>Movie Price:</h3>
             <span>{booked?.movie_price}</span>
           </div>
-{/*
+          {/*
           <div className="sheetdetails">
             <h3>Attendant:</h3> 
             <span>{booked?.counter_id}</span>
@@ -77,9 +81,8 @@ function BookedInfo() {
           <div className="sheetdetails">
             <h3>Booking Type:</h3>
             <span>{booked?.booking_type}</span>
-          </div> 
+          </div>
 
-    
           <div className="sheetdetails">
             <h3>Sub-total:</h3>
             <span>{booked?.sub_total}</span>
@@ -93,7 +96,7 @@ function BookedInfo() {
           <div className="sheetdetails">
             <h3>Check-in Time:</h3>
             <span>{booked?.checked_in_at}</span>
-          </div> 
+          </div>
 
           <div className="sheetdetails">
             <div></div>

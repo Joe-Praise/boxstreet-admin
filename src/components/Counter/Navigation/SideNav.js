@@ -31,7 +31,7 @@ function SideNav() {
       <Link className="sideNavLinks" to="/counter">
           <li> DASHBOARD</li>
         </Link>
-        <Link className="sideNavLinks">
+        <Link className="sideNavLinks" to="/counter/history">
           <li> BOOKINGS</li>
         </Link>
         <Link className="sideNavLinks" to="/counter/profile">
