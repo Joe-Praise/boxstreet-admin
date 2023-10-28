@@ -52,6 +52,7 @@ import ViewBranch from "./components/Cinema_Admin/Cinema/ViewBranch";
 import Category from "./components/Cinema_Admin/CinemaCategory/Category";
 import CinemaProfile from "./components/Cinema_Admin/Cinema-profile/CinemaProfile"
 import ViewUsers from "./components/Cinema_Admin/Users/ViewUsers";
+import UpdateSeat from "./components/Theater/Add Forms/UpdateSeat";
 function App() {
   return (
     <div className="App">
@@ -85,8 +86,9 @@ function App() {
 
           <Route path="/theater" element={<TheaterHome />} />
           <Route path="/theater/booking/:id" element={<TheaterBooking />} />
-          <Route path="/theater/seat" element={<TheaterBookingSeat />} />
           <Route path="/theater/new-theater" element={<AddTheater />} />
+          <Route path="/theater/seat" element={<TheaterBookingSeat />} />
+          <Route path="/theater/update-seat/:id" element={<UpdateSeat />} />
           <Route
             path="/theater/update-theater/:id"
             element={<UpdateTheater />}

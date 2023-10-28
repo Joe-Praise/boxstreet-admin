@@ -16,8 +16,10 @@ function ViewSeats() {
         navigate("/theater/add-seat");
       };
 
-    const handleEditButtonClick = () => {
-      navigate("/theater/new-theater");
+    const handleEditButtonClick = (seatId, seat) => {
+      navigate(`/theater/update-seat/${seatId}`, {
+        state: {seatData: seat },
+      });
     };
     const handleViewButtonClick = (theaterId) => {
       navigate(`/theater/seat-layout/${theaterId}`);
@@ -86,8 +88,7 @@ function ViewSeats() {
       axios
         .delete(`${BASE_URL}/api/v1/theaters/${theaterId}`)
         .then((response) => {
-          console.log("Theater successfully deleted");
-  
+          alert("Theater successfully deleted");
 
         })
         .catch((error) => {
@@ -140,7 +141,7 @@ function ViewSeats() {
                 
                   <td
                     className="vt-table-edit"
-                    onClick={handleEditButtonClick}
+                    onClick={() => handleEditButtonClick(seat.id, seat)}
                   >
                     Edit
                   </td>

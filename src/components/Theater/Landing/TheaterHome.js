@@ -3,6 +3,7 @@ import "../stylesTheater/theater.css";
 import TheaterNav from "../Navigation/TheaterNav";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const shows = [
   {
@@ -24,9 +25,18 @@ let ONLINE = "https://boxstreet.onrender.com";
 let BASE_URL = MODE === "PROD" ? ONLINE : LOCAL;
 
 function TheaterHome() {
+  
+  const navigate = useNavigate();
+  
   const [movieListing, setMovieListing] = useState(shows);
   const [genres, setGenre] = useState([]);
   const branch_id = localStorage.getItem("branch_id");
+
+  const handleEditButtonClick = (movieId, movie) => {
+    navigate(`/theater/update-movie/${movieId}`, {
+      state: {movieData: movie}
+    });
+  };
 
   const filterTime = (e) => {
     let index = 0;
@@ -72,6 +82,7 @@ function TheaterHome() {
   const [, setSelectedMovieTime] = useState("Select Movie Time");
   const [, setSelectedGenre] = useState("Genre");
 
+
   const handleDeleteButtonClick = (movieId) => {
     if (window.confirm("Are you sure you want to delete this movie?")) {
       axios
@@ -95,7 +106,7 @@ function TheaterHome() {
     <div>
       <TheaterNav />
       <div className="counter">
-        <div className="selectBtns">
+        {/* <div className="selectBtns">
           <select
             className="select"
             name="movie time"
@@ -128,7 +139,7 @@ function TheaterHome() {
             <option value="Documentary">Documentary</option>
             <option value="Music">Music</option>
           </select>
-        </div>
+        </div> */}
         <div className="tMovies">
           {movieListing.map((movie) => (
             <div className="tmovieBox">
@@ -142,7 +153,12 @@ function TheaterHome() {
                   <p>{movie.description}</p>
                 </div>
                 <div className="cardActions">
-                  <button className="btnEdit">Edit</button>
+                  <button
+                    className="btnEdit"
+                    onClick={() => handleEditButtonClick(movie.id, movie)}
+                  >
+                    Edit
+                  </button>
                   <button
                     className="btnDelete"
                     onClick={() => handleDeleteButtonClick(movie.id)}

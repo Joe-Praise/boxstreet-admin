@@ -10,63 +10,6 @@ let ONLINE = "https://boxstreet.onrender.com";
 let BASE_URL = MODE === "PROD" ? ONLINE : LOCAL;
 
 const MovieScheduleListing = () => {
-  // const obj = [
-  //   {
-  //     image: img,
-  //     movie: "Avengers IV",
-  //     show_time: [
-  //       "10/11/2023, 7:05:00 PM",
-  //       "10/12/2023, 7:05:00 PM",
-  //       "10/13/2023, 7:05:00 PM",
-  //       "10/27/2023, 11:05:00 PM",
-  //       "10/12/2023, 7:05:00 PM",
-  //     ],
-  //     price: 7000,
-  //     branch: "jabi",
-  //     cinema: "Silverbird",
-  //   },
-  //   {
-  //     image: img,
-  //     movie: "Avengers IV",
-  //     show_time: [
-  //       "10/11/2023, 7:05:00 PM",
-  //       "10/12/2023, 7:05:00 PM",
-  //       "10/13/2023, 7:05:00 PM",
-  //       "10/27/2023, 11:05:00 PM",
-  //     ],
-  //     price: 7000,
-  //     branch: "jabi",
-  //     cinema: "Silverbird",
-  //   },
-  //   {
-  //     image: img,
-  //     movie: "Avengers IV",
-  //     show_time: [
-  //       "10/11/2023, 7:05:00 PM",
-  //       "10/12/2023, 7:05:00 PM",
-  //       "10/13/2023, 7:05:00 PM",
-  //       "10/27/2023, 11:05:00 PM",
-  //       "10/12/2023, 7:05:00 PM",
-  //     ],
-  //     price: 7000,
-  //     branch: "jabi",
-  //     cinema: "Silverbird",
-  //   },
-  //   {
-  //     image: img,
-  //     movie: "Avengers IV",
-  //     show_time: [
-  //       "10/11/2023, 7:05:00 PM",
-  //       "10/12/2023, 7:05:00 PM",
-  //       "10/13/2023, 7:05:00 PM",
-  //       "10/27/2023, 11:05:00 PM",
-  //     ],
-  //     price: 7000,
-  //     branch: "jabi",
-  //     cinema: "Silverbird",
-  //   },
-  // ];
-
   const branch_id = localStorage.getItem("branch_id");
   const cinema_id = localStorage.getItem("cinema_id");
   const [movieSchedule, setMovieSchedule] = useState([]);
@@ -99,7 +42,17 @@ const MovieScheduleListing = () => {
   }, [BASE_URL, branch_id]);
 
   const editHandler = () => {};
-  const deleteHandler = () => {};
+
+  const deleteHandler = (scheduleId) => {
+    axios
+    .delete(`${BASE_URL}/api/v1/movieschedule/${scheduleId}`)
+    .then((response) => {
+      alert("Schedule has been deleted");
+    })
+    .catch((error) => {
+      console.error("Error deleting Schedule", error)
+    })
+  };
   return (
     <div>
       <TheaterNav />
@@ -112,8 +65,6 @@ const MovieScheduleListing = () => {
               <th>Movie</th>
               <th>Show time</th>
               <th>Price</th>
-              <th>Branch</th>
-              <th>Cinema</th>
               <th>Actions</th>
             </tr>
           </thead>
@@ -131,15 +82,13 @@ const MovieScheduleListing = () => {
                     })}
                   </td>
                   <td>{`₦${el.price.toLocaleString()}`}</td>
-                  <td>{el.branch}</td>
-                  <td>{el.cinema}</td>
                   <td className="action">
-                    <button className="editBtn" onClick={() => editHandler(el)}>
+                    {/* <button className="editBtn" onClick={() => editHandler(el)}>
                       Edit
-                    </button>
+                    </button> */}
                     <button
                       className="deleteBtn"
-                      onClick={() => deleteHandler(el)}
+                      onClick={() => deleteHandler(el.id)}
                     >
                       Delete
                     </button>
@@ -155,3 +104,4 @@ const MovieScheduleListing = () => {
 };
 
 export default MovieScheduleListing;
+

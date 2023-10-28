@@ -1,6 +1,5 @@
 // import "../stylesCounter/nav.css";
-// import logo from "../../../uploads/FHC LOGO.png";
-import logo from "../../uploads/FHC LOGO.png"
+import logo from "../../uploads/Screenshot__335_-removebg-preview (1).png";
 // import Sidenav from "../Sidenav/Sidenav";
 import Sidebar from "./Acct-Sidebar";
 import "./navigation.css"
