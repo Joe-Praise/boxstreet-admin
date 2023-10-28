@@ -104,10 +104,10 @@ function Counter() {
     <div>
       <CounterNav />
       <div className="counter">
-        <div className="counterHome-search">
+        {/* <div className="counterHome-search">
           <input placeholder="search" />
           <span className="ch-search-btn">Search</span>
-        </div>
+        </div> */}
         <div className="selectBtns">
           {/* <select
             className="counterselect"
