@@ -86,7 +86,10 @@ function AddTheaterAdmin() {
           config.MANAGEMENT_BASE_URL + "/register",
           formData
         );
-        // console.log(response);
+        console.log(response);
+        if(response?.data.data._id){
+          alert("User Created")
+        }
 
         if (response?.data.status === "success") {
           setIsSignUpSuccess(true);

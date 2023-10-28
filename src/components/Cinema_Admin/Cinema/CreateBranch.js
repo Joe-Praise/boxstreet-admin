@@ -64,7 +64,7 @@ function CreateBranch() {
           config.BRANCH_BASE_URL,
           formData
         ).then((resp)=>{
-          if(resp?.status === "success"){
+          if(resp?.data._id){
             alert("Branch Created")
           }
         })
