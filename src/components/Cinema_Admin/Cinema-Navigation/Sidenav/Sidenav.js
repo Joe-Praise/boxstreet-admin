@@ -35,7 +35,7 @@ function Sidenav() {
           <li>PROFILE</li>
         </Link>
         <div className="sideNavLinks">
-        <li className="">LOG OUT</li>
+        <li className="exist">LOG OUT</li>
         </div>
        
       </ul>
