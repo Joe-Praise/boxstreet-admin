@@ -1,31 +1,53 @@
-import React from 'react'
+import React, { useEffect, useState }  from 'react'
 import WebNav from './Navigation/WebNav';
 import './style/archives.css'
+import axios from "axios";
+import config from "../config";
 
 function Archives() {
+  const [cinemas, setCinemas] = useState([]);
+
+
+  useEffect(() => {
+    // Fetch cinemas and branches data when the component mounts
+    axios.get(config.CINEMA_BASE_URL + "/archived").then((result) => {
+      setCinemas(result.data);
+    });
+  }, []);
+
   return (
-    <div>
+    <div className="counterBooking">
        <div>
        <WebNav/>
        </div>
         <div className="web-cinema">
-
         <div className="web-cinema-page">
-        <div className="web-archive-top">
-        <div class="archive effect7">
-<h3>CINEMAS</h3>
-<p> </p>
-</div>
-<div class="archive effect7">
-<h3>ADMINS</h3>
-<p></p>
-</div>
-<div class="archive effect7">
-<h3>MOVIES</h3>
-<p></p>
-</div>
-            </div>
-            </div>
+          <div className="web-cinema-page-top">
+        <div className="web-cinema-table-container">
+            <table className="web-cinema-table">
+              <thead>
+                <tr className="web-cinema-table-header">
+                  <th>S/N</th>
+                  <th>Cinema Name</th>
+                  <th>Email</th>
+                  <th>Phone Number</th>
+                </tr>
+              </thead>
+              <tbody>
+                {cinemas.map((cinema, index) => (
+                    <tr key={cinema._id}>
+                      <td>{index + 1}</td>
+                      <td>{cinema.name}</td>
+                      <td>{cinema.email}</td>
+                      <td>{cinema.phone}</td>
+                    
+                    </tr>
+                  ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+        </div>
         </div>
     </div>
   )

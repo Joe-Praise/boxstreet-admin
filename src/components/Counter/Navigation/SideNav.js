@@ -31,11 +31,11 @@ function SideNav() {
       <Link className="sideNavLinks" to="/counter">
           <li> DASHBOARD</li>
         </Link>
-        <Link className="sideNavLinks">
+        <Link className="sideNavLinks" to="/counter/history">
           <li> BOOKINGS</li>
         </Link>
         <Link className="sideNavLinks" to="/counter/profile">
-          <li> SETTING</li>
+          <li> PROFILE</li>
         </Link>
         <li className="exist" onClick={LogOut}>LOGOUT</li>
       </ul>

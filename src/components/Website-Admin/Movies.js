@@ -169,17 +169,17 @@ function Movies() {
                         >
                           View
                         </button>
-                        <button
+                        {/* <button
                           className="web-cinema-table-view"
                           onClick={handleEditButtonClick}
                         >
                           Edit
-                        </button>
+                        </button> */}
                         <button
                           className="web-cinema-table-print"
                           onClick={() => handleDeleteButtonClick(movie.id)}
                         >
-                          Archive
+                          Delete
                         </button>
                       </td>
                     </tr>

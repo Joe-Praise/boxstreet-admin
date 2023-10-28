@@ -7,7 +7,7 @@
     /* background-color: #8ca0b1; */
     /* background-color: #a7bbcb; */
     /* background-color: #24344d; */
-    padding: 50px 20px;
+    padding: 30px 20px;
 }
 
 .sideNav ul {
@@ -44,18 +44,14 @@
     font-weight: bolder;
     margin: 20px 10px;
     padding: 10px 15px;
-    /* border: 0.5px solid #ffffff; */
     border-radius: 50px;
-    text-align: left;
-    background: #ffffff;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
+    color: rgb(164, 20, 20);
+    /* background-clip: text; */
+    /* -webkit-text-fill-color: transparent;
     background-image: linear-gradient(to right, #6a7c94 45%, #ffffff 55%);
     background-size: 220% 100%;
-    background-position: 100% 50%; 
+    background-position: 100% 50%;  */
     display: flex;
-    justify-content: center;
-    border: 2px solid red;
-    /* border: 2px solid #293953;  */
+    justify-content: right;
     cursor: pointer;
 }

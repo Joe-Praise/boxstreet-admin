@@ -53,7 +53,11 @@ function Sidenav() {
           <li>PROFILE</li>
         </Link>
         <div className="sideNavLinks">
+<<<<<<< HEAD
         <li className="cinem-admin-log-out" onClick={LogOut}>LOG OUT</li>
+=======
+        <li className="exist">LOG OUT</li>
+>>>>>>> 1eb6c4b3e3f193c6645d70dfbd65c48ad4e49f49
         </div>
        
       </ul>
