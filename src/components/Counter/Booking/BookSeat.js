@@ -5,7 +5,7 @@ import config from "../../config";
 import { useState, useEffect } from "react";
 import "../stylesCounter/bookSeat.css";
 import CounterNav from "../Navigation/CounterNav";
-import { useParams } from "react-router-dom";
+import { useNavigation, useParams } from "react-router-dom";
 
 let MODE = "PROD";
 let LOCAL = "http://localhost:5000";
@@ -14,6 +14,7 @@ let ONLINE = "https://boxstreet.onrender.com";
 let BASE_URL = MODE === "PROD" ? ONLINE : LOCAL;
 
 function BookSeat() {
+  const navigation = useNavigation();
   const { id, movie_id } = useParams();
   const theater_id = id;
 
@@ -119,10 +120,12 @@ function BookSeat() {
       if (response?.data?.status === "Transaction successful") {
         await axios.post(booking_url, booking);
 
-        window.open(
-          response?.data.data.paymentLink.data.authorization_url,
-          "_blank"
-        );
+        alert("Transaction Successful!");
+        navigation("/counter/history");
+        // window.open(
+        //   response?.data.data.paymentLink.data.authorization_url,
+        //   "_blank"
+        // );
         localStorage.removeItem("booking");
       }
     } catch (error) {
