@@ -67,6 +67,7 @@ function CreateBranch() {
           if(resp?.data._id){
             alert("Branch Created")
           }
+          localStorage.setItem("branchId", resp.data._id)
         })
         console.log(response);
 
