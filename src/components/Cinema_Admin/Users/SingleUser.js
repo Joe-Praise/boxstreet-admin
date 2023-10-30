@@ -3,7 +3,7 @@ import Topnav from "../Cinema-Navigation/Topnav/Topnav";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
-
+import config from "../../config";
 let MODE = "PROD";
 let LOCAL = "http://localhost:5000";
 let ONLINE = "https://boxstreet.onrender.com";
@@ -14,35 +14,37 @@ function SingleUser() {
     const [cinema, setCinema] = useState();
     const [branch, setBranch] = useState();
     let {id} = useParams();
-
+    const user_id = localStorage.getItem("user_id")
     const [cinemaname, setCinemaname] =useState();
-    const [branchname, setBranchname] =useState();
-    const [opening, setOpening] =useState();
-    const [closing, setClosing] =useState();
+    const [username, setUsername] =useState();
+    const [email, setEmail] =useState();
     const [phones, setPhones] =useState();
     const[fullname, setFullname]=useState();
     const[role, setRole]=useState();
     const[phone, setPhone]=useState();
 useEffect(()=>{
-let user_url =`${BASE_URL}/api/v1/managements/${id}`/+"user-info"
+// let user_url =`${BASE_URL}/api/v1/managements/${user_id}`/+"user-info"
+const user_url =config.MANAGEMENT_BASE_URL+"/"+ id+"/user-info"
 axios.get(user_url)
 .then((res)=>{
    let data =res?.data;
    console.log(data)
-   setBranch(data)
-   setOpening(data.opening)
-   setClosing(data.closing)
-   setPhones(data.phones)
+   setUsername(data)
+   setFullname(data?.fullname)
+   setRole(data?.role)
+   setEmail(data?.email)
+   setPhone(data?.phone)
 })
 },[id])
 
 const handleUpdate = async()=>{
     try {
-    let branch_url =`${BASE_URL}/api/v1/branches/${id}` 
-    await axios.put(branch_url,{
-      opening,
-      closing,
-      phones  
+    let manager_url =`${BASE_URL}/api/v1/managements/${id}` 
+    await axios.put(manager_url,{
+      fullname,
+      role,
+      phone,
+      email  
     })
 
     } catch (error) {
@@ -58,15 +60,15 @@ const handleUpdate = async()=>{
                     <div className="cinema-branch-texts">
                       
                         <div className="cinema-branch-text">
-                            <h3>Opening</h3>
+                            <h3>Full Name</h3>
                             {updatemode ? <input
                                 className="edit-input-box3"
                                 type="text"
-                                name="opening"
-                                value={opening}
-                                onChange={(e)=>setOpening(e.target.value)}
+                                name="fullname"
+                                value={fullname}
+                                onChange={(e)=>setFullname(e.target.value)}
                             /> : (
-                                <span className="cinema-branch-text-span3">{branch?.opening}</span>
+                                <span className="cinema-branch-text-span3">{username?.fullname}</span>
                             )
 
                             }
@@ -74,16 +76,31 @@ const handleUpdate = async()=>{
                         </div>
 
                         <div className="cinema-branch-text">
-                            <h3>Closing</h3>
+                            <h3>Role</h3>
 
                             {updatemode ? <input
                                 className="edit-input-box4"
                                 type="text"
-                                name="closing"
-                                value={closing}
-                                onChange={(e)=>setClosing(e.target.value)}
+                                name="role"
+                                value={role}
+                                onChange={(e)=>setRole(e.target.value)}
                             /> : (
-                                <span className="cinema-branch-text-span4">{branch?.closing}</span>
+                                <span className="cinema-branch-text-span4">{username?.role+" Admin" }</span>
+                            )
+
+                            }
+
+                        </div>
+                        <div className="cinema-branch-text">
+                            <h3>email</h3>
+                            {updatemode ? <input
+                                className="edit-input-box5"
+                                type="text"
+                                name="email"
+                                value={email}
+                                onChange={(e)=>setEmail(e.target.value)}
+                            /> : (
+                                <span className="cinema-branch-text-span5">{username?.email}</span>
                             )
 
                             }
@@ -94,11 +111,11 @@ const handleUpdate = async()=>{
                             {updatemode ? <input
                                 className="edit-input-box5"
                                 type="text"
-                                name="phones"
-                                value={phones}
-                                onChange={(e)=>setPhones(e.target.value)}
+                                name="phone"
+                                value={phone}
+                                onChange={(e)=>setPhone(e.target.value)}
                             /> : (
-                                <span className="cinema-branch-text-span5">{branch?.phones}</span>
+                                <span className="cinema-branch-text-span5">{username?.phone}</span>
                             )
 
                             }

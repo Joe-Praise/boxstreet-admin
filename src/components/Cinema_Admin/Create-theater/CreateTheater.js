@@ -10,7 +10,8 @@ let BASE_URL = MODE === "PROD" ? ONLINE : LOCAL;
 
 
 function CreateTheater() {
-    const branch_id = localStorage.getItem('mybranch_id');
+    const branchid = localStorage.getItem('branchId');
+    console.log(branchid)
     const cinema_id = localStorage.getItem('cinema_id');
 const cinema = localStorage.getItem("cinema")
     const [formErrors, setFormErrors] = useState({});
@@ -20,7 +21,7 @@ const cinema = localStorage.getItem("cinema")
     const [theaterData, setTheaterData] = useState({
       name: "",
       screen: 1,
-      branch_id,
+      branch_id:branchid,
       cinema_id
     });
   
@@ -52,7 +53,7 @@ const cinema = localStorage.getItem("cinema")
       .post(`${BASE_URL}/api/v1/theaters`, theaterData)
       .then((response) => {
           if(response.data._id){
-            alert("Theater created successfully");
+            alert("Theater created");
   
           }
         })
