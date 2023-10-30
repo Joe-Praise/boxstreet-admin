@@ -60,3 +60,12 @@
         width: 100%;
         text-decoration: none;
     }
+
+    /* singel user view field */
+
+    .cinema-branch-card-p{
+        width: 56%;
+        height: 470px;
+        border: 1px solid gray;
+        border-radius: 10px;
+    }
