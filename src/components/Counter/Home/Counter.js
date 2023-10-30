@@ -135,7 +135,7 @@ function Counter() {
             ))}
           </select> */}
 
-          <select
+          {/* <select
             className="counterselect"
             name="Select Movie Time"
             onChange={(e) => setMovieListing(e.target.value)}
@@ -159,7 +159,7 @@ function Counter() {
                 {e.name}
               </option>
             ))}
-          </select>
+          </select> */}
         </div>
         <div className="counterMovies">
           {movieListing.map((movie) => (

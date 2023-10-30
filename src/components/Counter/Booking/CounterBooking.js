@@ -73,7 +73,6 @@ function CounterBooking() {
     record.movie_price = schedule?.price;
 
     localStorage.setItem("booking", JSON.stringify(record));
-    setLoading(false);
     navigate(`/counter/seat/${record.theater_id}/${id}`);
   };
 
