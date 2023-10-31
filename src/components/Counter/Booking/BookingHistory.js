@@ -109,12 +109,12 @@ function BookingHistory() {
         amount: e?.sub_total,
         ticket_no: e?.ticket_no,
         type: e.booking_type,
-        payment_method: e.payment_method,
+        payment_method: e.booking_type === "ONLINE" ? "CARD" : e.payment_method,
         seat_booked: e?.seats.length,
         is_checked: e?.is_checked,
         booked_date: e?.created_at.toLocaleString("en-US"),
       }));
-
+      
       setBooked([...booked]);
       setPrev([...booked]);
     });
@@ -160,7 +160,9 @@ function BookingHistory() {
                   <th>Mode</th>
                   <th>Seat</th>
                   <th>Date & Time</th>
-                  <th>Action</th>
+                  <th>View</th>
+                  <th>Print</th>
+                  <th>Checks</th>
                 </tr>
               </thead>
               <tbody>
@@ -181,12 +183,13 @@ function BookingHistory() {
                       <td>{b.payment_method}</td>
                       <td>+{b.seat_booked}</td>
                       <td>{b.booked_date}</td>
-                      <td className="actions">
+                      <td>
                         <Link to={`/counter/receipt/${b.id}`}>
                           <button className="ch-table-view">View</button>
                         </Link>
-                        <button className="ch-table-print">Print</button>
-                        <button
+                      </td>
+                      <td> <button className="ch-table-print">Print</button></td>
+                      <td>   <button
                           className={
                             b.is_checked
                               ? "ch-table-check-success"
@@ -195,8 +198,7 @@ function BookingHistory() {
                           onClick={() => handleCheckIn(b)}
                         >
                           {b.is_checked ? "Checked" : "Check-In"}
-                        </button>
-                      </td>
+                        </button></td>
                     </tr>
                   ))}
               </tbody>

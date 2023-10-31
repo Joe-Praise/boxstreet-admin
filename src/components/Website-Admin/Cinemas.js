@@ -49,15 +49,13 @@ function Cinemas() {
 
   // Fetch cinema data based on the ID parameter
   const handleFindCinemas = (e) => {
-
     let _cinemas = [...prev];
-    let cinema = _cinemas.filter(x => x.name === e)
-   
-    if(cinema){
-      setCinemas([...cinema])
-    }
-    else{
-      setCinemas([...cinemas])
+    let cinema = _cinemas.filter((x) => x.name.toLowerCase().includes(e.toLowerCase()));
+
+    if (cinema) {
+      setCinemas([...cinema]);
+    } else {
+      setCinemas([...cinemas]);
     }
   };
 
@@ -91,12 +89,12 @@ function Cinemas() {
         let _cinemas = [...cinemas];
 
         let d = _cinemas.find((x) => x._id === data._id);
-        d.name = data.name
+        d.name = data.name;
         d.phone = data.phone;
         d.email = data.email;
 
         setCinemas([..._cinemas]);
-        setPrev([..._cinemas])
+        setPrev([..._cinemas]);
         alert("Edit completed");
         //editedCinemaData
         setEditedCinemaData({
@@ -130,7 +128,6 @@ function Cinemas() {
       setArchiving(false);
     }
   };
-
 
   useEffect(() => {
     // Fetch cinemas and branches data when the component mounts
@@ -177,7 +174,7 @@ function Cinemas() {
               />
               <span
                 className="web-cinema-input-btn"
-                onClick={()=>handleFindCinemas(searchTerm)}
+                onClick={() => handleFindCinemas(searchTerm)}
               >
                 Search
               </span>

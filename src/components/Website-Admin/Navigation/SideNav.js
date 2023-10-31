@@ -55,12 +55,12 @@ function SideNav() {
         {/* <Link to="/web-theaters" className="sideNavLinks">
           <li> VIEW THEATERS</li>
         </Link> */}
-        <Link className="sideNavLinks">
+        {/* <Link className="sideNavLinks">
           <li> BOOKING SUMMARY </li>
-        </Link>
-        <Link className="sideNavLinks" to="/web-archives">
+        </Link> */}
+        {/* <Link className="sideNavLinks" to="/web-archives">
           <li> ARCHIVED</li>
-        </Link>
+        </Link> */}
 
         <li className="exist" onClick={LogOut}>LOGOUT</li>
       </ul>
