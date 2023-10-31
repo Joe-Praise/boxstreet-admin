@@ -45,7 +45,7 @@ function BookedInfo() {
             <h3>Ticket No.:</h3>
             <span>{booked?.ticket_no}</span>
           </div>
-          
+
           <div className="sheetdetails">
             <h3>Customer Name:</h3>
             <span>{booked?.full_name}</span>
@@ -110,7 +110,7 @@ function BookedInfo() {
           
 
           <div className="sheetdetails">
-            <h3>Seat Detail:</h3>
+            <h3>Seat Details:</h3>
             <span></span>
           </div>
           <div className="book-ch-table-container">

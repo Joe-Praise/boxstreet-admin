@@ -56,7 +56,9 @@ function AddUser() {
     }
 
     if (!formData.phone.trim()) {
-      errors.phone = "Phone Number is required";
+      errors.phone = "Phone number is required.";
+    } else if (!/^[0-9+]{1,15}$/.test(formData.phone)) {
+      errors.phone = "Invalid phone number format.";
     }
 
     if (!formData.cinema_id) {
@@ -88,8 +90,17 @@ function AddUser() {
           formData
         );
         setLoading(false);
-        toast.success("Admin created successfully");
-            navigate("/web-users");
+        alert("Admin created successfully");
+        setFormData({
+          branch_id: "",
+          fullname: "",
+          role: "CINEMA",
+          email: "",
+          phone: "",
+          cinema_id: "",
+          password: generateCode(),
+        });
+            // navigate("/web-users");
 
       } else {
         setFormErrorMessage(
