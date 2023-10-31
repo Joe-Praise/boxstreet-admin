@@ -73,7 +73,27 @@ function CounterBooking() {
     record.movie_price = schedule?.price;
 
     localStorage.setItem("booking", JSON.stringify(record));
-    navigate(`/counter/seat/${record.theater_id}/${id}`);
+    setLoading(false);
+    setRecord({
+      first_name: "",
+      full_name: "",
+      booking_type: "",
+      last_name: "",
+      email: "",
+      phone: "",
+      show_time: "",
+      theater_id: "",
+      cinema_id: "",
+      branch_id: "",
+      counter_id: "",
+      movie_id: "",
+      movie_price: "",
+      schedule_id: "",
+      seats: [],
+      payment_method: "",
+    });
+    alert("Booking is successful");
+    // navigate(`/counter/seat/${record.theater_id}/${id}`);
   };
 
   const validateForm = () => {

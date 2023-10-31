@@ -39,7 +39,7 @@ function Movies() {
             id: movie._id,
             name: movie?.name,
             language: movie?.language,
-            genre: movie?.genre_id?.name,
+            genre: movie?.genre?.name,
             duration: movie?.duration,
             pg_rating: movie?.pg_rating,
             production_studio: movie?.production_studio,
@@ -54,6 +54,7 @@ function Movies() {
 
   const handleFindMovies = () => {
     const moviesUrl = `${BASE_URL}/api/v1/movies/${id}`;
+    console.log(moviesUrl)
     if (moviesUrl) {
       axios
         .get(moviesUrl)
@@ -63,7 +64,7 @@ function Movies() {
             id: movieData._id,
             name: movieData.name,
             language: movieData.language,
-            genre: movieData.genre_id?.name,
+            genre: movieData.genre?.name,
             duration: movieData.duration,
             pg_rating: movieData.pg_rating,
             production_studio: movieData.production_studio,
@@ -75,6 +76,7 @@ function Movies() {
         });
     }
   };
+ 
 
   const handleDeleteButtonClick = (movieId) => {
     axios
@@ -158,7 +160,7 @@ function Movies() {
                       <td>{index + 1}</td>
                       <td>{movie.name}</td>
                       <td>{movie.language}</td>
-                      <td>{movie.genre_id}</td>
+                      <td>{movie.genre?.name}</td>
                       <td>{movie.production_studio}</td>
                       <td>{movie.duration}</td>
                       <td>{movie.pg_rating}</td>

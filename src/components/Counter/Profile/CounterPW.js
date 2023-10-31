@@ -3,6 +3,8 @@ import "../stylesCounter/cchangePass.css";
 import CounterNav from "../Navigation/CounterNav";
 import config from "../../config";
 import axios from "axios";
+import Loading from "../../Loading"
+
 
 const BASE_URL =
   process.env.NODE_ENV === "production"
@@ -11,6 +13,7 @@ const BASE_URL =
 
 function CounterPW() {
   const email = localStorage.getItem("email");
+  
 
   const [loading, setLoading] = useState(false);
   const [formErrors, setFormErrors] = useState({});
@@ -135,7 +138,7 @@ function CounterPW() {
           </div>
           <section>*NOTE: Password should be at least 8 characters</section>
           <div className="ccPassform-group">
-            <button className="ccPassform-btn">Submit Password</button>
+            <button className="ccPassform-btn">{loading ? <Loading/>: "submit Password"}</button>
           </div>
         </form>
       </div>

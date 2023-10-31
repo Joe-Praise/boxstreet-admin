@@ -28,21 +28,22 @@ function CreateCinema() {
     const allowedTypes = ["image/jpeg", "image/jpg", "image/png", "image/gif"];
     const maxSize = 5 * 1024 * 1024;
 
+    if (!file) {
+      setImageError("Please choose an image.");
+      return false;
+    }
+
     if (!allowedTypes.includes(file.type)) {
-      setImageError("Invalid file type. Please select a valid image file.");
+      setImageError("Invalid file type. Please select a valid image file (e.g., image/jpeg, image/jpg, image/png, image/gif).");
       return false;
     }
 
     if (file.size > maxSize) {
-      setImageError("Image file is too large. Please choose a smaller image.");
+      setImageError("Image file is too large. Please choose a smaller image below 5MB.");
       return false;
     }
-    // if (!file.image) {
-    //   setImageError("Please choose an image.");
-    //   return false;
-    // }
 
-    setImageError("");
+    setImageError("Image cannot be empty");
     return true;
   };
 
@@ -60,31 +61,29 @@ function CreateCinema() {
   const validateForm = () => {
     const errors = {};
     let isValid = true;
-   
 
     if (!cinemaData.name) {
       errors.name = "Name is required";
       isValid = false;
     }
 
-    if (
-      !cinemaData.email ||
-      !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(cinemaData.email)
-    ) {
+    if (!cinemaData.email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(cinemaData.email)) {
       errors.email = "Please enter a valid email address";
       isValid = false;
     }
 
-    if (!cinemaData.phone) {
-      errors.phone = "Phone is required";
+    if (!cinemaData.phone.trim()) {
+      errors.phone = "Phone number is required.";
+    } else if (!/^[0-9+]{1,15}$/.test(cinemaData.phone)) {
+      errors.phone = "Invalid phone number format.";
       isValid = false;
     }
 
-    // if (!cinemaData.image) {
-    //   errors.file = "Image is required";
-    //   isValid = false;
-    // }
-   
+    if (!cinemaData.image) {
+      errors.image = "Image is required";
+      isValid = false;
+    }
+
     setErrors(errors);
     return isValid;
   };
@@ -114,11 +113,17 @@ function CreateCinema() {
 
           console.log(response.data);
           axios.put(resourceEndpoint, formData).then(() => {
-            toast.success("Cinema created successfully");
+            setCinemaData({
+              name: "",
+              email: "",
+              phone: "",
+              image: null,
+            });
+            alert("Cinema created successfully");
+            setLoading(false);
             navigate("/web-admin/add-user");
           });
         }
-        setLoading(false);
       } catch (error) {
         console.error("Error creating Cinema", error.response.data.error);
         toast.error("Error creating Cinema");
@@ -188,7 +193,7 @@ function CreateCinema() {
 
             <div className="addcounterform-group">
               <button className="counterform-btn" type="submit">
-              {loading ? <Loading/>: "Create Cinema"}
+                {loading ? <Loading /> : "Create Cinema"}
               </button>
             </div>
           </form>
@@ -199,3 +204,4 @@ function CreateCinema() {
 }
 
 export default CreateCinema;
+

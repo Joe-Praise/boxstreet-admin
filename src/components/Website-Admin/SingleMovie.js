@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import './style/singlemovie.css'
 import axios from "axios";
 import WebNav from "./Navigation/WebNav";
+import moment from "moment";
 
 let MODE = "PROD";
 let LOCAL = "http://localhost:5000";
@@ -16,6 +17,7 @@ function SingleMovie() {
 
   useEffect(() => {
     let singleMovie_url = `${BASE_URL}/api/v1/movies/${id}`;
+    console.log(singleMovie_url)
     axios.get(singleMovie_url).then((res) => {
       let data = res.data;
       console.log(data);
@@ -40,8 +42,9 @@ function SingleMovie() {
               <ul>
                 {singleMovie.cast.map((actor, index) => (
                   <li key={index}>
-                    <span>{actor.text},</span>
-                    {/* <img src={actor.image} alt={actor.text} /> */}
+                     <small>{actor.name}</small><br/>
+                    <img src={actor.image_url} alt={actor.text} /> 
+                   
                   </li>
                 ))}
               </ul>
@@ -82,7 +85,7 @@ function SingleMovie() {
           </div>
           <div className="movsheetdetails">
             <h3>Upload Time</h3>
-            <span>{singleMovie.upload_date}</span>
+            <span>{moment(singleMovie.upload_date).format("LLL")}</span>
           </div>
 
           {/* <div className="movsheetdetails">

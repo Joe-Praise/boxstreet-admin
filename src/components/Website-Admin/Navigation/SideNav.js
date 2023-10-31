@@ -31,14 +31,14 @@ function SideNav() {
       <Link className="sideNavLinks" to="/web-admin">
           <li> DASHBOARD</li>
         </Link>
+        <Link to="/web-create-location" className="sideNavLinks">
+          <li> CREATE LOCATION </li>
+        </Link>
         <Link className="sideNavLinks" to="/web-admin/cinema">
           <li> CREATE CINEMA</li>
         </Link>
         <Link to="/web-admin/add-user" className="sideNavLinks">
           <li> CREATE ADMIN</li>
-        </Link>
-        <Link to="/web-create-location" className="sideNavLinks">
-          <li> CREATE LOCATION </li>
         </Link>
         <Link to="/web-view-location" className="sideNavLinks">
           <li> VIEW LOCATIONS</li>
@@ -49,13 +49,13 @@ function SideNav() {
         <Link className="sideNavLinks" to="/web-users">
           <li> VIEW CINEMA ADMINS</li>
         </Link>
-        <Link className="sideNavLinks" to="/web-movies">
+        {/* <Link className="sideNavLinks" to="/web-movies">
           <li> VIEW MOVIES</li>
-        </Link>
+        </Link>/ */}
         {/* <Link to="/web-theaters" className="sideNavLinks">
           <li> VIEW THEATERS</li>
         </Link> */}
-        <Link to="/web-booking-summary" className="sideNavLinks">
+        <Link className="sideNavLinks">
           <li> BOOKING SUMMARY </li>
         </Link>
         <Link className="sideNavLinks" to="/web-archives">
