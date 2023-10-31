@@ -3,6 +3,7 @@ import "./styles/style.css";
 import img from "../../uploads/promo3.jpg";
 import TheaterNav from "../../Theater/Navigation/TheaterNav";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 let MODE = "PROD";
 let LOCAL = "http://localhost:5000";
@@ -10,9 +11,18 @@ let ONLINE = "https://boxstreet.onrender.com";
 let BASE_URL = MODE === "PROD" ? ONLINE : LOCAL;
 
 const MovieScheduleListing = () => {
+  const navigate = useNavigate();
+
   const branch_id = localStorage.getItem("branch_id");
   const cinema_id = localStorage.getItem("cinema_id");
   const [movieSchedule, setMovieSchedule] = useState([]);
+
+  const handleEditButtonClick = (scheduleId, schedule) => {
+    navigate(`/theater/update-schedule/${scheduleId}`, {
+      state: { scheduleData: schedule },
+    });
+  };
+
   useEffect(() => {
     let schedule_url = `${BASE_URL}/api/v1/movieschedule?branch_id=${branch_id}`;
 
@@ -69,7 +79,7 @@ const MovieScheduleListing = () => {
             </tr>
           </thead>
           <tbody>
-            {movieSchedule?.map((el, i) => {
+            {movieSchedule?.map((el, i, schedule) => {
               return (
                 <tr key={i}>
                   <td>
@@ -83,7 +93,10 @@ const MovieScheduleListing = () => {
                   </td>
                   <td>{`₦${el.price.toLocaleString()}`}</td>
                   <td className="action">
-                    {/* <button className="editBtn" onClick={() => editHandler(el)}>
+                    {/* <button 
+                      className="editBtn" 
+                      onClick={() => handleEditButtonClick(el.id, schedule)}
+                    >
                       Edit
                     </button> */}
                     <button
