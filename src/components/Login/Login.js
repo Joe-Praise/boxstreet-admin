@@ -100,6 +100,7 @@ function SignInForm({ formData, setFormData, formErrors }) {
           localStorage.setItem("cinema", info.cinema_id?.name);
           localStorage.setItem("user_id", info._id);
           localStorage.setItem("fullname", info.fullname);
+          localStorage.setItem("email", info.email);
 
           if (info.role === "COUNTER") {
             navigate("/counter");
@@ -114,8 +115,8 @@ function SignInForm({ formData, setFormData, formErrors }) {
           }
         }
       } catch (error) {
-        console.log(error);
-        setFormErrorMessage("An error occurred while signing in.");
+        setLoading(false);
+        setFormErrorMessage(error.response.data.msg);
       }
     }
   };

@@ -39,17 +39,19 @@ function Profile() {
           <img src={dp} alt="Profile Image" />
           <h3>{userData.image}</h3>
           <div className='cProfileDetails'>
-            <h3>Full Name:</h3> <span>{userData.fullname}</span>
-            <h3>Department:</h3> <span>{userData.role}</span>
-            <h3>Phone Number:</h3> <span>{userData.phone}</span>
+            <h3>Full Name:</h3> <span>{userData?.fullname}</span>
+            <h3>Department:</h3> <span>{userData?.role}</span>
+            <h3>Phone Number:</h3> <span>{userData?.phone}</span>
             <h3>Email:</h3> <span>{userData?.email}</span>
-            <h3>Branch:</h3> <span>{location.name }</span>
+            <h3>Location:</h3> <span>{location?.name }</span>
+            <h3>Branch:</h3> <span>{userData?.branch_id?.name }</span>
+            <h3>Address:</h3> <span>{userData?.branch_id?.address }</span>
           </div>
-          {/* <div className='cUserandPass'>
-            <Link to={`/counter/change-password/${userData._id}`}>
+          <div className='cUserandPass'>
+            <Link to={`/counter/change-password`}>
               <button>Change Password</button>
             </Link>
-          </div> */}
+          </div>
         </div>
       </div>
     </div>

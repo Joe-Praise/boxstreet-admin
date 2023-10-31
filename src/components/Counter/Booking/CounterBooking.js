@@ -57,12 +57,12 @@ function CounterBooking() {
   };
 
   const handleBookSeat = () => {
-    setLoading(true);
+    ;
 
     if (!validateForm()) {
       return;
     }
-    
+    setLoading(true)
 
     record.full_name = record.first_name + " " + record.last_name;
     record.cinema_id = localStorage.getItem("cinema_id");
@@ -96,7 +96,10 @@ function CounterBooking() {
 
     if (!record.phone.trim()) {
       errors.phone = "Phone number is required.";
+    } else if (!/^[0-9+]{1,15}$/.test(record.phone)) {
+      errors.phone = "Invalid phone number format.";
     }
+    
 
     if (!record.theater_id) {
       errors.theater_id = "Theater is required.";

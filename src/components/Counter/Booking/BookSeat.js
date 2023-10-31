@@ -5,7 +5,7 @@ import config from "../../config";
 import { useState, useEffect } from "react";
 import "../stylesCounter/bookSeat.css";
 import CounterNav from "../Navigation/CounterNav";
-import { useNavigation, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 let MODE = "PROD";
 let LOCAL = "http://localhost:5000";
@@ -14,7 +14,7 @@ let ONLINE = "https://boxstreet.onrender.com";
 let BASE_URL = MODE === "PROD" ? ONLINE : LOCAL;
 
 function BookSeat() {
-  const navigation = useNavigation();
+  const navigation = useNavigate();
   const { id, movie_id } = useParams();
   const theater_id = id;
 
@@ -115,7 +115,6 @@ function BookSeat() {
       const response = await axios.post(payment_url, counterPaymentData);
 
       booking.seats = seats;
-      booking.payment_method = undefined;
 
       if (response?.data?.status === "Transaction successful") {
         await axios.post(booking_url, booking);
