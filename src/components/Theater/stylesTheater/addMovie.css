@@ -62,6 +62,16 @@
   border-radius: 5px;
 }
 
+.addmovieform-group textarea{
+  width: 100%;
+  min-width: 100%;
+  max-width: 100%;
+  min-height: 100px;
+  padding: 8px 10px;
+  outline: none;
+  font-size: 16px;
+}
+
 .addmovieform-group span {
   font-size: 12px;
   margin-left: 10px;
