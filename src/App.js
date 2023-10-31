@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes, Router } from "react-router-dom";
 import "./App.css";
 import Account from "./components/Account/Account";
 import Counter from "./components/Counter/Home/Counter";
@@ -58,6 +58,7 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
+     
         <Routes>
           <Route path="/" element={<Login />} />
 
@@ -171,6 +172,7 @@ function App() {
           <Route path="/web-create-location" element={<CreateLocation />} />
           <Route path="/web-view-location" element={<ViewLocation />} />
         </Routes>
+       
       </BrowserRouter>
     </div>
   );

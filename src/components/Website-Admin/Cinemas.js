@@ -215,12 +215,12 @@ function Cinemas() {
                       <td>{cinema.email}</td>
                       <td>{cinema.phone}</td>
                       <td className="actions">
-                        {/* <button
+                        <button
                           className="web-cinema-table-check-success"
                           onClick={() => openModal(cinema)}
                         >
                           Branches
-                        </button> */}
+                        </button>
                         <button
                           className="web-cinema-table-view"
                           onClick={() => handleEditCinema(cinema)}
@@ -239,11 +239,35 @@ function Cinemas() {
               </tbody>
             </table>
           </div>
-          {/* {showModal && branches && (
+          {showModal && branches && (
             <div className="modal">
               <div className="modal-content">
                 <h2>Branches for {branches[0].name}</h2>
-                <ul>
+                <div className="web-movies-table-container">
+                  <table className="web-movies-table">
+                  <thead>
+                <tr className="web-movies-table-header">
+                  <th>S/N</th>
+                  <th>Branch Name</th>
+                  <th>Location Names</th>
+                </tr>
+              </thead>
+              <tbody>
+              {branches.map((branch, index) => (
+                    <tr key={branch._id}>
+                        <td>{index + 1}</td>
+                        <td>{branch.name}</td>
+                        <td>{branch.location_id.name}</td>
+                      {/* <strong>Branch Name:</strong> {branch.name}
+                      <br />
+                      <strong>Location Name:</strong> {branch.location_id.name}
+                      <br /> */}
+                    </tr>
+                  ))}
+              </tbody>
+                  </table>
+                </div>
+                {/* <ul>
                   {branches.map((branch, index) => (
                     <li key={branch._id}>
                       <strong>Branch Name:</strong> {branch.name}
@@ -252,11 +276,11 @@ function Cinemas() {
                       <br />
                     </li>
                   ))}
-                </ul>
+                </ul> */}
                 <button onClick={closeModal}>Close</button>
               </div>
             </div>
-          )} */}
+          )}
         </div>
       </div>
       {editedCinema && (
