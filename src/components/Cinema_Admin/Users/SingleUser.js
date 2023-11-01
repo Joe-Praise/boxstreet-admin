@@ -48,6 +48,8 @@ function SingleUser() {
                 if (resp?.data._id) {
                     alert("User Updated")
                 }
+                setUpdatemode(false)
+                window.location.replace("/cinema/view-user")
             })
 
         } catch (error) {

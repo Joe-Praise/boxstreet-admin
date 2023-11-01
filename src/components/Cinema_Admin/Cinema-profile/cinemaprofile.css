@@ -15,15 +15,11 @@
 .cinema-branch-img-cont{
     width: 350px;
     height: 350px;
-border: 1px solid gray;
    
 }
-.cinema-branch-img{
-    width: 300px;
-    height: 300px;
-    border-radius: 50%;
-    background-color: #f76161;
-    margin: 20px;
+
+.profile-img{
+    font-size: 380px;
 }
 .cinema-branch-card-p{
     width: 56%;

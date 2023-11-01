@@ -4,6 +4,7 @@ import axios from "axios";
 import Topnav from "../Cinema-Navigation/Topnav/Topnav";
 import config from "../../config";
 import { useParams } from "react-router-dom";
+import { MdPerson } from "react-icons/md";
 let MODE = "PROD";
 let LOCAL = "http://localhost:5000";
 let ONLINE = "https://boxstreet.onrender.com";
@@ -41,6 +42,8 @@ function CinemaProfile() {
                 if (resp?.data._id) {
                     alert("User Updated")
                 }
+                setUpdatemode(false)
+               
             })
 
         } catch (error) {
@@ -53,7 +56,7 @@ function CinemaProfile() {
             <div className="cinema-branch-main-p">
                 <div className="cinema-branch-img-cont">
                     <div className="cinema-branch-img">
-
+                    <MdPerson className="profile-img"/>
                     </div>
                 </div>
                 <div className="cinema-branch-card-p">
