@@ -27,6 +27,7 @@ function CreateCinema() {
   const validateImage = (file) => {
     const allowedTypes = ["image/jpeg", "image/jpg", "image/png", "image/gif"];
     const maxSize = 5 * 1024 * 1024;
+    const minSize = 1;  
 
     if (!file) {
       setImageError("Please choose an image.");
@@ -40,6 +41,10 @@ function CreateCinema() {
 
     if (file.size > maxSize) {
       setImageError("Image file is too large. Please choose a smaller image below 5MB.");
+      return false;
+    }
+    if (file.size < minSize) {
+      setImageError("Image cannot be empty");
       return false;
     }
 
@@ -93,7 +98,7 @@ function CreateCinema() {
 
     setLoading(true);
 
-    if (validateForm()) {
+    if (validateForm() || validateImage()) {
       try {
         let file = cinemaData.image;
         cinemaData.image = null;
