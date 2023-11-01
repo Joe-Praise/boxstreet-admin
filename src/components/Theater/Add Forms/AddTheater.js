@@ -10,30 +10,36 @@ let ONLINE = "https://boxstreet.onrender.com";
 let BASE_URL = MODE === "PROD" ? ONLINE : LOCAL;
 
 function AddTheater() {
-  const branch_id = localStorage.getItem('branch_id');
-  const cinema_id = localStorage.getItem('cinema_id');
+  const branch_id = localStorage.getItem("branch_id");
+  const cinema_id = localStorage.getItem("cinema_id");
   const [theaterData, setTheaterData] = useState({
     name: "",
     screen: 1,
     branch_id,
-    cinema_id
+    cinema_id,
   });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setTheaterData({
       ...theaterData,
-      [name]: value
+      [name]: value,
     });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(theaterData)
+    console.log(theaterData);
     axios
-    .post(`${BASE_URL}/api/v1/theaters`, theaterData)
-    .then((response) => {
-          alert("Theater created successfully")
+      .post(`${BASE_URL}/api/v1/theaters`, theaterData)
+      .then((response) => {
+        alert("Theater created successfully");
+        setTheaterData({
+          name: "",
+          screen: 1,
+          branch_id,
+          cinema_id,
+        });
       })
       .catch((error) => {
         console.error("Error creating theater:", error);

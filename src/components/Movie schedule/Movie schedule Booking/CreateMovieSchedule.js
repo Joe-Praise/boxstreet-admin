@@ -112,9 +112,14 @@ function MovieScheduleBooking() {
     axios
       .post(`${BASE_URL}/api/v1/movieschedule`, formInfo)
       .then((res) => {
-        if (res.data) {
-          alert("Movie has been scheduled");
-        }
+        alert("Movie has been scheduled");
+        setFormInfo({
+          show_time: [],
+          price: 0,
+          movie_id: "",
+          branch_id,
+          cinema_id,
+        })
       })
       .catch((err) => {
         console.error("Error in scheduling this movie:", err);

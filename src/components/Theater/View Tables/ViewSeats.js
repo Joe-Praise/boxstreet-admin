@@ -21,9 +21,9 @@ function ViewSeats() {
       state: { seatData: seat },
     });
   };
-  const handleViewButtonClick = (theaterId) => {
-    navigate(`/theater/seat-layout/${theaterId}`);
-  };
+  // const handleViewButtonClick = (theaterId) => {
+  //   navigate(`/theater/seat-layout/${theaterId}`);
+  // };
 
   const [seatTable, setSeatTable] = useState([]);
   const { id } = useParams();
@@ -88,6 +88,11 @@ function ViewSeats() {
       .delete(`${BASE_URL}/api/v1/seats/${seatId}`)
       .then((response) => {
         alert("Seat successfully deleted");
+        
+        setSeatTable((prevSeatTable) => {
+          const updatedSeatTable = prevSeatTable.filter((seat) => seat.id !== seatId)
+          return updatedSeatTable
+        })
       })
       .catch((error) => {
         console.error("Error Deleting Seat", error);
