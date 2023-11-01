@@ -68,6 +68,14 @@ function CreateBranch() {
             alert("Branch Created")
           }
           localStorage.setItem("branchId", resp.data._id)
+          setFormData({
+            location_id: "",
+            opening: "",
+            closing: "",
+            phones: "",
+            name: "",
+            address:""
+          })
         })
         console.log(response);
 

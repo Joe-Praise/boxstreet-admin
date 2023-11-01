@@ -89,6 +89,14 @@ function AddTheaterAdmin() {
         console.log(response);
         if(response?.data.data._id){
           alert("User Created")
+          setFormData({
+            branch_id:"",
+            fullname: "",
+            role: "",
+            email: "",
+            phone: "",
+            password: "",
+          })
         }
 
         if (response?.data.status === "success") {

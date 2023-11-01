@@ -28,7 +28,7 @@ function Branch() {
         axios.get(branch_url)
             .then((res) => {
                 let data = res?.data;
-             
+             console.log(data)
                 localStorage.setItem("mybranch_id", data._id)
                 setBranch(data)
                 setOpening(data.opening)
@@ -50,8 +50,16 @@ function Branch() {
                 address,
                 branchname,
                 name
+            }).then((resp) => {
+                let data = resp?.data
+                console.log(data)
+                if (resp?.data.data._id) {
+                    alert("Branch Updated")
+                }
+                setUpdatemode(false)
+                window.location.replace("/cinema/view-branch")
             })
-
+             
         } catch (error) {
             console.log(error)
         }
