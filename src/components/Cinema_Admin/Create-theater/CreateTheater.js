@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 // import "../../../stylesTheater/addtheater.css";
 import "./theater.css"
 import axios from "axios";
@@ -19,13 +19,14 @@ function CreateTheater() {
   const [isSignUpSuccess, setIsSignUpSuccess] = useState(false);
   const [formErrorMessage, setFormErrorMessage] = useState("");
   const [theater, setTheater] = useState([])
-  const [branch, setBranch] = useState("");
+  const [branch, setBranch] = useState([]);
   const [screen, setScreen] = useState("");
   const [name, setName] = useState("");
   const [theaterData, setTheaterData] = useState({
+    _id:"",
     name: "",
     screen: "",
-    branch_id: branchid,
+    branch_id: "",
     cinema_id
   });
 
@@ -48,6 +49,7 @@ function CreateTheater() {
       [name]: value,
       [screen]: value,
     });
+   
   };
 
   useEffect(() => {
@@ -56,11 +58,24 @@ function CreateTheater() {
       .then((res) => {
         let data = res?.data;
         setTheater(data)
-      })
+      });
+    let branch_url = `${BASE_URL}/api/v1/branches`
+    axios.get(branch_url).then((res) => {
+      let data = res.data;
+      setBranch(data)
+    })
   }, [])
 
   const handleEditButtonClick = (theater) => {
-    setTheaterData(theater)
+    let data = {
+        _id:theater._id,
+        name: theater.name,
+        screen:theater.screen,
+        branch_id: theater.branch_id._id,
+        cinema_id: theater.cinema_id._id
+      
+    }
+    setTheaterData(data)
     setEdited(true);
   };
 
@@ -75,7 +90,19 @@ function CreateTheater() {
           if (res.data) {
             alert("Theater Has been Edited");
             setEdited(false); // Clear the edited state after editing
+         
+            let result = [...theater]
+            let _branch = branch.find(x => x._id === res.data.data.branch_id)
           
+            let value = result.find(x=>x._id == res.data.data._id)
+            
+            value._id = res.data.data._id;
+            value.screen =theaterData.screen
+            value.name =theaterData.name
+            value.branch_id = {
+              name:_branch.name
+            } 
+            setTheater(result)
 
           }
         })
@@ -83,17 +110,29 @@ function CreateTheater() {
           console.error("Error editing category:", error);
         });
     } else {
-      let data = {...theaterData}
-      delete data.id
-   
+      let data = { ...theaterData }
+      delete data._id;
       // If edited is null, it means we are in create mode
       axios
         .post(`${BASE_URL}/api/v1/theaters`, data)
         .then((res) => {
           if (res.data._id) {
+
             alert("Theater Has been Created");
-        
+            data._id = res.data._id;
+            let result = [...theater]
+            let _branch = branch.find(x => x._id === res.data.branch_id)
+            data.branch_id = {
+              name:_branch.name
+            } 
+            result.push(data)
+            setTheater(result)
           }
+          setTheaterData({
+            name: "",
+            screen: "",
+            branch_id: "",
+          })
         })
         .catch((error) => {
           console.error("Error creating category:", error);
@@ -117,50 +156,75 @@ function CreateTheater() {
         console.error("Error Deleting theater", error);
       });
   };
- 
+
   return (
     <div>
       <Topnav />
       <div className="addtheaaterForm3">
-   <div className="theater-top-container">     
-        <form className="addtheaaterform31" onSubmit={handleCreateTheater}>
-          <h2>{"Welcome to" + "-" + cinema}</h2>
-          <div className="addtheaaterform-group3">
-            <label htmlFor="name">Theater Name:</label>
-            <input
-              type="text"
-              name="name"
-              className="inputs"
-              required
-              onChange={handleChange}
-              value={theaterData.name}
-            />
+        <div className="theater-top-container">
+          <form className="addtheaaterform31" onSubmit={handleCreateTheater}>
+            <h2>{"Welcome to" + "-" + cinema}</h2>
 
-            {formErrors.name && (
-              <div className="error-message">{formErrors.name}</div>
-            )}
-          </div>
-          <div className="addtheaaterform-group3">
-            <label htmlFor="name">Number of Screens:</label>
-            <input
-              type="number"
-              name="screen"
-              className="inputs"
-              required
-              onChange={handleChange}
-              value={theaterData.screen}
-            />
-            {formErrors.screen && (
-              <div className="error-message">{formErrors.screen}</div>
-            )}
-          </div>
-          <div className="addtheaaterform-group3">
-            <button type="submit" className="counterform-btn">
-             
-              {is_edited ? "Edit Theater" : " Register Theater"}
-            </button>
-          </div>
-        </form>
+            <div className="addtheaaterform-group3">
+              <label htmlFor="name">Branch:</label>
+              <select
+                type="text"
+                name="branch_id"
+                value={theaterData.branch_id}
+                onChange={handleChange}
+                className="add-theater-form-select"
+              >
+                <option></option>
+                {branch.map((b) => (
+                  <option
+                  key={b._id}
+                  value={b._id}
+                  >{b.name}</option>
+                ))}
+
+
+              </select>
+
+              {formErrors.name && (
+                <div className="error-message">{formErrors.name}</div>
+              )}
+            </div>
+            <div className="addtheaaterform-group3">
+              <label htmlFor="name">Theater Name:</label>
+              <input
+                type="text"
+                name="name"
+                className="inputs"
+                required
+                onChange={handleChange}
+                value={theaterData.name}
+              />
+
+              {formErrors.name && (
+                <div className="error-message">{formErrors.name}</div>
+              )}
+            </div>
+            <div className="addtheaaterform-group3">
+              <label htmlFor="name">Number of Screens:</label>
+              <input
+                type="number"
+                name="screen"
+                className="inputs"
+                required
+                onChange={handleChange}
+                value={theaterData.screen}
+              />
+              {formErrors.screen && (
+                <div className="error-message">{formErrors.screen}</div>
+              )}
+            </div>
+            <div className="addtheaaterform-group3">
+              <button type="submit" className="counterform-btn">
+
+                {is_edited ? "Edit Theater" : " Register Theater"}
+              </button>
+            </div>
+          </form>
 
         </div>
         <div className="theater-bottom-table">
@@ -207,7 +271,7 @@ function CreateTheater() {
               </tbody>
             </table>
           </div>
-          
+
         </div>
       </div>
 

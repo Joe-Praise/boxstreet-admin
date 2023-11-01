@@ -35,7 +35,7 @@ const cinema = localStorage.getItem("cinema")
 
         setBranch((prevBranchTable) => {
           const updatedBranchTable = prevBranchTable.filter(
-            (branch) => branch.id !== branchId
+            (branch) => branch._id !== branchId
           );
           return updatedBranchTable;
         });
