@@ -45,13 +45,17 @@ function CreateLocation() {
           formData
         );
         setLoading(false);
-        toast.success('Location created successfully');
-        navigate('/web-view-location');
-      } else {
-        toast.error(
-          'Please fill in all required fields and correct any validation errors.'
-        );
-      }
+        setFormData({
+            name: '',
+          })
+        alert('Location created successfully');
+        // navigate('/web-view-location');
+      } 
+    //   else {
+    //     toast.error(
+    //       'Please fill in all required fields and correct any validation errors.'
+    //     );
+    //   }
     } catch (error) {
       console.error('Error creating location:', error);
     }

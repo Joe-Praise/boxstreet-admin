@@ -54,6 +54,8 @@ import CinemaProfile from "./components/Cinema_Admin/Cinema-profile/CinemaProfil
 import ViewUsers from "./components/Cinema_Admin/Users/ViewUsers";
 import UpdateSeat from "./components/Theater/Add Forms/UpdateSeat";
 import AccountProfile from "./components/Account/AccountProfile";
+import UpdateSchedule from "./components/Movie schedule/Movie schedule Booking/UpdateSchedule";
+import CinemaBranch from "./components/Website-Admin/CinemaBranch";
 function App() {
   return (
     <div className="App">
@@ -130,6 +132,7 @@ function App() {
             path="/theater/movieschedule"
             element={<CreateMovieSchedule />}
           />
+          <Route path="/theater/update-schedule/:id" element={<UpdateSchedule />} />
           <Route
             path="/theater/movieschedulelisting"
             element={<MovieScheduleListing />}
@@ -170,7 +173,7 @@ function App() {
           />
           <Route path="/web-users" element={<Users />} />
           <Route path="/web-create-location" element={<CreateLocation />} />
-          <Route path="/web-view-location" element={<ViewLocation />} />
+          <Route path="/web-branch" element={<CinemaBranch/>} />
         </Routes>
        
       </BrowserRouter>

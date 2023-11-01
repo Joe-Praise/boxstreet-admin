@@ -1,130 +1,127 @@
 .vmPage {
-    margin-left: 275px;
-    margin-bottom: 100px;
-  }
-  
-  .vm-page {
-    width: 1200px;
-    margin: auto;
-    height: 100%;
-    margin-top: 100px;
-  }
-  
-  .vm-table-container {
-    border-left: 10px solid #6a7c94;
-    color: #121111;
-    background: #f5f4f5d3;
-  }
-  
-  .vm-select{
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
-  .vm-select select {
-    width: 200px;
-    background-color: #fff;
-    border-radius: 4px;
-    padding: 10px;
-    border: none;
-    color: #000;
-    cursor: pointer;
-    outline: none;
-  }
-  
-  .addmoviesbtn{
-      background-color: #6a7c94;
-      border-radius: 4px;
-      padding: 10px;
-      border: none;
-      color: #fff;
-      text-align: center;
-      cursor: pointer;
-  }
-  
-  .vm-table-view{
-      background-color: #6a9480;
-      border-radius: 4px;
-      color: #fff;
-      text-align: center;
-      cursor: pointer;
-  }
-  
-  .vm-table-edit {
-    background-color: #6a7c94;
-    border-radius: 4px;
-    color: #fff;
-    text-align: center;
-    cursor: pointer;
-  }
-  
-  .vm-table-delete {
-    background-color: #ff9b8a;
-    border-radius: 4px;
-    color: #fff;
-    text-align: center;
-    cursor: pointer;
-  }
-  .vm-page-top {
-    display: flex;
-    justify-content: center;
-  }
-  .vm-page-top .vt-input {
-    display: flex;
-    gap: 20px;
-    color: aqua;
-    margin-bottom: 40px;
-  }
-  .vm-page-top .vt-input input {
-    width: 800px;
-    height: 50px;
-    border: none;
-    outline: none;
-    border-radius: 6px;
-    padding: 10px;
-  }
-  .vm-input-btn {
-    width: 100px;
-    height: 50px;
-    border-radius: 5px;
-    background: #f5f4f5d3;
-    color: #111;
-    text-align: center;
-    padding-top: 15px;
-    transition: all ease-in-out 0.3s;
-  }
-  
-  .vm-input-btn:hover {
-    background-color: #585757;
-  }
-  
-  .vm-table-container table,
-  th,
-  td {
-    padding: 1rem;
-  }
-  .vm-table {
-    width: 100%;
-    margin-top: 10px;
-    border-collapse: collapse;
-  }
-  .vm-table .vm-table-header {
-    background: #111;
-    height: 50px;
-    color: #fff;
-  }
-  
-  .vm-table-header th {
-    padding: 10px;
-  }
-  
-  .vm-table tbody td {
-    padding: 13px;
-    font-size: 16px;
-    text-align: center;
-    align-items: center;
-    border-top: 10px solid #dfdddd;
-    border-bottom: 10px solid #dfdddd;
-  }
+  margin-left: 285px;
+  margin-bottom: 100px;
+  margin-top: 100px;
+  margin-right: 60px;
+  width: 80%;
+}
+
+.vm-table-container {
+  border-left: 10px solid #6a7c94;
+  color: #121111;
+  background: #f5f4f5d3;
+}
+
+.vm-select {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.vm-select select {
+  width: 200px;
+  background-color: #fff;
+  border-radius: 4px;
+  padding: 10px;
+  border: none;
+  color: #000;
+  cursor: pointer;
+  outline: none;
+}
+
+.addmoviesbtn {
+  background-color: #6a7c94;
+  border-radius: 4px;
+  padding: 10px;
+  border: none;
+  color: #fff;
+  text-align: center;
+  cursor: pointer;
+}
+
+.vm-table-view {
+  /* width: 100%; */
+  background-color: #6a9480;
+  border-radius: 4px;
+  color: #fff;
+  text-align: center;
+  cursor: pointer;
+}
+
+.vm-table-edit {
+  background-color: #6a7c94;
+  border-radius: 4px;
+  color: #fff;
+  text-align: center;
+  cursor: pointer;
+}
+
+.vm-table-delete {
+  background-color: #ff9b8a;
+  border-radius: 4px;
+  color: #fff;
+  text-align: center;
+  cursor: pointer;
+}
+.vm-page-top {
+  display: flex;
+  justify-content: center;
+}
+.vm-page-top .vt-input {
+  display: flex;
+  gap: 20px;
+  color: aqua;
+  margin-bottom: 40px;
+}
+.vm-page-top .vt-input input {
+  width: 800px;
+  height: 50px;
+  border: none;
+  outline: none;
+  border-radius: 6px;
+  padding: 10px;
+}
+.vm-input-btn {
+  width: 100px;
+  height: 50px;
+  border-radius: 5px;
+  background: #f5f4f5d3;
+  color: #111;
+  text-align: center;
+  padding-top: 15px;
+  transition: all ease-in-out 0.3s;
+}
+
+.vm-input-btn:hover {
+  background-color: #585757;
+}
+
+.vm-table-container table,
+th,
+td {
+  padding: 1rem;
+}
+.vm-table {
+  width: 100%;
+  margin-top: 10px;
+  border-collapse: collapse;
+}
+.vm-table .vm-table-header {
+  background: #111;
+  height: 50px;
+  color: #fff;
+}
+
+.vm-table-header th {
+  padding: 10px;
+}
+
+.vm-table tbody td {
+  padding: 13px;
+  font-size: 16px;
+  text-align: center;
+  align-items: center;
+  border-top: 10px solid #dfdddd;
+  border-bottom: 10px solid #dfdddd;
+}

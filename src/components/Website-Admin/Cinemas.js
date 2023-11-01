@@ -8,6 +8,7 @@ import "./style/cinemas.css";
 function Cinemas() {
   const { id } = useParams();
   const [cinemas, setCinemas] = useState([]);
+  const [prev, setPrev] = useState([]);
   const [branches, setBranches] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [editedCinema, setEditedCinema] = useState(null);
@@ -26,7 +27,18 @@ function Cinemas() {
 
   // Open the modal
   const openModal = (cinema) => {
-    setBranches(cinema.branches);
+    let url = config.BRANCH_BASE_URL + "?cinema=" + cinema._id;
+
+    axios
+      .get(url)
+      .then((result) => {
+        // console.log("Branch Data:", result.data); // Log the branch data
+        setBranches(result.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching branch data:", error); // Log any errors
+      });
+
     setShowModal(true);
   };
 
@@ -36,25 +48,14 @@ function Cinemas() {
   };
 
   // Fetch cinema data based on the ID parameter
-  const handleFindCinemas = () => {
-    const cinemasUrl = `${config.CINEMA_BASE_URL}/${id}`;
-    if (cinemasUrl) {
-      axios
-        .get(cinemasUrl)
-        .then((response) => {
-          const cinemaData = response.data;
-          const formattedCinema = {
-            _id: cinemaData._id,
-            name: cinemaData.cinema?.name,
-            email: cinemaData.cinema?.email,
-            phone: cinemaData.cinema?.phone,
-            branches: cinemaData.branches // Assuming branches are part of the cinema data
-          };
-          setCinemas([formattedCinema]);
-        })
-        .catch((error) => {
-          setCinemas([]);
-        });
+  const handleFindCinemas = (e) => {
+    let _cinemas = [...prev];
+    let cinema = _cinemas.filter((x) => x.name.toLowerCase().includes(e.toLowerCase()));
+
+    if (cinema) {
+      setCinemas([...cinema]);
+    } else {
+      setCinemas([...cinemas]);
     }
   };
 
@@ -84,13 +85,17 @@ function Cinemas() {
     axios
       .put(editUrl, editedCinemaData)
       .then((response) => {
-        console.log("Cinema data updated:", response.data);
-        let data = response.data
-        let _cinemas = [...cinemas]
-        let d = _cinemas.find(x=>x._id == data._id)
-         d = {...d,...data}
-        
-        setCinemas(_cinemas)
+        let data = response.data?.data;
+        let _cinemas = [...cinemas];
+
+        let d = _cinemas.find((x) => x._id === data._id);
+        d.name = data.name;
+        d.phone = data.phone;
+        d.email = data.email;
+
+        setCinemas([..._cinemas]);
+        setPrev([..._cinemas]);
+        alert("Edit completed");
         //editedCinemaData
         setEditedCinemaData({
           _id: "",
@@ -111,7 +116,12 @@ function Cinemas() {
       const response = await axios.put(
         config.CINEMA_BASE_URL + `/${id}/archived`
       );
-      navigate("/web-cinemas");
+      // console.log(response)
+      // navigate("/web-cinemas");
+      let _cinemas = [...cinemas];
+      _cinemas = _cinemas.filter((x) => x._id !== id);
+      setCinemas(_cinemas);
+      setPrev(_cinemas);
     } catch (error) {
       // Handle error
     } finally {
@@ -120,49 +130,33 @@ function Cinemas() {
   };
 
   useEffect(() => {
-    // Fetch cinema data when the ID parameter changes
-    if (id) {
-      handleFindCinemas();
-    }
-  }, [id]);
-
-  useEffect(() => {
     // Fetch cinemas and branches data when the component mounts
     axios.get(config.CINEMA_BASE_URL).then((result) => {
       setCinemas(result.data);
+      setPrev(result.data);
     });
-
-    axios
-      .get(config.BRANCH_BASE_URL)
-      .then((result) => {
-        // console.log("Branch Data:", result.data); // Log the branch data
-        setBranches(result.data);
-      })
-      .catch((error) => {
-        console.error("Error fetching branch data:", error); // Log any errors
-      });
   }, []);
 
-  useEffect(() => {
-    // Assuming this effect runs when showModal and editedCinema change
-    if (showModal && branches) {
-      axios
-        .get(config.BRANCH_BASE_URL)
-        .then((result) => {
-          // console.log("Branch Data:", result.data);
-          setBranches(result.data);
-          // Filter branches for the selected cinema
-          const cinemaBranches = result.data.filter(
-            (branch) => branch.location_name === branches.name
-          );
-          setSelectedCinemaBranches(cinemaBranches);
-          console.log(cinemaBranches);
-        })
-        .catch((error) => {
-          console.error("Error fetching branch data:", error); // Log any errors
-        });
-    }
-  }, [showModal, branches]);
+  // useEffect(() => {
+  //   // Assuming this effect runs when showModal and editedCinema change
+  //   if (showModal && branches) {
+  //     axios
+  //       .get(config.BRANCH_BASE_URL)
+  //       .then((result) => {
+  //         // console.log("Branch Data:", result.data);
+  //         setBranches(result.data);
+  //         // Filter branches for the selected cinema
+  //         const cinemaBranches = result.data.filter(
+  //           (branch) => branch.location_name === branches.name
+  //         );
+  //         setSelectedCinemaBranches(cinemaBranches);
+  //         console.log(cinemaBranches);
+  //       })
+  //       .catch((error) => {
+  //         console.error("Error fetching branch data:", error); // Log any errors
+  //       });
+  //   }
+  // }, [showModal]);
 
   return (
     <div className="counterBooking">
@@ -180,7 +174,7 @@ function Cinemas() {
               />
               <span
                 className="web-cinema-input-btn"
-                onClick={handleFindCinemas}
+                onClick={() => handleFindCinemas(searchTerm)}
               >
                 Search
               </span>
@@ -205,9 +199,9 @@ function Cinemas() {
               </thead>
               <tbody>
                 {cinemas
-                  .filter((cinema) =>
-                    cinema.name.toLowerCase().includes(searchTerm.toLowerCase())
-                  )
+                  // .filter((cinema) =>
+                  //   cinema.name.toLowerCase().includes(searchTerm.toLowerCase())
+                  // )
                   .map((cinema, index) => (
                     <tr key={cinema._id}>
                       <td>{index + 1}</td>
@@ -231,7 +225,7 @@ function Cinemas() {
                           className="web-cinema-table-print"
                           onClick={() => handleArchiveCinema(cinema._id)}
                         >
-                          Archive
+                          Delete
                         </button>
                       </td>
                     </tr>
@@ -242,29 +236,31 @@ function Cinemas() {
           {showModal && branches && (
             <div className="modal">
               <div className="modal-content">
-                <h2>Branches for {branches[0].name}</h2>
+                {/* <h2>Branches for {branches[0]?.name}</h2> */}
                 <div className="web-movies-table-container">
                   <table className="web-movies-table">
-                  <thead>
-                <tr className="web-movies-table-header">
-                  <th>S/N</th>
-                  <th>Branch Name</th>
-                  <th>Location Names</th>
-                </tr>
-              </thead>
-              <tbody>
-              {branches.map((branch, index) => (
-                    <tr key={branch._id}>
-                        <td>{index + 1}</td>
-                        <td>{branch.name}</td>
-                        <td>{branch.location_id.name}</td>
-                      {/* <strong>Branch Name:</strong> {branch.name}
+                    <thead>
+                      <tr className="web-movies-table-header">
+                        <th>S/N</th>
+                        <th>Branch Name</th>
+                        <th>Location Names</th>
+                        <th>Address</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {branches.map((branch, index) => (
+                        <tr key={branch._id}>
+                          <td>{index + 1}</td>
+                          <td>{branch.name}</td>
+                          <td>{branch.location_id.name}</td>
+                          <td>{branch.address}</td>
+                          {/* <strong>Branch Name:</strong> {branch.name}
                       <br />
                       <strong>Location Name:</strong> {branch.location_id.name}
                       <br /> */}
-                    </tr>
-                  ))}
-              </tbody>
+                        </tr>
+                      ))}
+                    </tbody>
                   </table>
                 </div>
                 {/* <ul>
@@ -331,4 +327,3 @@ function Cinemas() {
 }
 
 export default Cinemas;
-

@@ -71,7 +71,7 @@ function ViewMovies() {
   };
 
   return (
-    <div>
+    <div className="viewMovies">
       <TheaterNav />
       <div className="vmPage">
         <div className="vm-page">
@@ -100,7 +100,7 @@ function ViewMovies() {
                   <th>S/N</th>
                   <th>Movie Title</th>
                   <th>Language</th>
-                  <th>Genre</th>
+                  {/* <th>Genre</th> */}
                   <th>Production Studio</th>
                   <th>Duration</th>
                   <th>PG Rating</th>
@@ -115,7 +115,7 @@ function ViewMovies() {
                     <td>{index + 1}</td>
                     <td>{movie.name}</td>
                     <td>{movie.language}</td>
-                    <td>{movie.genre}</td>
+                    {/* <td>{movie.genre}</td> */}
                     <td>{movie.production_studio}</td>
                     <td>{movie.duration}</td>
                     <td>{movie.pg_rating}</td>

@@ -1,13 +1,9 @@
 .vtPage {
-  margin-left: 275px;
+  margin-left: 285px;
   margin-bottom: 100px;
-}
-
-.vt-page {
-  width: 1200px;
-  margin: auto;
-  height: 100%;
   margin-top: 100px;
+  margin-right: 60px;
+  width: 80%;
 }
 
 .vt-table-container {

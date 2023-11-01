@@ -37,6 +37,9 @@ function SideNav() {
         <Link className="sideNavLinks" to="/counter/profile">
           <li> PROFILE</li>
         </Link>
+        <Link className="sideNavLinks" to="/counter/change-password">
+          <li> SETTINGS</li>
+        </Link>
         <li className="exist" onClick={LogOut}>LOGOUT</li>
       </ul>
     </div>
