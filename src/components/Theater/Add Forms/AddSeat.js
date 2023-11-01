@@ -40,9 +40,14 @@ let BASE_URL = MODE === "PROD" ? ONLINE : LOCAL;
         axios
         .post(seat_url,formData)
         .then((res) => {
-            if(res.data.status === "success"){
-                alert("Seat added to theater.")
-            }
+                alert("Seat added to theater.");
+                setFormData({
+                  category_id: "",
+                  theater_id: "",
+                  position: "",
+                  row: "",
+                  seat_number: "",
+                })
         })
         .catch((error) => {
           console.error("Error fetching theater data:", error);

@@ -58,6 +58,13 @@ const MovieScheduleListing = () => {
     .delete(`${BASE_URL}/api/v1/movieschedule/${scheduleId}`)
     .then((response) => {
       alert("Schedule has been deleted");
+
+      setMovieSchedule((prevSchTable) => {
+        const updatedScheduleTable = prevSchTable.filter(
+          (schedule) => schedule.id !== scheduleId
+        );
+        return updatedScheduleTable;
+      });
     })
     .catch((error) => {
       console.error("Error deleting Schedule", error)
@@ -117,4 +124,3 @@ const MovieScheduleListing = () => {
 };
 
 export default MovieScheduleListing;
-

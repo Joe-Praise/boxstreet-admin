@@ -12,6 +12,10 @@ let BASE_URL = MODE === "PROD" ? ONLINE : LOCAL;
 function ViewTheaters() {
   const navigate = useNavigate();
 
+  const handleNewTheater = () => {
+    navigate("/theater/new-theater");
+  };
+
   const handleEditButtonClick = (theaterId, theater) => {
     navigate(`/theater/update-theater/${theaterId}`, {
       state: { theaterData: theater },
@@ -58,7 +62,7 @@ function ViewTheaters() {
     axios
       .delete(`${BASE_URL}/api/v1/theaters/${theaterId}`)
       .then((response) => {
-        console.log("Theater successfully deleted");
+        alert("Theater successfully deleted");
 
         setTheaterTable((prevTheaterTable) => {
           const updatedTheaterTable = prevTheaterTable.filter(
@@ -88,7 +92,7 @@ function ViewTheaters() {
               <span key={theater.id}>{theater.cinema_name}</span>
             ))}
 
-            <button className="addtheaterbtn">Add New Theater</button>
+            <button className="addtheaterbtn" onClick={handleNewTheater}>Add New Theater</button>
           </div>
           <div className="vt-table-container">
             <table className="vt-table">

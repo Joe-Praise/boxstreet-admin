@@ -170,22 +170,6 @@ function AddMovie() {
     return errors;
   };
 
-  // const cinemaId = localStorage.getItem("cinema_id");
-
-  // if (cinemaId) {
-  //   console.log("Cinema ID:", cinemaId);
-  // } else {
-  //   console.log("Cinema ID not found in local storage.");
-  // }
-
-  // const branchId = localStorage.getItem("branch_id");
-
-  // if (branchId) {
-  //   console.log("Branch ID:", branchId);
-  // } else {
-  //   console.log("Branch ID not found in local storage.");
-  // }
-
   const handleSubmitMovie = (e) => {
     e.preventDefault();
 
@@ -210,15 +194,32 @@ function AddMovie() {
             if (response.data) {
               axios.put(`${BASE_URL}/api/v1/movies/${response.data.data._id}/resources`, formdata)
               .then((e) => {
-                    alert("Movie created successfully")
+                    alert("Movie created successfully");
+                    setMovieInfo({
+                      name: "",
+                      cast: [],
+                      coming_soon: false,
+                      language: "",
+                      genre_id: [],
+                      description: "",
+                      duration: "",
+                      production_studio: "",
+                      pg_rating: "",
+                      release_date: "",
+                      movie_director: "",
+                      trailer: "",
+                      image: ""
+                    });
+                    setFile("")
+                    setSelectedGenres([])
               });
             }
           })
           .catch((error) => {
-            console.error("Error creating movie", error);
+            console.log("Error creating movie", error);
           });
     } else {
-      console.log("Validation errors:", errors);
+      alert("Fields not filled properly", errors);
     }
   };
 

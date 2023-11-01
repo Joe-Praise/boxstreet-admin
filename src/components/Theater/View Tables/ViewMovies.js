@@ -56,7 +56,7 @@ function ViewMovies() {
     axios
       .delete(`${BASE_URL}/api/v1/movies/${movieId}`)
       .then((response) => {
-        console.log("Movie deleted successfully");
+        alert("Movie deleted successfully");
 
         setMovieTable((prevMovieTable) => {
           const updatedMovieTable = prevMovieTable.filter(
@@ -137,7 +137,6 @@ function ViewMovies() {
                     >
                       Delete
                     </td>
-                    ;
                   </tr>
                 ))}
               </tbody>
