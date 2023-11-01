@@ -79,7 +79,7 @@ function App() {
           <Route path="/cinema/account" element={<Transaction />} />
           <Route path="/cinema" element={< Dashboardc />} />
           <Route path="/cinema/create-branch" element={<CreateBranch/>} />
-          <Route path="/cinema/create-category" element={<Category/>} />
+          {/* <Route path="/cinema/create-category" element={<Category/>} /> */}
           <Route path="/cinema/view-branch" element={<ViewBranch/>}/>
           <Route path="/cinema/view-branch/:id" element={<Branch/>}/>
           <Route path="/cinema/create-theater" element={<CreateTheater/>}/>

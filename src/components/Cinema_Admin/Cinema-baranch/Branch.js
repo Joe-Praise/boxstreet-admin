@@ -28,7 +28,7 @@ function Branch() {
         axios.get(branch_url)
             .then((res) => {
                 let data = res?.data;
-                console.log(data._id)
+             
                 localStorage.setItem("mybranch_id", data._id)
                 setBranch(data)
                 setOpening(data.opening)

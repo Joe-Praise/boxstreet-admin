@@ -23,7 +23,6 @@ const cinema = localStorage.getItem("cinema")
     axios.get(branch_url)
       .then((res) => {
         let data = res?.data;
-        console.log(data)
         setBranch(data)
       })
   }, [])
@@ -79,9 +78,6 @@ const cinema = localStorage.getItem("cinema")
                   <td>{b.opening}</td>
                   <td>{b.closing}</td>
                   <td>{b.phones}</td>
-                  {/* <Link to={`/cinema/view-branch/${b._id}`} className="view-branch-edit">
-     <td className="view-branch-edit">Edit</td>
-     </Link> */}
                   <td className="view-branch-edit" onClick={() => handleEditButtonClick(b._id, branch)}>Edit</td>
                   <td className="view-branch-delete"
                     onClick={() => handleDeleteButtonClick(b._id)}
