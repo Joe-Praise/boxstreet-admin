@@ -1,8 +1,9 @@
-.addtheaaterForm{
+.addtheaaterForm3{
     width: 80%;
-    height: 100vh;
+    height: 100%;
     overflow-y: hidden;
-    margin: 150px auto;
+    margin-top: 200px;
+    margin-left: 250px;
   }
   
   .addtheaaterForm h2{
@@ -22,34 +23,33 @@
   .addtheaaterBookingForm h2 {
     color: #333;
   }
-  
-  .addtheaaterform {
-    background: transparent;
-    background-size: cover;
-    width: 80%;
-    height: auto;
-    margin: 10px auto;
-    padding: 25px 50px;
+
+  .addtheaaterform31{
+    width: 100%;
+    margin-left: 100px;
   }
+  .theater-top-container{
+  display: flex;
   
+  }
   .addtheaaterformnameflex {
     display: flex;
     justify-content: space-between;
     gap: 20px;
   }
   
-  .addtheaaterform-group {
-    width: 100%;
+  .addtheaaterform-group3 {
+    width: 50%;
     margin: 20px 0px;
   }
   
-  .addtheaaterform-group label {
+  .addtheaaterform-group3 label {
     color: #333;
     font-size: 16px;
   }
   
-  .addtheaaterform-group input {
-    width: 100%;
+  .addtheaaterform-group3 input {
+    width: 600px;
     display: block;
     margin-top: 5px;
     padding: 8px 10px;
@@ -61,13 +61,13 @@
     border-radius: 5px;
   }
   
-  .addtheaaterform-group span {
+  .addtheaaterform-group3 span {
     font-size: 12px;
     margin-left: 10px;
     color: red;
   }
   
-  .addtheaaterform-group button {
+  .addtheaaterform-group3 button {
     background: #6a7c94;
     color: #000;
     border: none;
@@ -94,3 +94,14 @@
     border: 1px solid #000;
     border-radius: 5px;
   }
+  .theater-bottom-table{
+  margin-top: 50px;
+margin-left: 150px;
+  
+  }
+  .category-table-containerT{
+    width: 1000px;
+  
+  
+  }
+  

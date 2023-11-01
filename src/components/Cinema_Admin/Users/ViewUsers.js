@@ -14,7 +14,9 @@ function ViewUsers(){
     const cinema_id = localStorage.getItem("cinema_id");
     const cinema = localStorage.getItem("cinema")
     const [branch, setBranch] = useState([]);
+    const [manager, setManager] = useState([]);
     const navigate = useNavigate();
+    const {id} = useParams();
     const handleEditButtonClick = (userId, branch) => {
       navigate(`/cinema/single-user/${userId}`, {
         state: { userData: branch },
@@ -36,22 +38,21 @@ function ViewUsers(){
                     phone:user.phone
                 }
            })
-           console.log(data)
-           setBranch([...data])
+           setManager([...data])
         })
         },[])
 
-        const handleDeleteButtonClick = (branchId) => {
+        const handleDeleteButtonClick = (managerId) => {
             axios
-              .delete(`${BASE_URL}/api/v1/branches/${branchId}`)
+              .delete(`${BASE_URL}/api/v1/managements/${managerId}`)
               .then((response) => {
-                console.log("Branch successfully deleted");
+                console.log("Manager successfully deleted");
         
-                setBranch((prevBranchTable) => {
-                  const updatedBranchTable = prevBranchTable.filter(
-                    (branch) => branch.id !== branchId
+                setManager((prevMngTable) => {
+                  const updatedMngTable = prevMngTable.filter(
+                    (manager) => manager.id !== managerId
                   );
-                  return updatedBranchTable;
+                  return updatedMngTable;
                 });
               })
               .catch((error) => {
@@ -79,9 +80,9 @@ function ViewUsers(){
                 </tr>
               </thead>
               <tbody className="view-branch-tbody">
-                {branch.map((user, i) => {
+                {manager.map((user, i) => {
                     if(user.role === "CINEMA") return ""
-                    return <tr key={user._id}>
+                    return <tr key={user.id}>
                      <td>{i }</td>
                      <td>{user.locationname}</td>
                      <td>{user.branchname}</td>
@@ -89,9 +90,9 @@ function ViewUsers(){
                      <td>{user.role}</td>
                      <td>{user.email}</td>
                      <td>{user.phone}</td>
-                     <td className="view-branch-edit" onClick={() => handleEditButtonClick(user.id, branch)}>Edit</td>
+                     <td className="view-branch-edit" onClick={() => handleEditButtonClick(user.id, manager)}>Edit</td>
                      <td className="view-branch-delete"
-                       onClick={() => handleDeleteButtonClick(user._id)}
+                       onClick={() => handleDeleteButtonClick(user.id)}
                      >Delete</td>
    
                    </tr>

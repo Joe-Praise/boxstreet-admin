@@ -120,7 +120,7 @@ const cinema = localStorage.getItem("cinema")
   return (
     <div>
       <Topnav />
-    <h3>hoooo</h3>
+    
       <div className="addcategoryForm">
         <div className="cinema-cat-text">
         <h2>{"Welcome to" +"-" + cinema}</h2>
@@ -195,6 +195,7 @@ const cinema = localStorage.getItem("cinema")
               </tbody>
             </table>
           </div>
+          
         </div>
       </div>
     </div>

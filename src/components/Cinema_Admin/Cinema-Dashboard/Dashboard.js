@@ -29,26 +29,25 @@ function Dashboardc(){
         axios.get(branch_url)
         .then((res)=>{
            let data =res?.data;
-           console.log(data.length)
+          
            setBranches(data)
         })
     axios.get(theater1_url)
     .then((res)=>{
         let data =res?.data
-        console.log(data.length)
+      
         setTheaters1(data)
     });
 
     axios.get(theater2_url)
     .then((res)=>{
         let data =res?.data
-        console.log(data.length)
+      
         setTheaters2(data)
     });
     axios.get(movie_url)
     .then((res)=>{
         let data =res?.data
-        console.log(data.length)
         setMovies(data)
     });
     axios.get(config.ADMIN_BASE_URL).then((result) => {
@@ -65,7 +64,7 @@ function Dashboardc(){
             <div className="cinema-dash-top">
             
                 <div className="cinema-dash-col">
-                    <h4>Banches</h4>
+                    <h4>Branches</h4>
                     <span>{branches.length}</span>
                 </div>
                 <div className="cinema-dash-col">

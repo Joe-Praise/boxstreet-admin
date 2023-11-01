@@ -1,5 +1,4 @@
 import React from "react";
-// import "../stylesCounter/nav.css";
 import logo from "../../../uploads/Screenshot__335_-removebg-preview (1).png";
 import Sidenav from "../Sidenav/Sidenav";
 import "./topnav.css"
@@ -7,7 +6,6 @@ import { Link } from "react-router-dom";
 
 function Topnav() {
   let username = localStorage.getItem("fullname")
-  console.log(username)
   return (
     <header>
       <div className="navHead">
@@ -25,12 +23,7 @@ function Topnav() {
             </ul>
           </div>
           <div>
-            <ul className="navlinks">
-              <Link to='/counter/history'>
-                {/* <li className="from-left-and-back">BOOKING HISTORY</li> */}
-              </Link>
-              {/* <li className="from-left-and-back">SIGN IN</li> */}
-            </ul>
+          
           </div>
         </nav>
       </div>

@@ -1,7 +1,27 @@
 import "./transaction.css";
 import CounterNav from "../../Counter/Navigation/CounterNav";
 import Topnav from "../Cinema-Navigation/Topnav/Topnav";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import Config from "../../config";
 function Transaction(){
+
+    const [transaction, setTransaction]= useState([]);
+    const getTransaction = async () => {
+        try {
+          const response = await axios.get(
+            Config.TRANSACTION_BASE_URL + "/summary"
+          );
+          const data = response.data.summary;
+          setTransaction(data);
+        } catch (err) {
+          console.log(err.message);
+        }
+      };
+    
+      useEffect(() => {
+        getTransaction();
+      }, []);
     return(
         <div className="account-main">
             <Topnav/>
@@ -12,25 +32,27 @@ function Transaction(){
             <tr className="accoun-table-header">
             <th>S/N</th>
                   <th>Branch</th>
-                  <th>Theater</th>
-                  <th>total Amount</th>
-                  <th>Booking Type</th>
                   <th>Currency</th>
+                  <th>total Amount</th>
+                  <th>Average</th>
                   <th>Date</th>
                  
             </tr>
         </thead>
 <tbody>
-    <tr>
-    <td>1</td>
-        <td>Wuse</td>
-        <td>MandaBox</td>
-        <td>20000</td>
-        <td>Online</td>
-        <td>NIGN</td>
-        <td>21/10/23</td>
-
-    </tr>   
+    {transaction.map((trans, i)=>{
+        return(
+            <tr key={trans._id}>
+            <td>{i+1}</td>
+                <td>{trans?._id.branch_id.name}</td>
+                <td>NGN</td>
+                <td>₦{trans?.amount?.toLocaleString()}</td>
+                <td>{trans.avgAmount?.toLocaleString()}</td>
+                <td>{trans?._id?.day}/{trans?._id?.month}/{trans?._id?.year}</td>
+            </tr> 
+        )
+    })}
+     
 </tbody>
     </table>
 
