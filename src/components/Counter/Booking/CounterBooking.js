@@ -93,7 +93,7 @@ function CounterBooking() {
       payment_method: "",
     });
     alert("Booking is successful");
-    // navigate(`/counter/seat/${record.theater_id}/${id}`);
+    navigate(`/counter/seat/${record.theater_id}/${id}`);
   };
 
   const validateForm = () => {
