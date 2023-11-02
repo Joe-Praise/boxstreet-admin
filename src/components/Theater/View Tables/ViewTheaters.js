@@ -58,6 +58,31 @@ function ViewTheaters() {
       });
   }, [BASE_URL, branch_id]);
 
+  const handleResetButton = (theaterId) => {
+    axios
+      .post(`${BASE_URL}/api/v1/theaters/reset-seats`,{theater_id:theaterId})
+      .then((response) => {
+        alert("Theater seats have been reset to default");
+  
+        setTheaterTable((prevTheaterTable) => {
+          const updatedTheaterTable = prevTheaterTable.map((theater) => {
+            if (theater.id === theaterId) {
+              return {
+                ...theater,
+                available_seat: 0,
+                unavailable_seat: 0
+              };
+            }
+            return theater;
+          });
+          return updatedTheaterTable;
+        });
+      })
+      .catch((error) => {
+        console.error("Error Resetting Theater Seats", error);
+      });
+  }  
+
   const handleDeleteButtonClick = (theaterId) => {
     axios
       .delete(`${BASE_URL}/api/v1/theaters/${theaterId}`)
@@ -105,6 +130,7 @@ function ViewTheaters() {
                   <th>Available</th>
                   <th>Unavailable</th>
                   <th>View Seat</th>
+                  <th>Reset Seat</th>
                   <th>View Layout</th>
                   <th>Edit</th>
                   <th>Delete</th>
@@ -119,12 +145,18 @@ function ViewTheaters() {
                     <td>{theater.seat_capacity}</td>
                     <td>{theater.available_seat}</td>
                     <td>{theater.unavailable_seat}</td>
-
                     <td
                       className="vt-table-viewseat"
                       onClick={() => handleSeatTableButtonClick(theater.id)}
                     >
                       Seat Table
+                    </td>
+
+                    <td
+                      className="vt-table-resetseat"
+                      onClick={() => handleResetButton(theater.id)}
+                    >
+                      Reset
                     </td>
                     <td
                       className="vt-table-view"

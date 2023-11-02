@@ -42,6 +42,14 @@
   cursor: pointer;
 }
 
+.vt-table-resetseat{
+  background-color: #5b5b5b;
+  border-radius: 4px;
+  color: #fff;
+  text-align: center;
+  cursor: pointer;
+}
+
 .vt-table-view{
     background-color: #6a9480;
     border-radius: 4px;
