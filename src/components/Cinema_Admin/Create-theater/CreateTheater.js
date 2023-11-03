@@ -32,6 +32,9 @@ function CreateTheater() {
 
   const validateForm = () => {
     const errors = {};
+    if (!theaterData.branch_id.trim()) {
+      errors.branch_id = "Field Required";
+    }
     if (!theaterData.name.trim()) {
       errors.name = "Field Required";
     }
@@ -113,8 +116,10 @@ function CreateTheater() {
       let data = { ...theaterData }
       delete data._id;
       // If edited is null, it means we are in create mode
-      axios
-        .post(`${BASE_URL}/api/v1/theaters`, data)
+      const isFormValid = validateForm();
+      if(isFormValid){
+
+   const response = await axios.post(`${BASE_URL}/api/v1/theaters`, data)
         .then((res) => {
           if (res.data._id) {
 
@@ -134,9 +139,19 @@ function CreateTheater() {
             branch_id: "",
           })
         })
-        .catch((error) => {
-          console.error("Error creating category:", error);
-        });
+       
+        if (response?.status === "success") {
+         
+          setIsSignUpSuccess(true);
+          setFormErrorMessage("");
+        }
+      }else {
+        setFormErrorMessage(
+          "Please fill in all required fields."
+        );
+      }
+    
+
     }
   };
   const handleDeleteButtonClick = (theaterId) => {
@@ -185,8 +200,8 @@ function CreateTheater() {
 
               </select>
 
-              {formErrors.name && (
-                <div className="error-message">{formErrors.name}</div>
+              {formErrors.branch_id && (
+                <div className="error-message">{formErrors.branch_id}</div>
               )}
             </div>
             <div className="addtheaaterform-group3">
@@ -195,7 +210,6 @@ function CreateTheater() {
                 type="text"
                 name="name"
                 className="inputs"
-                required
                 onChange={handleChange}
                 value={theaterData.name}
               />
@@ -210,7 +224,6 @@ function CreateTheater() {
                 type="number"
                 name="screen"
                 className="inputs"
-                required
                 onChange={handleChange}
                 value={theaterData.screen}
               />

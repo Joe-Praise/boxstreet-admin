@@ -23,6 +23,7 @@ function AddTheaterAdmin() {
 
   const [formData, setFormData] = useState({
     cinema_id,
+    branch_id:"",
     fullname: "",
     role: "",
     email: "",
@@ -149,7 +150,7 @@ let branch_url = `${BASE_URL}/api/v1/branches?cinema_id=${cinema_id}`
                 onChange={handleChange}
               />
               {formErrors.fullname && (
-                <div className="error-message">{formErrors.fullname}</div>
+                <p className="error-message">{formErrors.fullname}</p>
               )}
             </div>
             <div className="addcounterform-group">
@@ -166,7 +167,7 @@ let branch_url = `${BASE_URL}/api/v1/branches?cinema_id=${cinema_id}`
                 <option value="ACCOUNT">ACCOUNT</option>
               </select>
               {formErrors.role && (
-                <div className="error-message">{formErrors.role}</div>
+                <p className="error-message">{formErrors.role}</p>
               )}
             </div>
           </div>

@@ -12,18 +12,31 @@ let BASE_URL = MODE === "PROD" ? ONLINE : LOCAL;
 function Category() {
 
   let cinema_id = localStorage.getItem("cinema_id");
-const cinema = localStorage.getItem("cinema")
-  const [editCategory, ] = useState(false);
+  const cinema = localStorage.getItem("cinema")
+  const [editCategory,] = useState(false);
   const [is_edited, setEdited] = useState(false);
   const [category, setCategory] = useState([]);
+  const [isSignUpSuccess, setIsSignUpSuccess] = useState(false);
+  const [formErrorMessage, setFormErrorMessage] = useState("");
+  const [formErrors, setFormErrors] = useState({});
   const [formData, setFormData] = useState({
     cinema_id,
     name: "",
     price: "",
-    id:""
+    id: ""
   });
 
-
+  const validateForm = () => {
+    const errors = {};
+    if (!formData.name.trim()) {
+      errors.name = "Field Required";
+    }
+    if (!formData.price.trim()) {
+      errors.price = "Field Required";
+    }
+    setFormErrors(errors);
+    return Object.keys(errors).length === 0;
+  };
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({
@@ -48,7 +61,10 @@ const cinema = localStorage.getItem("cinema")
           if (res.data) {
             alert("Category Has been Edited");
             setEdited(false); // Clear the edited state after editing
-            setFormData({})
+            setFormData({
+              name: "",
+              price: "",
+            })
 
           }
         })
@@ -56,21 +72,33 @@ const cinema = localStorage.getItem("cinema")
           console.error("Error editing category:", error);
         });
     } else {
-      let data = {...formData}
+      let data = { ...formData }
       delete data.id
-   
+
       // If edited is null, it means we are in create mode
-      axios
-        .post(`${BASE_URL}/api/v1/categories`, data)
+      const isFormValid = validateForm();
+      if(isFormValid){
+      const response= await axios.post(`${BASE_URL}/api/v1/categories`, data)
         .then((res) => {
           if (res.data._id) {
             alert("Category Has been Created");
-            setFormData({})
+            setFormData({
+              name: "",
+              price: "",
+            })
           }
         })
-        .catch((error) => {
-          console.error("Error creating category:", error);
-        });
+        if (response?.status === "success") {
+         
+          setIsSignUpSuccess(true);
+          setFormErrorMessage("");
+        }
+      }else {
+        setFormErrorMessage(
+          "Please fill in all required fields."
+        );
+      }
+   
     }
   };
 
@@ -106,7 +134,7 @@ const cinema = localStorage.getItem("cinema")
             price: category.price,
           };
         });
-     
+
         setCategory([...data]);
       })
       .catch((error) => {
@@ -120,12 +148,12 @@ const cinema = localStorage.getItem("cinema")
   return (
     <div>
       <Topnav />
-    
+
       <div className="addcategoryForm">
         <div className="cinema-cat-text">
-        <h2>{"Welcome to" +"-" + cinema}</h2>
+          <h2>{"Welcome to" + "-" + cinema}</h2>
         </div>
-      
+
         <form onSubmit={handleCreateCategory} className="addtheaaterform">
           <h2>{is_edited ? "Edit Category" : "Register a New Seat Class"}</h2>
           <div className="addcounterform-group">
@@ -138,6 +166,9 @@ const cinema = localStorage.getItem("cinema")
               value={formData.name}
               onChange={handleChange}
             />
+ {formErrors.name && (
+                <div className="error-message">{formErrors.name}</div>
+              )}
           </div>
           <div className="addtheaaterform-group">
             <label htmlFor="">Price:</label>
@@ -149,6 +180,9 @@ const cinema = localStorage.getItem("cinema")
               value={formData.price}
               onChange={handleChange}
             />
+             {formErrors.price && (
+                <div className="error-message">{formErrors.price}</div>
+              )}
           </div>
           <div className="addcounterform-group">
             <button className="counterform-btn">
@@ -157,7 +191,7 @@ const cinema = localStorage.getItem("cinema")
           </div>
         </form>
         <div>
-        
+
           <div className="category-table-container">
             <table className="category-table">
               <thead>
@@ -195,7 +229,7 @@ const cinema = localStorage.getItem("cinema")
               </tbody>
             </table>
           </div>
-          
+
         </div>
       </div>
     </div>
