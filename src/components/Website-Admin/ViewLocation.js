@@ -16,6 +16,7 @@ function ViewLocation() {
     name: "",
   });
   const [showModal, setShowModal] = useState(false);
+  // const [reload, setReload]
 
   // Open the modal
   const openModal = () => {
@@ -36,7 +37,7 @@ function ViewLocation() {
         .get(locationUrl)
         .then((response) => {
           const locationData = response.data;
-         
+
           setLocation([...locationData]);
         })
         .catch((error) => {
@@ -53,6 +54,7 @@ function ViewLocation() {
       _id: location._id,
       name: location.name,
     });
+    // window.location.reload();
   };
 
   // Handle input changes for editing cinema data
@@ -62,6 +64,7 @@ function ViewLocation() {
       ...editedLocationData,
       [name]: value,
     });
+    // window.location.reload();
   };
 
   // Save changes to edited cinema data
@@ -93,8 +96,7 @@ function ViewLocation() {
       .delete(`${config.LOCATION_BASE_URL}/${adminId}`)
       .then((response) => {
         alert("Location deleted successfully");
-
-
+        window.location.reload();
       })
       .catch((error) => {
         console.error("Error Deleting Admin", error);

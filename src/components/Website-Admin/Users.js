@@ -40,7 +40,7 @@ function Users() {
       .delete(`${config.MGT_BASE_URL}/${adminId}`)
       .then((response) => {
         alert("Admin deleted successfully");
-
+        window.location.reload();
 
       })
       .catch((error) => {
@@ -126,7 +126,7 @@ function Users() {
                   ).map((user, index) => (
       <tr key={user._id}>
         <td>{index + 1}</td>
-        <td>{user.cinema_id.name}</td>
+        <td>{user.cinema_id?.name}</td>
         <td>{user.fullname}</td>
         <td>{user.email}</td>
         <td>{user.phone}</td>

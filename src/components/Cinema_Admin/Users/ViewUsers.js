@@ -26,7 +26,9 @@ function ViewUsers(){
         let user_url = `${BASE_URL}/api/v1/managements?cinema_id=${cinema_id}`
         axios.get(user_url)
         .then((res)=>{
+          
            let users =res?.data;
+           console.log(users)
            let data = users?.map((user)=>{
                 return{
                     id :user._id,

@@ -56,6 +56,7 @@ import UpdateSeat from "./components/Theater/Add Forms/UpdateSeat";
 import AccountProfile from "./components/Account/AccountProfile";
 import UpdateSchedule from "./components/Movie schedule/Movie schedule Booking/UpdateSchedule";
 import CinemaBranch from "./components/Website-Admin/CinemaBranch";
+
 function App() {
   return (
     <div className="App">
@@ -174,7 +175,9 @@ function App() {
           <Route path="/web-users" element={<Users />} />
           <Route path="/web-create-location" element={<CreateLocation />} />
           <Route path="/web-branch" element={<CinemaBranch/>} />
+          <Route path="/web-view-location" element={<ViewLocation/>} />
         </Routes>
+       
        
       </BrowserRouter>
     </div>

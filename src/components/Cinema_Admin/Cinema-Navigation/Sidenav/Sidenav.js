@@ -38,7 +38,7 @@ function Sidenav() {
           <li>CREATE THEATER</li>
         </Link>
         <Link className="sideNavLinks" to="/cinema/create-category">
-          <li>CREATE CATEGORY</li>
+          <li>CREATE SEAT CLASS</li>
         </Link>
         <Link className="sideNavLinks" to="/cinema/create-theater-admin">
           <li>ADD USER</li>

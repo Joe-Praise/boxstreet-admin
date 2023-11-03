@@ -127,9 +127,9 @@ const cinema = localStorage.getItem("cinema")
         </div>
       
         <form onSubmit={handleCreateCategory} className="addtheaaterform">
-          <h2>{is_edited ? "Edit Category" : "Register a New Category"}</h2>
+          <h2>{is_edited ? "Edit Category" : "Register a New Seat Class"}</h2>
           <div className="addcounterform-group">
-            <label htmlFor="">Category:</label>
+            <label htmlFor="">Seat Class:</label>
             <span></span>
             <input
               type="text"
