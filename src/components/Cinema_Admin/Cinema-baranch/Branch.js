@@ -28,7 +28,6 @@ function Branch() {
         axios.get(branch_url)
             .then((res) => {
                 let data = res?.data;
-             console.log(data)
                 localStorage.setItem("mybranch_id", data._id)
                 setBranch(data)
                 setOpening(data.opening)
@@ -40,7 +39,7 @@ function Branch() {
             })
     }, [id])
 
-    const handleUpdate = async () => {
+    const handleUpdate = async (branch) => {
         try {
             let branch_url = `${BASE_URL}/api/v1/branches/${id}`
             await axios.put(branch_url, {
@@ -57,7 +56,15 @@ function Branch() {
                     alert("Branch Updated")
                 }
                 setUpdatemode(false)
-                window.location.replace("/cinema/view-branch")
+        let newData ={
+            name:data?.data.name,
+            address:data?.data.address,
+            opening:data?.data.opening,
+            closing:data?.data.closing,
+            phones:data?.data?.phones
+            
+        }
+        setBranch(newData)
             })
              
         } catch (error) {

@@ -12,7 +12,7 @@ let BASE_URL = MODE === "PROD" ? ONLINE : LOCAL;
 function SingleUser() {
     const [updatemode, setUpdatemode] = useState(false);
     const [cinema, setCinema] = useState();
-    const [branch, setBranch] = useState();
+    const [user, setUser] = useState();
     let { id } = useParams();
     const user_id = localStorage.getItem("user_id")
     const [cinemaname, setCinemaname] = useState();
@@ -26,7 +26,7 @@ function SingleUser() {
         const user_url = config.MANAGEMENT_BASE_URL + "/" + id + "/user-info"
         axios.get(user_url)
             .then((res) => {
-                let data = res?.data;
+                let data = res?.data
                 setUsername(data)
                 setFullname(data?.fullname)
                 setRole(data?.role)
@@ -49,7 +49,13 @@ function SingleUser() {
                     alert("User Updated")
                 }
                 setUpdatemode(false)
-                window.location.replace("/cinema/view-user")
+             let newData ={
+                fullname:data?.fullname,
+                role:data?.role,
+                email:data?.email,
+                phone:data?.phone
+             }
+             setUsername(newData)
             })
 
         } catch (error) {

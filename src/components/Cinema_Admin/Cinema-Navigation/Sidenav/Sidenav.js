@@ -17,6 +17,7 @@ function Sidenav() {
         } else {
           navigate("/cinema");
         }
+        localStorage.clear()
       })
       .catch((error) => {
         console.error(error);
@@ -31,9 +32,6 @@ function Sidenav() {
         <Link className="sideNavLinks" to="/cinema/create-branch">
           <li>CREATE BRANCH</li>
         </Link>
-        <Link to="/cinema/view-branch" className="sideNavLinks">
-          <li>VIEW BRANCH</li>
-        </Link>
         <Link className="sideNavLinks" to="/cinema/create-theater">
           <li>CREATE THEATER</li>
         </Link>
@@ -42,6 +40,9 @@ function Sidenav() {
         </Link>
         <Link className="sideNavLinks" to="/cinema/create-theater-admin">
           <li>ADD USER</li>
+        </Link>
+        <Link to="/cinema/view-branch" className="sideNavLinks">
+          <li>VIEW BRANCH</li>
         </Link>
         <Link className="sideNavLinks" to="/cinema/view-user">
           <li>VIEW USERS</li>

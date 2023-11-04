@@ -43,7 +43,13 @@ function CinemaProfile() {
                     alert("User Updated")
                 }
                 setUpdatemode(false)
-               
+                let newData ={
+                    fullname:data?.fullname,
+                    role:data?.role,
+                    email:data?.email,
+                    phone:data?.phone
+                 }
+                 setCinemaAdmin(newData)
             })
 
         } catch (error) {

@@ -23,7 +23,7 @@ function Category() {
     cinema_id,
     name: "",
     price: "",
-    id: ""
+    _id: ""
   });
 
   const validateForm = () => {
@@ -45,9 +45,34 @@ function Category() {
     });
   };
 
+  useEffect(() => {
+    let category_table = `${BASE_URL}/api/v1/categories?cinema_id=${cinema_id}`;
+    axios
+      .get(category_table)
+      .then((res) => {
+        let categories = res.data;
+        let data = categories?.map((category) => {
+          return {
+            id: category._id,
+            name: category.name,
+            price: category.price,
+          };
+        });
+
+        setCategory([...data]);
+      })
+      .catch((error) => {
+        console.error("Error fetching theater data:", error);
+      });
+  }, []);
+
   const handleEditButtonClick = (category) => {
     setFormData(category)
     setEdited(true);
+    console.log(category)
+   
+    console.log(category)
+    setFormData(category)
   };
 
   const handleCreateCategory = async (e) => {
@@ -61,6 +86,7 @@ function Category() {
           if (res.data) {
             alert("Category Has been Edited");
             setEdited(false); // Clear the edited state after editing
+          
             setFormData({
               name: "",
               price: "",
@@ -73,7 +99,7 @@ function Category() {
         });
     } else {
       let data = { ...formData }
-      delete data.id
+      delete data._id
 
       // If edited is null, it means we are in create mode
       const isFormValid = validateForm();
@@ -82,6 +108,10 @@ function Category() {
         .then((res) => {
           if (res.data._id) {
             alert("Category Has been Created");
+            // data._id =res.data._id
+            // let result =[...category]
+            // result.push(data)
+            // setCategory(result)
             setFormData({
               name: "",
               price: "",
@@ -119,31 +149,6 @@ function Category() {
         console.error("Error Deleting Category", error);
       });
   };
-
-
-  useEffect(() => {
-    let category_table = `${BASE_URL}/api/v1/categories?cinema_id=${cinema_id}`;
-    axios
-      .get(category_table)
-      .then((res) => {
-        let categories = res.data;
-        let data = categories?.map((category) => {
-          return {
-            id: category._id,
-            name: category.name,
-            price: category.price,
-          };
-        });
-
-        setCategory([...data]);
-      })
-      .catch((error) => {
-        console.error("Error fetching theater data:", error);
-      });
-  }, []);
-
-
-
 
   return (
     <div>

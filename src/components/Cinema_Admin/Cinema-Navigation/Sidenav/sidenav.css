@@ -46,5 +46,6 @@
         background-image: linear-gradient(to right, #6a7c94 45%, #ffffff 55%);
         background-size: 220% 100%;
         background-position: 100% 50%;
+        cursor: pointer;
     
 }

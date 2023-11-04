@@ -106,7 +106,11 @@ function CreateTheater() {
               name:_branch.name
             } 
             setTheater(result)
-
+            setTheaterData({
+              name: "",
+              screen: "",
+              branch_id: "",
+            })
           }
         })
         .catch((error) => {
