@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import config from "../../config";
+import Loading from "../../Loading"
 let MODE = "PROD";
 let LOCAL = "http://localhost:5000";
 let ONLINE = "https://boxstreet.onrender.com";
@@ -22,6 +23,7 @@ function SingleUser() {
     const [fullname, setFullname] = useState();
     const [role, setRole] = useState();
     const [phone, setPhone] = useState();
+    const [loading, setLoading] = useState(false)
     useEffect(() => {
         const user_url = config.MANAGEMENT_BASE_URL + "/" + id + "/user-info"
         axios.get(user_url)
@@ -36,6 +38,7 @@ function SingleUser() {
     }, [id])
 
     const handleUpdate = async () => {
+        setLoading(true)
         try {
             let manager_url = `${BASE_URL}/api/v1/managements/${id}`
             await axios.put(manager_url, {
@@ -48,6 +51,7 @@ function SingleUser() {
                 if (resp?.data._id) {
                     alert("User Updated")
                 }
+                setLoading(false)
                 setUpdatemode(false)
              let newData ={
                 fullname:data?.fullname,
@@ -68,6 +72,7 @@ function SingleUser() {
             <div className="cinema-branch-main">
 
                 <div className="cinema-branch-card-p">
+                    
                     <div className="cinema-branch-texts">
 
                         <div className="cinema-branch-text">
@@ -134,7 +139,7 @@ function SingleUser() {
                         </div>
                         {updatemode && (
                             <div className="cinema-branch-update-btn">
-                                <button onClick={handleUpdate}>UPDATE USER</button>
+                                <button onClick={handleUpdate}>{loading? <Loading/>:"UPDATE USER"}</button>
                             </div>
                         )
 

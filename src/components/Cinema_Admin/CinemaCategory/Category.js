@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Topnav from "../Cinema-Navigation/Topnav/Topnav";
 import "./category.css";
 import axios from "axios";
+import Loading from "../../Loading";
 
 let MODE = "PROD";
 let LOCAL = "http://localhost:5000";
@@ -19,6 +20,7 @@ function Category() {
   const [isSignUpSuccess, setIsSignUpSuccess] = useState(false);
   const [formErrorMessage, setFormErrorMessage] = useState("");
   const [formErrors, setFormErrors] = useState({});
+  const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     cinema_id,
     name: "",
@@ -70,14 +72,11 @@ function Category() {
     setFormData(category)
     setEdited(true);
     console.log(category)
-   
-    console.log(category)
-    setFormData(category)
   };
 
   const handleCreateCategory = async (e) => {
     e.preventDefault();
-
+    setLoading(true);
     if (is_edited) {
       // If edited is not null, it means we are in edit mode
       axios
@@ -85,8 +84,13 @@ function Category() {
         .then((res) => {
           if (res.data) {
             alert("Category Has been Edited");
+            setLoading(false);
             setEdited(false); // Clear the edited state after editing
-          
+          // let result =[...category]
+          // let value = result.find()
+          // value.name = formData.name
+          // value.price = formData.price
+          // setCategory(result)
             setFormData({
               name: "",
               price: "",
@@ -108,7 +112,7 @@ function Category() {
         .then((res) => {
           if (res.data._id) {
             alert("Category Has been Created");
-            // data._id =res.data._id
+            setLoading(false);
             // let result =[...category]
             // result.push(data)
             // setCategory(result)
@@ -192,6 +196,7 @@ function Category() {
           <div className="addcounterform-group">
             <button className="counterform-btn">
               {is_edited ? "Edit Category" : "Create Category"}
+              {loading ? <Loading/> : ""}
             </button>
           </div>
         </form>

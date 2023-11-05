@@ -31,6 +31,19 @@ color: #a52a2a;
     border: 0.1px solid gray;
     border-radius: 10px;
     box-shadow: 5px 10px 10px 5px rgba(0, 0, 0, 0.1);
+   
+}
+.cinema-loader{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.cinema-loader p{
+    text-align: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: rgb(140, 140, 138);
 }
 .cinema-dash-col h4{
     text-align: center;

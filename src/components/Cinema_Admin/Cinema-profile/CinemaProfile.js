@@ -5,6 +5,7 @@ import Topnav from "../Cinema-Navigation/Topnav/Topnav";
 import config from "../../config";
 import { useParams } from "react-router-dom";
 import { MdPerson } from "react-icons/md";
+import Loading from "../../Loading"
 let MODE = "PROD";
 let LOCAL = "http://localhost:5000";
 let ONLINE = "https://boxstreet.onrender.com";
@@ -17,6 +18,7 @@ function CinemaProfile() {
     const [fullname, setFullname] = useState();
     const [role, setRole] = useState();
     const [phone, setPhone] = useState();
+    const [loading, setLoading] = useState(false)
     const { id } = useParams();
     useEffect(() => {
         const profile_url = config.MANAGEMENT_BASE_URL + "/" + user_id + "/user-info"
@@ -30,6 +32,7 @@ function CinemaProfile() {
         })
     }, [user_id]);
     const handleUpdate = async () => {
+        setLoading(true)
         try {
             let manager_url = `${BASE_URL}/api/v1/managements/${user_id}`
             await axios.put(manager_url, {
@@ -42,6 +45,7 @@ function CinemaProfile() {
                 if (resp?.data._id) {
                     alert("User Updated")
                 }
+                setLoading(false)
                 setUpdatemode(false)
                 let newData ={
                     fullname:data?.fullname,
@@ -133,7 +137,7 @@ function CinemaProfile() {
                         </div>
                         {updatemode && (
                             <div className="cinema-branch-update-btn">
-                                <button onClick={handleUpdate}>UPDATE USER</button>
+                                <button onClick={handleUpdate}>{loading? <Loading/>:"UPDATE USER"}</button>
                             </div>
                         )
 

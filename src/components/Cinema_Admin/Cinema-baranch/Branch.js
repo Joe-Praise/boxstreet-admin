@@ -3,6 +3,7 @@ import Topnav from "../Cinema-Navigation/Topnav/Topnav";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import Loading from "../../Loading";
 
 let MODE = "PROD";
 let LOCAL = "http://localhost:5000";
@@ -11,7 +12,7 @@ let ONLINE = "https://boxstreet.onrender.com";
 let BASE_URL = MODE === "PROD" ? ONLINE : LOCAL;
 function Branch() {
     const [updatemode, setUpdatemode] = useState(false);
-    // const [cinema, setCinema] = useState();
+    const [loading, setLoading] = useState(false);
     const [branch, setBranch] = useState();
     let { id } = useParams();
     const cinema = localStorage.getItem("cinema");
@@ -40,6 +41,7 @@ function Branch() {
     }, [id])
 
     const handleUpdate = async (branch) => {
+        setLoading(true)
         try {
             let branch_url = `${BASE_URL}/api/v1/branches/${id}`
             await axios.put(branch_url, {
@@ -55,12 +57,13 @@ function Branch() {
                 if (resp?.data.data._id) {
                     alert("Branch Updated")
                 }
+                setLoading(false)
                 setUpdatemode(false)
         let newData ={
             name:data?.data.name,
-            address:data?.data.address,
-            opening:data?.data.opening,
-            closing:data?.data.closing,
+            address:data?.data?.address,
+            opening:data?.data?.opening,
+            closing:data?.data?.closing,
             phones:data?.data?.phones
             
         }
@@ -161,7 +164,7 @@ function Branch() {
                         </div>
                         {updatemode && (
                             <div className="cinema-branch-update-btn">
-                                <button onClick={handleUpdate}>UPDATE BRANCH</button>
+                                <button onClick={handleUpdate}>{loading? <Loading/>:"UPDATE BRANCH"}</button>
                             </div>
                         )
 

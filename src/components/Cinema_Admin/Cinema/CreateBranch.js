@@ -5,6 +5,7 @@ import axios from "axios";
 import CounterNav from "../../Counter/Navigation/CounterNav";
 import Topnav from "../Cinema-Navigation/Topnav/Topnav";
 import config from "../../config";
+import Loading from "../../Loading"
 
 let MODE = "PROD";
 let LOCAL = "http://localhost:5000";
@@ -16,8 +17,9 @@ function CreateBranch() {
   const [formErrors, setFormErrors] = useState({});
   const [isSignUpSuccess, setIsSignUpSuccess] = useState(false);
   const [formErrorMessage, setFormErrorMessage] = useState("");
-  const [locationid, setLocationId] = useState()
-  const cinema = localStorage.getItem("cinema")
+  const [locationid, setLocationId] = useState();
+  const cinema = localStorage.getItem("cinema");
+  const [loading, setLoading]= useState(false)
   let cinemaId = localStorage.getItem("cinema_id");
 
   const [formData, setFormData] = useState({
@@ -57,6 +59,7 @@ function CreateBranch() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true)
     try {
       const isFormValid = validateForm();
       if (isFormValid) {
@@ -67,7 +70,8 @@ function CreateBranch() {
           if(resp?.data._id){
             alert("Branch Created")
           }
-          localStorage.setItem("branchId", resp.data._id)
+          setLoading(false)
+          // localStorage.setItem("branchId", resp.data._id)
           setFormData({
             location_id: "",
             opening: "",
@@ -213,7 +217,7 @@ function CreateBranch() {
 
             <div className="add-cinema-form-group">
               <button className="cinema-form-group-btn">
-                Create Branch
+              {loading? <Loading/>:"  Create Branch"}
               </button>
             </div>
           </form>

@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-// import "../../../stylesTheater/addtheater.css";
+import Loading from "../../Loading";
 import "./theater.css"
 import axios from "axios";
 import Topnav from "../Cinema-Navigation/Topnav/Topnav";
@@ -22,6 +22,7 @@ function CreateTheater() {
   const [branch, setBranch] = useState([]);
   const [screen, setScreen] = useState("");
   const [name, setName] = useState("");
+  const [loading, setLoading] = useState(false);
   const [theaterData, setTheaterData] = useState({
     _id:"",
     name: "",
@@ -84,7 +85,7 @@ function CreateTheater() {
 
   const handleCreateTheater = async (e) => {
     e.preventDefault();
-
+    setLoading(true);
     if (is_edited) {
       // If edited is not null, it means we are in edit mode
       axios
@@ -93,7 +94,7 @@ function CreateTheater() {
           if (res.data) {
             alert("Theater Has been Edited");
             setEdited(false); // Clear the edited state after editing
-         
+            setLoading(false);
             let result = [...theater]
             let _branch = branch.find(x => x._id === res.data.data.branch_id)
           
@@ -126,7 +127,7 @@ function CreateTheater() {
    const response = await axios.post(`${BASE_URL}/api/v1/theaters`, data)
         .then((res) => {
           if (res.data._id) {
-
+            setLoading(false);
             alert("Theater Has been Created");
             data._id = res.data._id;
             let result = [...theater]
@@ -182,7 +183,7 @@ function CreateTheater() {
       <div className="addtheaaterForm3">
         <div className="theater-top-container">
           <form className="addtheaaterform31" onSubmit={handleCreateTheater}>
-            <h2>{"Welcome to" + "-" + cinema}</h2>
+            <h2 className="cinema-welcome-msg">{"Welcome to" + "-" + cinema}</h2>
 
             <div className="addtheaaterform-group3">
               <label htmlFor="name">Branch:</label>
@@ -239,6 +240,7 @@ function CreateTheater() {
               <button type="submit" className="counterform-btn">
 
                 {is_edited ? "Edit Theater" : " Register Theater"}
+                {loading ? <Loading/> : ""}
               </button>
             </div>
           </form>

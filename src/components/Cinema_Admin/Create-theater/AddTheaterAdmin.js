@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-// import "../Theater/stylesTheater/addcounter.css";
 import "./theateradmin.css"
 import { toast } from "react-toastify";
 import axios from "axios";
 import config from "../../config";
-// import WebNav from "./Navigation/WebNav";
 import Topnav from "../Cinema-Navigation/Topnav/Topnav";
+import Loading from "../../Loading";
 
 let MODE = "PROD";
 let LOCAL = "http://localhost:5000";
@@ -16,6 +15,7 @@ let BASE_URL = MODE === "PROD" ? ONLINE : LOCAL;
 function AddTheaterAdmin() {
   const navigate = useNavigate();
   const cinema = localStorage.getItem("cinema")
+  const[loading, setLoading]=useState(false)
   let cinema_id = localStorage.getItem("cinema_id")
   const generateCode = () => {
     return Math.random().toString("32").substring(2,10);
@@ -77,7 +77,7 @@ function AddTheaterAdmin() {
 
   const handleSignUp = async (e) => {
     e.preventDefault();
-
+setLoading(true)
     try {
       const isFormValid = validateForm();
 
@@ -90,6 +90,7 @@ function AddTheaterAdmin() {
         console.log(response);
         if(response?.data.data._id){
           alert("User Created")
+          setLoading(false)
           setFormData({
             branch_id:"",
             fullname: "",
@@ -222,25 +223,7 @@ let branch_url = `${BASE_URL}/api/v1/branches?cinema_id=${cinema_id}`
                 <p className="error-message">{formErrors.branch_id}</p>
               )}
             </div>
-            {/* <div className="addcounterform-group">
-              <label htmlFor="">Cinema:</label>
-              <span></span>
-              <select
-                name="cinema_id"
-                value={formData.cinema_id}
-                onChange={handleChange}
-              >
-                <option value="">Select Cinema</option>
-                {cinemaData?.map((cinema) => (
-                  <option key={cinema._id} value={cinema._id}>
-                    {cinema.name}
-                  </option>
-                ))}
-              </select>
-              {formErrors.cinema_id && (
-                <p className="error-message">{formErrors.cinema_id}</p>
-              )}
-            </div> */}
+          
           </div>
 
           <div className="addcounterform-group">
@@ -258,7 +241,7 @@ let branch_url = `${BASE_URL}/api/v1/branches?cinema_id=${cinema_id}`
             )}
           </div>
           <div className="addcounterform-group">
-            <button className="counterform-btn">Register User</button>
+            <button className="counterform-btn">{loading? <Loading/>:"Register User"}</button>
           </div>
         </form>
       </div>

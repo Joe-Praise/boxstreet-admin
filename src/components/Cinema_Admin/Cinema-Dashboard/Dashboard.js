@@ -4,6 +4,7 @@ import Topnav from "../Cinema-Navigation/Topnav/Topnav";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import config from "../../config";
+import Loading from "../../Loading"
 let MODE = "PROD";
 let LOCAL = "http://localhost:5000";
 let ONLINE = "https://boxstreet.onrender.com";
@@ -21,6 +22,7 @@ function Dashboardc(){
     const [branches, setBranches]= useState([]);
     const [movies, setMovies]= useState([]);
     const [summary, setSummary] =useState({});
+    const [loading, setloading] = useState(true)
     useEffect(()=>{
         let branch_url =`${BASE_URL}/api/v1/branches`;
         let theater1_url =`${BASE_URL}/api/v1/theaters?cinema_id=${cinema_id}`;
@@ -28,6 +30,7 @@ function Dashboardc(){
         let movie_url = `${BASE_URL}/api/v1/movies`;
         axios.get(branch_url)
         .then((res)=>{
+            setloading(false)
            let data =res?.data;
           
            setBranches(data)
@@ -35,22 +38,24 @@ function Dashboardc(){
     axios.get(theater1_url)
     .then((res)=>{
         let data =res?.data
-      
+        setloading(false)
         setTheaters1(data)
     });
 
     axios.get(theater2_url)
     .then((res)=>{
         let data =res?.data
-      
+        setloading(false)
         setTheaters2(data)
     });
     axios.get(movie_url)
     .then((res)=>{
         let data =res?.data
+        setloading(false)
         setMovies(data)
     });
     axios.get(config.ADMIN_BASE_URL).then((result) => {
+        setloading(false)
         setSummary(result.data);
       });
         },[])
@@ -61,31 +66,43 @@ function Dashboardc(){
          <div className="cinema-dash-top-cont">
             <h2>{"Welcome to" +"-" + cinema}</h2>
          </div>
+
             <div className="cinema-dash-top">
             
                 <div className="cinema-dash-col">
                     <h4>Branches</h4>
-                    <span>{branches.length}</span>
+                    {loading === true?(<div className="cinema-loader"><p><Loading/></p></div>):
+                    (<span>{branches.length}</span>)}
+                    
                 </div>
                 <div className="cinema-dash-col">
                     <h4>Theater</h4>
-                    <span>{theaters1.length}</span>
+                    {loading === true?(<div className="cinema-loader"><p><Loading/></p></div>):
+                    (<span>{theaters1.length}</span>)}
+                   
                 </div>
                 <div className="cinema-dash-col">
                     <h4>Movies</h4>
-                    <span>{movies.length}</span>
+                    {loading === true?(<div className="cinema-loader"><p><Loading/></p></div>):
+                    (<span>{movies.length}</span>)}
+                 
                 </div>
                 <div className="cinema-dash-col">
                 <h4>Counters</h4>
-                <span>{summary.counter_admin}</span>
+                {loading === true?(<div className="cinema-loader"><p><Loading/></p></div>):
+                    (<span>{summary.counter_admin}</span>)}
+            
             </div>
             <div className="cinema-dash-col">
                 <h4>Screens</h4>
-                <span>{summary.screens}</span>
+                {loading === true?(<div className="cinema-loader"><p><Loading/></p></div>):
+                    (<span>{summary.screens}</span>)}
+              
             </div>
             <div className="cinema-dash-col">
                 <h4>Seats</h4>
-                <span>{summary.seat}</span>
+                {loading === true?(<div className="cinema-loader"><p><Loading/></p></div>):
+                    (<span>{summary.seat}</span>)}
             </div>
            
             

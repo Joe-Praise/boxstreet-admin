@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-// import '../stylesTheater/addcounter.css'
 import "./counter.css"
-// import TheaterNav from '../Navigation/TheaterNav';
 import Topnav from "../Cinema-Navigation/Topnav/Topnav";
 import axios from "axios";
 import config from "../../config";
