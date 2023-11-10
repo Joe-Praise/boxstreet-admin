@@ -65,7 +65,7 @@ function ViewUsers(){
         <div className="cinema-view-branch-container">
         <Topnav />
         <div className="cinema-view-branch-main">
-          <h2 className="cinema-name">{"Welcome to" +"-" + cinema}</h2>
+          <h2 className="cinema-name">{"Welcome to "  + cinema}</h2>
           <div className="cinema-view-branch-bottom">
             <table className="view-branch-table">
               <thead>

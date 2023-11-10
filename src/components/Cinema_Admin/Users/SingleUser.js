@@ -12,7 +12,7 @@ let ONLINE = "https://boxstreet.onrender.com";
 let BASE_URL = MODE === "PROD" ? ONLINE : LOCAL;
 function SingleUser() {
     const [updatemode, setUpdatemode] = useState(false);
-    const [cinema, setCinema] = useState();
+    // const [cinema, setCinema] = useState();
     const [user, setUser] = useState();
     let { id } = useParams();
     const user_id = localStorage.getItem("user_id")
@@ -24,6 +24,7 @@ function SingleUser() {
     const [role, setRole] = useState();
     const [phone, setPhone] = useState();
     const [loading, setLoading] = useState(false)
+    const cinema = localStorage.getItem("cinema")
     useEffect(() => {
         const user_url = config.MANAGEMENT_BASE_URL + "/" + id + "/user-info"
         axios.get(user_url)
@@ -70,9 +71,9 @@ function SingleUser() {
         <div className="cinema-branch-container">
             <Topnav />
             <div className="cinema-branch-main">
-
+            <h2 className="cinema-welcome-msg">{"Welcome to " + cinema}</h2>
                 <div className="cinema-branch-card-p">
-                    
+              
                     <div className="cinema-branch-texts">
 
                         <div className="cinema-branch-text">

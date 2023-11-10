@@ -183,7 +183,7 @@ function CreateTheater() {
       <div className="addtheaaterForm3">
         <div className="theater-top-container">
           <form className="addtheaaterform31" onSubmit={handleCreateTheater}>
-            <h2 className="cinema-welcome-msg">{"Welcome to" + "-" + cinema}</h2>
+            <h2 className="cinema-welcome-msg">{"Welcome to " + cinema}</h2>
 
             <div className="addtheaaterform-group3">
               <label htmlFor="name">Branch:</label>

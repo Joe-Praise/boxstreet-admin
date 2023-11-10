@@ -26,7 +26,7 @@ color: #a52a2a;
     
 }
 .cinema-dash-col{
-    width: 350px;
+    width: 340px;
     height: 150px;
     border: 0.1px solid gray;
     border-radius: 10px;
@@ -83,3 +83,119 @@ color: #a52a2a;
   text-align: center;
  height: 80px;
     }
+    .drop-down{
+        display: none;
+        right: 0px;
+   margin-left: 310px;
+    }
+
+    @media(max-width:1190px){
+        .cinema-dash-top{
+            width: 100%;
+            display: block;
+           
+            
+        }
+        .cinema-dash-col{
+            width: 100%;
+            height: 250px;
+            border: 0.1px solid gray;
+            border-radius: 10px;
+            box-shadow: 5px 10px 10px 5px rgba(0, 0, 0, 0.1);
+            margin-bottom: 40px;
+            margin-right: 70px;
+        }
+    }
+
+    @media(max-width:1022px){
+        .cinema-dash-top{
+            width: 100%;
+            display: block;
+      
+            
+        }
+        .cinema-dash-col{
+            width: auto;
+            height: 250px;
+            border: 0.1px solid gray;
+            border-radius: 10px;
+            box-shadow: 5px 10px 10px 5px rgba(0, 0, 0, 0.1);
+            margin-bottom: 40px;
+           
+        }
+    }
+
+    @media(max-width:600px){
+        .cinema-dash-container{
+            width: 100%;
+            margin-left: auto;
+        }
+        
+        .cinema-dash-main{
+            width: 80%;
+            /* overflow-y: hidden;
+            margin-left: auto; */
+            margin-top: 100px;
+        }
+
+        .drop-down{
+            display: block;
+            right: 0px;
+       margin-left: 380px;
+        }
+        
+    }
+
+    @media(max-width:525px){
+        .drop-down{
+            /* display: none; */
+            right: 0px;
+       margin-left: 330px;
+        }
+       }
+   @media(max-width:475px){
+    .drop-down{
+        /* display: none; */
+        right: 0px;
+   margin-left: 300px;
+    }
+   }
+
+   @media(max-width:435px){
+    .drop-down{
+        /* display: none; */
+        right: 0px;
+   margin-left: 270px;
+    }
+   }
+   @media(max-width:405px){
+    .drop-down{
+        /* display: none; */
+        right: 0px;
+   margin-left: 250px;
+    }
+   }
+
+   @media(max-width:375px){
+    .drop-down{
+        /* display: none; */
+        right: 0px;
+   margin-left: 240px;
+    }
+   }
+
+   @media(max-width:320px){
+    .drop-down{
+        /* display: none; */
+        right: 0px;
+   margin-left: 190px;
+    }
+   }
+
+   @media(max-width:288px){
+    .drop-down{
+        /* display: none; */
+        right: 0px;
+   margin-left: 150px;
+    }
+   }

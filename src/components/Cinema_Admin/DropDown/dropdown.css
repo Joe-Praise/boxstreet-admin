@@ -1,0 +1,108 @@
+.cinema-dropdown{
+    width: 100%;
+    position: relative;
+    height: 100%;
+    right: 0;
+    margin-top: 0px;
+  
+}
+.cinema-dropdown-triger{
+    display: flex;
+    flex-direction: column;
+    margin: 20px;
+    cursor: pointer; 
+}
+
+.cinema-dropdown-triger i{
+    width: 32px;
+    height: 4px;
+    margin: 4px;
+    border-radius: 2px;
+    background-color: #d1d0d0;
+    transition: all 0.5s;  
+}
+.cinema-dropdown-triger .open:nth-child(1){
+    transform:rotate(45deg) translateY(16px); 
+}
+
+.cinema-dropdown-triger .open:nth-child(2){
+    opacity: 0;
+}
+
+.cinema-dropdown-triger .open:nth-child(3){
+    transform: rotate(-45deg) translateY(-16px);
+}
+
+.cinema-dropdown-triger .close:nth-child(1){
+    transform: rotate(0) translateY(0);
+}
+
+.cinema-dropdown-triger .close:nth-child(2){
+    opacity: 1;
+}
+.cinema-dropdown-triger .close:nth-child(3){
+    transform: rotate(0) translateY(0);   
+}
+
+.cinema-dropdown-menu {
+    width: 580px;
+    position: absolute;
+    border-radius: 10px;
+    -webkit-box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
+   box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68); 
+   z-index: 100;  
+   background-color: #88909b;
+   opacity: 0.1;
+  height: 500px;
+  overflow: scroll;
+}
+
+.dropdown-menu-container{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px; 
+}
+
+.dropdown-menu-container ul{
+    margin-top: 30px;
+}
+.dropdown-menu-container .dropdown-links{
+    text-decoration: none;
+    margin-bottom: 60px;
+}
+.dropdown-menu-container .dropdown-links li{
+    list-style: none;
+    color: #e1dede;
+  font-size: 16px;
+    margin-bottom: 40px;
+}
+.cinema-dropdown-menu.active{
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    transform: translateX(-475px);
+    transition: ease;
+    transition-duration: 0.4s;
+
+}
+
+.cinema-dropdown-menu.inactive{
+    opacity: 0;
+    visibility: hidden;
+    /* transform: translateY(-20px); */
+    transform: translateX(0px);
+    transition: ease;
+    transition-duration: 0.4s;
+}
+
+@media(max-width:426px){
+    .cinema-dropdown-menu{
+        width: 440px;
+    } 
+    .cinema-dropdown-menu.active{
+        transform: translateX(-340px); 
+    } 
+}

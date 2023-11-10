@@ -18,7 +18,8 @@ function CinemaProfile() {
     const [fullname, setFullname] = useState();
     const [role, setRole] = useState();
     const [phone, setPhone] = useState();
-    const [loading, setLoading] = useState(false)
+    const [loading, setLoading] = useState(false);
+    const cinema = localStorage.getItem("cinema")
     const { id } = useParams();
     useEffect(() => {
         const profile_url = config.MANAGEMENT_BASE_URL + "/" + user_id + "/user-info"
@@ -64,7 +65,9 @@ function CinemaProfile() {
         <div className="cinema-branch-container">
             <Topnav />
             <div className="cinema-branch-main-p">
+         
                 <div className="cinema-branch-img-cont">
+                <h2 className="cinema-welcome-msg">{"Welcome to "  + cinema}</h2>
                     <div className="cinema-branch-img">
                     <MdPerson className="profile-img"/>
                     </div>

@@ -1,30 +1,24 @@
-.sideNav{
+.sidenav{
     width: 17%;
     height: 100vh;
     position: fixed;
+    overflow: scroll;
     top: 80px;
     background-color: #3e567c;
-    /* background-color: #8ca0b1; */
-    /* background-color: #a7bbcb; */
-    /* background-color: #24344d; */
-    padding: 30px 20px;
+  
 }
 
-.sideNav ul {
+.sidenav ul {
     list-style: none;
+ 
 }
 
 .sideNavLinks{
     text-decoration: none;
 }
 
-.sideNavLinks li{
+.sidenav .sideNavLinks li{
     font-size: 0.9rem;
-    margin: 20px 10px;
-    padding: 10px 15px;
-    /* border: 0.5px solid #ffffff; */
-    border-radius: 50px;
-    text-align: left;
     background: #ffffff;
     background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -48,4 +42,51 @@
         background-position: 100% 50%;
         cursor: pointer;
     
+}
+
+
+@media(max-width:1190px){
+    .sidenav{
+        width: 17%;
+        height: 90vh;
+        position: fixed;
+        overflow: scroll;
+        background-color: #3e567c;
+   
+    }
+}
+@media(max-width:769px){
+    .sidenav{
+        width: 17%;
+        height: 90vh;
+        position: fixed;
+        overflow: scroll;
+        background-color: #3e567c;
+   
+    }
+    .sidenav .sideNavLinks li{
+        font-size: 0.7rem;
+     
+    }
+}
+
+@media(max-width:680px){
+    .sidenav{
+        width: 17%;
+        height: 90vh;
+        position: fixed;
+        overflow: scroll;
+        background-color: #3e567c;
+   
+    }
+    .sidenav .sideNavLinks li{
+        font-size: 0.5rem;
+     
+    }
+}
+@media(max-width:600px){
+    .sidenav {
+        display: none;
+        z-index: -100;
+    }  
 }

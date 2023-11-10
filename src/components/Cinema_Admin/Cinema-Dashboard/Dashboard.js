@@ -5,6 +5,7 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import config from "../../config";
 import Loading from "../../Loading"
+import DropDown from "../DropDown/DropDown";
 let MODE = "PROD";
 let LOCAL = "http://localhost:5000";
 let ONLINE = "https://boxstreet.onrender.com";
@@ -61,10 +62,15 @@ function Dashboardc(){
         },[])
     return(
         <div className="cinema-dash-container">
+            
             <Topnav/>
+           
            <div className="cinema-dash-main">
+           {/* <div className="drop-down">
+                <DropDown/>
+            </div> */}
          <div className="cinema-dash-top-cont">
-            <h2>{"Welcome to" +"-" + cinema}</h2>
+            <h2>{"Welcome to " + cinema}</h2>
          </div>
 
             <div className="cinema-dash-top">
