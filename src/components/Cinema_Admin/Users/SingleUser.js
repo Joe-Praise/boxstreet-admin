@@ -54,13 +54,13 @@ function SingleUser() {
                 }
                 setLoading(false)
                 setUpdatemode(false)
-             let newData ={
-                fullname:data?.fullname,
-                role:data?.role,
-                email:data?.email,
-                phone:data?.phone
-             }
-             setUsername(newData)
+                let newData = {
+                    fullname: data?.fullname,
+                    role: data?.role,
+                    email: data?.email,
+                    phone: data?.phone
+                }
+                setUsername(newData)
             })
 
         } catch (error) {
@@ -70,13 +70,12 @@ function SingleUser() {
     return (
         <div className="cinema-branch-container">
             <Topnav />
-            <div className="cinema-branch-main">
-            <h2 className="cinema-welcome-msg">{"Welcome to " + cinema}</h2>
-                <div className="cinema-branch-card-p">
-              
-                    <div className="cinema-branch-texts">
+            <div className="cinema-branch-main-ps">
+                <h2 className="cinema-welcome-msg">{"Welcome to " + cinema}</h2>
+                <div className="cinema-branch-card-ps">
 
-                        <div className="cinema-branch-text">
+                    <div className="cinema-branch-texts">
+                        <div className="cinema-branch-text1">
                             <h3>Name</h3>
                             {updatemode ? <input
                                 className="edit-input-box1-1"
@@ -92,7 +91,7 @@ function SingleUser() {
 
                         </div>
 
-                        <div className="cinema-branch-text">
+                        <div className="cinema-branch-text2">
                             <h3>Role</h3>
 
                             {updatemode ? <input
@@ -102,13 +101,13 @@ function SingleUser() {
                                 value={role}
                                 onChange={(e) => setRole(e.target.value)}
                             /> : (
-                                <span className="cinema-branch-text-span4">{username?.role }</span>
+                                <span className="cinema-branch-text-span4">{username?.role}</span>
                             )
 
                             }
 
                         </div>
-                        <div className="cinema-branch-text">
+                        <div className="cinema-branch-text3">
                             <h3>email</h3>
                             {updatemode ? <input
                                 className="edit-input-box3-1"
@@ -123,7 +122,7 @@ function SingleUser() {
                             }
 
                         </div>
-                        <div className="cinema-branch-text">
+                        <div className="cinema-branch-text4">
                             <h3>Phone</h3>
                             {updatemode ? <input
                                 className="edit-input-box4-1"
@@ -132,7 +131,7 @@ function SingleUser() {
                                 value={phone}
                                 onChange={(e) => setPhone(e.target.value)}
                             /> : (
-                                <span className="cinema-branch-text-span">{username?.phone}</span>
+                                <span className="cinema-branch-text-span5">{username?.phone}</span>
                             )
 
                             }
@@ -140,7 +139,7 @@ function SingleUser() {
                         </div>
                         {updatemode && (
                             <div className="cinema-branch-update-btn">
-                                <button onClick={handleUpdate}>{loading? <Loading/>:"UPDATE USER"}</button>
+                                <button onClick={handleUpdate}>{loading ? <Loading /> : "UPDATE USER"}</button>
                             </div>
                         )
 

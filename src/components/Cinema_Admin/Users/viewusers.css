@@ -62,11 +62,153 @@
     }
 
     /* singel user view field */
+    .cinema-branch-main-ps{
+        width: 80%;
+        overflow-y: hidden;
+        margin-left: auto;
+        margin-top: 150px;
+    }
 
-    .cinema-branch-card-p{
+    .cinema-branch-card-ps{
         width: 56%;
-        height: 470px;
+        height: 400px;
         border: 1px solid gray;
         border-radius: 10px;
         margin-top: 40px;
     }
+
+    .cinema-branch-text1, .cinema-branch-text2, .cinema-branch-text3, .cinema-branch-text4{
+        display: flex;
+        gap: 30px;
+        margin-bottom: 20px;
+        line-height: 30px;
+    }
+
+    .cinema-branch-text1 input, .cinema-branch-text2 input, 
+    .cinema-branch-text3 input, .cinema-branch-text4 input{
+        width: 100%;
+        padding: 9px;
+    }
+    .cinema-branch-text span{
+        font-size: 20px;
+       
+    }
+    .cinema-branch-text3 .cinema-branch-text-span{
+        margin-left: 30px;
+font-size: 20px;
+    }
+    .cinema-branch-text-span2{
+        margin-left: 35px;
+    }
+    .cinema-branch-text-span1{
+        margin-left: 30px;
+    }
+    .cinema-branch-text-span2{
+        margin-left: 40px;
+    }
+    .cinema-branch-text1 .cinema-branch-text-span3{
+        margin-left: 25px;
+font-size: 20px;
+    }
+   .cinema-branch-text2 .cinema-branch-text-span4{
+        margin-left: 40px;
+font-size: 20px;
+    }
+    .cinema-branch-text4 .cinema-branch-text-span5{
+        margin-left: 20px;
+        font-size: 20px;
+    }
+    
+    .cinema-branch-text-span6{
+        margin-left: 38px;
+    }
+    
+    .cinema-branch-text-span7{
+        margin-left: 25px;
+    }
+
+
+
+    @media(max-width:769px){
+        .cinema-branch-main-ps{
+            width: 90%;
+            margin-left: 160px;
+        }
+        .cinema-branch-card-ps{
+            width: 96%;
+            border: 1px solid gray;
+        
+        }
+        .cinema-branch-card .cinema-branch-text span{
+            font-size: 14px;
+            border-bottom: 1px solid gray;
+            }
+            .cinema-branch-text1 input, .cinema-branch-text2 input, 
+            .cinema-branch-text3 input, .cinema-branch-text4 input{
+                width: 100%;
+                padding: 9px;
+            }
+        }
+
+        @media(max-width:600px){
+            .cinema-branch-main-ps{
+                width: 90%;
+                margin-left: 50px;
+                margin-top: 100px;
+            }
+            .cinema-branch-card-ps{
+                width: 96%;
+                border: 1px solid gray;
+            
+            }
+            .cinema-branch-card .cinema-branch-text span{
+                font-size: 14px;
+                border-bottom: 1px solid gray;
+                }
+                .cinema-branch-text1 input, .cinema-branch-text2 input, 
+                .cinema-branch-text3 input, .cinema-branch-text4 input{
+                    width: 100%;
+                    padding: 9px;
+                }
+            }
+        @media(max-width:427px){
+            .cinema-branch-main-ps{
+                margin-left: 30px;
+            }
+
+            .cinema-branch-card-ps{
+                width: 100%;
+                border: none;
+            
+            }
+            .cinema-branch-texts h3{
+            font-size: 14px;
+            }
+            .cinema-branch-text4 .cinema-branch-text-span5,   .cinema-branch-text2 .cinema-branch-text-span4, 
+            .cinema-branch-text1 .cinema-branch-text-span3,  .cinema-branch-text3 .cinema-branch-text-span{
+                font-size: 14px;
+                border-bottom: 1px solid gray;
+                }
+                .cinema-branch-card .cinema-branch-text input{
+                  width: 100%;
+                  border: none;
+                  outline: none;
+                  border-radius: 0px;
+                    border-bottom: 1px solid gray;
+                    }
+            }
+
+            @media(max-width:335px){
+                .cinema-branch-card-p{
+                    width: 100%;
+                    border: none;
+                
+                }
+                .cinema-branch-card h3{
+                    font-size: 12px;
+                    }
+                .cinema-branch-card .cinema-branch-text span{
+                    font-size: 12px;
+                    border-bottom: 1px solid gray;
+                    }
+                }

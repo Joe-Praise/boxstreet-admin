@@ -69,3 +69,16 @@
     display: block;
     border-radius: 10px;   
 }
+@media(max-width:769px){
+    .add-cinema-form-group{
+        padding-right: 18px;
+    }
+    .add-cinema-form-group input{
+        width: 100%;
+        
+    }
+    .add-cinema-form-group select{
+        width: 100%;
+        
+    }
+}
