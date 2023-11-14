@@ -89,6 +89,17 @@ color: #a52a2a;
    margin-left: 310px;
     }
 
+    @media(max-width:1356px){
+        .cinema-dash-col{
+            width: auto;
+            height: 130px;
+            border: 0.1px solid gray;
+            border-radius: 10px;
+            box-shadow: 5px 10px 10px 5px rgba(0, 0, 0, 0.1);
+            margin-bottom: 40px;
+            margin-right: 70px;
+        } 
+    }
     @media(max-width:1190px){
         .cinema-dash-top{
             width: 100%;
@@ -97,7 +108,7 @@ color: #a52a2a;
             
         }
         .cinema-dash-col{
-            width: 100%;
+            width: auto;
             height: 250px;
             border: 0.1px solid gray;
             border-radius: 10px;

@@ -110,16 +110,7 @@
     border: 1px solid #000;
     border-radius: 5px;
   }
-  /* .theater-bottom-table{
-  margin-top: 50px;
-margin-left: 150px;
-  margin-bottom: 80px;
-  }
-  .category-table-containerT{
-    width: 1000px;
   
-  
-  } */
 
   .category-tableT{
     width: 100%;
@@ -127,9 +118,16 @@ margin-left: 150px;
   }
   .category-table-containerT table{
   width: 80%;
+  border-collapse:collapse ;
   }
-
-
+  .category-table-containerT table thead{
+    background-color: #222222;
+    color: #fff;
+    
+  }
+  .category-tableT tbody td{
+    border-top: 8px solid #ebe9e9;
+  }
   @media(max-width:1025px){
   
   .addtheaaterForm3{
