@@ -24,7 +24,7 @@ function Sidenav() {
       });
   };
   return (
-    <div className="sideNav">
+    <div className="sidenav">
       <ul>
         <Link className="sideNavLinks" to="/cinema">
           <li>DASHBOARD</li>

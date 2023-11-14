@@ -3,6 +3,7 @@ import logo from "../../../uploads/Screenshot__335_-removebg-preview (1).png";
 import Sidenav from "../Sidenav/Sidenav";
 import "./topnav.css"
 import { Link } from "react-router-dom";
+import DropDown from "../../DropDown/DropDown";
 
 function Topnav() {
   let username = localStorage.getItem("fullname")
@@ -22,12 +23,15 @@ function Topnav() {
               </Link>
             </ul>
           </div>
-          <div>
-          
+          <div className="drop-down-control">
+          <DropDown/>
           </div>
         </nav>
       </div>
+      <div>
       <Sidenav/>
+      </div>
+     
     </header>
   );
 }

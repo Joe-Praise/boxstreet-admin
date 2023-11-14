@@ -9,12 +9,14 @@
     overflow-y: hidden;
     margin-left: auto;
     margin-top: 100px;
+   
     
 }
 .account-table-container table{
     width: 80%; background-color:#efebeb;
     border-collapse: collapse; 
     border-left: 10px solid gray;
+    margin-top: 40px;
 }
 .accoun-table-header{
     background-color: #3e3e3d;

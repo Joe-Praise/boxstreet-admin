@@ -79,5 +79,13 @@
     background-clip: text;
     -webkit-text-fill-color: transparent;
   }
-
+.drop-down-control{
+  display: none;
+}
   
+@media(max-width:600px){
+  .drop-down-control{
+    display: block;
+   
+  } 
+}

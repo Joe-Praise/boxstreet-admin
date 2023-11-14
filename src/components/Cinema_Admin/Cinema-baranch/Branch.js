@@ -79,7 +79,7 @@ function Branch() {
             <Topnav />
             <div className="cinema-branch-main">
                 <div className="cinema-branch-cinemaname">
-                    <h3>{"Welcome to" +"-" + cinema}</h3>
+                    <h3>{"Welcome to "  + cinema}</h3>
                 </div>
                 <div className="cinema-branch-card">
                     <div className="cinema-branch-texts">

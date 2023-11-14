@@ -17,7 +17,9 @@
     height: 350px;
    
 }
-
+.cinema-branch-card-p input{
+    width: 100%;
+}
 .profile-img{
     font-size: 380px;
 }
@@ -26,6 +28,7 @@
     height: 470px;
     border: 1px solid gray;
     border-radius: 10px;
+    margin-bottom: 100px;
 }
 .cinema-branch-texts{
     padding: 30px;
@@ -203,3 +206,89 @@
     outline: none;
     cursor: pointer;
  }
+
+@media(max-width:769px){
+    .cinema-branch-main-p{
+        width: 100%;
+        margin-left: 180px;
+        
+    }
+    .cinema-branch-card-p input{
+        width: 100%;
+    }
+     .profile-img{
+font-size: 200px;
+    }
+    .cinema-welcome-msg{
+        font-size: 20px;
+    }
+    .cinema-branch-card-p{
+
+width: 80%;
+margin-right: 80px;
+height: 460px;
+    }
+    .cinema-branch-texts span{
+        font-size: 14px;
+    }
+    .cinema-branch-texts h3{
+        font-size: 14px;
+        }
+}
+
+@media(max-width:600px){
+    .cinema-branch-main-p{
+        display: block;
+     margin-left: 20px;
+    }
+    .cinema-branch-card-p input{
+        width: 100%;
+    }
+    .cinema-branch-texts{
+        padding: 20px;
+    }
+     .profile-img{
+font-size: 350px;
+    }
+    .cinema-welcome-msg{
+        font-size: 20px;
+    }
+    .cinema-branch-card-p{
+    margin-top: 10px;
+    width: 100%;
+    border: none;
+    }
+}
+
+@media(max-width:440px){
+.cinema-branch-texts h3{
+font-size: 14px;
+}
+
+.cinema-branch-texts span{
+    font-size: 14px;
+}
+}
+
+@media(max-width:376px){
+    .cinema-branch-main-p{
+      
+     margin-left: 0px;
+    }
+    .cinema-branch-card-p{
+        z-index: 100;
+    }
+    .cinema-branch-texts h3{
+    font-size: 12px;
+    }
+    .cinema-welcome-msg{
+        font-size: 14px;
+      margin-left: 50px;
+    }
+    .cinema-branch-texts span{
+        font-size: 12px;
+    }
+    .profile-img{
+        font-size: 300px;
+            }
+    }
