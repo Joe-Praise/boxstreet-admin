@@ -28,7 +28,6 @@ function ViewUsers(){
         .then((res)=>{
           
            let users =res?.data;
-           console.log(users)
            let data = users?.map((user)=>{
                 return{
                     id :user._id,
