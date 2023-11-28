@@ -23,6 +23,7 @@ function TheaterSideNav() {
         console.error(error);
       });
   };
+  
   return (
     <div className="theaterSideNav">
       <div className="theatersideNav">

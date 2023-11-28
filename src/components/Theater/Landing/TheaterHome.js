@@ -107,7 +107,7 @@ function TheaterHome() {
   return (
     <div>
       <TheaterNav />
-      <div className="counter">
+      <div className="theater">
         {/* <div className="selectBtns">
     <select
       className="select"
@@ -156,10 +156,7 @@ function TheaterHome() {
                     <p>{movie.description}</p>
                   </div>
                   <div className="cardActions">
-                    <button
-                      className="btnEdit"
-                      onClick={() => handleEditButtonClick(movie.id, movie)}
-                    >
+                    <button className="btnEdit" onClick={() => handleEditButtonClick(movie.id, movie)}>
                       Edit
                     </button>
                     <button

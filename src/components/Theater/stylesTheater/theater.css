@@ -1,10 +1,11 @@
-.counter {
+.theater {
     width: 80%;
     margin: 115px auto;
     position: relative;
     float: right;
     margin-right: 10px;
     padding: 0 40px;
+    z-index: -1;
   }
   
   .selectBtns {
@@ -93,7 +94,6 @@
     width: 100%;
     height: 0;
     bottom: 0;
-    padding: 5px;
     position: absolute;
     z-index: 1;
     border-radius: 10px;
@@ -105,6 +105,7 @@
     align-items: center;
     transition: ease-in-out 1s;
     overflow: hidden;
+    padding: 0px 5px;
   }
 
   .btnEdit{
@@ -141,13 +142,31 @@
     background-color: #732e2e;
   }
   
-  .tmovieInfo:hover {
-    height: 120px;
-  }
-  
   .tmovieInfo:hover .cardActions {
     visibility: visible;
     height: 100%;
-    transition-delay: .3s;
+    transition: all ease-in-out 1s ;
+  }
+  
+
+  @media (max-width: 1024px) {
+    .tMovies {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 15px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .tMovies {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 15px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .tMovies {
+      grid-template-columns: repeat(1, 1fr);
+      gap: 10px;
+    }
   }
   
