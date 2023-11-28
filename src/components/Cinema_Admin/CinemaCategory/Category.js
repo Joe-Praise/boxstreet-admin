@@ -69,9 +69,15 @@ function Category() {
   }, []);
 
   const handleEditButtonClick = (category) => {
-    setFormData(category)
+   let data ={
+    id:category.id,
+    name:category.name,
+    price:category.price
+
+   }
     setEdited(true);
-    console.log(category)
+    console.log(data)
+    setFormData(data)
   };
 
   const handleCreateCategory = async (e) => {
@@ -86,11 +92,9 @@ function Category() {
             alert("Category Has been Edited");
             setLoading(false);
             setEdited(false); // Clear the edited state after editing
-          // let result =[...category]
-          // let value = result.find()
-          // value.name = formData.name
-          // value.price = formData.price
-          // setCategory(result)
+            let result =[...category]
+          
+          setCategory(result)
             setFormData({
               name: "",
               price: "",
@@ -113,9 +117,11 @@ function Category() {
           if (res.data._id) {
             alert("Category Has been Created");
             setLoading(false);
-            // let result =[...category]
-            // result.push(data)
-            // setCategory(result)
+      
+            data.id =res.data._id
+            let result =[...category]
+            result.push(data)
+            setCategory(result, data.id)
             setFormData({
               name: "",
               price: "",
@@ -160,7 +166,7 @@ function Category() {
 
       <div className="addcategoryForm">
         <div className="cinema-cat-text">
-          <h2>{"Welcome to" + "-" + cinema}</h2>
+          <h2>{"Welcome to " + cinema}</h2>
         </div>
 
         <form onSubmit={handleCreateCategory} className="addtheaaterform">

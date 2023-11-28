@@ -29,7 +29,6 @@ import UpdateTheater from "./components/Theater/Add Forms/UpdateTheater";
 import UpdateMovie from "./components/Theater/Add Forms/UpdateMovie";
 import SingleUser from "./components/Cinema_Admin/Users/SingleUser";
 import CreateTheater from "./components/Cinema_Admin/Create-theater/CreateTheater";
-// import CreateCounter from "./components/Cinema_Admin/Create-counter/CreateCounter";
 import CreateBranch from "./components/Cinema_Admin/Cinema/CreateBranch";
 import Transaction from "./components/Cinema_Admin/Transaction/Transaction";
 import Dashboardc from "./components/Cinema_Admin/Cinema-Dashboard/Dashboard";
@@ -86,15 +85,7 @@ function App() {
           <Route path="/cinema/profile" element={<CinemaProfile/>}/>
           <Route path="/cinema/view-user" element={<ViewUsers/>}/>
           <Route path="/cinema/single-user/:id" element={<SingleUser/>}/>
-          <Route path="/cinema" element={<Dashboardc />} />
-          <Route path="/cinema/create-branch" element={<CreateBranch />} />
           <Route path="/cinema/create-category" element={<Category />} />
-          <Route path="/cinema/view-branch" element={<ViewBranch />} />
-          <Route path="/cinema/view-branch/:id" element={<Branch />} />
-          <Route path="/cinema/create-theater" element={<CreateTheater />} />
-          <Route path="/cinema/create-category" element={<Category />} />
-          <Route path="/cinema/profile" element={<CinemaProfile />} />
-          <Route path="/cinema/view-user" element={<ViewUsers />} />
 
           <Route path="/theater" element={<TheaterHome />} />
           <Route path="/theater/booking/:id" element={<TheaterBooking />} />

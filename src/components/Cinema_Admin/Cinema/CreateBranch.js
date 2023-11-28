@@ -123,7 +123,7 @@ function CreateBranch() {
     <div className="cinema-admin-container">
       <Topnav />
       <div className="cinema-admin-main">
-        <h2>{"Welcome to" +"-" + cinema}</h2>
+        <h2>{"Welcome to " + cinema}</h2>
 
         <div className="cinema-admin-form-container">
           <form className="cinema-admin-form" onSubmit={handleSubmit}>

@@ -50,7 +50,7 @@ const cinema = localStorage.getItem("cinema")
       <Topnav />
       <div className="cinema-view-branch-main">
       <div className="cinema-branch-cinemaname">
-                    <h3>{"Welcome to" +"-" + cinema}</h3>
+                    <h3>{"Welcome to " + cinema}</h3>
                 </div>
         <div className="cinema-view-branch-bottom">
           <table className="view-branch-table">

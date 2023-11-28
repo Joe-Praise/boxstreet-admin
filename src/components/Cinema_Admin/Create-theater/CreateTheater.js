@@ -179,11 +179,13 @@ function CreateTheater() {
 
   return (
     <div>
-      <Topnav />
+
+      <Topnav/>
+
       <div className="addtheaaterForm3">
-        <div className="theater-top-container">
+        <div className="theater-top-containerC">
           <form className="addtheaaterform31" onSubmit={handleCreateTheater}>
-            <h2 className="cinema-welcome-msg">{"Welcome to" + "-" + cinema}</h2>
+            <h2 className="cinema-welcome-msg">{"Welcome to " + cinema}</h2>
 
             <div className="addtheaaterform-group3">
               <label htmlFor="name">Branch:</label>
@@ -246,9 +248,9 @@ function CreateTheater() {
           </form>
 
         </div>
-        <div className="theater-bottom-table">
+        <div className="category-bottom-tableT">
           <div className="category-table-containerT">
-            <table className="category-table">
+            <table className="category-tableT">
               <thead>
                 <tr className="category-table-header">
                   <th>S/N</th>

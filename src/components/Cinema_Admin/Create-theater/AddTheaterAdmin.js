@@ -137,9 +137,10 @@ let branch_url = `${BASE_URL}/api/v1/branches?cinema_id=${cinema_id}`
     <div>
       <Topnav/>
       <div className="addcounterForm">
-        <form onSubmit={handleSignUp} className="addtheaaterform">
-          <h2 className="cinema-name">{"Welcome to" +"-" + cinema}</h2>
-          <div className="addcounterformnameflex">
+        <div className="addtheaaterformA">
+        <form onSubmit={handleSignUp} >
+          <h2 className="cinema-name">{"Welcome to " + cinema}</h2>
+          <div className="addcounterformnameflex1">
             <div className="addtheaaterform-group">
               <label htmlFor="">Full Name:</label>
               <span></span>
@@ -172,7 +173,7 @@ let branch_url = `${BASE_URL}/api/v1/branches?cinema_id=${cinema_id}`
               )}
             </div>
           </div>
-          <div className="addcounterformnameflex">
+          <div className="addcounterformnameflex2">
             <div className="addtheaaterform-group">
               <label htmlFor="">Phone Number:</label>
               <span></span>
@@ -203,7 +204,7 @@ let branch_url = `${BASE_URL}/api/v1/branches?cinema_id=${cinema_id}`
             </div>
           </div>
 
-          <div className="addcounterformnameflex">
+          <div className="addcounterformnameflex3">
             <div className="addtheaaterform-group">
               <label htmlFor="">Branch:</label>
               <span></span>
@@ -225,7 +226,7 @@ let branch_url = `${BASE_URL}/api/v1/branches?cinema_id=${cinema_id}`
             </div>
           
           </div>
-
+        <div className="addcounterformnameflex3">
           <div className="addcounterform-group">
             <label htmlFor="">Password:</label>
             <span></span>
@@ -240,10 +241,12 @@ let branch_url = `${BASE_URL}/api/v1/branches?cinema_id=${cinema_id}`
               <div className="error-message">{formErrors.password}</div>
             )}
           </div>
+          </div>
           <div className="addcounterform-group">
             <button className="counterform-btn">{loading? <Loading/>:"Register User"}</button>
           </div>
         </form>
+        </div>
       </div>
     </div>
   );

@@ -1,28 +1,26 @@
-.sideNav{
+/* Common styles for all screen sizes */
+.sideNav {
     width: 17%;
     height: 100vh;
     position: fixed;
     top: 80px;
     background-color: #3e567c;
-    /* background-color: #8ca0b1; */
-    /* background-color: #a7bbcb; */
-    /* background-color: #24344d; */
     padding: 30px 20px;
-}
-
-.sideNav ul {
+  }
+  
+  .sideNav ul {
     list-style: none;
-}
-
-.sideNavLinks{
+  }
+  
+  .sideNavLinks {
     text-decoration: none;
-}
-
-.sideNavLinks li{
+  }
+  
+  .sideNavLinks li,
+  .exist {
     font-size: 0.9rem;
     margin: 20px 10px;
     padding: 10px 15px;
-    /* border: 0.5px solid #ffffff; */
     border-radius: 50px;
     text-align: left;
     background: #ffffff;
@@ -31,26 +29,80 @@
     background-image: linear-gradient(to right, #6a7c94 45%, #ffffff 55%);
     background-size: 220% 100%;
     background-position: 100% 50%;
-}
-
-/* .sideNavLinks li:hover {
-    box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.1);
-    background-position: 0% 50%;
-    border: 0.5px solid #6a7c94;
-} */
-
-.exist{
+  }
+  
+  .exist {
     font-size: 1rem;
-    margin: 20px 10px;
-    padding: 10px 15px;
-    /* border: 0.5px solid #ffffff; */
-    border-radius: 50px;
-    /* text-align: left; */
-    background: #ffffff;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-image: linear-gradient(to right, #6a7c94 45%, #ffffff 55%);
-    background-size: 220% 100%;
-    background-position: 100% 50%;
     cursor: pointer;
-}
+  }
+  
+  /* Media queries for different screen sizes */
+  
+  /* For screens smaller than 768px (e.g., phones) */
+  @media only screen and (max-width: 767px) {
+    .sideNav {
+      width: 100%;
+      top: 0;
+      height: auto;
+    }
+  
+    .sideNavLinks li,
+    .exist {
+      font-size: 1rem;
+      margin: 15px 0;
+      padding: 10px;
+    }
+  }
+  
+  /* For screens between 768px and 1024px (e.g., tablets) */
+  @media only screen and (min-width: 768px) and (max-width: 1024px) {
+    .sideNav {
+      width: 100%;
+      top: 0;
+      height: auto;
+    }
+  
+    .sideNavLinks li,
+    .exist {
+      font-size: 1rem;
+      margin: 15px 0;
+      padding: 10px;
+    }
+  }
+  
+ /* For screens between 1025px and 1440px (e.g., small desktops) */
+@media only screen and (min-width: 1025px) and (max-width: 1440px) {
+    /* Adjustments for the sideNav width and padding on small desktops */
+    .sideNav {
+      width: 15%;
+      padding: 25px 15px;
+    }
+  
+    /* If needed, make specific adjustments for the font size, margin, and padding on small desktops */
+    .sideNavLinks li,
+    .exist {
+      font-size: 1rem;
+      margin: 15px 0;
+      padding: 10px;
+    }
+  }
+  
+  
+ /* For screens larger than 1440px (e.g., large desktops) */
+@media only screen and (min-width: 1441px) {
+    /* Adjustments for the sideNav width and padding on large desktops */
+    .sideNav {
+      width: 12%;
+      padding: 20px 10px;
+    }
+  
+    /* If needed, make specific adjustments for the font size, margin, and padding on large desktops */
+    .sideNavLinks li,
+    .exist {
+      font-size: 1.2rem;
+      margin: 15px 0;
+      padding: 15px;
+    }
+  }
+  
+  

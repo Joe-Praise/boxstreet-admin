@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import Config from "../../config";
 function Transaction(){
-
+  const cinema = localStorage.getItem("cinema")
     const [transaction, setTransaction]= useState([]);
     const getTransaction = async () => {
         try {
@@ -27,6 +27,7 @@ function Transaction(){
             <Topnav/>
 <h2>Transaction</h2>
 <div className="account-table-container">
+<h2 className="cinema-welcome-msg">{"Welcome to" + "-" + cinema}</h2>
     <table className="account-table">
         <thead>
             <tr className="accoun-table-header">

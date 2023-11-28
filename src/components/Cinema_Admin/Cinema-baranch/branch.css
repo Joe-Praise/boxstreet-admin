@@ -222,3 +222,53 @@ margin-left: 5px;
          outline: none;
          /* border-bottom: 1px solid #a3a2a2; */
         }
+
+        @media(max-width:550px){
+        .cinema-branch-main{
+            margin-left: 60px;
+        }
+        .cinema-branch-card{
+            width: 100%;
+            border: none;
+        
+        }
+        .cinema-branch-card .cinema-branch-text span{
+            font-size: 14px;
+            border-bottom: 1px solid gray;
+            }
+        }
+
+        @media(max-width:420px){
+            .cinema-branch-main{
+                margin-left: 30px;
+            }
+            .cinema-branch-card h3{
+            font-size: 14px;
+            }
+            .cinema-branch-card .cinema-branch-text span{
+                font-size: 14px;
+                border-bottom: 1px solid gray;
+                }
+                .cinema-branch-card .cinema-branch-text input{
+                  width: 100%;
+                  border: none;
+                  outline: none;
+                  border-radius: 0px;
+                    border-bottom: 1px solid gray;
+                    }
+            }
+
+            @media(max-width:335px){
+                .cinema-branch-card{
+                    width: 100%;
+                    border: none;
+                
+                }
+                .cinema-branch-card h3{
+                    font-size: 12px;
+                    }
+                .cinema-branch-card .cinema-branch-text span{
+                    font-size: 12px;
+                    border-bottom: 1px solid gray;
+                    }
+                }

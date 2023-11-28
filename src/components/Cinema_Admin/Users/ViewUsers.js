@@ -28,7 +28,6 @@ function ViewUsers(){
         .then((res)=>{
           
            let users =res?.data;
-           console.log(users)
            let data = users?.map((user)=>{
                 return{
                     id :user._id,
@@ -65,7 +64,7 @@ function ViewUsers(){
         <div className="cinema-view-branch-container">
         <Topnav />
         <div className="cinema-view-branch-main">
-          <h2 className="cinema-name">{"Welcome to" +"-" + cinema}</h2>
+          <h2 className="cinema-name">{"Welcome to "  + cinema}</h2>
           <div className="cinema-view-branch-bottom">
             <table className="view-branch-table">
               <thead>
@@ -108,3 +107,8 @@ function ViewUsers(){
     )
 }
 export default ViewUsers
+
+
+
+
+
