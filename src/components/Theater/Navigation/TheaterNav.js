@@ -15,8 +15,8 @@ function TheaterNav() {
 
   return (
     <header>
-      <div className="theatersideNavIcon" onClick={toggleSideNav}>☰</div>
-      <div className={`theatersideNav ${isSideNavOpen ? "active" : "inactive"}`}>
+      {/* <div className="theatersideNavIcon" onClick={toggleSideNav}>☰</div> */}
+      {/* <div className={`theatersideNav ${isSideNavOpen ? "active" : "inactive"}`}> */}
         <div className="navHead">
           <nav className="navigation">
             <div>
@@ -41,7 +41,7 @@ function TheaterNav() {
           </nav>
         </div>
         <TheaterSideNav />
-      </div>
+      {/* </div> */}
     </header>
   )
 }

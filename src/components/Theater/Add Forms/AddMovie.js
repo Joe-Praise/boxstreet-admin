@@ -39,7 +39,7 @@ function AddMovie() {
 
   useEffect(() => {
     let genre_url = `${BASE_URL}/api/v1/genres`;
-  
+
     axios.get(genre_url).then((res) => {
       let data = res.data;
       let info = data?.map((e) => ({
@@ -132,7 +132,8 @@ function AddMovie() {
     }
 
     if (movieInfo.coming_soon === null) {
-      errors.coming_soon = "Please select whether the movie is showing or coming soon";
+      errors.coming_soon =
+        "Please select whether the movie is showing or coming soon";
     }
 
     if (!movieInfo.language.trim()) {
@@ -186,38 +187,40 @@ function AddMovie() {
       let formdata = new FormData();
       formdata.append("image", file);
 
-    
       axios
-          .post(`${BASE_URL}/api/v1/movies`, movieInfo)
-          .then((response) => {
-
-            if (response.data) {
-              axios.put(`${BASE_URL}/api/v1/movies/${response.data.data._id}/resources`, formdata)
+        .post(`${BASE_URL}/api/v1/movies`, movieInfo)
+        .then((response) => {
+          if (response.data) {
+            axios
+              .put(
+                `${BASE_URL}/api/v1/movies/${response.data.data._id}/resources`,
+                formdata
+              )
               .then((e) => {
-                    alert("Movie created successfully");
-                    setMovieInfo({
-                      name: "",
-                      cast: [],
-                      coming_soon: false,
-                      language: "",
-                      genre_id: [],
-                      description: "",
-                      duration: "",
-                      production_studio: "",
-                      pg_rating: "",
-                      release_date: "",
-                      movie_director: "",
-                      trailer: "",
-                      image: ""
-                    });
-                    setFile("")
-                    setSelectedGenres([])
+                alert("Movie created successfully");
+                setMovieInfo({
+                  name: "",
+                  cast: [],
+                  coming_soon: false,
+                  language: "",
+                  genre_id: [],
+                  description: "",
+                  duration: "",
+                  production_studio: "",
+                  pg_rating: "",
+                  release_date: "",
+                  movie_director: "",
+                  trailer: "",
+                  image: "",
+                });
+                setFile("");
+                setSelectedGenres([]);
               });
-            }
-          })
-          .catch((error) => {
-            console.log("Error creating movie", error);
-          });
+          }
+        })
+        .catch((error) => {
+          console.log("Error creating movie", error);
+        });
     } else {
       alert("Fields not filled properly", errors);
     }
@@ -244,7 +247,10 @@ function AddMovie() {
           </div>
 
           {movieInfo.cast.map((cast, index) => (
-            <div key={index} className="addmovieform-group">
+            <div
+              key={index}
+              className="addmovieform-group"
+            >
               <label htmlFor={`castName${index}`}>Cast {index + 1}:</label>
               <span></span>
               <input
@@ -328,23 +334,27 @@ function AddMovie() {
               }
             />
           </div>
-
-          <div class="addmovieform-group">
-            <label for="">Genre:</label>
-            <span></span>
-            <select
-              name="genre_id"
-              multiple
-              value={selectedGenres}
-              onClick={handleGenreClick}
-            >
+          <div className="addmovieform-group">
+            <label>Genre:</label>
+            <div className="checkbox-group inputs">
               {genres.map((e) => (
-                <option key={e.id} value={e.id}>
-                  {e.name}
-                </option>
+                <div
+                  key={e.id}
+                  className="checkbox-item"
+                >
+                  <input
+                    type="checkbox"
+                    id={`genreCheckbox${e.id}`}
+                    value={e.id}
+                    checked={selectedGenres.includes(e.id)}
+                    onChange={handleGenreClick}
+                  />
+                  <label htmlFor={`genreCheckbox${e.id}`}>{e.name}</label>
+                </div>
               ))}
-            </select>
+            </div>
           </div>
+
           <div className="addmovieformnameflex">
             <div class="addmovieform-group">
               <label for="">Movie Duration:</label>
@@ -443,7 +453,10 @@ function AddMovie() {
             </div>
           </div>
           <div class="addmovieform-group">
-            <button class="counterform-btn" onClick={handleSubmitMovie}>
+            <button
+              class="counterform-btn"
+              onClick={handleSubmitMovie}
+            >
               Upload Movie
             </button>
           </div>
