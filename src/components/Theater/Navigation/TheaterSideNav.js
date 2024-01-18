@@ -46,31 +46,19 @@ function TheaterSideNav() {
           <li>VIEW MOVIES</li>
         </Link>
 
-        <Link
-          className="theatersideNavLinks"
-          to="/theater/add-movie"
-        >
+        <Link className="theatersideNavLinks" to="/theater/add-movie">
           <li>ADD MOVIE</li>
         </Link>
 
-        <Link
-          className="theatersideNavLinks"
-          to="/theater/movieschedulelisting"
-        >
+        <Link className="theatersideNavLinks" to="/theater/movieschedulelisting">
           <li>VIEW SCHEDULES</li>
         </Link>
 
-        <Link
-          className="theatersideNavLinks"
-          to="/theater/movieschedule"
-        >
+        <Link className="theatersideNavLinks" to="/theater/movieschedule" >
           <li>CREATE SCHEDULE</li>
         </Link>
 
-        <Link
-          className="theatersideNavLinks"
-          to="/theater/profile"
-        >
+        <Link className="theatersideNavLinks" to="/theater/profile">
           <li>PROFILE</li>
         </Link>
 

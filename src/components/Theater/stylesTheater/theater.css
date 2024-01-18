@@ -1,11 +1,28 @@
+.theaterDashboard{
+  display: flex;
+  justify-content: space-between;
+}
+
 .theater {
     width: 80%;
-    margin: 115px auto;
-    position: relative;
-    float: right;
-    margin-right: 10px;
+    margin: 15px auto;
     padding: 0 40px;
-    z-index: -1;
+  }
+
+  .theaterDashHeader{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 50px;
+  }
+
+  .theaterDashHeader input{
+    width: 300px;
+    font-size: 0.8rem;
+    color: #333;
+    background: transparent;
+    border: 1px solid #333;
+    padding: 8px 15px;
+    border-radius: 50px;
   }
   
   .selectBtns {
@@ -95,7 +112,7 @@
     height: 0;
     bottom: 0;
     position: absolute;
-    z-index: 1;
+    /* z-index: 1; */
     border-radius: 10px;
     background: #fff;
     visibility: hidden;

@@ -40,7 +40,7 @@ function TheaterNav() {
             </div>
           </nav>
         </div>
-        <TheaterSideNav />
+        {/* <TheaterSideNav /> */}
       {/* </div> */}
     </header>
   )
