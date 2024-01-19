@@ -2,7 +2,8 @@ import React from "react";
 import logo from "../../uploads/Screenshot__335_-removebg-preview (1).png";
 import { Link } from "react-router-dom";
 import SideNav from "./SideNav";
-import webnav from './webnav.css'
+import './webnav.css';
+import DropDown from "../../Website-Admin/DropDown/DropDown";
 
 function WebNav() {
   return (
@@ -17,14 +18,19 @@ function WebNav() {
           <div>
             <ul className="navlinks">
               <Link to="/" className="textdecor">
-                <li className="bsColour">Website Admin</li>
+                <li className="bsColour">Website Admin :   John Doe</li>
               </Link>
             </ul>
           </div>
-          <div>
+          {/* <div>
             <ul className="navlinks">
-            <li className="from-left-and-back">John Doe</li>
+              <Link to="/" className="textdecor">
+                <li className="bsColour">{ "Website Admin " + "John Doe"}</li>
+              </Link>
             </ul>
+          </div> */}
+          <div className="drop-down-control">
+          <DropDown/>
           </div>
         </nav>
       </div>

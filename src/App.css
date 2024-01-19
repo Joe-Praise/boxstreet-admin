@@ -9,31 +9,4 @@ body {
   background-color: #f8f8fa;
 }
 
-/* Chrome, Safari, Edge, Opera */
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
-
-/* Firefox */
-input[type="number"] {
-  -moz-appearance: textfield;
-}
-
-::-webkit-scrollbar {
-  height: 0.3125rem;
-  width: 0.3125rem; /* Adjust the width of the scroll bar */
-}
-
-::-webkit-scrollbar-track {
-  background: #f1f1f1; /* Color of the scroll bar track */
-}
-
-::-webkit-scrollbar-thumb {
-  background: #333; /* Color of the scroll bar thumb */
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: #6a7c94; /* Color of the scroll bar thumb on hover */
-}
+ 
