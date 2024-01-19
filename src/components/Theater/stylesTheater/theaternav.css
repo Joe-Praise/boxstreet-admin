@@ -71,3 +71,29 @@
   background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+
+@media (max-width: 1023px) {
+  .theatersideNav {
+    display: none;
+  }
+
+  .theatersideNavIcon {
+    display: block;
+    cursor: pointer;
+    font-size: 2rem;
+    margin-top: 100px;
+    color: #fff;
+    text-align: center;
+  }
+
+  .theatersideNav {
+    display: block;
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    background-color: #3e567c;
+    padding: 30px 20px;
+    z-index: 1;
+  }
+}

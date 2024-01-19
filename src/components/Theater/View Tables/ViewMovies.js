@@ -14,7 +14,7 @@ function ViewMovies() {
 
   const handleEditButtonClick = (movieId, movie) => {
     navigate(`/theater/update-movie/${movieId}`, {
-      state: {movieData: movie}
+      state: {movieData: movie} 
     });
   };
   const handleViewButtonClick = (movieId) => {

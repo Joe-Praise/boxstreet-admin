@@ -1,47 +1,71 @@
-.theatersideNav{
-    width: 17%;
+.theatersideNav {
+  width: 16%;
+  height: 100vh;
+  /* position: fixed; */
+  background-color: #3e567c;
+  padding: 10px 20px;
+}
+
+@media (max-width: 1023px) {
+  .theatersideNav {
+    display: none;
+  }
+
+  .theatersideNavIcon {
+    display: block;
+    cursor: pointer;
+    font-size: 2rem;
+    margin-top: 100px;
+    color: #fff;
+    text-align: center;
+  }
+  .theatersideNav {
+    display: block;
+    width: 100%;
     height: 100vh;
     position: fixed;
-    top: 80px;
+    top: 0;
     background-color: #3e567c;
     padding: 30px 20px;
+    z-index: 1;
+  }
 }
 
 .theatersideNav ul {
-    list-style: none;
+  list-style: none;
 }
 
-.theatersideNavLinks{
-    text-decoration: none;
+.theatersideNavLinks {
+  text-decoration: none;
 }
 
-.theatersideNavLinks li{
-    font-size: 0.9rem;
-    margin: 20px 10px;
-    padding: 10px 15px;
-    border-radius: 50px;
-    text-align: left;
-    background: #ffffff;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-image: linear-gradient(to right, #6a7c94 45%, #ffffff 55%);
-    background-size: 220% 100%;
-    background-position: 100% 50%;
-    cursor: pointer;
+.theatersideNavLinks li {
+  font-size: 0.9rem;
+  margin: 20px 10px;
+  padding: 10px 15px;
+  border-radius: 50px;
+  text-align: left;
+  background: #ffffff;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-image: linear-gradient(to right, #6a7c94 45%, #ffffff 55%);
+  background-size: 220% 100%;
+  background-position: 100% 50%;
+  cursor: pointer;
 }
 
-.exist{
-    font-size: 1rem;
-    margin: 20px 10px;
-    padding: 10px 15px;
-    /* border: 0.5px solid #ffffff; */
-    border-radius: 50px;
-    /* text-align: left; */
-    background: #ffffff;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-image: linear-gradient(to right, #6a7c94 45%, #ffffff 55%);
-    background-size: 220% 100%;
-    background-position: 100% 50%;
-    cursor: pointer;
+.exist {
+  font-size: 1rem;
+  margin: 20px 10px;
+  padding: 10px 15px;
+  /* border: 0.5px solid #ffffff; */
+  border-radius: 50px;
+  /* text-align: left; */
+  background: #ffffff;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-image: linear-gradient(to right, #6a7c94 45%, #ffffff 55%);
+  background-size: 220% 100%;
+  background-position: 100% 50%;
+  cursor: pointer;
 }

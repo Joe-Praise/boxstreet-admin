@@ -4,6 +4,7 @@ import TheaterNav from "../Navigation/TheaterNav";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import TheaterSideNav from "../Navigation/TheaterSideNav";
 
 const shows = [
   {
@@ -105,49 +106,59 @@ function TheaterHome() {
   };
 
   return (
-    <div>
-      <TheaterNav />
-      <div className="counter">
-        {/* <div className="selectBtns">
-    <select
-      className="select"
-      name="movie time"
-      onChange={(e) => setSelectedMovieTime(e.target.value)}
-    >
-      <option value="Select Movie Time">Movie Time</option>
-      <option value="11:30am - 1pm">11:30am - 1:00pm</option>
-      <option value="1:15pm - 2:45pm">1:15pm - 2:45pm</option>
-      <option value="3:30pm - 4:45pm">3:30pm - 4:45pm</option>
-      <option value="5:00pm - 6:50pm">5:00pm - 6:50pm</option>
-    </select>
-    <select
-      className="select"
-      name="genre"
-      onChange={(e) => setSelectedGenre(e.target.value)}
-    >
-      <option value="Genre">Genre</option>
-      <option value="Action">Action</option>
-      <option value="Adventure">Adventure</option>
-      <option value="Sci-Fi">Sci-Fi</option>
-      <option value="Animation">Animation</option>
-      <option value="Family">Family</option>
-      <option value="Drama">Drama</option>
-      <option value="Fantasy">Fantasy</option>
-      <option value="Comedy">Comedy</option>
-      <option value="Thriller">Thriller</option>
-      <option value="Mystery">Mystery</option>
-      <option value="Horror">Horror</option>
-      <option value="Romance">Romance</option>
-      <option value="Documentary">Documentary</option>
-      <option value="Music">Music</option>
-    </select>
-  </div> */}
+    <div className="theaterDashboard">
+      <TheaterSideNav />
+      <div className="theater">
+        <div className="theaterDashHeader">
+          <h2> Theater Dashboard </h2>
+          <input type="search" name="" placeholder="what are you looking for?" id="" />
+        </div>
+        <div className="selectBtns">
+          <select
+            className="select"
+            name="movie time"
+            onChange={(e) => setSelectedMovieTime(e.target.value)}
+          >
+            <option value="Select Movie Time">Movie Time</option>
+            <option value="11:30am - 1pm">11:30am - 1:00pm</option>
+            <option value="1:15pm - 2:45pm">1:15pm - 2:45pm</option>
+            <option value="3:30pm - 4:45pm">3:30pm - 4:45pm</option>
+            <option value="5:00pm - 6:50pm">5:00pm - 6:50pm</option>
+          </select>
+          <select
+            className="select"
+            name="genre"
+            onChange={(e) => setSelectedGenre(e.target.value)}
+          >
+            <option value="Genre">Genre</option>
+            <option value="Action">Action</option>
+            <option value="Adventure">Adventure</option>
+            <option value="Sci-Fi">Sci-Fi</option>
+            <option value="Animation">Animation</option>
+            <option value="Family">Family</option>
+            <option value="Drama">Drama</option>
+            <option value="Fantasy">Fantasy</option>
+            <option value="Comedy">Comedy</option>
+            <option value="Thriller">Thriller</option>
+            <option value="Mystery">Mystery</option>
+            <option value="Horror">Horror</option>
+            <option value="Romance">Romance</option>
+            <option value="Documentary">Documentary</option>
+            <option value="Music">Music</option>
+          </select>
+        </div>
         <div className="tMovies">
           {movieListing.length > 0 ? (
             movieListing.map((movie) => (
-              <div className="tmovieBox" key={movie.id}>
+              <div
+                className="tmovieBox"
+                key={movie.id}
+              >
                 <Link to={`/theater/single-movie/${movie.id}`}>
-                  <img src={movie.imageUrl} alt={movie.title} />
+                  <img
+                    src={movie.imageUrl}
+                    alt={movie.title}
+                  />
                 </Link>
                 <div className="tmovieInfo">
                   <div className="cardDetails">
@@ -174,9 +185,14 @@ function TheaterHome() {
             ))
           ) : (
             <div>
-              <h1 style={{width: "800px", marginBottom: "50px"}}>Welcome, please create movies for the theater below.</h1>
+              <h1 style={{ width: "800px", marginBottom: "50px" }}>
+                Welcome, please create movies for the theater below.
+              </h1>
 
-              <button className="addmoviesbtn" onClick={handleMoviesClick}>
+              <button
+                className="addmoviesbtn"
+                onClick={handleMoviesClick}
+              >
                 Add New Movie
               </button>
             </div>

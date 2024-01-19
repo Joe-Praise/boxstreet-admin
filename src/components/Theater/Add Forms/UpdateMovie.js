@@ -243,10 +243,10 @@ function UpdateMovie() {
       <TheaterNav />
       <div className="addmovieForm">
         <form className="addmovieform" onSubmit={handleSubmitUpdate}>
-          <h2>Add a New Movie</h2>
+          <h2>Update Movie Details</h2>
           <div class="addmovieform-group">
             <label for="">Movie Title:</label>
-            <span></span>
+            <span></span>X
             <input
               type="text"
               name="name"
