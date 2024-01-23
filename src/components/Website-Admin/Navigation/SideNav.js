@@ -1,6 +1,6 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
-import sidenav from './sidenav.css';
+import  './sidenav.css';
 import axios from "axios";
 import config from "../../config";
 
