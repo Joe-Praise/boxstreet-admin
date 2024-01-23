@@ -3,6 +3,7 @@ import TheaterNav from "../Navigation/TheaterNav";
 import "../stylesTheater/viewTheaters.css";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import TheaterSideNav from "../Navigation/TheaterSideNav";
 
 let MODE = "PROD";
 let LOCAL = "http://localhost:5000";
@@ -103,7 +104,7 @@ function ViewTheaters() {
 
   return (
     <div>
-      <TheaterNav />
+      <TheaterSideNav />
       <div className="vtPage">
         <div className="vt-page">
           <div className="vt-page-top">
