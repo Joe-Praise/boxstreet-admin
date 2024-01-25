@@ -4,10 +4,9 @@
 }
 
 .theater {
-  width: 80%;
+  width: 100%;
   margin: 15px auto;
-  margin-left: 16%;
-  padding: 0 40px; 
+  padding: 0 40px;
 }
 
 .theaterDashHeader {
@@ -48,8 +47,8 @@
   grid-template-columns: repeat(4, 1fr);
   gap: 20px;
   width: 100%;
-  /* max-width: 1200px; */
   margin: 30px auto;
+  overflow-y: scroll;
 }
 
 .tmovieBox {
@@ -60,11 +59,6 @@
   background-color: #fff;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
 }
-
-/* .tmovieBox:hover {
-    transform: scale(1.015);
-    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
-  } */
 
 .tmovieBox img {
   width: 100%;
