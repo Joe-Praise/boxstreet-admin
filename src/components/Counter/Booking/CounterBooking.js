@@ -69,7 +69,7 @@ function CounterBooking() {
     record.branch_id = localStorage.getItem("branch_id");
     record.counter_id = localStorage.getItem("user_id");
     record.schedule_id = schedule?._id;
-    record.movie_id = schedule?.movie_id._id;
+    record.movie_id = schedule?.movie_id?._id;
     record.movie_price = schedule?.price;
 
     localStorage.setItem("booking", JSON.stringify(record));
