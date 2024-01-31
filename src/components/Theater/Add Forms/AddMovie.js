@@ -3,6 +3,7 @@ import TheaterNav from "../Navigation/TheaterNav";
 import axios from "axios";
 import { FcAddDatabase, FcDeleteDatabase } from "react-icons/fc";
 import { useEffect, useState } from "react";
+import TheaterSideNav from "../Navigation/TheaterSideNav";
 
 let MODE = "PROD";
 let LOCAL = "http://localhost:5000";
@@ -227,238 +228,240 @@ function AddMovie() {
   };
 
   return (
-    <div>
-      <TheaterNav />
+    <div className="addmovie">
+      <TheaterSideNav />
       <div className="addmovieForm">
         <form className="addmovieform">
           <h2>Add a New Movie</h2>
-          <div class="addmovieform-group">
-            <label for="">Movie Title:</label>
-            <span></span>
-            <input
-              type="text"
-              name="name"
-              class="inputs"
-              value={movieInfo.name}
-              onChange={(e) =>
-                setMovieInfo({ ...movieInfo, name: e.target.value })
-              }
-            />
-          </div>
-
-          {movieInfo.cast.map((cast, index) => (
-            <div
-              key={index}
-              className="addmovieform-group"
-            >
-              <label htmlFor={`castName${index}`}>Cast {index + 1}:</label>
+          <div className="formscroll">
+            <div class="addmovieform-group">
+              <label for="">Movie Title:</label>
               <span></span>
               <input
                 type="text"
-                placeholder="Name"
-                name={`castName${index}`}
+                name="name"
+                class="inputs"
+                value={movieInfo.name}
                 onChange={(e) =>
-                  handleCastChange(index, "name", e.target.value)
+                  setMovieInfo({ ...movieInfo, name: e.target.value })
                 }
               />
-              <input
-                type="text"
-                placeholder="Image Url"
-                name={`castUrl${index}`}
-                onChange={(e) =>
-                  handleCastChange(index, "image_url", e.target.value)
-                }
-              />
-              <button
-                type="button"
-                className="addcastBTN"
-                onClick={() => removeCastField(index)}
+            </div>
+
+            {movieInfo.cast.map((cast, index) => (
+              <div
+                key={index}
+                className="addmovieform-group"
               >
-                <FcDeleteDatabase /> Remove
+                <label htmlFor={`castName${index}`}>Cast {index + 1}:</label>
+                <span></span>
+                <input
+                  type="text"
+                  placeholder="Name"
+                  name={`castName${index}`}
+                  onChange={(e) =>
+                    handleCastChange(index, "name", e.target.value)
+                  }
+                />
+                <input
+                  type="text"
+                  placeholder="Image Url"
+                  name={`castUrl${index}`}
+                  onChange={(e) =>
+                    handleCastChange(index, "image_url", e.target.value)
+                  }
+                />
+                <button
+                  type="button"
+                  className="addcastBTN"
+                  onClick={() => removeCastField(index)}
+                >
+                  <FcDeleteDatabase /> Remove
+                </button>
+              </div>
+            ))}
+
+            <div className="addmovieform-group">
+              <button
+                className="addcastBTN"
+                type="button"
+                onClick={addNewCastField}
+              >
+                <FcAddDatabase /> Add Cast
               </button>
             </div>
-          ))}
 
-          <div className="addmovieform-group">
-            <button
-              className="addcastBTN"
-              type="button"
-              onClick={addNewCastField}
-            >
-              <FcAddDatabase /> Add Cast
-            </button>
-          </div>
-
-          <div className="addmovieformnameflex">
-            <div class="addmovieform-group">
-              <label for="">Coming Soon:</label>
-              <span></span>
-              <select
-                type="text"
-                name="coming_soon"
-                class="inputs"
-                value={movieInfo.coming_soon}
-                onChange={(e) =>
-                  setMovieInfo({ ...movieInfo, coming_soon: e.target.value })
-                }
-              >
-                <option value="true">True</option>
-                <option value="false">False</option>
-              </select>
-            </div>
-            <div class="addmovieform-group">
-              <label for="">Language(s):</label>
-              <span></span>
-              <input
-                type="text"
-                name="language"
-                class="inputs"
-                value={movieInfo.language}
-                onChange={(e) =>
-                  setMovieInfo({ ...movieInfo, language: e.target.value })
-                }
-              />
-            </div>
-          </div>
-
-          <div class="addmovieform-group">
-            <label for="">Description:</label>
-            <span></span>
-            <textarea
-              type="text"
-              name="description"
-              class="inputs"
-              value={movieInfo.description}
-              onChange={(e) =>
-                setMovieInfo({ ...movieInfo, description: e.target.value })
-              }
-            />
-          </div>
-          <div className="addmovieform-group">
-            <label>Genre:</label>
-            <div className="checkbox-group inputs">
-              {genres.map((e) => (
-                <div
-                  key={e.id}
-                  className="checkbox-item"
+            <div className="addmovieformnameflex">
+              <div class="addmovieform-group">
+                <label for="">Coming Soon:</label>
+                <span></span>
+                <select
+                  type="text"
+                  name="coming_soon"
+                  class="inputs"
+                  value={movieInfo.coming_soon}
+                  onChange={(e) =>
+                    setMovieInfo({ ...movieInfo, coming_soon: e.target.value })
+                  }
                 >
-                  <input
-                    type="checkbox"
-                    id={`genreCheckbox${e.id}`}
-                    value={e.id}
-                    checked={selectedGenres.includes(e.id)}
-                    onChange={handleGenreClick}
-                  />
-                  <label htmlFor={`genreCheckbox${e.id}`}>{e.name}</label>
-                </div>
-              ))}
+                  <option value="true">True</option>
+                  <option value="false">False</option>
+                </select>
+              </div>
+              <div class="addmovieform-group">
+                <label for="">Language(s):</label>
+                <span></span>
+                <input
+                  type="text"
+                  name="language"
+                  class="inputs"
+                  value={movieInfo.language}
+                  onChange={(e) =>
+                    setMovieInfo({ ...movieInfo, language: e.target.value })
+                  }
+                />
+              </div>
             </div>
-          </div>
 
-          <div className="addmovieformnameflex">
             <div class="addmovieform-group">
-              <label for="">Movie Duration:</label>
+              <label for="">Description:</label>
               <span></span>
-              <input
+              <textarea
                 type="text"
-                name="duration"
+                name="description"
                 class="inputs"
-                value={movieInfo.duration}
+                value={movieInfo.description}
                 onChange={(e) =>
-                  setMovieInfo({ ...movieInfo, duration: e.target.value })
+                  setMovieInfo({ ...movieInfo, description: e.target.value })
                 }
               />
             </div>
-            <div class="addmovieform-group">
-              <label for="">Production Studio:</label>
-              <span></span>
-              <input
-                type="text"
-                name="production_studio"
-                class="inputs"
-                value={movieInfo.production_studio}
-                onChange={(e) =>
-                  setMovieInfo({
-                    ...movieInfo,
-                    production_studio: e.target.value,
-                  })
-                }
-              />
+            <div className="addmovieform-group">
+              <label>Genre:</label>
+              <div className="checkbox-group inputs">
+                {genres.map((e) => (
+                  <div
+                    key={e.id}
+                    className="checkbox-item"
+                  >
+                    <input
+                      type="checkbox"
+                      id={`genreCheckbox${e.id}`}
+                      value={e.id}
+                      checked={selectedGenres.includes(e.id)}
+                      onChange={handleGenreClick}
+                    />
+                    <label htmlFor={`genreCheckbox${e.id}`}>{e.name}</label>
+                  </div>
+                ))}
+              </div>
             </div>
-          </div>
-          <div className="addmovieformnameflex">
-            <div class="addmovieform-group">
-              <label for="">PG Rating:</label>
-              <span></span>
-              <input
-                type="text"
-                name="pg_rating"
-                class="inputs"
-                value={movieInfo.pg_rating}
-                onChange={(e) =>
-                  setMovieInfo({ ...movieInfo, pg_rating: e.target.value })
-                }
-              />
+
+            <div className="addmovieformnameflex">
+              <div class="addmovieform-group">
+                <label for="">Movie Duration:</label>
+                <span></span>
+                <input
+                  type="text"
+                  name="duration"
+                  class="inputs"
+                  value={movieInfo.duration}
+                  onChange={(e) =>
+                    setMovieInfo({ ...movieInfo, duration: e.target.value })
+                  }
+                />
+              </div>
+              <div class="addmovieform-group">
+                <label for="">Production Studio:</label>
+                <span></span>
+                <input
+                  type="text"
+                  name="production_studio"
+                  class="inputs"
+                  value={movieInfo.production_studio}
+                  onChange={(e) =>
+                    setMovieInfo({
+                      ...movieInfo,
+                      production_studio: e.target.value,
+                    })
+                  }
+                />
+              </div>
+            </div>
+            <div className="addmovieformnameflex">
+              <div class="addmovieform-group">
+                <label for="">PG Rating:</label>
+                <span></span>
+                <input
+                  type="text"
+                  name="pg_rating"
+                  class="inputs"
+                  value={movieInfo.pg_rating}
+                  onChange={(e) =>
+                    setMovieInfo({ ...movieInfo, pg_rating: e.target.value })
+                  }
+                />
+              </div>
+              <div class="addmovieform-group">
+                <label for="">Release Date:</label>
+                <span></span>
+                <input
+                  type="date"
+                  name="release_date"
+                  class="inputs"
+                  value={movieInfo.release_date}
+                  onChange={(e) =>
+                    setMovieInfo({ ...movieInfo, release_date: e.target.value })
+                  }
+                />
+              </div>
+              <div class="addmovieform-group">
+                <label for="">Movie Director:</label>
+                <span></span>
+                <input
+                  type="text"
+                  name="movie_director"
+                  class="inputs"
+                  value={movieInfo.movie_director}
+                  onChange={(e) =>
+                    setMovieInfo({ ...movieInfo, movie_director: e.target.value })
+                  }
+                />
+              </div>
+            </div>
+            <div className="addmovieformnameflex">
+              <div class="addmovieform-group">
+                <label for="">Trailer Link:</label>
+                <span></span>
+                <input
+                  type="text"
+                  name="trailer"
+                  class="inputs"
+                  value={movieInfo.trailer}
+                  onChange={(e) =>
+                    setMovieInfo({ ...movieInfo, trailer: e.target.value })
+                  }
+                />
+              </div>
+              <div class="addmovieform-group">
+                <label for="">Movie Poster:</label>
+                <span></span>
+                <input
+                  type="file"
+                  name="image"
+                  class="inputs"
+                  onChange={(e) => setFile((prev) => e.target.files[0])}
+                />
+              </div>
             </div>
             <div class="addmovieform-group">
-              <label for="">Release Date:</label>
-              <span></span>
-              <input
-                type="date"
-                name="release_date"
-                class="inputs"
-                value={movieInfo.release_date}
-                onChange={(e) =>
-                  setMovieInfo({ ...movieInfo, release_date: e.target.value })
-                }
-              />
+              <button
+                class="counterform-btn"
+                onClick={handleSubmitMovie}
+              >
+                Upload Movie
+              </button>
             </div>
-            <div class="addmovieform-group">
-              <label for="">Movie Director:</label>
-              <span></span>
-              <input
-                type="text"
-                name="movie_director"
-                class="inputs"
-                value={movieInfo.movie_director}
-                onChange={(e) =>
-                  setMovieInfo({ ...movieInfo, movie_director: e.target.value })
-                }
-              />
-            </div>
-          </div>
-          <div className="addmovieformnameflex">
-            <div class="addmovieform-group">
-              <label for="">Trailer Link:</label>
-              <span></span>
-              <input
-                type="text"
-                name="trailer"
-                class="inputs"
-                value={movieInfo.trailer}
-                onChange={(e) =>
-                  setMovieInfo({ ...movieInfo, trailer: e.target.value })
-                }
-              />
-            </div>
-            <div class="addmovieform-group">
-              <label for="">Movie Poster:</label>
-              <span></span>
-              <input
-                type="file"
-                name="image"
-                class="inputs"
-                onChange={(e) => setFile((prev) => e.target.files[0])}
-              />
-            </div>
-          </div>
-          <div class="addmovieform-group">
-            <button
-              class="counterform-btn"
-              onClick={handleSubmitMovie}
-            >
-              Upload Movie
-            </button>
           </div>
         </form>
       </div>

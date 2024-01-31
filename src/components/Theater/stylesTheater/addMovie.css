@@ -1,31 +1,24 @@
-.addmovieForm {
-  width: 80%;
-  overflow-y: hidden;
-  margin: 100px auto;
-}
-
-.addmovieBookingFlex {
+.addmovie{
   display: flex;
   justify-content: space-between;
-  margin-left: 250px;
 }
 
-.addmovieBookingForm {
+.addmovieForm {
   width: 100%;
-  margin-top: 150px;
-}
-
-.addmovieBookingForm h2 {
-  color: #333;
+  margin: 15px auto;
 }
 
 .addmovieform {
   background: transparent;
   background-size: cover;
-  width: 80%;
   height: auto;
   margin: 10px auto;
-  padding: 25px 50px;
+  padding: 15px 40px;
+}
+
+.formscroll{
+  width: 100%;
+  overflow-y: scroll;
 }
 
 .addmovieformnameflex {
