@@ -1,136 +1,133 @@
 .vtPage {
-  margin-left: 285px;
-  margin-bottom: 100px;
-  margin-top: 100px;
-  margin-right: 60px;
-  width: 80%;
+	margin: 100px auto;
+	width: 90%;
 }
 
 .vt-table-container {
-  border-left: 10px solid #6a7c94;
-  color: #121111;
-  background: #f5f4f5d3;
+	border-left: 10px solid #6a7c94;
+	color: #121111;
+	background: #f5f4f5d3;
 }
 
-.vt-select{
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+.vt-select {
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
 }
 
 .vt-select span {
-  font-size: 1.5rem;
-  font-weight: bold;
+	font-size: 1.5rem;
+	font-weight: bold;
 }
 
-.addtheaterbtn{
-    background-color: #6a7c94;
-    border-radius: 4px;
-    padding: 10px;
-    border: none;
-    color: #fff;
-    text-align: center;
-    cursor: pointer;
+.addtheaterbtn {
+	background-color: #6a7c94;
+	border-radius: 4px;
+	padding: 10px;
+	border: none;
+	color: #fff;
+	text-align: center;
+	cursor: pointer;
 }
 
-.vt-table-viewseat{
-  background-color: #94746a;
-  border-radius: 4px;
-  color: #fff;
-  text-align: center;
-  cursor: pointer;
+.vt-table-viewseat {
+	background-color: #94746a;
+	border-radius: 4px;
+	color: #fff;
+	text-align: center;
+	cursor: pointer;
 }
 
-.vt-table-resetseat{
-  background-color: #5b5b5b;
-  border-radius: 4px;
-  color: #fff;
-  text-align: center;
-  cursor: pointer;
+.vt-table-resetseat {
+	background-color: #5b5b5b;
+	border-radius: 4px;
+	color: #fff;
+	text-align: center;
+	cursor: pointer;
 }
 
-.vt-table-view{
-    background-color: #6a9480;
-    border-radius: 4px;
-    color: #fff;
-    text-align: center;
-    cursor: pointer;
+.vt-table-view {
+	background-color: #6a9480;
+	border-radius: 4px;
+	color: #fff;
+	text-align: center;
+	cursor: pointer;
 }
 
 .vt-table-edit {
-  background-color: #6a7c94;
-  border-radius: 4px;
-  color: #fff;
-  text-align: center;
-  cursor: pointer;
+	background-color: #6a7c94;
+	border-radius: 4px;
+	color: #fff;
+	text-align: center;
+	cursor: pointer;
 }
 
 .vt-table-delete {
-  background-color: #ff9b8a;
-  border-radius: 4px;
-  color: #fff;
-  text-align: center;
-  cursor: pointer;
+	background-color: #ff9b8a;
+	border-radius: 4px;
+	color: #fff;
+	text-align: center;
+	cursor: pointer;
 }
 .vt-page-top {
-  display: flex;
-  justify-content: center;
+	display: flex;
+	justify-content: center;
 }
 .vt-input {
-  display: flex;
-  gap: 20px;
-  color: aqua;
-  margin-bottom: 40px;
+	display: flex;
+	gap: 20px;
+	color: aqua;
+	margin-bottom: 40px;
 }
 .vt-page-top .vt-input input {
-  width: 800px;
-  height: 50px;
-  border: none;
-  outline: none;
-  border-radius: 6px;
-  padding: 10px;
+	width: 800px;
+	height: 50px;
+	border: none;
+	outline: none;
+	border-radius: 6px;
+	padding: 10px;
 }
 .vt-input-btn {
-  width: 100px;
-  height: 50px;
-  border-radius: 5px;
-  background: #f5f4f5d3;
-  color: #111;
-  text-align: center;
-  padding-top: 15px;
-  transition: all ease-in-out 0.3s;
+	width: 100px;
+	height: 50px;
+	border-radius: 5px;
+	background: #f5f4f5d3;
+	color: #111;
+	text-align: center;
+	padding-top: 15px;
+	transition: all ease-in-out 0.3s;
 }
 
 .vt-input-btn:hover {
-  background-color: #585757;
+	background-color: #585757;
 }
 
 .vt-table-container table,
 th,
 td {
-  padding: 1rem;
+	padding: 1rem;
 }
 .vt-table {
-  width: 100%;
-  margin-top: 10px;
-  border-collapse: collapse;
+	width: 100%;
+	margin-top: 10px;
+	border-collapse: collapse;
 }
 .vt-table .vt-table-header {
-  background: #111;
-  height: 50px;
-  color: #fff;
+	background: #111;
+	height: 50px;
+	color: #fff;
 }
 
 .vt-table-header th {
-  padding: 10px;
+	padding: 10px;
 }
 
 .vt-table tbody td {
-  padding: 13px;
-  font-size: 16px;
-  text-align: center;
-  align-items: center;
-  border-top: 10px solid #dfdddd;
-  border-bottom: 10px solid #dfdddd;
+	padding: 13px;
+	font-size: 16px;
+	text-align: center;
+	align-items: center;
+	border-top: 10px solid #dfdddd;
+	border-bottom: 10px solid #dfdddd;
 }

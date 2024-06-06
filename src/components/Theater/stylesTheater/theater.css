@@ -1,182 +1,182 @@
 .theaterDashboard {
-  display: flex;
-  justify-content: space-between;
+	display: flex;
+	justify-content: space-between;
 }
 
 .theater {
-  width: 100%;
-  margin: 15px auto;
-  padding: 0 40px;
+	width: 100%;
+	margin: 15px auto;
+	padding: 0 40px;
 }
 
 .theaterDashHeader {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 50px;
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: 50px;
 }
 
 .theaterDashHeader input {
-  width: 300px;
-  font-size: 0.8rem;
-  color: #333;
-  background: transparent;
-  border: 1px solid #333;
-  padding: 8px 15px;
-  border-radius: 50px;
+	width: 300px;
+	font-size: 0.8rem;
+	color: #333;
+	background: transparent;
+	border: 1px solid #333;
+	padding: 8px 15px;
+	border-radius: 50px;
 }
 
 .selectBtns {
-  display: flex;
-  gap: 1.25rem;
-  align-items: center;
+	display: flex;
+	gap: 1.25rem;
+	align-items: center;
 }
 
 .select {
-  outline: 0;
-  font-size: 0.8rem;
-  color: #333;
-  font-weight: bold;
-  background: transparent;
-  border: 1px solid #333;
-  padding: 8px 15px;
-  border-radius: 5px;
+	outline: 0;
+	font-size: 0.8rem;
+	color: #333;
+	font-weight: bold;
+	background: transparent;
+	border: 1px solid #333;
+	padding: 8px 15px;
+	border-radius: 5px;
 }
 
 .tMovies {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 20px;
-  width: 100%;
-  margin: 30px auto;
-  overflow-y: scroll;
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	gap: 20px;
+	width: 100%;
+	margin: 30px auto;
+	overflow-y: scroll;
 }
 
 .tmovieBox {
-  width: 100%;
-  border-radius: 10px;
-  text-decoration: none;
-  position: relative;
-  background-color: #fff;
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+	width: 100%;
+	border-radius: 10px;
+	text-decoration: none;
+	position: relative;
+	background-color: #fff;
+	box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .tmovieBox img {
-  width: 100%;
-  height: 280px;
-  object-fit: cover;
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
+	width: 100%;
+	height: 280px;
+	object-fit: cover;
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
 }
 
 .tmovieInfo {
-  width: 100%;
-  height: auto;
-  overflow: hidden;
-  position: relative;
+	width: 100%;
+	height: auto;
+	overflow: hidden;
+	position: relative;
 }
 
 .tmovieInfo h3 {
-  font-size: 1.2rem;
-  margin-bottom: 5px;
-  color: #333;
+	font-size: 1.2rem;
+	margin-bottom: 5px;
+	color: #333;
 }
 
 .tmovieInfo span {
-  display: block;
-  font-size: 0.9rem;
-  color: #777;
-  margin-bottom: 10px;
+	display: block;
+	font-size: 0.9rem;
+	color: #777;
+	margin-bottom: 10px;
 }
 
 .tmovieInfo p {
-  font-size: 0.9rem;
-  color: #555;
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  text-overflow: ellipsis;
+	font-size: 0.9rem;
+	color: #555;
+	display: -webkit-box;
+	-webkit-line-clamp: 3;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
 
 .cardDetails {
-  padding: 10px;
+	padding: 10px;
 }
 
 .cardActions {
-  width: 100%;
-  height: 0;
-  bottom: 0;
-  position: absolute;
-  /* z-index: 1; */
-  border-radius: 10px;
-  background: #fff;
-  visibility: hidden;
-  display: flex;
-  gap: 10px;
-  justify-content: center;
-  align-items: center;
-  transition: ease-in-out 1s;
-  overflow: hidden;
-  padding: 0px 5px;
+	width: 100%;
+	height: 0;
+	bottom: 0;
+	position: absolute;
+	/* z-index: 1; */
+	border-radius: 10px;
+	background: #fff;
+	visibility: hidden;
+	display: flex;
+	gap: 10px;
+	justify-content: center;
+	align-items: center;
+	transition: ease-in-out 1s;
+	overflow: hidden;
+	padding: 0px 5px;
 }
 
 .btnEdit {
-  width: 90%;
-  height: 40px;
-  outline: none;
-  border-radius: 5px;
-  border: none;
-  color: #fff;
-  font-size: 1rem;
-  font-weight: 400;
-  background-color: #4ab1b3;
-  cursor: pointer;
+	width: 90%;
+	height: 40px;
+	outline: none;
+	border-radius: 5px;
+	border: none;
+	color: #fff;
+	font-size: 1rem;
+	font-weight: 400;
+	background-color: #4ab1b3;
+	cursor: pointer;
 }
 
 .btnEdit:hover {
-  background-color: #2d6d6e;
+	background-color: #2d6d6e;
 }
 
 .btnDelete {
-  width: 90%;
-  height: 40px;
-  outline: none;
-  border-radius: 5px;
-  border: none;
-  color: #fff;
-  font-size: 1rem;
-  font-weight: 400;
-  background-color: #b34a4a;
-  cursor: pointer;
+	width: 90%;
+	height: 40px;
+	outline: none;
+	border-radius: 5px;
+	border: none;
+	color: #fff;
+	font-size: 1rem;
+	font-weight: 400;
+	background-color: #b34a4a;
+	cursor: pointer;
 }
 
 .btnDelete:hover {
-  background-color: #732e2e;
+	background-color: #732e2e;
 }
 
 .tmovieInfo:hover .cardActions {
-  visibility: visible;
-  height: 100%;
-  transition: all ease-in-out 1s;
+	visibility: visible;
+	height: 100%;
+	transition: all ease-in-out 1s;
 }
 
 @media (max-width: 1024px) {
-  .tMovies {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 15px;
-  }
+	.tMovies {
+		grid-template-columns: repeat(3, 1fr);
+		gap: 15px;
+	}
 }
 
 @media (max-width: 768px) {
-  .tMovies {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 15px;
-  }
+	.tMovies {
+		grid-template-columns: repeat(2, 1fr);
+		gap: 15px;
+	}
 }
 
 @media (max-width: 480px) {
-  .tMovies {
-    grid-template-columns: repeat(1, 1fr);
-    gap: 10px;
-  }
+	.tMovies {
+		grid-template-columns: repeat(1, 1fr);
+		gap: 10px;
+	}
 }
